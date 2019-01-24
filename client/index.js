@@ -7,5 +7,5 @@ ReactDOM.render(
   <Router>
     <Main />
   </Router>,
-  document.getElementByID('app')
+  document.getElementById('app')
 )
