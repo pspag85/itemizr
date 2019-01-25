@@ -8,7 +8,7 @@
     "start-server": "nodemon --watch server -e js,html index.js",
     "build-watch": "webpack -w"
   },
-  "keywords": [],
+  "keywords": ["heroku"],
   "author": "Patsy Spagnuolo",
   "license": "ISC",
   "dependencies": {
@@ -29,5 +29,9 @@
     "babel-preset-stage-2": "^6.24.1",
     "nodemon": "^1.18.5",
     "webpack": "^3.10.0"
+  },
+  "engines": {
+    "node": "8.9.4"
   }
+
 }

@@ -3,7 +3,7 @@ const express = require('express')
 const volleyball = require('volleyball')
 const app = express()
 module.exports = app
-const PORT = 5000
+const PORT = process.env.PORT || 5000
 
 app.use(volleyball)
 
