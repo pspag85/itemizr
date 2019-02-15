@@ -1,14 +1,16 @@
 {
-  "name": "Heroku Boilerplate",
+  "name": "itemizr-app",
   "version": "1.0.0",
-  "description": "boilerplate code for react heroku app",
+  "description": "itemizr app react heroku app",
   "main": "server/index.js",
   "scripts": {
     "start": "npm run start-server & npm run build-watch",
     "start-server": "nodemon --watch server -e js,html index.js",
     "build-watch": "webpack -w"
   },
-  "keywords": ["heroku"],
+  "keywords": [
+    "heroku"
+  ],
   "author": "Patsy Spagnuolo",
   "license": "ISC",
   "dependencies": {
@@ -33,5 +35,4 @@
   "engines": {
     "node": "8.9.4"
   }
-
 }
