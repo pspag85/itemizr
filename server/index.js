@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 })
 
 app.get('*', (req, res, next) => {
-  res.sendFile('C:/Users/pat/Desktop/Spring 2019/CartWizard/public/index.html')
+  res.sendFile('C:/Users/pat/itemizr/server/index.html')
 })
 
 app.use((err, req, res, next) => {

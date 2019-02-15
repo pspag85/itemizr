@@ -5,7 +5,7 @@ import React from 'react'
 var Main = function(){
   return (
     <div id='main'>
-      CartWizard Coming Soon
+      Welcome to itemiZr
     </div>
   )
 }
