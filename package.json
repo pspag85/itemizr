@@ -1,7 +1,7 @@
 {
-  "name": "CartWizard",
+  "name": "Heroku Boilerplate",
   "version": "1.0.0",
-  "description": "Grocery list app that will remind you of commonly purchased items",
+  "description": "boilerplate code for react heroku app",
   "main": "server/index.js",
   "scripts": {
     "start": "npm run start-server & npm run build-watch",
