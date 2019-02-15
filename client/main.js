@@ -5,7 +5,7 @@ import React from 'react'
 var Main = function(){
   return (
     <div id='main'>
-      Welcome to Itemizr
+      Welcome to Itemizr OG stat
     </div>
   )
 }
