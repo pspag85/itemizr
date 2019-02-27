@@ -3,7 +3,7 @@ const db = require('./database')
 
 const List = db.define('lists', {
   date: {
-    type: Sequelize.DATE,//this usted to be string
+    type: Sequelize.DATE,
     allowNull: false
   },
   mostRecentEditor: {

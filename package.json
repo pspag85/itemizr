@@ -1,7 +1,7 @@
 {
-  "name": "itemizr-app",
+  "name": "itemizr",
   "version": "1.0.0",
-  "description": "itemizr app react heroku app",
+  "description": "itemizr app react",
   "main": "server/index.js",
   "scripts": {
     "start": "npm run start-server & npm run build-watch",
