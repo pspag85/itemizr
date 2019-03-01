@@ -38,6 +38,7 @@ const init = (async () => {
     app.listen(PORT, () => console.log(`Server Listening on ${PORT}`))
   } catch(err) {
     console.log('Error Syncing to Database')
+    console.error(err)
   }
 })()
 
