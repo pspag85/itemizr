@@ -1,12 +1,12 @@
 import React from 'react'
-import List from './components/list'
+import Item from './components/item'
 //import {NavBar, Footer} from './components'
 //import Routes from './routes'
 
 var Main = function(){
   return (
     <div id='main'>
-      <List />
+      <Item />
     </div>
   )
 }
