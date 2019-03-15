@@ -7,10 +7,16 @@ class AddItem extends Component{
   constructor(props){
     super(props)
     this.state = {
+      clicked: false,
       item: ''
     }
+    this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleClick(event){
+    this.setState({clicked:true})
   }
 
   handleChange(event){
@@ -30,12 +36,24 @@ class AddItem extends Component{
     }
   }
   render(){
+
     return(
-      <ItemForm
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
-        item={this.state.item}
-      />
+      <div>
+        <button onClick={this.handleClick}> + </button>
+        {
+          this.state.clicked ? (
+            <ItemForm
+              handleSubmit={this.handleSubmit}
+              handleChange={this.handleChange}
+              item={this.state.item}
+            />
+            ) : (
+              <div>
+                <h2> unclicked </h2>
+              </div>
+            )
+          }
+      </div>
     )
   }
 }
@@ -44,4 +62,5 @@ export default AddItem
 
 
 
-
+    // if(a) {return a} else {return b}
+    //      return a ? a : b   (**shorthand for return a === true ? a : b)

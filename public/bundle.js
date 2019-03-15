@@ -35668,6 +35668,10 @@ var _addItem = __webpack_require__(374);
 
 var _addItem2 = _interopRequireDefault(_addItem);
 
+var _items = __webpack_require__(422);
+
+var _items2 = _interopRequireDefault(_items);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //import {NavBar, Footer} from './components'
@@ -35677,7 +35681,8 @@ var Main = function Main() {
   return _react2.default.createElement(
     'div',
     { id: 'main' },
-    _react2.default.createElement(_addItem2.default, null)
+    _react2.default.createElement(_addItem2.default, null),
+    _react2.default.createElement(_items2.default, null)
   );
 };
 
@@ -35725,14 +35730,21 @@ var AddItem = function (_Component) {
     var _this = _possibleConstructorReturn(this, (AddItem.__proto__ || Object.getPrototypeOf(AddItem)).call(this, props));
 
     _this.state = {
+      clicked: false,
       item: ''
     };
+    _this.handleClick = _this.handleClick.bind(_this);
     _this.handleChange = _this.handleChange.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     return _this;
   }
 
   _createClass(AddItem, [{
+    key: 'handleClick',
+    value: function handleClick(event) {
+      this.setState({ clicked: true });
+    }
+  }, {
     key: 'handleChange',
     value: function handleChange(event) {
       this.setState({ item: event.target.value });
@@ -35784,11 +35796,29 @@ var AddItem = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(_itemForm2.default, {
-        handleSubmit: this.handleSubmit,
-        handleChange: this.handleChange,
-        item: this.state.item
-      });
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'button',
+          { onClick: this.handleClick },
+          ' + '
+        ),
+        this.state.clicked ? _react2.default.createElement(_itemForm2.default, {
+          handleSubmit: this.handleSubmit,
+          handleChange: this.handleChange,
+          item: this.state.item
+        }) : _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'h2',
+            null,
+            ' unclicked '
+          )
+        )
+      );
     }
   }]);
 
@@ -35796,6 +35826,9 @@ var AddItem = function (_Component) {
 }(_react.Component);
 
 exports.default = AddItem;
+
+// if(a) {return a} else {return b}
+//      return a ? a : b   (**shorthand for return a === true ? a : b)
 
 /***/ }),
 /* 375 */
@@ -39316,6 +39349,140 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 
 module.exports = hoistNonReactStatics;
 
+
+/***/ }),
+/* 422 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(10);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _addItem = __webpack_require__(374);
+
+var _addItem2 = _interopRequireDefault(_addItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var axios = __webpack_require__(376); //API libary ajax
+
+var Items = function (_Component) {
+  _inherits(Items, _Component);
+
+  function Items() {
+    _classCallCheck(this, Items);
+
+    var _this = _possibleConstructorReturn(this, (Items.__proto__ || Object.getPrototypeOf(Items)).call(this));
+
+    _this.state = {
+      items: []
+    };
+    _this.updateItems = _this.updateItems.bind(_this);
+    return _this;
+  }
+
+  _createClass(Items, [{
+    key: 'updateItems',
+    value: function updateItems(item) {
+      this.setState({ items: [].concat(_toConsumableArray(this.state.items), [item.data]) });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var res;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios.get('/api/items');
+
+              case 3:
+                res = _context.sent;
+
+                this.setState({ items: res.data });
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context['catch'](0);
+
+                console.error(_context.t0);
+
+              case 10:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[0, 7]]);
+      }));
+
+      function componentDidMount() {
+        return _ref.apply(this, arguments);
+      }
+
+      return componentDidMount;
+    }()
+  }, {
+    key: 'render',
+    value: function render() {
+      var items = this.state.items;
+      console.log('items:', items);
+      return _react2.default.createElement(
+        'div',
+        { id: 'items' },
+        _react2.default.createElement(_addItem2.default, { update: this.updateItems }),
+        Array.isArray(items) ? _react2.default.createElement(
+          'div',
+          null,
+          ' ',
+          _react2.default.createElement(
+            'h2',
+            null,
+            ' no items '
+          ),
+          ' '
+        ) : items.map(function (item, index) {
+          return _react2.default.createElement(
+            'h2',
+            null,
+            ' key=',
+            item.name,
+            ' ',
+            item.name,
+            ' '
+          );
+        })
+      );
+    }
+  }]);
+
+  return Items;
+}(_react.Component);
+
+exports.default = Items;
 
 /***/ })
 /******/ ]);
