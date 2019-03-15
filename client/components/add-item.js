@@ -1,22 +1,21 @@
 import React,{Component} from 'react'
-var axios = require('axios')
+var axios = require('axios') //API libary ajax
+import ItemForm from './item-form'
 
 
-
-class Item extends Component{
-  constructor(){
-    super()
+class AddItem extends Component{
+  constructor(props){
+    super(props)
     this.state = {
-      item: '',
-      printed: ''
+      item: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+
   handleChange(event){
     this.setState({item: event.target.value})
   }
-
 
   async handleSubmit(event){
     event.preventDefault()
@@ -25,28 +24,23 @@ class Item extends Component{
       var item = await axios.post('/api/items', {
         name: name
       })
-      this.setState({printed:name})
+      this.props.update(item)
     }catch(err){
       console.error(err)
     }
   }
   render(){
     return(
-      <div id='list'>
-        <form id='add_item' onSubmit={this.handleSubmit}>
-          <input type='text' name='item' value={this.state.item} onChange = {this.handleChange}/>
-          <button type='submit'> + </button>
-        </form>
-        <div>
-          <h2>{this.state.printed}</h2>
-        </div>
-
-      </div>
+      <ItemForm
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+        item={this.state.item}
+      />
     )
   }
 }
 
-export default Item
+export default AddItem
 
 
 

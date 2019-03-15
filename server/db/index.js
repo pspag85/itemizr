@@ -1,16 +1,16 @@
 'use strict'
 
 const Sequelize = require('sequelize')
-const Item = require('./item')
 const db = require('./database')
-
-
+const Item = require('./item')
+const List = require('./list')
 
 
 
 module.exports = {
   db,
   Item,
+  List
 
 }
 
