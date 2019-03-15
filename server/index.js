@@ -23,10 +23,9 @@ app.use((req, res, next) => {
   }
 })
 
-app.get('*', (req, res, next) => {
-  res.sendFile('C:/Users/pat/itemizr/server/index.html')
+app.get('/*', (req, res, next) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
 })
-
 app.use((err, req, res, next) => {
   console.error(err, typeof next)
   console.error(err.stack)

@@ -7,9 +7,6 @@ const ItemForm = function(props){
           <input type='text' name='item' value={props.item} onChange={props.handleChange}/>
           <button type='submit'> + </button>
         </form>
-        <div>
-          <h2>{props.item}</h2>
-        </div>
       </div>
   )
 }

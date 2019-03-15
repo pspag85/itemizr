@@ -6,8 +6,9 @@ import ItemForm from './item-form'
 class AddItem extends Component{
   constructor(props){
     super(props)
+    console.log('props:  ', props)
     this.state = {
-      clicked: false,
+      open: false,
       item: ''
     }
     this.handleClick = this.handleClick.bind(this)
@@ -15,8 +16,8 @@ class AddItem extends Component{
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleClick(event){
-    this.setState({clicked:true})
+  handleClick(){
+    this.setState({open: true})
   }
 
   handleChange(event){
@@ -31,28 +32,26 @@ class AddItem extends Component{
         name: name
       })
       this.props.update(item)
+      this.setState({item: '', open: false})
     }catch(err){
       console.error(err)
     }
   }
   render(){
-
     return(
       <div>
-        <button onClick={this.handleClick}> + </button>
-        {
-          this.state.clicked ? (
-            <ItemForm
-              handleSubmit={this.handleSubmit}
-              handleChange={this.handleChange}
-              item={this.state.item}
-            />
-            ) : (
-              <div>
-                <h2> unclicked </h2>
-              </div>
-            )
-          }
+        {this.state.open ? (
+          <ItemForm
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            item={this.state.item}
+          />
+        ):(
+          <button
+            onClick={this.handleClick}>
+            +
+          </button>  
+        )}
       </div>
     )
   }

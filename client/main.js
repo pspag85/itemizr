@@ -7,7 +7,6 @@ import Items from './components/items'
 var Main = function(){
   return (
     <div id='main'>
-      <AddItem />
       <Items />
     </div>
   )
