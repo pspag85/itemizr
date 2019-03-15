@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 var axios = require('axios') //API libary ajax
 import AddItem from './add-item'
-
+import Item from './item'
 
 class Items extends Component{
   constructor() {
@@ -10,20 +10,32 @@ class Items extends Component{
       items: [],
     };
     this.updateItems = this.updateItems.bind(this);
+    this.remove = this.remove.bind(this);
   }
 
   updateItems(item) {
     this.setState({ items: [...this.state.items, item.data] });
   }
-
-  async componentDidMount() {
-    try {
-      const res = await axios.get('/api/items');
-          this.setState({items: res.data});
+  async remove(id){
+    try{
+      const deleted = await axios.delete(`/api/items/${id}`)
+      if(deleted) {
+        const items = this.state.items.filter(item => item.id !== id)
+        this.setState({
+          items
+        })
+      }
     } catch(err) {
       console.error(err)
     }
-
+  }
+  async componentDidMount() {
+    try {
+      const res = await axios.get('/api/items');
+      this.setState({items: res.data});
+    } catch(err) {
+      console.error(err)
+    }
   }
 
   render() {
@@ -33,7 +45,13 @@ class Items extends Component{
       <div>
         <AddItem update={this.updateItems} />
         {items.length < 1 ? <h2> no items </h2>
-        :items.map((item, index) => <h2  key={item.name}>{item.name}</h2>)}
+        :items.map((item, index) => <Item
+            key={item.name}
+            name={item.name}
+            id={item.id}
+            remove={this.remove}
+          />
+        )}
       </div>
     )
   }
