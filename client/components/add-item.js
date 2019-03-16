@@ -9,7 +9,10 @@ class AddItem extends Component{
     console.log('props:  ', props)
     this.state = {
       open: false,
-      item: ''
+      name: '',
+      onHand: 0,
+      par: 0,
+      orderQty: 0
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -21,15 +24,25 @@ class AddItem extends Component{
   }
 
   handleChange(event){
-    this.setState({item: event.target.value})
+    var name = event.target.name.value
+    var onHand = event.target.onHand.value
+    var par = event.target.par.value
+    var orderQty = event.target.orderQty.value
+    this.setState({name: name, onHand: onHand, par: par, orderQty: orderQty})
   }
 
   async handleSubmit(event){
     event.preventDefault()
-    var name = event.target.item.value
+    var name = event.target.name.value
+    var onHand = event.target.onHand.value
+    var par = event.target.par.value
+    var orderQty = event.target.orderQty.value
     try{
       var item = await axios.post('/api/items', {
-        name: name
+        name: name,
+        onHand: onHand,
+        par: par,
+        orderQty: orderQty
       })
       this.props.update(item)
       this.setState({item: '', open: false})
@@ -50,7 +63,7 @@ class AddItem extends Component{
           <button
             onClick={this.handleClick}>
             +
-          </button>  
+          </button>
         )}
       </div>
     )

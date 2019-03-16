@@ -5507,7 +5507,10 @@ var AddItem = function (_Component) {
     console.log('props:  ', props);
     _this.state = {
       open: false,
-      item: ''
+      name: '',
+      onHand: 0,
+      par: 0,
+      orderQty: 0
     };
     _this.handleClick = _this.handleClick.bind(_this);
     _this.handleChange = _this.handleChange.bind(_this);
@@ -5523,45 +5526,55 @@ var AddItem = function (_Component) {
   }, {
     key: 'handleChange',
     value: function handleChange(event) {
-      this.setState({ item: event.target.value });
+      var name = event.target.name.value;
+      var onHand = event.target.onHand.value;
+      var par = event.target.par.value;
+      var orderQty = event.target.orderQty.value;
+      this.setState({ name: name, onHand: onHand, par: par, orderQty: orderQty });
     }
   }, {
     key: 'handleSubmit',
     value: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
-        var name, item;
+        var name, onHand, par, orderQty, item;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 event.preventDefault();
-                name = event.target.item.value;
-                _context.prev = 2;
-                _context.next = 5;
+                name = event.target.name.value;
+                onHand = event.target.onHand.value;
+                par = event.target.par.value;
+                orderQty = event.target.orderQty.value;
+                _context.prev = 5;
+                _context.next = 8;
                 return axios.post('/api/items', {
-                  name: name
+                  name: name,
+                  onHand: onHand,
+                  par: par,
+                  orderQty: orderQty
                 });
 
-              case 5:
+              case 8:
                 item = _context.sent;
 
                 this.props.update(item);
                 this.setState({ item: '', open: false });
-                _context.next = 13;
+                _context.next = 16;
                 break;
 
-              case 10:
-                _context.prev = 10;
-                _context.t0 = _context['catch'](2);
+              case 13:
+                _context.prev = 13;
+                _context.t0 = _context['catch'](5);
 
                 console.error(_context.t0);
 
-              case 13:
+              case 16:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this, [[2, 10]]);
+        }, _callee, this, [[5, 13]]);
       }));
 
       function handleSubmit(_x) {
@@ -35852,7 +35865,30 @@ var ItemForm = function ItemForm(props) {
     _react2.default.createElement(
       'form',
       { id: 'add_item', onSubmit: props.handleSubmit },
-      _react2.default.createElement('input', { type: 'text', name: 'item', value: props.item, onChange: props.handleChange }),
+      _react2.default.createElement(
+        'label',
+        { htmlFor: 'name' },
+        ' name '
+      ),
+      _react2.default.createElement('input', { type: 'text', name: 'name', value: props.name, onChange: props.handleChange }),
+      _react2.default.createElement(
+        'label',
+        { htmlFor: 'onHand' },
+        ' on hand '
+      ),
+      _react2.default.createElement('input', { type: 'text', name: 'onHand', value: props.onHand, onChange: props.handleChange }),
+      _react2.default.createElement(
+        'label',
+        { htmlFor: 'par' },
+        ' par '
+      ),
+      _react2.default.createElement('input', { type: 'text', name: 'par', value: props.par, onChange: props.handleChange }),
+      _react2.default.createElement(
+        'label',
+        { htmlFor: 'orderQty' },
+        ' order quantity '
+      ),
+      _react2.default.createElement('input', { type: 'text', name: 'orderQty', value: props.orderQty, onChange: props.handleChange }),
       _react2.default.createElement(
         'button',
         { type: 'submit' },
@@ -36912,8 +36948,11 @@ var Items = function (_Component) {
         ) : items.map(function (item, index) {
           return _react2.default.createElement(_item2.default, {
             key: item.name,
-            name: item.name,
             id: item.id,
+            name: item.name,
+            onHand: item.onHand,
+            par: item.par,
+            orderQty: item.orderQty,
             remove: _this2.remove
           });
         })
@@ -36944,8 +36983,11 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Item = function Item(props) {
-  var name = props.name;
   var id = props.id;
+  var name = props.name;
+  var onHand = props.onHand;
+  var par = props.par;
+  var orderQty = props.orderQty;
   var remove = props.remove;
   return _react2.default.createElement(
     'div',
@@ -36957,6 +36999,33 @@ var Item = function Item(props) {
         'h3',
         null,
         name
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'column' },
+      _react2.default.createElement(
+        'h3',
+        null,
+        onHand
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'column' },
+      _react2.default.createElement(
+        'h3',
+        null,
+        par
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'column' },
+      _react2.default.createElement(
+        'h3',
+        null,
+        orderQty
       )
     ),
     _react2.default.createElement(

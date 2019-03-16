@@ -47,8 +47,11 @@ class Items extends Component{
         {items.length < 1 ? <h2> no items </h2>
         :items.map((item, index) => <Item
             key={item.name}
-            name={item.name}
             id={item.id}
+            name={item.name}
+            onHand={item.onHand}
+            par={item.par}
+            orderQty={item.orderQty}
             remove={this.remove}
           />
         )}
