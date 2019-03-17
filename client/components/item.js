@@ -1,5 +1,5 @@
 import React from 'react'
-import UpdateName from './update-name'
+import UpdateItem from './update-item'
 
 var Item = function(props){
   var id = props.id
@@ -12,16 +12,16 @@ var Item = function(props){
   return(
     <div className='itemRow'>
       <div className='column'>
-        <UpdateName name={name} id={id} update={update} />
+        <UpdateItem input='name' name={name} id={id} update={update} />
       </div>
       <div className='column'>
-        <h3>{onHand}</h3>
+        <UpdateItem input='onHand' onHand={onHand} id={id} update={update} />
       </div>
       <div className='column'>
-        <h3>{par}</h3>
+        <UpdateItem input='par' par={par} id={id} update={update} />
       </div>
       <div className='column'>
-        <h3>{orderQty}</h3>
+        <UpdateItem input='orderQty' orderQty={orderQty} id={id} update={update} />
       </div>
       <div className='column'>
         <button className='remove' onClick={function(){

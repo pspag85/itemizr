@@ -24,11 +24,7 @@ class AddItem extends Component{
   }
 
   handleChange(event){
-    var name = event.target.name.value
-    var onHand = event.target.onHand.value
-    var par = event.target.par.value
-    var orderQty = event.target.orderQty.value
-    this.setState({name: name, onHand: onHand, par: par, orderQty: orderQty})
+    this.setState({[event.target.name]: event.target.value})
   }
 
   async handleSubmit(event){
