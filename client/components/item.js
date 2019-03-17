@@ -1,4 +1,5 @@
 import React from 'react'
+import UpdateName from './update-name'
 
 var Item = function(props){
   var id = props.id
@@ -7,10 +8,11 @@ var Item = function(props){
   var par = props.par
   var orderQty = props.orderQty
   var remove = props.remove
+  var update = props.update
   return(
     <div className='itemRow'>
       <div className='column'>
-        <h3>{name}</h3>
+        <UpdateName name={name} id={id} update={update} />
       </div>
       <div className='column'>
         <h3>{onHand}</h3>

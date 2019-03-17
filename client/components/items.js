@@ -46,13 +46,13 @@ class Items extends Component{
         <AddItem update={this.updateItems} />
         {items.length < 1 ? <h2> no items </h2>
         :items.map((item, index) => <Item
-            key={item.name}
             id={item.id}
             name={item.name}
             onHand={item.onHand}
             par={item.par}
             orderQty={item.orderQty}
             remove={this.remove}
+            update={this.updateItems}
           />
         )}
       </div>

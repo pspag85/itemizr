@@ -5,11 +5,12 @@ const app = express()
 module.exports = app
 const PORT = process.env.PORT || 5000
 const {db} = require('./db')
+const bodyParser = require('body-parser')
 
 app.use(volleyball)
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(express.static(path.join(__dirname, '..', 'public')))
 
