@@ -21,7 +21,6 @@ router.post('/', async function (req, res, next){
 })
 
 router.put('/:id', async function (req, res, next){
-  console.log('req******', req.body)
   try{
     var item = await Item.findById(req.params.id)
     if (item){

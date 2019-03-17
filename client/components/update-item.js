@@ -17,36 +17,39 @@ class UpdateItem extends Component{
   }
 
   handleChange(event){
-    console.log('event target log', event.target)
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   async handleSubmit(event){
     event.preventDefault()
-    var name = this.props.input
     var id = this.state.id
+    var inputName = this.props.input
     var value = event.target.querySelector('input').value
     var itemData = {}
-    itemData[name] = value
+    itemData[inputName] = value
     try{
       var item = await axios.put(`/api/items/${id}`, itemData)
       if(item){
         this.props.update(item.data)
-        $(() => {
-          $('input').blur()
-      })
+        $(() => {$('input').blur()})
       }
     }catch(err){
       console.error(err)
     }
   }
+
   render(){
-    console.log('NAME', this.props.input)
     var name = this.props.input ? this.props.input : ''
     return(
       <div>
         <form onSubmit={this.handleSubmit}>
-         <input type='text' name={name} value={this.state[name]} onChange={this.handleChange} />
+         <input
+            type='text' name={name}
+            value={this.state[name]}
+            onChange={this.handleChange}
+          />
        </form>
       </div>
     )

@@ -35826,9 +35826,6 @@ var _items2 = _interopRequireDefault(_items);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//import {NavBar, Footer} from './components'
-//import Routes from './routes'
-
 var Main = function Main() {
   return _react2.default.createElement(
     'div',
@@ -37087,25 +37084,24 @@ var UpdateItem = function (_Component) {
   _createClass(UpdateItem, [{
     key: 'handleChange',
     value: function handleChange(event) {
-      console.log('event target log', event.target);
       this.setState(_defineProperty({}, event.target.name, event.target.value));
     }
   }, {
     key: 'handleSubmit',
     value: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
-        var name, id, value, itemData, item;
+        var id, inputName, value, itemData, item;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 event.preventDefault();
-                name = this.props.input;
                 id = this.state.id;
+                inputName = this.props.input;
                 value = event.target.querySelector('input').value;
                 itemData = {};
 
-                itemData[name] = value;
+                itemData[inputName] = value;
                 _context.prev = 6;
                 _context.next = 9;
                 return axios.put('/api/items/' + id, itemData);
@@ -37145,7 +37141,6 @@ var UpdateItem = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log('NAME', this.props.input);
       var name = this.props.input ? this.props.input : '';
       return _react2.default.createElement(
         'div',
@@ -37153,7 +37148,11 @@ var UpdateItem = function (_Component) {
         _react2.default.createElement(
           'form',
           { onSubmit: this.handleSubmit },
-          _react2.default.createElement('input', { type: 'text', name: name, value: this.state[name], onChange: this.handleChange })
+          _react2.default.createElement('input', {
+            type: 'text', name: name,
+            value: this.state[name],
+            onChange: this.handleChange
+          })
         )
       );
     }
