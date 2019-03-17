@@ -36980,7 +36980,7 @@ var _react = __webpack_require__(9);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _updateItem = __webpack_require__(426);
+var _updateItem = __webpack_require__(397);
 
 var _updateItem2 = _interopRequireDefault(_updateItem);
 
@@ -37033,7 +37033,141 @@ var Item = function Item(props) {
 exports.default = Item;
 
 /***/ }),
-/* 397 */,
+/* 397 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(9);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var axios = __webpack_require__(107); //API libary ajax
+var $ = __webpack_require__(398);
+
+var UpdateItem = function (_Component) {
+  _inherits(UpdateItem, _Component);
+
+  function UpdateItem(props) {
+    _classCallCheck(this, UpdateItem);
+
+    var _this = _possibleConstructorReturn(this, (UpdateItem.__proto__ || Object.getPrototypeOf(UpdateItem)).call(this, props));
+
+    _this.state = {
+      id: _this.props.id,
+      name: _this.props.name,
+      onHand: _this.props.onHand,
+      par: _this.props.par,
+      orderQty: _this.props.orderQty
+    };
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    return _this;
+  }
+
+  _createClass(UpdateItem, [{
+    key: 'handleChange',
+    value: function handleChange(event) {
+      console.log('event target log', event.target);
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
+        var name, id, value, itemData, item;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                event.preventDefault();
+                name = this.props.input;
+                id = this.state.id;
+                value = event.target.querySelector('input').value;
+                itemData = {};
+
+                itemData[name] = value;
+                _context.prev = 6;
+                _context.next = 9;
+                return axios.put('/api/items/' + id, itemData);
+
+              case 9:
+                item = _context.sent;
+
+                if (item) {
+                  this.props.update(item.data);
+                  $(function () {
+                    $('input').blur();
+                  });
+                }
+                _context.next = 16;
+                break;
+
+              case 13:
+                _context.prev = 13;
+                _context.t0 = _context['catch'](6);
+
+                console.error(_context.t0);
+
+              case 16:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[6, 13]]);
+      }));
+
+      function handleSubmit(_x) {
+        return _ref.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
+  }, {
+    key: 'render',
+    value: function render() {
+      console.log('NAME', this.props.input);
+      var name = this.props.input ? this.props.input : '';
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'form',
+          { onSubmit: this.handleSubmit },
+          _react2.default.createElement('input', { type: 'text', name: name, value: this.state[name], onChange: this.handleChange })
+        )
+      );
+    }
+  }]);
+
+  return UpdateItem;
+}(_react.Component);
+
+exports.default = UpdateItem;
+
+// if(a) {return a} else {return b}
+//      return a ? a : b   (**shorthand for return a === true ? a : b)
+
+/***/ }),
 /* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49990,132 +50124,6 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 
 module.exports = hoistNonReactStatics;
 
-
-/***/ }),
-/* 426 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(9);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var axios = __webpack_require__(107); //API libary ajax
-var $ = __webpack_require__(398);
-
-var UpdateItem = function (_Component) {
-  _inherits(UpdateItem, _Component);
-
-  function UpdateItem(props) {
-    _classCallCheck(this, UpdateItem);
-
-    var _this = _possibleConstructorReturn(this, (UpdateItem.__proto__ || Object.getPrototypeOf(UpdateItem)).call(this, props));
-
-    _this.state = {
-      id: _this.props.id,
-      name: _this.props.name,
-      onHand: _this.props.onHand,
-      par: _this.props.par,
-      orderQty: _this.props.orderQty
-    };
-    _this.handleChange = _this.handleChange.bind(_this);
-    _this.handleSubmit = _this.handleSubmit.bind(_this);
-    return _this;
-  }
-
-  _createClass(UpdateItem, [{
-    key: 'handleChange',
-    value: function handleChange(event) {
-      console.log('event target log', event.target);
-      this.setState(_defineProperty({}, event.target.name, event.target.value));
-    }
-  }, {
-    key: 'handleSubmit',
-    value: function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
-        var name, id, itemData;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                event.preventDefault();
-                name = 'onHand';
-                id = this.state.id;
-
-                console.log('SUBMIT LOG log', event.target.value);
-                itemData = {};
-
-                itemData[name] = event.target.value;
-                // try{
-                //   var item = await axios.put(`/api/items/${id}`, itemData )
-                //   if(item){
-                //     this.props.update(item.data)
-                //     $(() => {
-                //       $('input').blur()
-                //   })
-                //   }
-                // }catch(err){
-                //   console.error(err)
-                // }
-
-              case 6:
-              case 'end':
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function handleSubmit(_x) {
-        return _ref.apply(this, arguments);
-      }
-
-      return handleSubmit;
-    }()
-  }, {
-    key: 'render',
-    value: function render() {
-      console.log('this state name', this.props.input);
-      var name = this.props.input ? this.props.input : '';
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'form',
-          { onSubmit: this.handleSubmit },
-          _react2.default.createElement('input', { type: 'text', name: name, value: this.state[name], onChange: this.handleChange })
-        )
-      );
-    }
-  }]);
-
-  return UpdateItem;
-}(_react.Component);
-
-exports.default = UpdateItem;
-
-// if(a) {return a} else {return b}
-//      return a ? a : b   (**shorthand for return a === true ? a : b)
 
 /***/ })
 /******/ ]);

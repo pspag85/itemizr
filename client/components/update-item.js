@@ -23,25 +23,25 @@ class UpdateItem extends Component{
 
   async handleSubmit(event){
     event.preventDefault()
-    var name = 'onHand'
+    var name = this.props.input
     var id = this.state.id
-    console.log('SUBMIT LOG log' ,event.target.value)
+    var value = event.target.querySelector('input').value
     var itemData = {}
-    itemData[name] = event.target.value
-    // try{
-    //   var item = await axios.put(`/api/items/${id}`, itemData )
-    //   if(item){
-    //     this.props.update(item.data)
-    //     $(() => {
-    //       $('input').blur()
-    //   })
-    //   }
-    // }catch(err){
-    //   console.error(err)
-    // }
+    itemData[name] = value
+    try{
+      var item = await axios.put(`/api/items/${id}`, itemData)
+      if(item){
+        this.props.update(item.data)
+        $(() => {
+          $('input').blur()
+      })
+      }
+    }catch(err){
+      console.error(err)
+    }
   }
   render(){
-    console.log('this state name', this.props.input)
+    console.log('NAME', this.props.input)
     var name = this.props.input ? this.props.input : ''
     return(
       <div>
