@@ -23,12 +23,10 @@ router.post('/', async function (req, res, next){
 router.put('/:id', async function (req, res, next){
   try{
     var item = await Item.findById(req.params.id)
-    console.log('req body log',req.body)
     if (item){
       item.update({
         name: req.body.name
       })
-    console.log('ITEM test', item)
       res.json(item)
     }else{
       res.sendStatus(404)

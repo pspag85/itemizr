@@ -44,7 +44,7 @@ class AddItem extends Component{
         par: par,
         orderQty: orderQty
       })
-      this.props.update(item)
+      this.props.update(item.data)
       this.setState({open: false})
     }catch(err){
       console.error(err)

@@ -5,7 +5,6 @@ var axios = require('axios') //API libary ajax
 class UpdateName extends Component{
   constructor(props){
     super(props)
-    console.log('updateprops:  ', props)
     this.state = {
       name: this.props.name,
       id:   this.props.id
@@ -14,7 +13,6 @@ class UpdateName extends Component{
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleChange(event){
-    console.log('targetevent', event.target)
     var name = event.target.value
     this.setState({name: name})
   }
@@ -23,14 +21,12 @@ class UpdateName extends Component{
     event.preventDefault()
     var name = event.target.name.value
     var id = this.state.id
-    console.log('id ****', id)
     try{
       var item = await axios.put(`/api/items/${id}`, {
         name: name
       })
-      console.log('item data', item.data)
-      if (item.data){
-        this.props.update(item)
+      if(item){
+        this.props.update(item.data)
       }
     }catch(err){
       console.error(err)

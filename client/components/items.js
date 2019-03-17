@@ -13,8 +13,9 @@ class Items extends Component{
     this.remove = this.remove.bind(this);
   }
 
-  updateItems(item) {
-    this.setState({ items: [...this.state.items, item.data] });
+  updateItems(itemData) {
+    var items = this.state.items.filter(item => item.id !== itemData.id)
+    this.setState({ items: [...items, itemData] });
   }
   async remove(id){
     try{
