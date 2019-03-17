@@ -40,10 +40,9 @@ class Items extends Component{
   }
 
   render() {
-    console.log('state:  ', this.state)
     const items = this.state.items
     return (
-      <div>
+      <div id='items-container'>
         <AddItem update={this.updateItems} />
         {items.length < 1 ? <h2> no items </h2>
         :items.map((item, index) => <Item

@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 var axios = require('axios') //API libary ajax
-
+const $ = require('jquery')
 
 class UpdateName extends Component{
   constructor(props){
@@ -9,9 +9,18 @@ class UpdateName extends Component{
       name: this.props.name,
       id:   this.props.id
     }
+    this.container = React.createRef()
+
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+
+  blurInput() {
+        document.getElementById('name-form').blur()
+
+    document.getElementById('name-form').blur()
+  }
+
   handleChange(event){
     var name = event.target.value
     this.setState({name: name})
@@ -27,6 +36,9 @@ class UpdateName extends Component{
       })
       if(item){
         this.props.update(item.data)
+        $(() => {
+          $('input').blur()
+      })
       }
     }catch(err){
       console.error(err)
