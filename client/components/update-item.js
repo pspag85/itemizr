@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-var axios = require('axios') //API libary ajax
+var axios = require('axios') //API libary ajax => http://www.aaronsw.com/weblog/ajaxhistory
 const $ = require('jquery')
 
 class UpdateItem extends Component{
@@ -26,7 +26,7 @@ class UpdateItem extends Component{
     event.preventDefault()
     var id = this.state.id
     var inputName = this.props.input
-    var value = event.target.querySelector('input').value
+    var value = event.target.querySelector('input').value //The Document method querySelector() returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned.
     var itemData = {}
     itemData[inputName] = value
     try{

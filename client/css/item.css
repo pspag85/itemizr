@@ -1,0 +1,12 @@
+.itemRow {
+ margin-left: 20%;
+}
+
+.column {
+  display: inline-block;
+}
+
+.remove {
+  color: white;
+  background-color: red;
+}

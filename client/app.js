@@ -1,13 +1,14 @@
 import React from 'react'
 import AddItem from './components/add-item'
 import Items from './components/items'
+import './css/app.css'
 
-var Main = function(){
+var App = function(){
   return (
-    <div id='main'>
+    <div>
       <Items />
     </div>
   )
 }
 
-export default Main
+export default App
