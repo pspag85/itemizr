@@ -5,7 +5,16 @@ const db = require('./database')
 const List = db.define('lists', {
   date: {
     type: Sequelize.DATE,
-    allowNull: false
+    defaultValue: Date.now()//using date for list name
+  },
+  items: { //items row is an array that can accept object
+    type: Sequelize.TEXT,
+    get: function() {
+      return JSON.parse(this.getDataValue('items'));
+    },
+    set: function(val) {
+      return this.setDataValue('items', JSON.stringify(val));
+    }
   }
 })
 
