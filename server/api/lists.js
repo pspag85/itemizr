@@ -11,25 +11,30 @@ router.get('/', async (req, res, next) => {//new syntax
   }
 })
 
-router.post('/', async function (req, res, next){  //use req body server side to update most recent row in lists table
+router.post('/', async function (req, res, next){
   try{
-    var list = await List.create(req.body)  
+    var list = await List.create(req.body)
     res.json(list)
   } catch(err){
     console.error(err)
   }
 })
 
-router.put('/', async function (req, res, next){  //use req body server side to update most recent row in lists table
+router.put('/', async (req, res, next) => {  // new function syntax => 'arrow function'
   try{
-    var list = await List.findAll({
-      limit: 1,
-      order: ['DESC']
-    })  
-    res.json(list)
+    var list = await List.findOne({  //use req body server side to update most recent row in lists table
+      order: [ [ 'date', 'DESC' ]]
+    })
+    if(list) {
+      list.update({
+        items: req.body
+      })
+      res.json(list)
+    }
   } catch(err){
     console.error(err)
   }
 })
+
 
 module.exports = router
