@@ -39180,7 +39180,7 @@ var Lists = function (_Component) {
 
                 console.log('currentItems:   ', res.data);
                 _context2.next = 9;
-                return axios.post('/api/lists', res.data);
+                return axios.put('/api/lists', res.data);
 
               case 9:
                 currentList = _context2.sent;

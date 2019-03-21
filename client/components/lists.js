@@ -35,7 +35,7 @@ class Lists extends Component{
       const res = await axios.get('/api/items')    //save current 'items' table as an array of objects
       if(res.data) {
         console.log('currentItems:   ', res.data)
-        currentList = await axios.post('/api/lists', res.data)    //pass that array as req body in post request to api/lists
+        currentList = await axios.put('/api/lists', res.data)    //pass that array as req body in post request to api/lists
         this.updateLists(currentList.data)
       }
     } catch(err){

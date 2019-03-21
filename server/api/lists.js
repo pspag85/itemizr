@@ -20,4 +20,16 @@ router.post('/', async function (req, res, next){  //use req body server side to
   }
 })
 
+router.put('/', async function (req, res, next){  //use req body server side to update most recent row in lists table
+  try{
+    var list = await List.findAll({
+      limit: 1,
+      order: ['DESC']
+    })  
+    res.json(list)
+  } catch(err){
+    console.error(err)
+  }
+})
+
 module.exports = router
