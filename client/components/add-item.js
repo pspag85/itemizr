@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 var axios = require('axios') //API libary ajax
 import ItemForm from './item-form'
-
+import '../css/add-item.css'
 
 class AddItem extends Component{
   constructor(props){
@@ -56,7 +56,7 @@ class AddItem extends Component{
             item={this.state.item}
           />
         ):(
-          <button
+          <button id='add-item'
             onClick={this.handleClick}>
             +
           </button>

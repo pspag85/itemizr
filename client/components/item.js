@@ -1,5 +1,6 @@
 import React from 'react'
 import UpdateItem from './update-item'
+import '../css/item.css'
 
 var Item = function(props){
   var id = props.id
@@ -27,7 +28,7 @@ var Item = function(props){
         <button className='remove' onClick={function(){
           return remove(id)
         }
-      }> -delete </button>
+      }> - </button>
       </div>
     </div>
   )

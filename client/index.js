@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Main from './main'
+import App from './app'
 import {Router} from 'react-router-dom'
 import history from './history'
 
 
 ReactDOM.render(
   <Router history={history}>
-    <Main />
+    <App />
   </Router>,
   document.getElementById('app')
 )

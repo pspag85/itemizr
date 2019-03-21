@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-var axios = require('axios') //API libary ajax
+var axios = require('axios') //API libary ajax => http://www.aaronsw.com/weblog/ajaxhistory
 const $ = require('jquery')
 
 class UpdateItem extends Component{
@@ -17,36 +17,39 @@ class UpdateItem extends Component{
   }
 
   handleChange(event){
-    console.log('event target log', event.target)
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   async handleSubmit(event){
     event.preventDefault()
-    var name = 'onHand'
     var id = this.state.id
-    console.log('SUBMIT LOG log' ,event.target.value)
+    var inputName = this.props.input
+    var value = event.target.querySelector('input').value //The Document method querySelector() returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned.
     var itemData = {}
-    itemData[name] = event.target.value
-    // try{
-    //   var item = await axios.put(`/api/items/${id}`, itemData )
-    //   if(item){
-    //     this.props.update(item.data)
-    //     $(() => {
-    //       $('input').blur()
-    //   })
-    //   }
-    // }catch(err){
-    //   console.error(err)
-    // }
+    itemData[inputName] = value
+    try{
+      var item = await axios.put(`/api/items/${id}`, itemData)
+      if(item){
+        this.props.update(item.data)
+        $(() => {$('input').blur()})
+      }
+    }catch(err){
+      console.error(err)
+    }
   }
+
   render(){
-    console.log('this state name', this.props.input)
     var name = this.props.input ? this.props.input : ''
     return(
       <div>
         <form onSubmit={this.handleSubmit}>
-         <input type='text' name={name} value={this.state[name]} onChange={this.handleChange} />
+         <input
+            type='text' name={name}
+            value={this.state[name]}
+            onChange={this.handleChange}
+          />
        </form>
       </div>
     )

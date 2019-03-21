@@ -1,8 +1,9 @@
 import React from 'react'
 import Routes from './routes'
 //import {NavBar, Footer} from './components'
+import './css/app.css'
 
-var Main = function(){
+var App = function(){
   return (
     <div id='main'>
       <Routes />
@@ -10,4 +11,4 @@ var Main = function(){
   )
 }
 
-export default Main
+export default App
