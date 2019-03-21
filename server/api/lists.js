@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {//new sytax
 
 router.post('/', async function (req, res, next){
   try{
-    var list = await List.create(req.body)
+    var list = await List.create(req.body)    //use req body server side to update most recent row in lists table
     res.json(list)
   } catch(err){
     console.error(err)

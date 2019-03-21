@@ -20,6 +20,22 @@ router.post('/', async function (req, res, next){
   }
 })
 
+router.put('/', async function (req, res, next){
+  try{
+    var items = await Item.findAll()
+    if (items){
+      items.forEach(function(item){
+        return item.update({
+          onHand: 0,
+          orderQty: 0
+        })
+      })
+    }
+  } catch(err){
+    console.error(err)
+  }
+})
+
 router.put('/:id', async function (req, res, next){
   try{
     var item = await Item.findById(req.params.id)

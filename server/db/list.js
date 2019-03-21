@@ -1,13 +1,12 @@
 const Sequelize = require('sequelize')
 const db = require('./database')
-//const Item = require('./item')
 
 const List = db.define('lists', {
   date: {
     type: Sequelize.DATE,
-    defaultValue: Date.now()//using date for list name
+    defaultValue: Date.now()
   },
-  items: { //items row is an array that can accept object
+  items: {
     type: Sequelize.TEXT,
     get: function() {
       return JSON.parse(this.getDataValue('items'));

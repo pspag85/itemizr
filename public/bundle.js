@@ -39134,6 +39134,8 @@ var Lists = function (_Component) {
       lists: []
     };
     _this.updateLists = _this.updateLists.bind(_this);
+    _this.saveCurrentList = _this.saveCurrentList.bind(_this);
+    _this.createList = _this.createList.bind(_this);
     return _this;
   }
 
@@ -39185,6 +39187,144 @@ var Lists = function (_Component) {
 
       return componentDidMount;
     }()
+    //create new row in 'lists' table with current date
+    //clear all rows in items table
+
+  }, {
+    key: 'saveCurrentList',
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var currentList, res;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                currentList = void 0;
+                _context2.prev = 1;
+                _context2.next = 4;
+                return axios.get('/api/items');
+
+              case 4:
+                res = _context2.sent;
+
+                if (!res.data) {
+                  _context2.next = 10;
+                  break;
+                }
+
+                _context2.next = 8;
+                return axios.post('/api/lists', res.data);
+
+              case 8:
+                currentList = _context2.sent;
+                //pass that array as req body in post request to api/lists
+                this.updateLists(currentList.data);
+
+              case 10:
+                _context2.next = 15;
+                break;
+
+              case 12:
+                _context2.prev = 12;
+                _context2.t0 = _context2['catch'](1);
+
+                console.error(_context2.t0);
+
+              case 15:
+              case 'end':
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[1, 12]]);
+      }));
+
+      function saveCurrentList() {
+        return _ref2.apply(this, arguments);
+      }
+
+      return saveCurrentList;
+    }()
+  }, {
+    key: 'clearQuantities',
+    value: function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                _context3.next = 3;
+                return axios.put('/api/items');
+
+              case 3:
+                _context3.next = 8;
+                break;
+
+              case 5:
+                _context3.prev = 5;
+                _context3.t0 = _context3['catch'](0);
+
+                console.error(_context3.t0);
+
+              case 8:
+              case 'end':
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[0, 5]]);
+      }));
+
+      function clearQuantities() {
+        return _ref3.apply(this, arguments);
+      }
+
+      return clearQuantities;
+    }()
+  }, {
+    key: 'createList',
+    value: function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+        var date, res;
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                this.saveCurrentList();
+                date = Date.now();
+                _context4.prev = 2;
+                _context4.next = 5;
+                return axios.post('/api/lists', {
+                  date: date,
+                  items: []
+                });
+
+              case 5:
+                res = _context4.sent;
+
+                this.updateLists(res.data);
+                _context4.next = 12;
+                break;
+
+              case 9:
+                _context4.prev = 9;
+                _context4.t0 = _context4['catch'](2);
+
+                console.error(_context4.t0);
+
+              case 12:
+              case 'end':
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this, [[2, 9]]);
+      }));
+
+      function createList() {
+        return _ref4.apply(this, arguments);
+      }
+
+      return createList;
+    }()
   }, {
     key: 'render',
     value: function render() {
@@ -39192,7 +39332,7 @@ var Lists = function (_Component) {
       return _react2.default.createElement(
         'div',
         { id: 'lists-container' },
-        _react2.default.createElement(_createList2.default, { handleClick: this.updateLists }),
+        _react2.default.createElement(_createList2.default, { handleClick: this.createList }),
         lists.length < 1 ? _react2.default.createElement(
           'h2',
           null,
