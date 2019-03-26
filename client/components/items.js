@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 var axios = require('axios') //API libary ajax
 import AddItem from './add-item'
 import Item from './item'
+import ColHeaders from './col-headers'
 
 class Items extends Component{
   constructor() {
@@ -44,6 +45,13 @@ class Items extends Component{
     return (
       <div id='items-container'>
         <AddItem update={this.updateItems} />
+        <ColHeaders
+          col_1={'Name'}
+          col_2={'On Hand'}
+          col_3={'Par'}
+          col_4={'Order Qty'}
+         />
+
         {items.length < 1 ? <h2> no items </h2>
         :items.map((item, index) => <Item key={item.id + item.name}
             id={item.id}

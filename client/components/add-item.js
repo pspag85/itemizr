@@ -56,10 +56,13 @@ class AddItem extends Component{
             item={this.state.item}
           />
         ):(
-          <button id='add-item'
-            onClick={this.handleClick}>
-            +
-          </button>
+          <div>
+            <button id='add-item'
+              onClick={this.handleClick}>
+              +
+            </button>
+            <h3> Add Item </h3>
+          </div>
         )}
       </div>
     )

@@ -1,0 +1,21 @@
+.itemRow {
+ margin-left: 20%;
+}
+
+.column {
+  display: inline-block;
+}
+
+.remove {
+  color: white;
+  background-color: red;
+}
+
+.colHeaders .column{
+  width: 173px;
+  border: .25px solid black;
+}
+
+.colHeaders .column h4{
+  margin: 1px;
+}
