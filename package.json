@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run start-server & npm run build-watch",
     "start-server": "nodemon --watch server -e js,html index.js",
-    "build-watch": "webpack -w"
+    "build-watch": "webpack -w",
+    "seed": "node seed.js"
   },
   "keywords": [
     "heroku"
@@ -16,6 +17,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "chalk": "^2.4.2",
     "css-loader": "^2.1.0",
     "express": "^4.16.2",
     "jquery": "^3.3.1",

@@ -1,2 +1,1 @@
-"# CartWizard" 
-"# itemizr" 
+"# itemizr"

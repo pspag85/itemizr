@@ -71,7 +71,7 @@ class Lists extends Component{
       <div id='lists-container'>
         <CreateList handleClick={this.createList} />
         {lists.length < 1 ? <h2> no lists </h2>
-        :lists.map((list, index) => <List
+        :lists.map((list, index) => <List key={list.id + list.date}
             id={list.id}
             date={list.date}
           />

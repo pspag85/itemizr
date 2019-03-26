@@ -15,7 +15,7 @@ class Items extends Component{
 
   updateItems(itemData) {
     var items = this.state.items.filter(item => item.id !== itemData.id)
-    this.setState({ items: [...items, itemData] });
+    this.setState({ items: [itemData,...items] });
   }
   async remove(id){
     try{
@@ -45,7 +45,7 @@ class Items extends Component{
       <div id='items-container'>
         <AddItem update={this.updateItems} />
         {items.length < 1 ? <h2> no items </h2>
-        :items.map((item, index) => <Item
+        :items.map((item, index) => <Item key={item.id + item.name}
             id={item.id}
             name={item.name}
             onHand={item.onHand}
