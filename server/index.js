@@ -1,5 +1,7 @@
 const path = require('path')
 const express = require('express')
+const session = require('express-session')
+const {secret} = require('../secrets')
 const volleyball = require('volleyball')
 const app = express()
 module.exports = app
@@ -11,6 +13,12 @@ app.use(volleyball)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
+
+app.use(session({
+  secret: secret,
+  resave: false,
+  saveUninitialized: false
+}))
 
 app.use(express.static(path.join(__dirname, '..', 'public')))
 

@@ -1,20 +1,20 @@
-const {List, Item, db} = require('./server/db')//put USER back in here
+const {User, List, Item, db} = require('./server/db')//put USER back in here
 const {red, bgMagenta} = require('chalk')
 
-// const userData = [
-//   {
-//     email: 'p@mail.com',
-//     password: '111'
-//   },
-//   {
-//     email: 'j@mail.com',
-//     password: '222'
-//   },
-//   {
-//     email: 'c@mail.com',
-//     password: '333'
-//   }
-// ]
+const userData = [
+  {
+    email: 'p@mail.com',
+    password: '111'
+  },
+  {
+    email: 'j@mail.com',
+    password: '222'
+  },
+  {
+    email: 'c@mail.com',
+    password: '333'
+  }
+]
 
 let now = new Date()
 const date1 = now.setDate(now.getDate() - 5)
@@ -146,7 +146,7 @@ const itemData = [
 const seed = async n => {
   try {
     await db.sync({force: true})
-    //await User.bulkCreate(userData)
+    await User.bulkCreate(userData)
     await List.bulkCreate(listData)
     await Item.bulkCreate(itemData)
     console.log(bgMagenta('Seeding success!'))
