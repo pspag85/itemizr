@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {signup} from '../store'
 import AuthForm from './auth-form'
+import $ from 'jquery'
 
 const Signup = props => {
   const {handleSubmit} = props
@@ -11,13 +12,17 @@ const Signup = props => {
     <div>
       <h1>Signup:</h1>
       <div>
-        <h2>Already have an account?</h2>
+        <h2 id='signupHeader'>Already have an account?</h2>
         <Link to='/login'>Login</Link>
       </div>
       <br/>
       <AuthForm handleSubmit={handleSubmit} />
     </div>
   )
+}
+
+const duplicateEmailHandler = () => {
+  $('#signupHeader').text('user alerady exists!')
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -31,6 +36,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         await dispatch(signupThunk)
         ownProps.history.push('/lists')
       } catch(err) {
+        duplicateEmailHandler()
         console.error(err)
       }
     }

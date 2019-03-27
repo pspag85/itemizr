@@ -11,6 +11,23 @@ router.post('/signup', async function (req, res, next){
   }
 })
 
+router.get('/user', async (req, res, next) => {
+  try {
+    if (!req.session.userId) {
+      res.sendStatus(401)
+    } else {
+      const user = await User.findById(req.session.userId)
+      if (!user) {
+        res.sendStatus(401)
+      } else {
+        res.json(user)
+      }
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.put('/login', async function (req, res,next){
   try{
     var user = await User.findOne({
@@ -29,6 +46,11 @@ router.put('/login', async function (req, res,next){
   }catch(err){
     console.error(err)
   }
+})
+
+router.delete('/logout', function (req, res, next){
+  req.session.destroy()
+  res.status(204).end()
 })
 
 module.exports = router

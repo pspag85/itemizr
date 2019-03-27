@@ -16,7 +16,7 @@ const gotMe = user => ({
 
 export const getMe = () => async dispatch => {
   try {
-    const res = await axios.get('/api/users/me')
+    const res = await axios.get('/api/users/user')
     const user = res.data
     dispatch(gotMe(user))
   } catch(err) {

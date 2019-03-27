@@ -7267,7 +7267,7 @@ var getMe = exports.getMe = function getMe() {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return _axios2.default.get('/api/users/me');
+              return _axios2.default.get('/api/users/user');
 
             case 3:
               res = _context.sent;
@@ -43143,6 +43143,10 @@ var _authForm = __webpack_require__(462);
 
 var _authForm2 = _interopRequireDefault(_authForm);
 
+var _jquery = __webpack_require__(474);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -43164,7 +43168,7 @@ var Signup = function Signup(props) {
       null,
       _react2.default.createElement(
         'h2',
-        null,
+        { id: 'signupHeader' },
         'Already have an account?'
       ),
       _react2.default.createElement(
@@ -43176,6 +43180,10 @@ var Signup = function Signup(props) {
     _react2.default.createElement('br', null),
     _react2.default.createElement(_authForm2.default, { handleSubmit: handleSubmit })
   );
+};
+
+var duplicateEmailHandler = function duplicateEmailHandler() {
+  (0, _jquery2.default)('#signupHeader').text('user alerady exists!');
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
@@ -43199,16 +43207,17 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 
               case 7:
                 ownProps.history.push('/lists');
-                _context.next = 13;
+                _context.next = 14;
                 break;
 
               case 10:
                 _context.prev = 10;
                 _context.t0 = _context['catch'](4);
 
+                duplicateEmailHandler();
                 console.error(_context.t0);
 
-              case 13:
+              case 14:
               case 'end':
                 return _context.stop();
             }
