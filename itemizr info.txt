@@ -1,2 +1,0 @@
-http://itemizr.herokuapp.com/
-

@@ -9,6 +9,7 @@ import Login from './components/login'
 import UserPage from './components/user-page'
 import Lists from './components/lists'
 import Items from './components/items'
+import './css/app.css'
 
 const App = withRouter(class extends Component {
   async componentDidMount() {
@@ -22,12 +23,6 @@ const App = withRouter(class extends Component {
       console.error(err)
     }
   }
-
-// We've taken a class component and wrapped it in
-// `withRouter` so that it receives `history` from react-router-dom
-// as a prop! We've kept it a class component because (as we'll see
-// in the workshop), we want to take advantage of that `componentDidMount`
-// lifecycle hook!
 
   render () {
     return (
