@@ -12,6 +12,7 @@ class Items extends Component{
     };
     this.updateItems = this.updateItems.bind(this);
     this.remove = this.remove.bind(this);
+    this.logoutUser = this.logoutUser.bind(this)
   }
 
   updateItems(itemData) {
@@ -31,6 +32,17 @@ class Items extends Component{
       console.error(err)
     }
   }
+
+  async logoutUser(){
+    try{
+      var loggedOut = await axios.delete('/api/users/logout')
+      if (loggedOut) {
+        this.props.history.push('/login')
+      }
+    } catch(err){
+      console.error(err)
+    }
+  }
   async componentDidMount() {
     try {
       const res = await axios.get('/api/items');
@@ -44,6 +56,8 @@ class Items extends Component{
     const items = this.state.items
     return (
       <div id='items-container'>
+        <button className='logoutBtn' onClick={this.logoutUser}> logout
+        </button>
         <AddItem update={this.updateItems} />
         <ColHeaders
           col_1={'Name'}
