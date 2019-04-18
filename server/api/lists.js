@@ -4,6 +4,7 @@ var {List} = require('../db')
 router.get('/', async (req, res, next) => {
   try{
    const lists = await List.findAll({
+      where: {userId: req.session.userId},
       order: [ ['id', 'DESC'], ['date', 'DESC'] ]
     })
    res.json(lists)
@@ -14,7 +15,11 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try{
-    var list = await List.create(req.body)
+    var list = await List.create({
+      date: req.body.date,
+      items: req.body.items,
+      userId: req.session.userId
+    })
     res.json(list)
   } catch(err){
     console.error(err)
