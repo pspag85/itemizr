@@ -14,6 +14,7 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
+  console.log("req.session**********", req.session)
   try{
     var list = await List.create({
       date: req.body.date,
@@ -33,7 +34,8 @@ router.put('/', async (req, res, next) => {
     })
     if(list) {
       list.update({
-        items: req.body
+        items: req.body,
+        userId: req.session.userId
       })
       res.json(list)
     }
