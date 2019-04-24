@@ -12,6 +12,7 @@ router.get('/', async (req, res, next) => {//new sytax
 })
 
 router.post('/', async function (req, res, next){
+  console.log("Reqbody*****************", req.body)
   try{
     var item = await Item.create(req.body)
     res.json(item)

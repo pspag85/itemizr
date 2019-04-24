@@ -21,6 +21,7 @@ router.post('/', async (req, res, next) => {
       items: req.body.items,
       userId: req.session.userId
     })
+    console.log("LIST*************", list.userId)
     res.json(list)
   } catch(err){
     console.error(err)
