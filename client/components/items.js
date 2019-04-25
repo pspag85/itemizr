@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 var axios = require('axios') //API libary ajax
+import {connect} from 'react-redux'
 import AddItem from './add-item'
 import Item from './item'
 import ColHeaders from './col-headers'
@@ -44,8 +45,10 @@ class Items extends Component{
     }
   }
   async componentDidMount() {
+    //var listId =
+    console.log("thisPROP", this.props)
     try {
-      const res = await axios.get('/api/items');
+      const res = await axios.get(`/api/items`);
       this.setState({items: res.data});
     } catch(err) {
       console.error(err)
@@ -82,7 +85,13 @@ class Items extends Component{
   }
 }
 
-export default Items
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, null)(Items)
 
 
 

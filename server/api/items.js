@@ -4,7 +4,11 @@ var {Item} = require('../db')
 
 router.get('/', async (req, res, next) => {//new sytax
   try{
-   const items = await Item.findAll() //method form sequlize
+   const items = await Item.findAll({
+    where: {
+      userId: req.session.userId
+    }
+   }) //method form sequlize
    res.json(items)
   } catch(err){
     console.error(err)
@@ -14,7 +18,13 @@ router.get('/', async (req, res, next) => {//new sytax
 router.post('/', async function (req, res, next){
   console.log("Reqbody*****************", req.body)
   try{
-    var item = await Item.create(req.body)
+    var item = await Item.create({
+      name: req.body.name,
+      onHand: req.body.onHand,
+      par: req.body.par,
+      orderQty: req.body.orderQty,
+      userId: req.body.userId
+    })
     res.json(item)
   } catch(err){
     console.error(err)

@@ -44664,6 +44664,8 @@ var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(79);
+
 var _addItem = __webpack_require__(476);
 
 var _addItem2 = _interopRequireDefault(_addItem);
@@ -44814,29 +44816,31 @@ var Items = function (_Component) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.prev = 0;
-                _context3.next = 3;
+                //var listId =
+                console.log("thisPROP", this.props);
+                _context3.prev = 1;
+                _context3.next = 4;
                 return axios.get('/api/items');
 
-              case 3:
+              case 4:
                 res = _context3.sent;
 
                 this.setState({ items: res.data });
-                _context3.next = 10;
+                _context3.next = 11;
                 break;
 
-              case 7:
-                _context3.prev = 7;
-                _context3.t0 = _context3['catch'](0);
+              case 8:
+                _context3.prev = 8;
+                _context3.t0 = _context3['catch'](1);
 
                 console.error(_context3.t0);
 
-              case 10:
+              case 11:
               case 'end':
                 return _context3.stop();
             }
           }
-        }, _callee3, this, [[0, 7]]);
+        }, _callee3, this, [[1, 8]]);
       }));
 
       function componentDidMount() {
@@ -44888,7 +44892,13 @@ var Items = function (_Component) {
   return Items;
 }(_react.Component);
 
-exports.default = Items;
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(Items);
 
 /***/ }),
 /* 476 */

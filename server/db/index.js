@@ -9,8 +9,8 @@ const User = require('./user')
 List.belongsTo(User)
 User.hasMany(List)
 
-Item.belongsTo(List)
-List.hasMany(Item, {as: 'userItems'})
+Item.belongsTo(User)
+User.hasMany(Item, {as: 'userItems'})
 
 module.exports = {
   db,
