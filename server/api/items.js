@@ -23,7 +23,7 @@ router.post('/', async function (req, res, next){
       onHand: req.body.onHand,
       par: req.body.par,
       orderQty: req.body.orderQty,
-      userId: req.body.userId
+      userId: req.session.userId
     })
     res.json(item)
   } catch(err){
