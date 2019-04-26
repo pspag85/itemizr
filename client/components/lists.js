@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {withRouter, Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
 var axios = require('axios')
 import CreateList from './create-list'
 import List from './list'
@@ -7,7 +8,8 @@ import '../css/lists.css'
 
 const Lists = withRouter(class extends Component {
   state = {
-    lists: []
+    lists: [],
+    deletePrivileges: true
   }
   componentDidMount = async () => {
     try {
@@ -24,16 +26,22 @@ const Lists = withRouter(class extends Component {
     this.setState({ lists: [listData, ...lists] });
   }
   deleteList = async id => {
-    try {
-      const deleted = await axios.delete(`/api/lists/${id}`)
-      if(deleted) {
-        const lists = this.state.lists.filter(list => list.id !== id)
-        this.setState({
-          lists
-        })
+    if (this.props.user.isAdmin) {
+      try {
+        const deleted = await axios.delete(`/api/lists/${id}`)
+        if(deleted) {
+          const lists = this.state.lists.filter(list => list.id !== id)
+          this.setState({
+            lists
+          })
+        }
+      } catch(err) {
+        console.error(err)
       }
-    } catch(err) {
-      console.error(err)
+    }else{
+      this.setState({
+        deletePrivileges: false
+      })
     }
   }
   saveCurrentList = async () => {
@@ -83,12 +91,14 @@ const Lists = withRouter(class extends Component {
 
   render() {
     const {createList, viewCurrentList, deleteList, handleClick} = this
-    const {lists} = this.state
+    const {lists, deletePrivileges} = this.state
+    console.log('deletePrivileges', deletePrivileges)
     const currentList = lists[0]
     return (
       <div id='lists-container'>
         <CreateList handleClick={createList} />
         <h2>My Lists</h2>
+        {!deletePrivileges ? <h5> Admin privileges required to delete a list </h5> : null}
         {lists.length < 1 ? <h2> no Lists </h2>
         :lists.map((list, index) => <List key={list.id + list.date}
             id={list.id}
@@ -102,4 +112,11 @@ const Lists = withRouter(class extends Component {
     )
   }
 })
-export default Lists
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, null)(Lists)

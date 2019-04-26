@@ -8872,6 +8872,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(62);
 
+var _reactRedux = __webpack_require__(61);
+
 var _createList = __webpack_require__(470);
 
 var _createList2 = _interopRequireDefault(_createList);
@@ -8913,7 +8915,8 @@ var Lists = (0, _reactRouterDom.withRouter)(function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _class2.__proto__ || Object.getPrototypeOf(_class2)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      lists: []
+      lists: [],
+      deletePrivileges: true
     }, _this.componentDidMount = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
       var lists;
       return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -8957,11 +8960,16 @@ var Lists = (0, _reactRouterDom.withRouter)(function (_Component) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
+                if (!_this.props.user.isAdmin) {
+                  _context2.next = 13;
+                  break;
+                }
+
+                _context2.prev = 1;
+                _context2.next = 4;
                 return axios.delete('/api/lists/' + id);
 
-              case 3:
+              case 4:
                 deleted = _context2.sent;
 
                 if (deleted) {
@@ -8973,21 +8981,30 @@ var Lists = (0, _reactRouterDom.withRouter)(function (_Component) {
                     lists: lists
                   });
                 }
-                _context2.next = 10;
+                _context2.next = 11;
                 break;
 
-              case 7:
-                _context2.prev = 7;
-                _context2.t0 = _context2['catch'](0);
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2['catch'](1);
 
                 console.error(_context2.t0);
 
-              case 10:
+              case 11:
+                _context2.next = 14;
+                break;
+
+              case 13:
+                _this.setState({
+                  deletePrivileges: false
+                });
+
+              case 14:
               case 'end':
                 return _context2.stop();
             }
           }
-        }, _callee2, _this2, [[0, 7]]);
+        }, _callee2, _this2, [[1, 8]]);
       }));
 
       return function (_x) {
@@ -9108,8 +9125,11 @@ var Lists = (0, _reactRouterDom.withRouter)(function (_Component) {
           viewCurrentList = this.viewCurrentList,
           deleteList = this.deleteList,
           handleClick = this.handleClick;
-      var lists = this.state.lists;
+      var _state = this.state,
+          lists = _state.lists,
+          deletePrivileges = _state.deletePrivileges;
 
+      console.log('deletePrivileges', deletePrivileges);
       var currentList = lists[0];
       return _react2.default.createElement(
         'div',
@@ -9120,6 +9140,11 @@ var Lists = (0, _reactRouterDom.withRouter)(function (_Component) {
           null,
           'My Lists'
         ),
+        !deletePrivileges ? _react2.default.createElement(
+          'h5',
+          null,
+          ' Admin privileges required to delete a list '
+        ) : null,
         lists.length < 1 ? _react2.default.createElement(
           'h2',
           null,
@@ -9139,7 +9164,14 @@ var Lists = (0, _reactRouterDom.withRouter)(function (_Component) {
 
   return _class2;
 }(_react.Component));
-exports.default = Lists;
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(Lists);
 
 /***/ }),
 /* 184 */

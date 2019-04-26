@@ -13,6 +13,9 @@ const User = db.define('users', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {len: [2,100]}
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN
   }
 })
 
