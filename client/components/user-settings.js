@@ -25,7 +25,7 @@ const UserSettings = withRouter(class extends Component {
   }
   updateUsers = userData => {
     var users = this.state.users.filter(user => user.id !== userData.id)
-    this.setState({ users: [userData, ...users] });
+    this.setState({ users: [...users, userData] });
   }
   deleteUser = async id => {
     if (this.props.user.isAdmin) {
@@ -48,19 +48,20 @@ const UserSettings = withRouter(class extends Component {
   }
 
   render() {
-    const {createUser, deleteUser} = this
+    const {createUser, updateUsers, deleteUser} = this
     const {users, deletePrivileges} = this.state
-    console.log('deletePrivileges', deletePrivileges)
     return (
       <div id='users-container'>
-        <CreateUser />
+        <CreateUser update={updateUsers} />
         <h2>My Users</h2>
         {!deletePrivileges ? <h5> Admin privileges required to delete a user </h5> : null}
-        {users.length < 1 ? <h2> no Lists </h2>
-        :user.map((user, index) => <User key={user.id + user.date}
+        {users.length < 1 ? <h2> No Users </h2>
+        :users.map((user, index) => <User key={user.id + user.date}
             id={user.id}
             date={user.date}
-            handleClick={viewCurrentUser}
+            name={user.name}
+            email={user.email}
+            isAdmin={user.isAdmin}
             deleteUser={deleteUser}
           />
         )}

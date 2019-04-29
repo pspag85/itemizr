@@ -1,24 +1,25 @@
 import React from 'react'
-//import '../css/item.css'
+// import '../css/item.css'
 
 var User = function(props){
   var name = props.name
-  var date = props.date
+  var date = props.date.slice(0, 10)
   var email = props.email
+  var isAdmin = props.isAdmin
   var remove = props.remove
   return(
     <div className='itemRow'>
       <div className='column'>
-        <UpdateItem input='name' name={name} id={id} update={update} />
+        {date}
       </div>
       <div className='column'>
-        <UpdateItem input='onHand' onHand={onHand} id={id} update={update} />
+        {name}
       </div>
       <div className='column'>
-        <UpdateItem input='par' par={par} id={id} update={update} />
+        {email}
       </div>
       <div className='column'>
-        <UpdateItem input='orderQty' orderQty={orderQty} id={id} update={update} />
+        {isAdmin}
       </div>
       <div className='column'>
         <button className='remove' onClick={function(){
@@ -29,4 +30,4 @@ var User = function(props){
     </div>
   )
 }
-export default Item
+export default User

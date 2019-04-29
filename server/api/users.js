@@ -2,6 +2,17 @@ var router = require('express').Router()
 
 var {User} = require('../db')
 
+router.get('/', async function(req, res, next) {
+  try{
+    var users = await User.findAll()
+    if(users) {
+      res.json(users)
+    }
+  } catch(err) {
+    console.error(err)
+  }
+})
+
 router.post('/signup', async function (req, res, next){
   try{
     var user = await User.create(req.body)

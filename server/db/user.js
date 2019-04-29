@@ -2,6 +2,13 @@ const Sequelize = require('sequelize')
 const db = require('./database')
 
 const User = db.define('users', {
+  date: {
+    type: Sequelize.DATE,
+    defaultValue: Date.now()
+  },
+  name: {
+    type: Sequelize.STRING
+  },
   email: {
     type: Sequelize.STRING,
     isEmail: true,
