@@ -44988,7 +44988,7 @@ var UserSettings = (0, _reactRouterDom.withRouter)(function (_Component) {
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
-            deleteUser: deleteUser
+            remove: deleteUser
           });
         })
       );
@@ -45190,6 +45190,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // import '../css/item.css'
 
 var User = function User(props) {
+  var id = props.id;
   var name = props.name;
   var date = props.date.slice(0, 10);
   var email = props.email;

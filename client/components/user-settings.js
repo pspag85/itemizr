@@ -62,7 +62,7 @@ const UserSettings = withRouter(class extends Component {
             name={user.name}
             email={user.email}
             isAdmin={user.isAdmin}
-            deleteUser={deleteUser}
+            remove={deleteUser}
           />
         )}
       </div>

@@ -2,6 +2,7 @@ import React from 'react'
 // import '../css/item.css'
 
 var User = function(props){
+  var id = props.id
   var name = props.name
   var date = props.date.slice(0, 10)
   var email = props.email
