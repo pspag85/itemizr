@@ -7,6 +7,7 @@ import store, {getMe} from './store'
 import Signup from './components/signup'
 import Login from './components/login'
 import UserPage from './components/user-page'
+import UserSettings from './components/user-settings'
 import Lists from './components/lists'
 import Items from './components/items'
 import './css/app.css'
@@ -29,6 +30,7 @@ const App = withRouter(class extends Component {
       <Switch>
         <Route exact path='/items' component={Items} />
         <Route exact path='/lists' component={UserPage} />
+        <Route exact path='/users' component={UserSettings} />
         <Route exact path='/signup' component={Signup} />
         <Route component={Login} />
       </Switch>

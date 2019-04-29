@@ -14,6 +14,17 @@ router.post('/signup', async function (req, res, next){
   }
 })
 
+router.post('/', async function (req, res, next){
+  try{
+    var user = await User.create(req.body)
+    if(user){
+      res.json(user)
+    }
+  }catch(err){
+    console.error(err)
+  }
+})
+
 router.get('/user', async (req, res, next) => {
   try {
     if (!req.session.userId) {
