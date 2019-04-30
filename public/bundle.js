@@ -9129,7 +9129,6 @@ var Lists = (0, _reactRouterDom.withRouter)(function (_Component) {
           lists = _state.lists,
           deletePrivileges = _state.deletePrivileges;
 
-      console.log('deletePrivileges', deletePrivileges);
       var currentList = lists[0];
       return _react2.default.createElement(
         'div',
@@ -44864,31 +44863,35 @@ var UserSettings = (0, _reactRouterDom.withRouter)(function (_Component) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.prev = 0;
-              _context.next = 3;
+              if (!_this.props.user.id) {
+                console.log('no user');
+                _this.props.history.push('/');
+              }
+              _context.prev = 1;
+              _context.next = 4;
               return axios.get('/api/users');
 
-            case 3:
+            case 4:
               users = _context.sent;
 
               _this.setState({
                 users: users.data
               });
-              _context.next = 10;
+              _context.next = 11;
               break;
 
-            case 7:
-              _context.prev = 7;
-              _context.t0 = _context['catch'](0);
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context['catch'](1);
 
               console.error(_context.t0);
 
-            case 10:
+            case 11:
             case 'end':
               return _context.stop();
           }
         }
-      }, _callee, _this2, [[0, 7]]);
+      }, _callee, _this2, [[1, 8]]);
     })), _this.updateUsers = function (userData) {
       var users = _this.state.users.filter(function (user) {
         return user.id !== userData.id;
@@ -45404,8 +45407,7 @@ var Items = function (_Component) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                //var listId =
-                console.log("thisPROP", this.props);
+                if (!this.props.user.id) this.props.history.push('/');
                 _context3.prev = 1;
                 _context3.next = 4;
                 return axios.get('/api/items');

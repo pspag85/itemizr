@@ -45,8 +45,7 @@ class Items extends Component{
     }
   }
   async componentDidMount() {
-    //var listId =
-    console.log("thisPROP", this.props)
+    if(!this.props.user.id) this.props.history.push('/')
     try {
       const res = await axios.get(`/api/items`);
       this.setState({items: res.data});

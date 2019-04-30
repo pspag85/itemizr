@@ -92,7 +92,6 @@ const Lists = withRouter(class extends Component {
   render() {
     const {createList, viewCurrentList, deleteList, handleClick} = this
     const {lists, deletePrivileges} = this.state
-    console.log('deletePrivileges', deletePrivileges)
     const currentList = lists[0]
     return (
       <div id='lists-container'>

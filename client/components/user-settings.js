@@ -14,6 +14,10 @@ const UserSettings = withRouter(class extends Component {
     deletePrivileges: true
   }
   componentDidMount = async () => {
+    if(!this.props.user.id) {
+      console.log('no user')
+      this.props.history.push('/')
+    }
     try {
       const users = await axios.get('/api/users');
       this.setState({
