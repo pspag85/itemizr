@@ -1,7 +1,8 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {logout} from '../store'
+import UserSettings from './user-settings'
 import UserDropdown from './user-dropdown'
 import Lists from './lists'
 
@@ -15,6 +16,7 @@ const UserPage = props => {
     <div>
       <div>
         <h1>Welcome back {user.email}!</h1>
+        <Link to='/users'>Admin Settings</Link>
       </div>
       <div>
         <UserDropdown handleClick={handleClick} />

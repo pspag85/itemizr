@@ -44389,6 +44389,10 @@ var _reactRedux = __webpack_require__(48);
 
 var _store = __webpack_require__(82);
 
+var _userSettings = __webpack_require__(477);
+
+var _userSettings2 = _interopRequireDefault(_userSettings);
+
 var _userDropdown = __webpack_require__(470);
 
 var _userDropdown2 = _interopRequireDefault(_userDropdown);
@@ -44421,6 +44425,11 @@ var UserPage = function UserPage(props) {
         'Welcome back ',
         user.email,
         '!'
+      ),
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/users' },
+        'Admin Settings'
       )
     ),
     _react2.default.createElement(
@@ -44970,6 +44979,11 @@ var UserSettings = (0, _reactRouterDom.withRouter)(function (_Component) {
       return _react2.default.createElement(
         'div',
         { id: 'users-container' },
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/lists' },
+          'Back To Lists'
+        ),
         _react2.default.createElement(_createUser2.default, { update: updateUsers }),
         _react2.default.createElement(
           'h2',

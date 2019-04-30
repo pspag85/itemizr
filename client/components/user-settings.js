@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {withRouter, Redirect} from 'react-router-dom'
+import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 var axios = require('axios')
 import CreateUser from './create-user'
@@ -56,6 +56,7 @@ const UserSettings = withRouter(class extends Component {
     const {users, deletePrivileges} = this.state
     return (
       <div id='users-container'>
+        <Link to='/lists'>Back To Lists</Link>
         <CreateUser update={updateUsers} />
         <h2>My Users</h2>
         {!deletePrivileges ? <h5> Admin privileges required to delete a user </h5> : null}
