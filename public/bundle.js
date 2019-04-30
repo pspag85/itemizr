@@ -44827,6 +44827,10 @@ var _createUser = __webpack_require__(478);
 
 var _createUser2 = _interopRequireDefault(_createUser);
 
+var _colHeaders = __webpack_require__(488);
+
+var _colHeaders2 = _interopRequireDefault(_colHeaders);
+
 var _user = __webpack_require__(480);
 
 var _user2 = _interopRequireDefault(_user);
@@ -44990,6 +44994,12 @@ var UserSettings = (0, _reactRouterDom.withRouter)(function (_Component) {
           null,
           'My Users'
         ),
+        _react2.default.createElement(_colHeaders2.default, {
+          col_1: 'Date',
+          col_2: 'Name',
+          col_3: 'Email',
+          col_4: 'isAdmin'
+        }),
         !deletePrivileges ? _react2.default.createElement(
           'h5',
           null,
@@ -45220,22 +45230,22 @@ var User = function User(props) {
     { className: 'itemRow' },
     _react2.default.createElement(
       'div',
-      { className: 'column' },
+      { className: 'column cell' },
       date
     ),
     _react2.default.createElement(
       'div',
-      { className: 'column' },
+      { className: 'column cell' },
       name
     ),
     _react2.default.createElement(
       'div',
-      { className: 'column' },
+      { className: 'column cell' },
       email
     ),
     _react2.default.createElement(
       'div',
-      { className: 'column' },
+      { className: 'column cell' },
       isAdmin
     )
   ) : _react2.default.createElement(
@@ -45243,27 +45253,27 @@ var User = function User(props) {
     { className: 'itemRow' },
     _react2.default.createElement(
       'div',
-      { className: 'column' },
+      { className: 'column cell' },
       date
     ),
     _react2.default.createElement(
       'div',
-      { className: 'column' },
+      { className: 'column cell' },
       name
     ),
     _react2.default.createElement(
       'div',
-      { className: 'column' },
+      { className: 'column cell' },
       email
     ),
     _react2.default.createElement(
       'div',
-      { className: 'column' },
+      { className: 'column cell' },
       isAdmin
     ),
     _react2.default.createElement(
       'div',
-      { className: 'column' },
+      { className: 'column cell' },
       _react2.default.createElement(
         'button',
         { className: 'remove', onClick: function onClick() {
@@ -56459,7 +56469,7 @@ if(false) {
 
 exports = module.exports = __webpack_require__(83)(false);
 // Module
-exports.push([module.i, ".itemRow {\n margin-left: 20%;\n}\n\n.column {\n  display: inline-block;\n}\n\n.remove {\n  color: white;\n  background-color: red;\n}\n\n.colHeaders .column{\n  width: 173px;\n  border: .25px solid black;\n}\n\n.colHeaders .column h4{\n  margin: 1px;\n}\n.logoutBtn{\n  margin-left: 90%;\n}\n", ""]);
+exports.push([module.i, ".itemRow {\n margin-left: 20%;\n}\n\n.column {\n  display: inline-block;\n}\n\n.cell {\n  padding-right: 100px;\n  padding-left: 20px;\n}\n\n.remove {\n  color: white;\n  background-color: red;\n}\n\n.colHeaders .column{\n  width: 173px;\n  border: .25px solid black;\n}\n\n.colHeaders .column h4{\n  margin: 1px;\n}\n.logoutBtn{\n  margin-left: 90%;\n}\n", ""]);
 
 
 

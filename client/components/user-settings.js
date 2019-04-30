@@ -3,6 +3,7 @@ import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 var axios = require('axios')
 import CreateUser from './create-user'
+import ColHeaders from './col-headers'
 import User from './user'
 //import '../css/users.css'
 
@@ -59,6 +60,12 @@ const UserSettings = withRouter(class extends Component {
         <Link to='/lists'>Back To Lists</Link>
         <CreateUser update={updateUsers} />
         <h2>My Users</h2>
+         <ColHeaders
+          col_1={'Date'}
+          col_2={'Name'}
+          col_3={'Email'}
+          col_4={'isAdmin'}
+         />
         {!deletePrivileges ? <h5> Admin privileges required to delete a user </h5> : null}
         {users.length < 1 ? <h2> No Users </h2>
         :users.map((user, index) => <User key={user.id + user.date}

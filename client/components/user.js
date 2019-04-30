@@ -11,34 +11,34 @@ var User = function(props){
   var remove = props.remove
   return id === 1 ? (
     <div className='itemRow'>
-      <div className='column'>
+      <div className='column cell'>
         {date}
       </div>
-      <div className='column'>
+      <div className='column cell'>
         {name}
       </div>
-      <div className='column'>
+      <div className='column cell'>
         {email}
       </div>
-      <div className='column'>
+      <div className='column cell'>
         {isAdmin}
       </div>
     </div>    
   ):(
     <div className='itemRow'>
-      <div className='column'>
+      <div className='column cell'>
         {date}
       </div>
-      <div className='column'>
+      <div className='column cell'>
         {name}
       </div>
-      <div className='column'>
+      <div className='column cell'>
         {email}
       </div>
-      <div className='column'>
+      <div className='column cell'>
         {isAdmin}
       </div>
-      <div className='column'>
+      <div className='column cell'>
         <button className='remove' onClick={function(){
           return remove(id)
         }
