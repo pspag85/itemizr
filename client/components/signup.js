@@ -34,7 +34,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       duplicateEmailHandler()
       const email = evt.target.email.value
       const password = evt.target.password.value
-      const signupThunk = signup({email, password})
+      const isAdmin = true
+      const signupThunk = signup({email, password, isAdmin})
       try {
         await dispatch(signupThunk)
         ownProps.history.push('/lists')

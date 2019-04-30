@@ -44227,7 +44227,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var email, password, signupThunk;
+        var email, password, isAdmin, signupThunk;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -44236,28 +44236,29 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
                 duplicateEmailHandler();
                 email = evt.target.email.value;
                 password = evt.target.password.value;
-                signupThunk = (0, _store.signup)({ email: email, password: password });
-                _context.prev = 5;
-                _context.next = 8;
+                isAdmin = true;
+                signupThunk = (0, _store.signup)({ email: email, password: password, isAdmin: isAdmin });
+                _context.prev = 6;
+                _context.next = 9;
                 return dispatch(signupThunk);
 
-              case 8:
+              case 9:
                 ownProps.history.push('/lists');
-                _context.next = 14;
+                _context.next = 15;
                 break;
 
-              case 11:
-                _context.prev = 11;
-                _context.t0 = _context['catch'](5);
+              case 12:
+                _context.prev = 12;
+                _context.t0 = _context['catch'](6);
 
                 console.error(_context.t0);
 
-              case 14:
+              case 15:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, _this, [[5, 11]]);
+        }, _callee, _this, [[6, 12]]);
       }))();
     }
   };

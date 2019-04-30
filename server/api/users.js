@@ -78,4 +78,21 @@ router.delete('/logout', function (req, res, next){
   res.status(204).end()
 })
 
+router.delete('/:id', async function(req, res,next){
+  try{
+    var user = await User.destroy({
+      where: {
+          id: req.params.id,
+      },
+    })
+    if(user) {
+      res.json(user)
+    } else {
+      res.sendStatus(404)
+    }
+  } catch(err) {
+    console.error(err)
+  }
+})
+
 module.exports = router
