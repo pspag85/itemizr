@@ -45208,13 +45208,37 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // import '../css/item.css'
 
 var User = function User(props) {
+  var ownerId = 1;
   var id = props.id;
   var name = props.name;
   var date = props.date.slice(0, 10);
   var email = props.email;
   var isAdmin = props.isAdmin;
   var remove = props.remove;
-  return _react2.default.createElement(
+  return id === 1 ? _react2.default.createElement(
+    'div',
+    { className: 'itemRow' },
+    _react2.default.createElement(
+      'div',
+      { className: 'column' },
+      date
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'column' },
+      name
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'column' },
+      email
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'column' },
+      isAdmin
+    )
+  ) : _react2.default.createElement(
     'div',
     { className: 'itemRow' },
     _react2.default.createElement(
