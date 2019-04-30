@@ -45213,7 +45213,7 @@ var User = function User(props) {
   var name = props.name;
   var date = props.date.slice(0, 10);
   var email = props.email;
-  var isAdmin = props.isAdmin;
+  var isAdmin = props.isAdmin ? 'TRUE' : 'FALSE';
   var remove = props.remove;
   return id === 1 ? _react2.default.createElement(
     'div',
