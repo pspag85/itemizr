@@ -45255,6 +45255,8 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(58);
+
 var _reactRedux = __webpack_require__(48);
 
 var _addItem = __webpack_require__(482);
@@ -45448,6 +45450,11 @@ var Items = function (_Component) {
       return _react2.default.createElement(
         'div',
         { id: 'items-container' },
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/lists' },
+          'Back To Lists'
+        ),
         _react2.default.createElement(
           'button',
           { className: 'logoutBtn', onClick: this.logoutUser },

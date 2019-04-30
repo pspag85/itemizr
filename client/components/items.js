@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import {Link} from 'react-router-dom'
 var axios = require('axios') //API libary ajax
 import {connect} from 'react-redux'
 import AddItem from './add-item'
@@ -58,6 +59,7 @@ class Items extends Component{
     const items = this.state.items
     return (
       <div id='items-container'>
+        <Link to='/lists'>Back To Lists</Link>
         <button className='logoutBtn' onClick={this.logoutUser}> logout
         </button>
         <AddItem update={this.updateItems} />
