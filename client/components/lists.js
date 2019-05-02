@@ -74,7 +74,7 @@ const Lists = withRouter(class extends Component {
         date: Date.now(),
         items: []
       })
-      this.clearQuantities()
+     // this.clearQuantities()  NEEDS WORK TO FIX Zerso
       if (newList.data){
         this.updateLists(newList.data)
         this.viewCurrentList()

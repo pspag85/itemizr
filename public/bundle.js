@@ -9401,26 +9401,26 @@ var Lists = (0, _reactRouterDom.withRouter)(function (_Component) {
             case 4:
               newList = _context5.sent;
 
-              _this.clearQuantities();
+              // this.clearQuantities()  NEEDS WORK TO FIX Zerso
               if (newList.data) {
                 _this.updateLists(newList.data);
                 _this.viewCurrentList();
               }
-              _context5.next = 12;
+              _context5.next = 11;
               break;
 
-            case 9:
-              _context5.prev = 9;
+            case 8:
+              _context5.prev = 8;
               _context5.t0 = _context5['catch'](1);
 
               console.error(_context5.t0);
 
-            case 12:
+            case 11:
             case 'end':
               return _context5.stop();
           }
         }
-      }, _callee5, _this2, [[1, 9]]);
+      }, _callee5, _this2, [[1, 8]]);
     })), _temp), _possibleConstructorReturn(_this, _ret);
   }
 
