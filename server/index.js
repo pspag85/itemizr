@@ -14,8 +14,6 @@ const middleware = require('webpack-dev-middleware'); //webpack hot reloading mi
 var webpackConfig = require('../webpack.config');
 var compiler = webpack(webpackConfig);
 
-console.log('webpack config:  ', compiler)
-
 app.use(require("webpack-hot-middleware")(compiler, {
   'log': false, 
   'path': '/__webpack_hmr', 
