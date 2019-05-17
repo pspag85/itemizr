@@ -9,6 +9,23 @@ const PORT = process.env.PORT || 5000
 const {db} = require('./db')
 const bodyParser = require('body-parser')
 
+const webpack = require('webpack');
+const middleware = require('webpack-dev-middleware'); //webpack hot reloading middleware
+var webpackConfig = require('../webpack.config');
+var compiler = webpack(webpackConfig);
+
+console.log('webpack config:  ', compiler)
+
+app.use(require("webpack-hot-middleware")(compiler, {
+  'log': false, 
+  'path': '/__webpack_hmr', 
+  'heartbeat': 10 * 1000
+}));
+
+app.use(middleware(compiler, {
+  noInfo: true, publicPath: webpackConfig.output.publicPath
+}));
+
 app.use(volleyball)
 
 app.use(bodyParser.json())

@@ -4,8 +4,8 @@
   "description": "inventory list app",
   "main": "server/index.js",
   "scripts": {
-    "start": "npm run start-server & npm run build-watch",
-    "start-server": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start-server": "nodemon --watch server -e js,html index.js",
     "build-watch": "webpack -w",
     "seed": "node seed.js"
   },
@@ -45,7 +45,8 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1"
+    "webpack-dev-server": "^3.2.1",
+    "webpack-hot-middleware": "^2.25.0"
   },
   "engines": {
     "node": "8.9.4"
