@@ -1,9 +1,9 @@
-import React,{Component} from 'react'
-var axios = require('axios') //API libary ajax
+import React, {Component} from 'react'
+const axios = require('axios')
 import ItemForm from './item-form'
 import '../css/add-item.css'
 
-class AddItem extends Component{
+class AddItem extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -28,12 +28,12 @@ class AddItem extends Component{
 
   async handleSubmit(event){
     event.preventDefault()
-    var name = event.target.name.value
-    var onHand = event.target.onHand.value
-    var par = event.target.par.value
-    var orderQty = event.target.orderQty.value
+    const name = event.target.name.value
+    const onHand = event.target.onHand.value
+    const par = event.target.par.value
+    const orderQty = event.target.orderQty.value
     try{
-      var item = await axios.post('/api/items', {
+      const item = await axios.post('/api/items', {
         name: name,
         onHand: onHand,
         par: par,
@@ -69,8 +69,3 @@ class AddItem extends Component{
 }
 
 export default AddItem
-
-
-
-    // if(a) {return a} else {return b}
-    //      return a ? a : b   (**shorthand for return a === true ? a : b)

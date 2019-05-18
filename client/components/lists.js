@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {withRouter, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-var axios = require('axios')
+const axios = require('axios')
 import CreateList from './create-list'
 import List from './list'
 import '../css/lists.css'
@@ -22,7 +22,7 @@ const Lists = withRouter(class extends Component {
     }
   }
   updateLists = listData => {
-    var lists = this.state.lists.filter(list => list.id !== listData.id)
+    const lists = this.state.lists.filter(list => list.id !== listData.id)
     this.setState({ lists: [listData, ...lists] });
   }
   deleteList = async id => {
@@ -112,7 +112,7 @@ const Lists = withRouter(class extends Component {
   }
 })
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     user: state.user
   }

@@ -1,19 +1,18 @@
 import React, {Component} from 'react'
 import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-var axios = require('axios')
+const axios = require('axios')
 import CreateUser from './create-user'
 import ColHeaders from './col-headers'
 import User from './user'
 //import '../css/users.css'
 
-
-
-const UserSettings = withRouter(class extends Component {
+const Users = withRouter(class extends Component {
   state = {
     users: [],
     deletePrivileges: true
   }
+
   componentDidMount = async () => {
     if(!this.props.user.id) {
       console.log('no user')
@@ -28,12 +27,14 @@ const UserSettings = withRouter(class extends Component {
       console.error(err)
     }
   }
+
   updateUsers = userData => {
-    var users = this.state.users.filter(user => user.id !== userData.id)
+    const users = this.state.users.filter(user => user.id !== userData.id)
     this.setState({ users: [...users, userData] });
   }
+
   deleteUser = async id => {
-    if (this.props.user.isAdmin) {
+    if(this.props.user.isAdmin) {
       try {
         const deleted = await axios.delete(`/api/users/${id}`)
         if(deleted) {
@@ -45,7 +46,7 @@ const UserSettings = withRouter(class extends Component {
       } catch(err) {
         console.error(err)
       }
-    }else{
+    } else {
       this.setState({
         deletePrivileges: false
       })
@@ -82,10 +83,10 @@ const UserSettings = withRouter(class extends Component {
   }
 })
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     user: state.user
   }
 }
 
-export default connect(mapStateToProps, null)(UserSettings)
+export default connect(mapStateToProps, null)(Users)

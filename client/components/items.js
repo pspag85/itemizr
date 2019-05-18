@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
-var axios = require('axios') //API libary ajax
+const axios = require('axios') //API libary ajax
 import {connect} from 'react-redux'
 import AddItem from './add-item'
 import Item from './item'
@@ -8,18 +8,18 @@ import ColHeaders from './col-headers'
 
 class Items extends Component{
   constructor() {
-    super();
+    super()
     this.state = {
       items: [],
-    };
-    this.updateItems = this.updateItems.bind(this);
-    this.remove = this.remove.bind(this);
+    }
+    this.updateItems = this.updateItems.bind(this)
+    this.remove = this.remove.bind(this)
     this.logoutUser = this.logoutUser.bind(this)
   }
 
   updateItems(itemData) {
-    var items = this.state.items.filter(item => item.id !== itemData.id)
-    this.setState({ items: [itemData,...items] });
+    const items = this.state.items.filter(item => item.id !== itemData.id)
+    this.setState({ items: [itemData,...items] })
   }
   async remove(id){
     try{
@@ -37,7 +37,7 @@ class Items extends Component{
 
   async logoutUser(){
     try{
-      var loggedOut = await axios.delete('/api/users/logout')
+      const loggedOut = await axios.delete('/api/users/logout')
       if (loggedOut) {
         this.props.history.push('/login')
       }
@@ -48,21 +48,22 @@ class Items extends Component{
   async componentDidMount() {
     if(!this.props.user.id) this.props.history.push('/')
     try {
-      const res = await axios.get(`/api/items`);
-      this.setState({items: res.data});
+      const res = await axios.get(`/api/items`)
+      this.setState({items: res.data})
     } catch(err) {
       console.error(err)
     }
   }
 
   render() {
+    const {logoutUser, updateItems, remove} = this
     const items = this.state.items
     return (
       <div id='items-container'>
         <Link to='/lists'>Back To Lists</Link>
-        <button className='logoutBtn' onClick={this.logoutUser}> logout
+        <button className='logoutBtn' onClick={logoutUser}> logout
         </button>
-        <AddItem update={this.updateItems} />
+        <AddItem update={updateItems} />
         <ColHeaders
           col_1={'Name'}
           col_2={'On Hand'}
@@ -77,8 +78,8 @@ class Items extends Component{
             onHand={item.onHand}
             par={item.par}
             orderQty={item.orderQty}
-            remove={this.remove}
-            update={this.updateItems}
+            remove={remove}
+            update={updateItems}
           />
         )}
       </div>
@@ -86,7 +87,7 @@ class Items extends Component{
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     user: state.user
   }

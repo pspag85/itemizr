@@ -1,3 +1,3 @@
-var secret = '87654321012345678'
+var secret = '994472k317ll5'
 
 module.exports = {secret}

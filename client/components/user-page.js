@@ -2,7 +2,6 @@ import React from 'react'
 import {Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {logout} from '../store'
-import UserSettings from './user-settings'
 import UserDropdown from './user-dropdown'
 import Lists from './lists'
 
@@ -26,7 +25,7 @@ const UserPage = props => {
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     user: state.user
   }

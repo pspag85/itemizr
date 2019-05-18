@@ -1,10 +1,10 @@
-import React,{Component} from 'react'
-var axios = require('axios') //API libary ajax
+import React, {Component} from 'react'
+const axios = require('axios')
 import UserForm from './user-form'
-var {randomPasswordGen} = require('../utils')
+const {randomPasswordGen} = require('../utils')
 // import '../css/add-item.css'
 
-class CreateUser extends Component{
+class CreateUser extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -25,17 +25,15 @@ class CreateUser extends Component{
 
   async handleSubmit(event){
     event.preventDefault()
-    var name = event.target.name.value
-    var email = event.target.email.value
-    var isAdmin = event.target.isAdmin.value
-    var password = randomPasswordGen()
+    const {name, email, isAdmin} = event.target
+    const password = randomPasswordGen()
     try{
-      var user = await axios.post('/api/users', {
-        name,
+      const user = await axios.post('/api/users', {
+        name: name.value,
         date: Date.now(),
-        email,
-        password,
-        isAdmin
+        email: email.value,
+        password: password.value,
+        isAdmin: isAdmin.value
       })
       this.props.update(user.data)
       this.setState({open: false})

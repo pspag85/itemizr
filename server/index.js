@@ -4,15 +4,13 @@ const session = require('express-session')
 const {secret} = require('../secrets')
 const volleyball = require('volleyball')
 const app = express()
-module.exports = app
 const PORT = process.env.PORT || 5000
 const {db} = require('./db')
 const bodyParser = require('body-parser')
-
 const webpack = require('webpack');
 const middleware = require('webpack-dev-middleware'); //webpack hot reloading middleware
-var webpackConfig = require('../webpack.config');
-var compiler = webpack(webpackConfig);
+const webpackConfig = require('../webpack.config');
+const compiler = webpack(webpackConfig);
 
 app.use(require("webpack-hot-middleware")(compiler, {
   'log': false, 
@@ -21,7 +19,8 @@ app.use(require("webpack-hot-middleware")(compiler, {
 }));
 
 app.use(middleware(compiler, {
-  noInfo: true, publicPath: webpackConfig.output.publicPath
+  noInfo: true,
+  publicPath: webpackConfig.output.publicPath
 }));
 
 app.use(volleyball)
@@ -50,6 +49,7 @@ app.use((req, res, next) => {
 app.get('/*', (req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
 })
+
 app.use((err, req, res, next) => {
   console.error(err, typeof next)
   console.error(err.stack)
@@ -67,3 +67,4 @@ const init = (async () => {
   }
 })()
 
+module.exports = app

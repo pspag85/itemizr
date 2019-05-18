@@ -2,14 +2,8 @@ import React from 'react'
 import UpdateItem from './update-item'
 import '../css/item.css'
 
-var Item = function(props){
-  var id = props.id
-  var name = props.name
-  var onHand = props.onHand
-  var par = props.par
-  var orderQty = props.orderQty
-  var remove = props.remove
-  var update = props.update
+var Item = = props => {
+  const {id, name, onHand, par, orderQty, remove, update} = props
   return(
     <div className='itemRow'>
       <div className='column'>
@@ -25,10 +19,7 @@ var Item = function(props){
         <UpdateItem input='orderQty' orderQty={orderQty} id={id} update={update} />
       </div>
       <div className='column'>
-        <button className='remove' onClick={function(){
-          return remove(id)
-        }
-      }> - </button>
+        <button className='remove' onClick={() => remove(id)}> - </button>
       </div>
     </div>
   )

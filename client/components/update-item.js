@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-var axios = require('axios') //API libary ajax => http://www.aaronsw.com/weblog/ajaxhistory
+const axios = require('axios') //API libary ajax => http://www.aaronsw.com/weblog/ajaxhistory
 const $ = require('jquery')
 
 class UpdateItem extends Component{
@@ -24,13 +24,13 @@ class UpdateItem extends Component{
 
   async handleSubmit(event){
     event.preventDefault()
-    var id = this.state.id
-    var inputName = this.props.input
-    var value = event.target.querySelector('input').value //The Document method querySelector() returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned.
-    var itemData = {}
+    const id = this.state.id
+    const inputName = this.props.input
+    const value = event.target.querySelector('input').value //The Document method querySelector() returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned.
+    const itemData = {}
     itemData[inputName] = value
     try{
-      var item = await axios.put(`/api/items/${id}`, itemData)
+      const item = await axios.put(`/api/items/${id}`, itemData)
       if(item){
         this.props.update(item.data)
         $(() => {$('input').blur()})
@@ -41,7 +41,7 @@ class UpdateItem extends Component{
   }
 
   render(){
-    var name = this.props.input ? this.props.input : ''
+    const name = this.props.input ? this.props.input : ''
     return(
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -57,8 +57,3 @@ class UpdateItem extends Component{
 }
 
 export default UpdateItem
-
-
-
-    // if(a) {return a} else {return b}
-    //      return a ? a : b   (**shorthand for return a === true ? a : b)
