@@ -5,7 +5,7 @@ const axios = require('axios')
 import CreateUser from './create-user'
 import ColHeaders from './col-headers'
 import User from './user'
-//import '../css/users.css'
+import {getUsers} from '../store'
 
 const Users = withRouter(class extends Component {
   state = {
@@ -14,12 +14,12 @@ const Users = withRouter(class extends Component {
   }
 
   componentDidMount = async () => {
-    if(!this.props.user.id) {
-      console.log('no user')
-      this.props.history.push('/')
+    const {loggedInUser, history, loadUsers} = this.props
+    if(!loggedInUser.id) {
+      history.push('/')
     }
     try {
-      const users = await axios.get('/api/users');
+      const users = await loadUsers()
       this.setState({
         users: users.data
       })
@@ -30,11 +30,11 @@ const Users = withRouter(class extends Component {
 
   updateUsers = userData => {
     const users = this.state.users.filter(user => user.id !== userData.id)
-    this.setState({ users: [...users, userData] });
+    this.setState({ users: [...users, userData] })
   }
 
   deleteUser = async id => {
-    if(this.props.user.isAdmin) {
+    if(this.props.loggedInUser.isAdmin) {
       try {
         const deleted = await axios.delete(`/api/users/${id}`)
         if(deleted) {
@@ -54,7 +54,7 @@ const Users = withRouter(class extends Component {
   }
 
   render() {
-    const {createUser, updateUsers, deleteUser} = this
+    const {updateUsers, deleteUser} = this
     const {users, deletePrivileges} = this.state
     return (
       <div id='users-container'>
@@ -83,10 +83,14 @@ const Users = withRouter(class extends Component {
   }
 })
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  }
-}
+const mapStateToProps = state => ({
+  loggedInUser: state.loggedInUser,
+  users: state.users
+})
+
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  loadUsers: () => dispatch(getUsers())
+})
 
 export default connect(mapStateToProps, null)(Users)

@@ -32,7 +32,7 @@ class CreateUser extends Component {
         name: name.value,
         date: Date.now(),
         email: email.value,
-        password: password.value,
+        password: password,
         isAdmin: isAdmin.value
       })
       this.props.update(user.data)
