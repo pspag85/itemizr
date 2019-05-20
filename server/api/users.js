@@ -3,7 +3,11 @@ const {User} = require('../db')
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll()
+    const users = await User.findAll({
+      where: {
+        userId: 0
+      }
+    })
     if(users) {
       res.json(users)
     }
@@ -27,6 +31,7 @@ router.post('/signup', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const user = await User.create(req.body)
+    user.userId = 0
     if(user) {
       res.json(user)
     }

@@ -2,64 +2,29 @@ import React, {Component} from 'react'
 import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 const axios = require('axios')
-import CreateUser from './create-user'
+import CreateUserForm from './create-user-form'
 import ColHeaders from './col-headers'
 import User from './user'
-import {getUsers} from '../store'
+import {getUsers, removeUser} from '../store'
 
 const Users = withRouter(class extends Component {
   state = {
-    users: [],
-    deletePrivileges: true
+    deletePrivileges: this.props.loggedInUser.isAdmin
   }
 
   componentDidMount = async () => {
     const {loggedInUser, history, loadUsers} = this.props
-    if(!loggedInUser.id) {
-      history.push('/')
-    }
-    try {
-      const users = await loadUsers()
-      this.setState({
-        users: users.data
-      })
-    } catch(err) {
-      console.error(err)
-    }
-  }
-
-  updateUsers = userData => {
-    const users = this.state.users.filter(user => user.id !== userData.id)
-    this.setState({ users: [...users, userData] })
-  }
-
-  deleteUser = async id => {
-    if(this.props.loggedInUser.isAdmin) {
-      try {
-        const deleted = await axios.delete(`/api/users/${id}`)
-        if(deleted) {
-          const users = this.state.users.filter(user => user.id !== id)
-          this.setState({
-            users
-          })
-        }
-      } catch(err) {
-        console.error(err)
-      }
-    } else {
-      this.setState({
-        deletePrivileges: false
-      })
-    }
+    if(!loggedInUser.id) history.push('/')
+    loadUsers()
   }
 
   render() {
-    const {updateUsers, deleteUser} = this
-    const {users, deletePrivileges} = this.state
+    const {deletePrivileges} = this.state
+    const {users, deleteUser} = this.props
     return (
       <div id='users-container'>
         <Link to='/lists'>Back To Lists</Link>
-        <CreateUser update={updateUsers} />
+        <CreateUserForm />
         <h2>My Users</h2>
          <ColHeaders
           col_1={'Date'}
@@ -84,13 +49,13 @@ const Users = withRouter(class extends Component {
 })
 
 const mapStateToProps = state => ({
-  loggedInUser: state.loggedInUser,
+  loggedInUser: state.user,
   users: state.users
 })
 
-
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  loadUsers: () => dispatch(getUsers())
+  loadUsers: () => dispatch(getUsers()),
+  deleteUser: id => dispatch(removeUser(id))
 })
 
-export default connect(mapStateToProps, null)(Users)
+export default connect(mapStateToProps, mapDispatchToProps)(Users)

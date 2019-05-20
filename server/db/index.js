@@ -12,6 +12,8 @@ User.hasMany(List)
 Item.belongsTo(User)
 User.hasMany(Item, {as: 'userItems'})
 
+User.hasMany(User, {as: 'employees'})
+
 module.exports = {
   db,
   Item,

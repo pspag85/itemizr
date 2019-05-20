@@ -1,46 +1,41 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 const axios = require('axios')
 import UserForm from './user-form'
 const {randomPasswordGen} = require('../utils')
-// import '../css/add-item.css'
+import {addUser} from '../store'
 
-class CreateUser extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      open: false
-    }
-    this.handleClick = this.handleClick.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+class CreateUserForm extends Component {
+  state = {
+    open: false
   }
 
-  handleClick(){
+  handleClick = () => {
     this.setState({open: true})
   }
 
-  handleChange(event){
+  handleChange = event => {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  async handleSubmit(event){
+  handleSubmit = async event => {
     event.preventDefault()
     const {name, email, isAdmin} = event.target
     const password = randomPasswordGen()
     try{
-      const user = await axios.post('/api/users', {
+      const user = await this.props.createUser({
         name: name.value,
         date: Date.now(),
         email: email.value,
         password: password,
         isAdmin: isAdmin.value
       })
-      this.props.update(user.data)
       this.setState({open: false})
     }catch(err){
       console.error(err)
     }
   }
+
   render(){
     return(
       <div>
@@ -63,9 +58,12 @@ class CreateUser extends Component {
   }
 }
 
-export default CreateUser
+const mapStateToProps = state => ({
+  user: state.user
+})
 
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  createUser: userData => dispatch(addUser(userData))
+})
 
-
-    // if(a) {return a} else {return b}
-    //      return a ? a : b   (**shorthand for return a === true ? a : b)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateUserForm)
