@@ -22,7 +22,7 @@ class Items extends Component{
     this.setState({ items: [itemData,...items] })
   }
   async remove(id){
-    try{
+    try {
       const deleted = await axios.delete(`/api/items/${id}`)
       if(deleted) {
         const items = this.state.items.filter(item => item.id !== id)
@@ -36,9 +36,9 @@ class Items extends Component{
   }
 
   async logoutUser(){
-    try{
+    try {
       const loggedOut = await axios.delete('/api/users/logout')
-      if (loggedOut) {
+      if(loggedOut) {
         this.props.history.push('/login')
       }
     } catch(err){

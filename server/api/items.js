@@ -37,7 +37,7 @@ router.put('/', async (req, res, next) => {
           onHand: 0,
           orderQty: 0
         })
-      })
+      )
     }
   } catch(err) {
     console.error(err)

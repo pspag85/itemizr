@@ -2,7 +2,7 @@ import React from 'react'
 import UpdateItem from './update-item'
 import '../css/item.css'
 
-var Item = = props => {
+var Item = props => {
   const {id, name, onHand, par, orderQty, remove, update} = props
   return(
     <div className='itemRow'>
