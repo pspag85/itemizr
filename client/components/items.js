@@ -19,7 +19,7 @@ class Items extends Component {
   }
 
   render() {
-    const {items, logoutUser, remove} = this.props
+    const {items, logoutUser, deleteItem} = this.props
     return (
       <div id='items-container'>
         <Link to='/lists'>Back To Lists</Link>
@@ -41,7 +41,7 @@ class Items extends Component {
             onHand={item.onHand}
             par={item.par}
             orderQty={item.orderQty}
-            remove={remove}
+            remove={deleteItem}
           />
         )}
       </div>

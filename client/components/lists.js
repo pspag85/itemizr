@@ -33,6 +33,10 @@ const Lists = withRouter(class extends Component {
     }
   }
 
+  viewCurrentList = () => {
+    this.props.history.push('/items')
+  }
+
   // clearQuantities = async () => {
   //   try{
   //     await axios.put(`/api/items`)

@@ -1,6 +1,5 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
-const axios = require('axios')
 const $ = require('jquery')
 import {updateItem} from '../store'
 
@@ -40,7 +39,6 @@ class ItemRow extends Component {
 
   render(){
     const {handleSubmit, handleChange} = this
-    // const item = this.state
     const {input} = this.props
     const name = input ? input : ''
     return(
