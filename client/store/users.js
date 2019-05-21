@@ -4,28 +4,22 @@ import thunkMiddleware from 'redux-thunk'
 import axios from 'axios'
 
 const RECEIVE_USERS = 'RECEIVE_USERS'
-const RECEIVE_USER = 'RECEIVE_USER'
+const INSERT_USER = 'INSERT_USER'
 const REMOVE_USER = 'REMOVE_USER'
-const UPDATE_USERS = 'UPDATE_USERS'
 
 const gotUsers = users => ({
   type: RECEIVE_USERS,
   users
 })
 
-const gotUser = user => ({
-  type: 'RECEIVE_USER',
+const addedUser = user => ({
+  type: 'INSERT_USER',
   user
 })
 
 const removedUser = userId => ({
   type: REMOVE_USER,
   userId
-})
-
-const updatedUsers = users => ({
-  type: UPDATE_USERS,
-  users
 })
 
 export const getUsers = () => async dispatch => {
@@ -40,7 +34,7 @@ export const getUsers = () => async dispatch => {
 export const addUser = userData => async dispatch => {
   try {
     const {data} = await axios.post(`/api/users`, userData)
-    dispatch(gotUser(data))
+    dispatch(addedUser(data))
   } catch(err) {
     console.error(err)
   }
@@ -61,18 +55,18 @@ const usersReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_USERS:
       return action.users
-    case RECEIVE_USER:
-      const alreadyIn = state.some(eachUser => eachUser.id === action.user.id);
+    case INSERT_USER:
+      const alreadyIn = state.some(eachUser => eachUser.id === action.user.id)
       if (alreadyIn) {
         return state.map(eachUser => {
           if (eachUser.id === action.user.id) {
-            return action.user;
+            return action.user
           } else {
-            return eachUser;
+            return eachUser
           }
-        });
+        })
       } else {
-        return [...state, action.user];
+        return [...state, action.user]
       }
     case REMOVE_USER:
       return state.filter(eachUser => eachUser.id !== action.userId)

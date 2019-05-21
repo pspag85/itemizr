@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-const axios = require('axios')
 import CreateUserForm from './create-user-form'
 import ColHeaders from './col-headers'
 import User from './user'
@@ -34,7 +33,8 @@ const Users = withRouter(class extends Component {
          />
         {!deletePrivileges ? <h5> Admin privileges required to delete a user </h5> : null}
         {users.length < 1 ? <h2> No Users </h2>
-        :users.map((user, index) => <User key={user.id + user.date}
+        :users.map((user, index) => <User
+            key={user.id + user.date}
             id={user.id}
             date={user.date}
             name={user.name}
