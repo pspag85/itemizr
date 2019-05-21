@@ -1,7 +1,8 @@
 import React from 'react'
 
 const ItemForm = props => {
-  const {name, onHand, par, orderQty, handleChange, handleSubmit} = props
+  const {handleChange, handleSubmit, item} = props
+  const {name, onHand, par, orderQty} = item
   return(
       <div id='items'>
         <form id='add_item' onSubmit={handleSubmit}>

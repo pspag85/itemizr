@@ -1,63 +1,58 @@
 import React, {Component} from 'react'
-const axios = require('axios')
+import {connect} from 'react-redux'
 import ItemForm from './item-form'
 import '../css/add-item.css'
+import {addItem} from '../store'
 
 class AddItem extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      open: false,
-      name: '',
-      onHand: 0,
-      par: 0,
-      orderQty: 0
-    }
-    this.handleClick = this.handleClick.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+  state = {
+    open: false,
+    name: '',
+    onHand: 0,
+    par: 0,
+    orderQty: 0
   }
 
-  handleClick(){
+  handleClick = () => {
     this.setState({open: true})
   }
 
-  handleChange(event){
+  handleChange = event => {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  async handleSubmit(event){
+  handleSubmit = async event => {
     event.preventDefault()
-    const name = event.target.name.value
-    const onHand = event.target.onHand.value
-    const par = event.target.par.value
-    const orderQty = event.target.orderQty.value
-    try{
-      const item = await axios.post('/api/items', {
-        name: name,
-        onHand: onHand,
-        par: par,
-        orderQty: orderQty
+    const {name, onHand, par, orderQty} = event.target
+    const {createItem} = this.props
+    try {
+      const item = await createItem({
+        name: name.value,
+        onHand: onHand.value,
+        par: par.value,
+        orderQty: orderQty.value
       })
-      this.props.update(item.data)
       this.setState({open: false})
-    }catch(err){
+    } catch(err) {
       console.error(err)
     }
   }
+
   render(){
+    const {handleSubmit, handleChange, handleClick} = this
+    const {open} = this.state
     return(
       <div>
-        {this.state.open ? (
+        {open ? (
           <ItemForm
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            item={this.state.item}
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            item={this.state}
           />
         ):(
           <div>
             <button id='add-item'
-              onClick={this.handleClick}>
+              onClick={handleClick}>
               +
             </button>
             <h3> Add Item </h3>
@@ -68,4 +63,13 @@ class AddItem extends Component {
   }
 }
 
-export default AddItem
+const mapStateToProps = state => ({
+  loggedInUser: state.user,
+  items: state.items
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  createItem: itemData => dispatch(addItem(itemData))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddItem)
