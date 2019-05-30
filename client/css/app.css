@@ -16,14 +16,15 @@
   background-color: red;
 }
 
-.colHeaders .column{
+.colHeaders .column {
   width: 173px;
   border: .25px solid black;
 }
 
-.colHeaders .column h4{
+.colHeaders .column h4 {
   margin: 1px;
 }
-.logoutBtn{
+
+.logoutBtn {
   margin-left: 90%;
 }

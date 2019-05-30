@@ -1,4 +1,5 @@
 import React from 'react'
+
 const List = props => {
   const {id, date, handleClick, deleteList, currentListId} = props
   return id === currentListId ? (

@@ -1,17 +1,19 @@
 import React from 'react'
 
-const ItemForm = function(props){
+const ItemForm = props => {
+  const {handleChange, handleSubmit, item} = props
+  const {name, onHand, par, orderQty} = item
   return(
       <div id='items'>
-        <form id='add_item' onSubmit={props.handleSubmit}>
+        <form id='add_item' onSubmit={handleSubmit}>
           <label htmlFor='name'> name </label>
-          <input type='text' name='name' value={props.name} onChange={props.handleChange}/>
+          <input type='text' name='name' value={name} onChange={handleChange}/>
           <label htmlFor='onHand'> on hand </label>
-          <input type='text' name='onHand' value={props.onHand} onChange={props.handleChange}/>
+          <input type='text' name='onHand' value={onHand} onChange={handleChange}/>
           <label htmlFor='par'> par </label>
-          <input type='text' name='par' value={props.par} onChange={props.handleChange}/>
+          <input type='text' name='par' value={par} onChange={handleChange}/>
           <label htmlFor='orderQty'> order quantity </label>
-          <input type='text' name='orderQty' value={props.orderQty} onChange={props.handleChange}/>
+          <input type='text' name='orderQty' value={orderQty} onChange={handleChange}/>
           <button type='submit'> + </button>
         </form>
       </div>

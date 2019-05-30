@@ -1,18 +1,15 @@
 {
   "name": "itemizr",
-  "version": "1.0.0",
-  "description": "itemizr app react",
+  "version": "1.1.0",
+  "description": "inventory list app",
   "main": "server/index.js",
   "scripts": {
-    "start": "npm run start-server & npm run build-watch",
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
     "start-server": "nodemon --watch server -e js,html index.js",
     "build-watch": "webpack -w",
     "seed": "node seed.js"
   },
-  "keywords": [
-    "heroku"
-  ],
-  "author": "Patsy Spagnuolo",
+  "author": "Patsy Spagnuolo & James Byrd",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
@@ -21,7 +18,7 @@
     "css-loader": "^2.1.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "morgan": "^1.9.1",
     "pg": "^7.8.1",
     "react": "^16.4.0",
@@ -29,6 +26,7 @@
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "sequelize": "^4.42.0",
@@ -44,7 +42,12 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "nodemon": "^1.18.5",
-    "webpack": "^3.10.0"
+    "react-hot-loader": "^4.8.2",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-hot-middleware": "^2.25.0"
   },
   "engines": {
     "node": "8.9.4"

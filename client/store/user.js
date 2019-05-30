@@ -3,9 +3,7 @@ import loggerMiddleware from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import axios from 'axios'
 
-const initialState = {
-  user: {}
-}
+const initialState = {}
 
 const GET_USER = 'GET_USER'
 
@@ -47,22 +45,19 @@ export const login = formData => async dispatch => {
 export const logout = () => async dispatch => {
   try {
     await axios.delete('/api/users/logout')
-    dispatch(gotMe(initialState.user))
+    dispatch(gotMe(initialState))
   } catch(err) {
     console.error(err)
   }
 }
 
-const reducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_USER:
-      return {
-        ...state,
-        user: action.user
-      }
+      return action.user
     default:
       return state
   }
 }
 
-export default createStore(reducer, applyMiddleware(thunkMiddleware, loggerMiddleware))
+export default userReducer

@@ -1,14 +1,11 @@
 import React from 'react'
 // import '../css/item.css'
 
-var User = function(props){
-  var ownerId = 1
-  var id = props.id
-  var name = props.name
-  var date = props.date.slice(0, 10)
-  var email = props.email
-  var isAdmin = props.isAdmin ? 'TRUE' : 'FALSE'
-  var remove = props.remove
+const User = props => {
+  const ownerId = 1
+  const {name, id, email, remove} = props
+  const date = props.date.slice(0, 10)
+  const isAdmin = props.isAdmin ? 'TRUE' : 'FALSE'
   return id === 1 ? (
     <div className='itemRow'>
       <div className='column cell'>
@@ -39,10 +36,7 @@ var User = function(props){
         {isAdmin}
       </div>
       <div className='column cell'>
-        <button className='remove' onClick={function(){
-          return remove(id)
-        }
-      }> - </button>
+        <button className='remove' onClick={() => remove(id)}> - </button>
       </div>
     </div>
   )

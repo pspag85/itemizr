@@ -1,10 +1,13 @@
-var router = require('express').Router()
+const router = require('express').Router()
+const {User} = require('../db')
 
-var {User} = require('../db')
-
-router.get('/', async function(req, res, next) {
-  try{
-    var users = await User.findAll()
+router.get('/', async (req, res, next) => {
+  try {
+    const users = await User.findAll({
+      where: {
+        userId: 0
+      }
+    })
     if(users) {
       res.json(users)
     }
@@ -13,36 +16,37 @@ router.get('/', async function(req, res, next) {
   }
 })
 
-router.post('/signup', async function (req, res, next){
-  try{
-    var user = await User.create(req.body)
-    if(user){
+router.post('/signup', async (req, res, next) => {
+  try {
+    const user = await User.create(req.body)
+    if(user) {
       req.session.userId = user.id
       res.json(user)
     }
-  } catch(err){
+  } catch(err) {
     console.error(err)
   }
 })
 
-router.post('/', async function (req, res, next){
-  try{
-    var user = await User.create(req.body)
-    if(user){
+router.post('/', async (req, res, next) => {
+  try {
+    const user = await User.create(req.body)
+    user.userId = 0
+    if(user) {
       res.json(user)
     }
-  }catch(err){
+  } catch(err) {
     console.error(err)
   }
 })
 
 router.get('/user', async (req, res, next) => {
   try {
-    if (!req.session.userId) {
+    if(!req.session.userId) {
       res.sendStatus(401)
     } else {
       const user = await User.findById(req.session.userId)
-      if (!user) {
+      if(!user) {
         res.sendStatus(401)
       } else {
         res.json(user)
@@ -53,36 +57,36 @@ router.get('/user', async (req, res, next) => {
   }
 })
 
-router.put('/login', async function (req, res,next){
-  try{
-    var user = await User.findOne({
+router.put('/login', async (req, res,next) => {
+  try {
+    const user = await User.findOne({
       where: {
         email: req.body.email,
         password: req.body.password
       }
     })
-    if(user){
+    if(user) {
       req.session.userId = user.id
       res.json(user)
-    }else{
+    } else {
       console.error('incorrect email or password')
       res.sendStatus(401)
     }
-  }catch(err){
+  } catch(err) {
     console.error(err)
   }
 })
 
-router.delete('/logout', function (req, res, next){
+router.delete('/logout', (req, res, next) => {
   req.session.destroy()
   res.status(204).end()
 })
 
-router.delete('/:id', async function(req, res,next){
-  try{
-    var user = await User.destroy({
+router.delete('/:id', async(req, res,next) => {
+  try {
+    const user = await User.destroy({
       where: {
-          id: req.params.id,
+        id: req.params.id,
       },
     })
     if(user) {

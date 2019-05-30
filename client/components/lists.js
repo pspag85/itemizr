@@ -1,63 +1,33 @@
 import React, {Component} from 'react'
 import {withRouter, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-var axios = require('axios')
+const axios = require('axios')
 import CreateList from './create-list'
 import List from './list'
 import '../css/lists.css'
+import {getLists, addList, removeList, getItems, saveList} from '../store'
 
 const Lists = withRouter(class extends Component {
   state = {
-    lists: [],
-    deletePrivileges: true
+    deletePrivileges: this.props.loggedInUser.isAdmin
   }
+
   componentDidMount = async () => {
     try {
-      const lists = await axios.get('/api/lists');
-      this.setState({
-        lists: lists.data
-      })
+      const lists = await this.props.loadLists()
     } catch(err) {
       console.error(err)
     }
   }
-  updateLists = listData => {
-    var lists = this.state.lists.filter(list => list.id !== listData.id)
-    this.setState({ lists: [listData, ...lists] });
-  }
-  deleteList = async id => {
-    if (this.props.user.isAdmin) {
-      try {
-        const deleted = await axios.delete(`/api/lists/${id}`)
-        if(deleted) {
-          const lists = this.state.lists.filter(list => list.id !== id)
-          this.setState({
-            lists
-          })
-        }
-      } catch(err) {
-        console.error(err)
-      }
-    }else{
-      this.setState({
-        deletePrivileges: false
-      })
-    }
-  }
+
   saveCurrentList = async () => {
     let currentList
+    const {loadItems, saveCurrentList} = this.props
     try {
-      const currentItems = await axios.get('/api/items')
-      if(currentItems.data) {
-        currentList = await axios.put(`/api/lists`, currentItems.data)
+      const currentItems = await loadItems()
+      if(currentItems) {
+        currentList = await saveCurrentList(currentItems)
       }
-    } catch(err) {
-      console.error(err)
-    }
-  }
-  clearQuantities = async () => {
-    try{
-      await axios.put(`/api/items`)
     } catch(err) {
       console.error(err)
     }
@@ -67,35 +37,22 @@ const Lists = withRouter(class extends Component {
     this.props.history.push('/items')
   }
 
-  createList = async () => {
-    this.saveCurrentList()
-    try {
-      const newList = await axios.post('/api/lists', {
-        date: Date.now(),
-        items: []
-      })
-     // this.clearQuantities()  NEEDS WORK TO FIX Zerso
-      if (newList.data){
-        this.updateLists(newList.data)
-        this.viewCurrentList()
-      }
-    } catch(err) {
-      console.error(err)
-    }
-    //save current 'items' table as an array of objects
-    //pass that array as req body in post request to api/lists
-    //use req body server side to update most recent row in lists table
-    //create new row in 'lists' table with current date
-    //clear all rows in items table
-  }
+  // clearQuantities = async () => {
+  //   try{
+  //     await axios.put(`/api/items`)
+  //   } catch(err) {
+  //     console.error(err)
+  //   }
+  // }
 
   render() {
-    const {createList, viewCurrentList, deleteList, handleClick} = this
-    const {lists, deletePrivileges} = this.state
+    const {viewCurrentList, handleClick} = this
+    const {deletePrivileges} = this.state
+    const {lists, createList, deleteList} = this.props
     const currentList = lists[0]
     return (
       <div id='lists-container'>
-        <CreateList handleClick={createList} />
+        <CreateList handleClick={createList}/>
         <h2>My Lists</h2>
         {!deletePrivileges ? <h5> Admin privileges required to delete a list </h5> : null}
         {lists.length < 1 ? <h2> no Lists </h2>
@@ -112,10 +69,16 @@ const Lists = withRouter(class extends Component {
   }
 })
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user
-  }
-}
+const mapStateToProps = state => ({
+  loggedInUser: state.user,
+  lists: state.lists
+})
 
-export default connect(mapStateToProps, null)(Lists)
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  loadLists: () => dispatch(getLists()),
+  createList: () => dispatch(addList()),
+  deleteList: id => dispatch(removeList(id)),
+  loadItems: () => dispatch(getItems())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Lists)
