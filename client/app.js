@@ -37,4 +37,4 @@ const App = withRouter(class extends Component {
   }
 })
 
-export default hot(module)(App);
+export default hot(module)(App)
