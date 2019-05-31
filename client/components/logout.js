@@ -1,4 +1,6 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {logout} from '../store'
 
 const Logout = props => (
   <div>
@@ -8,4 +10,17 @@ const Logout = props => (
   </div>
 )
 
-export default Logout
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    async handleClick () {
+      try{
+        await dispatch(logout())
+        ownProps.history.push('/')
+      } catch(err) {
+        console.error(err)
+      }
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Logout)

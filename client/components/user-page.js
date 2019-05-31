@@ -18,7 +18,7 @@ const UserPage = props => {
         <Link to='/users'>Admin Settings</Link>
       </div>
       <div>
-        <UserDropdown handleClick={handleClick} />
+        <UserDropdown />
         <Lists user={user}/>
       </div>
     </div>
@@ -31,17 +31,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    async handleClick () {
-      try{
-        await dispatch(logout())
-        ownProps.history.push('/')
-      } catch(err) {
-        console.error(err)
-      }
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserPage)
+export default connect(mapStateToProps, null)(UserPage)

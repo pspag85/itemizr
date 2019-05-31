@@ -3,7 +3,7 @@ import Logout from './logout'
 
 const UserDropdown = props => (
   <div>
-    <Logout handleClick={props.handleClick}/>
+    <Logout />
   </div>
 )
 

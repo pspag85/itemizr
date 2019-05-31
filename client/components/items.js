@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
 const axios = require('axios') //API libary ajax
 import {connect} from 'react-redux'
+import UserDropdown from './user-dropdown'
 import AddItem from './add-item'
 import Item from './item'
 import ColHeaders from './col-headers'
