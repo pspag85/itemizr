@@ -1,3 +1,3 @@
-"# itemizr"
+# itemizr
 
-http://itemizr.herokuapp.com/
+http://itemizr-app.herokuapp.com/
