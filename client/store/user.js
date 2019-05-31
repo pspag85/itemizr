@@ -2,6 +2,7 @@ import {createStore, applyMiddleware} from 'redux'
 import loggerMiddleware from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import axios from 'axios'
+import history from '../history'
 
 const initialState = {}
 
@@ -46,6 +47,7 @@ export const logout = () => async dispatch => {
   try {
     await axios.delete('/api/users/logout')
     dispatch(gotMe(initialState))
+    history.push('/')
   } catch(err) {
     console.error(err)
   }

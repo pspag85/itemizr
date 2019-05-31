@@ -15,7 +15,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     async handleClick () {
       try{
         await dispatch(logout())
-        ownProps.history.push('/')
       } catch(err) {
         console.error(err)
       }

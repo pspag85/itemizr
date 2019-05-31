@@ -23,9 +23,8 @@ class Items extends Component {
     const {items, logoutUser, deleteItem} = this.props
     return (
       <div id='items-container'>
+        <UserDropdown />
         <Link to='/lists'>Back To Lists</Link>
-        <button className='logoutBtn' onClick={logoutUser}> logout
-        </button>
         <AddItem />
         <ColHeaders
           col_1={'Name'}

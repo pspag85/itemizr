@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import UserDropdown from './user-dropdown'
 import CreateUserForm from './create-user-form'
 import ColHeaders from './col-headers'
 import User from './user'
@@ -22,6 +23,7 @@ const Users = withRouter(class extends Component {
     const {users, deleteUser} = this.props
     return (
       <div id='users-container'>
+        <UserDropdown />
         <Link to='/lists'>Back To Lists</Link>
         <CreateUserForm />
         <h2>My Users</h2>
