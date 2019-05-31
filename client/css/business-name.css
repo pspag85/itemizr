@@ -1,0 +1,12 @@
+#business-name {
+  display: inline-block;
+  width: 80vw;
+  height: 100px;
+  top: 0;
+  position: fixed;
+}
+
+#business-name h2 {
+  margin: 1.5em 0 0 2.5em;
+  color: white;
+}

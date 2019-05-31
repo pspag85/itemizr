@@ -5,7 +5,7 @@ const ItemForm = props => {
   const {name, onHand, par, orderQty} = item
   return(
       <div id='items'>
-        <form id='add_item' onSubmit={handleSubmit}>
+        <form id='add-item' onSubmit={handleSubmit}>
           <label htmlFor='name'> name </label>
           <input type='text' name='name' value={name} onChange={handleChange}/>
           <label htmlFor='onHand'> on hand </label>

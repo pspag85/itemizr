@@ -1,0 +1,17 @@
+#navbar {
+  position: fixed;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 140px;
+}
+
+#navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 12px 0 0 12px;
+}
+
+.bg-purple {
+  background-color: #6D5D9C;  
+}

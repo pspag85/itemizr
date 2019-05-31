@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {logout} from '../store'
 import LogoHeader from './logo-header'
 import Navbar from './navbar'
+import BusinessName from './business-name'
 import UserDropdown from './user-dropdown'
 import Lists from './lists'
 
@@ -16,9 +17,7 @@ const UserPage = props => {
   return (
     <div>
       <LogoHeader />
-      <div>
-        <h1>Welcome back {user.email}!</h1>
-      </div>
+      <BusinessName />
       <UserDropdown />
       <Navbar />
       <Lists user={user}/>

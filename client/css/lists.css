@@ -1,6 +1,25 @@
-#currentRow {
-  color: blue;
-  border-bottom: 1px solid blue;
-  width: 80px;
-  padding: 0px;
+#create-list {
+  position: fixed;
+  top: 100px;
+  left: 12px;
+  color: white;
+}
+
+#lists-header {
+  width: 50%;
+  margin: 0 auto;
+  padding-bottom: 12px;
+}
+
+#lists-container {
+  position: relative;
+  width: 100vw;
+  margin-top: 54px;
+}
+
+#current-row {
+  width: 50%;
+  margin: 0 auto;
+  padding: 0;
+  background-color: lightgray;
 }

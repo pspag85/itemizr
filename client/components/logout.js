@@ -3,8 +3,8 @@ import {connect} from 'react-redux'
 import {logout} from '../store'
 
 const Logout = props => (
-  <div>
-    <button className='logoutBtn' onClick={props.handleClick}>
+  <div id='logout-btn-container'>
+    <button className='logout-btn' onClick={props.handleClick}>
       Logout {props.name}
     </button>
   </div>

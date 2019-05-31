@@ -1,8 +1,8 @@
 import React from 'react'
 
 const ColHeaders = props => (
-  <div className='colHeaders'>
-    <div className='itemRow'>
+  <div className='col-headers'>
+    <div className='item-row'>
       <div className='column'>
         <h4> {props.col_1} </h4>
       </div>
