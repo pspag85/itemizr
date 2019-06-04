@@ -43,3 +43,11 @@ html, body {
 .nav-wdth {
   width: 20vw;
 }
+
+.top-ht {
+  height: 100px;
+}
+
+.inline {
+  display: inline-block;
+}

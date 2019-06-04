@@ -1,3 +1,10 @@
 #logo-header {
   display: inline-block;
+  border-bottom: 1px solid white
+}
+
+#logo-header img {
+  width: 50%;
+  height: auto;
+  margin: 12px 0 12px 18px;
 }

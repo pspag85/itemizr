@@ -55,7 +55,7 @@ const Lists = withRouter(class extends Component {
         <CreateList handleClick={createList}/>
         <h3 id='lists-header'>My Lists</h3>
         {!deletePrivileges ? <h5> Admin privileges required to delete a list </h5> : null}
-        {lists.length < 1 ? <h2> no Lists </h2>
+        {lists.length < 1 ? null
         :lists.map((list, index) => <List key={list.id + list.date}
             id={list.id}
             date={list.date}
