@@ -3,9 +3,10 @@
   width: 80vw;
   top: 0;
   position: fixed;
+  font-size: 28px;
 }
 
 #business-name h2 {
-  margin: 1.5em 0 0 2.5em;
+  margin: .7em 0 0 1.5em;
   color: white;
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-// import '../css/item.css'
 
 const User = props => {
   const ownerId = 1

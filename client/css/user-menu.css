@@ -1,0 +1,16 @@
+#user-menu {
+  width: 300px;
+  position: absolute;
+  top: 28px;
+  right: 20px;
+  color: white;
+  text-align: right;
+}
+
+#user-menu * {
+  display: inline-block;
+}
+
+#user-name {
+  padding-left: 10px;
+}

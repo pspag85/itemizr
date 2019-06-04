@@ -5,7 +5,7 @@ import {logout} from '../store'
 import LogoHeader from './logo-header'
 import Navbar from './navbar'
 import BusinessName from './business-name'
-import UserDropdown from './user-dropdown'
+import UserMenu from './user-menu'
 import Lists from './lists'
 
 const UserPage = props => {
@@ -18,7 +18,7 @@ const UserPage = props => {
     <div>
       <LogoHeader />
       <BusinessName />
-      <UserDropdown />
+      <UserMenu user={user}/>
       <Navbar />
       <Lists user={user}/>
     </div>
