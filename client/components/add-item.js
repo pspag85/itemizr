@@ -50,11 +50,11 @@ class AddItem extends Component {
             item={this.state}
           />
         ):(
-          <div>
-            <button id='add-item'
-              onClick={handleClick}>
-              +
-            </button>
+          <div id='add-item'>
+            <img
+              className='add-btn'
+              src='/img/add.png'
+              onClick={handleClick} />
             <h3> Add Item </h3>
           </div>
         )}

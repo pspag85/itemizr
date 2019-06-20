@@ -24,7 +24,6 @@ class Items extends Component {
     return (
       <div id='items-container'>
         <UserMenu />
-        <Link to='/lists'>Back To Lists</Link>
         <AddItem />
         <ColHeaders
           col_1={'Name'}

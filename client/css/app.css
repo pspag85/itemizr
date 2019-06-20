@@ -51,3 +51,8 @@ html, body {
 .inline {
   display: inline-block;
 }
+
+.add-btn {
+  height: 24px;
+  margin: 16px 12px 0 6px;
+}

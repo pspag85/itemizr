@@ -1,5 +1,8 @@
 #add-item {
-  font-size: 40px;
-  align-self: center;
-  margin: 50px;
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  display: flex;
+  color: white;
+  font-weight: lighter;
 }
