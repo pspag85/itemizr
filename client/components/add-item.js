@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import ItemForm from './item-form'
-import '../css/add-item.css'
 import {addItem} from '../store'
 
 class AddItem extends Component {
@@ -50,11 +49,8 @@ class AddItem extends Component {
             item={this.state}
           />
         ):(
-          <div id='add-item'>
-            <img
-              className='add-btn'
-              src='/img/add.png'
-              onClick={handleClick} />
+          <div className='add-container pointer' onClick={handleClick} >
+            <img className='add-btn' src='/img/add.png' />
             <h3> Add Item </h3>
           </div>
         )}

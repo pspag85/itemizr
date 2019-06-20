@@ -4,8 +4,8 @@ import {connect} from 'react-redux'
 const axios = require('axios')
 import CreateList from './create-list'
 import List from './list'
-import '../css/lists.css'
 import {getLists, addList, removeList, getItems, saveList} from '../store'
+import '../css/lists.css'
 
 const Lists = withRouter(class extends Component {
   state = {

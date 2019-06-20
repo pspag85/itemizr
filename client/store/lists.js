@@ -48,7 +48,7 @@ export const addList = listData => async dispatch => {
 
 export const removeList = id => async dispatch => {
   try {
-    await axios.get(`/api/lists/${id}`)
+    await axios.delete(`/api/lists/${id}`)
     dispatch(removedList(id))
   } catch(err) {
     console.error(err)

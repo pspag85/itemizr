@@ -52,7 +52,20 @@ html, body {
   display: inline-block;
 }
 
+.add-container {
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  display: flex;
+  color: white;
+  font-weight: lighter;
+}
+
 .add-btn {
   height: 24px;
   margin: 16px 12px 0 6px;
+}
+
+.pointer {
+  cursor: pointer;
 }
