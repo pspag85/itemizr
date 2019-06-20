@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import Logout from './logout'
 import '../css/user-menu.css'
 
@@ -25,7 +26,7 @@ class UserMenu extends Component {
     return (
       <div id='user-menu'>
         <img id='user-icon' src='/img/person-icon.png' onClick={handleClick} />
-        <h4 id='user-name'>{email}</h4>        
+        <h4 id='user-name'>{email}</h4>  
         {open ? (
           <div>
             <Logout />
@@ -36,4 +37,10 @@ class UserMenu extends Component {
   }
 }
 
-export default UserMenu
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, null)(UserMenu)

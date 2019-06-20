@@ -9,7 +9,7 @@ import {getLists, addList, removeList, getItems, saveList} from '../store'
 
 const Lists = withRouter(class extends Component {
   state = {
-    deletePrivileges: this.props.loggedInUser.isAdmin
+    deletePrivileges: this.props.user.isAdmin
   }
 
   componentDidMount = async () => {
@@ -53,7 +53,7 @@ const Lists = withRouter(class extends Component {
     return (
       <div id='lists-container'>
         <CreateList handleClick={createList}/>
-        <h3 id='lists-header'>My Lists</h3>
+        <h3 id='lists-header'>MY LISTS</h3>
         {!deletePrivileges ? <h5> Admin privileges required to delete a list </h5> : null}
         {lists.length < 1 ? null
         :lists.map((list, index) => <List key={list.id + list.date}
@@ -70,7 +70,7 @@ const Lists = withRouter(class extends Component {
 })
 
 const mapStateToProps = state => ({
-  loggedInUser: state.user,
+  user: state.user,
   lists: state.lists
 })
 

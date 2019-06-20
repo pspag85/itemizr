@@ -1,14 +1,8 @@
-#create-list {
-  position: fixed;
-  top: 100px;
-  left: 20px;
-  color: white;
-}
-
 #lists-header {
   width: 50%;
   margin: 0 auto;
   padding-bottom: 12px;
+  color: #6D5D9C;
 }
 
 #lists-container {

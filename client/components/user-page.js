@@ -18,9 +18,8 @@ const UserPage = props => {
     <div>
       <LogoHeader />
       <BusinessName />
-      <UserMenu user={user}/>
+      <UserMenu />
       <Navbar />
-      <Lists user={user}/>
     </div>
   )
 }
