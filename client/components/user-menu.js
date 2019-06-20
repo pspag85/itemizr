@@ -8,10 +8,6 @@ class UserMenu extends Component {
     open: false
   }
 
-  componentDidMount() {
-    console.log('mounted:      ', this.state.open)
-  }
-
   handleClick = () => {
     const open = !(this.state.open)
     this.setState({

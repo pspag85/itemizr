@@ -8,9 +8,6 @@ import {getLists, addList, removeList, getItems, saveList} from '../store'
 import '../css/lists.css'
 
 const Lists = withRouter(class extends Component {
-  state = {
-    deletePrivileges: this.props.user.isAdmin
-  }
 
   componentDidMount = async () => {
     try {
@@ -47,14 +44,14 @@ const Lists = withRouter(class extends Component {
 
   render() {
     const {viewCurrentList, handleClick} = this
-    const {deletePrivileges} = this.state
-    const {lists, createList, deleteList} = this.props
+    const {user, lists, createList, deleteList} = this.props
     const currentList = lists[0]
+    console.log(user)
     return (
       <div id='lists-container'>
         <CreateList handleClick={createList}/>
         <h3 id='lists-header'>MY LISTS</h3>
-        {!deletePrivileges ? <h5> Admin privileges required to delete a list </h5> : null}
+        {!user.isAdmin ? <h5> Admin privileges required to delete a list </h5> : null}
         {lists.length < 1 ? null
         :lists.map((list, index) => <List key={list.id + list.date}
             id={list.id}
