@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 const $ = require('jquery')
 import {updateItem} from '../store'
 
-class ItemRow extends Component {
+class ItemCol extends Component {
   state = {
     id: this.props.id,
     name: this.props.name,
@@ -20,8 +20,6 @@ class ItemRow extends Component {
 
   handleSubmit = async event => {
     event.preventDefault()
-        console.log('evetnt:  ', event.target)
-
     const {id} = this.state
     const {input, putItem} = this.props
     const value = event.target.querySelector('input').value //The Document method querySelector() returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned.
@@ -43,7 +41,7 @@ class ItemRow extends Component {
     const name = input ? input : ''
     return(
       <div>
-        <form onSubmit={handleSubmit}>
+        <form className='item-form' onSubmit={handleSubmit}>
          <input
             type='text' name={name}
             value={this.state[name] || ''}
@@ -65,4 +63,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   putItem: (itemId, itemData) => dispatch(updateItem(itemId, itemData))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemRow)
+export default connect(mapStateToProps, mapDispatchToProps)(ItemCol)

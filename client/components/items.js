@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import UserMenu from './user-menu'
 import AddItem from './add-item'
 import Item from './item'
-import ColHeaders from './col-headers'
+import ColHeader from './col-header'
 import {getItems, addItem, removeItem} from '../store'
 
 class Items extends Component {
@@ -25,13 +25,9 @@ class Items extends Component {
       <div id='items-container'>
         <UserMenu />
         <AddItem />
-        <ColHeaders
-          col_1={'Name'}
-          col_2={'On Hand'}
-          col_3={'Par'}
-          col_4={'Order Qty'}
-         />
-
+        <div className='col-header row'>
+          <ColHeader num={'four'} headers={['Name', 'On Hand', 'Par', 'Order Qty']} />
+        </div>
         {items.length < 1 ? <h2> no items </h2>
         :items.map((item, index) => <Item
             key={item.id + item.name}

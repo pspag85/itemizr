@@ -1,27 +1,21 @@
 import React from 'react'
-import ItemRow from './item-row'
-import '../css/item.css'
+import ItemCol from './item-col'
 
-var Item = props => {
-  const {id, name, onHand, par, orderQty, remove} = props
-  return(
-    <div className='item-row'>
-      <div className='column'>
-        <ItemRow input='name' name={name} id={id} />
-      </div>
-      <div className='column'>
-        <ItemRow input='onHand' onHand={onHand} id={id} />
-      </div>
-      <div className='column'>
-        <ItemRow input='par' par={par} id={id} />
-      </div>
-      <div className='column'>
-        <ItemRow input='orderQty' orderQty={orderQty} id={id} />
-      </div>
-      <div className='column'>
-        <button className='remove' onClick={() => remove(id)}> - </button>
-      </div>
+var Item = ({id, name, onHand, par, orderQty, remove}) => (
+  <div className='item row'>
+    <div className='column'>
+      <ItemCol input='name' name={name} id={id} />
     </div>
-  )
-}
+    <div className='column'>
+      <ItemCol input='onHand' onHand={onHand} id={id} />
+    </div>
+    <div className='column'>
+      <ItemCol input='par' par={par} id={id} />
+    </div>
+    <div className='column'>
+      <ItemCol input='orderQty' orderQty={orderQty} id={id} />
+    </div>
+  </div>
+)
+
 export default Item

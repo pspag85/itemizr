@@ -3,27 +3,43 @@ html, body {
   font-family: 'Open-Sans', sans-serif;
 }
 
-.item-row {
- margin-left: 20%;
+.row {
+  width: 73.7%;
+  margin: 0 auto;
+  margin-right: 19px;
+  justify-content: space-between;
 }
 
 .column {
-  display: inline-block;
+  text-align: left;
+  display: inline-flex;
 }
 
-.cell {
-  padding-right: 100px;
-  padding-left: 20px;
+.three:not(:last-child) {
+  padding-right: 26%;
 }
 
-.remove {
+.four:not(:last-child) {
+  padding-right: 19.5%;
+}
+
+.item .column {
+  padding-right: 10%;
+}
+
+.item input {
+  width: 180%;
+}
+
+.delete {
   color: white;
   background-color: red;
 }
 
-.col-header .column {
-  width: 173px;
+.col-header {
   border: .25px solid black;
+  border-left: none;
+  border-right: none;
 }
 
 .col-header .column h4 {

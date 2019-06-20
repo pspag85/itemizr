@@ -3,7 +3,7 @@ import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import UserMenu from './user-menu'
 import CreateUserForm from './create-user-form'
-import ColHeaders from './col-headers'
+import ColHeader from './col-header'
 import User from './user'
 import {getUsers, removeUser} from '../store'
 
@@ -27,12 +27,9 @@ const Users = withRouter(class extends Component {
         <Link to='/lists'>Back To Lists</Link>
         <CreateUserForm />
         <h2>My Users</h2>
-         <ColHeaders
-          col_1={'Date'}
-          col_2={'Name'}
-          col_3={'Email'}
-          col_4={'isAdmin'}
-         />
+        <div className='col-header row'>
+          <ColHeader headers={['Date', 'Name', 'Email', 'isAdmin']} />
+        </div>
         {!deletePrivileges ? <h5> Admin privileges required to delete a user </h5> : null}
         {users.length < 1 ? <h2> No Users </h2>
         :users.map((user, index) => <User
