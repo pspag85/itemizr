@@ -10,16 +10,14 @@ const Logout = ({name, handleClick}) => (
   </div>
 )
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    async handleClick () {
-      try{
-        await dispatch(logout())
-      } catch(err) {
-        console.error(err)
-      }
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  async handleClick () {
+    try{
+      await dispatch(logout())
+    } catch(err) {
+      console.error(err)
     }
   }
-}
+})
 
 export default connect(null, mapDispatchToProps)(Logout)

@@ -21,6 +21,7 @@
   height: 136px;
   margin: 11px -25px 0 0;
   color: white;
+  z-index: 100;
 }
 
 #user-dd-menu * {

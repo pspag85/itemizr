@@ -33,11 +33,6 @@ html, body {
   width: 100%;
 }
 
-.delete {
-  color: white;
-  background-color: red;
-}
-
 .col-header {
   opacity: .3;
 }
@@ -76,15 +71,22 @@ html, body {
 .add-container {
   position: fixed;
   top: 100px;
-  left: 20px;
+  padding: 20px;
+  padding-left: 40px;
   display: flex;
   color: white;
   font-weight: lighter;
+  border-bottom: 1px solid white;
 }
 
 .add-btn {
   height: 24px;
   margin: 16px 12px 0 6px;
+}
+
+.delete {
+  color: white;
+  background-color: red;
 }
 
 .delete-txt {

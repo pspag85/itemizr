@@ -27,23 +27,21 @@ const duplicateEmailHandler = () => {
   emailRef.current.textContent = 'Email already in use'
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    async handleSubmit (evt) {
-      evt.preventDefault()
-      duplicateEmailHandler()
-      const email = evt.target.email.value
-      const password = evt.target.password.value
-      const isAdmin = true
-      const signupThunk = signup({email, password, isAdmin})
-      try {
-        await dispatch(signupThunk)
-        ownProps.history.push('/lists')
-      } catch(err) {
-        console.error(err)
-      }
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  async handleSubmit (evt) {
+    evt.preventDefault()
+    duplicateEmailHandler()
+    const email = evt.target.email.value
+    const password = evt.target.password.value
+    const isAdmin = true
+    const signupThunk = signup({email, password, isAdmin})
+    try {
+      await dispatch(signupThunk)
+      ownProps.history.push('/lists')
+    } catch(err) {
+      console.error(err)
     }
   }
-}
+})
 
 export default connect(null, mapDispatchToProps)(Signup)
