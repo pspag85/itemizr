@@ -1,0 +1,26 @@
+#edit-lists-header {
+  width: 93.6%;
+  margin-left: 40px;
+  color: #6D5D9C;
+  padding: 12px 0 40px 4px;
+}
+
+#edit-lists-container {
+  position: relative;
+  width: 100vw;
+}
+
+#edit-lists-container #current-row {
+  margin-left: 40px;
+  width: 93.6%;
+  padding: 0;
+}
+
+#edit-lists-container #current-row h4 {
+  width: 100%;
+}
+
+#edit-lists-container .row {
+  width: 93.6%;
+  margin-left: 40px;
+}

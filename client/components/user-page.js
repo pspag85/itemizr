@@ -8,8 +8,7 @@ import BusinessName from './business-name'
 import UserMenu from './user-menu'
 import Lists from './lists'
 
-const UserPage = props => {
-  const {user, handleClick} = props
+const UserPage = ({user, navbar}) => {
   if(!user.id) {
     return <Redirect to='/' />
   }
@@ -19,7 +18,7 @@ const UserPage = props => {
       <LogoHeader />
       <BusinessName />
       <UserMenu />
-      <Navbar />
+      {navbar ? <Navbar /> : null}
     </div>
   )
 }

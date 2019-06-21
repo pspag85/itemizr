@@ -2,11 +2,12 @@ import React, {Component} from 'react'
 import {withRouter, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 const axios = require('axios')
+import UserPage from './user-page'
 import CreateList from './create-list'
 import List from './list'
 import ColHeader from './col-header'
 import {getLists, addList, removeList, getItems, saveList} from '../store'
-import '../css/lists.css'
+import '../css/edit-lists.css'
 
 const EditLists = withRouter(class extends Component {
 
@@ -45,22 +46,22 @@ const EditLists = withRouter(class extends Component {
 
   render() {
     const {viewCurrentList, handleClick} = this
-    const {user, lists, createList} = this.props
-    const currentList = lists[0]
+    const {user, lists, createList, deleteList} = this.props
     return (
       <div id='edit-lists-container'>
-        <CreateList handleClick={createList}/>
-        <h3 id='lists-header'>MY LISTS</h3>
+        <UserPage navbar={false}/>
+        <h3 id='edit-lists-header'>MY LISTS</h3>
         <div className='col-header row'>
-          <ColHeader num={'three'} headers={['DATE', 'LIST NAME', 'LAST EDITED BY']}/>
+          <ColHeader colNum={'three'} headers={['LIST NAME']}/>
         </div>
         {!user.isAdmin ? <h5> Admin privileges required to delete a list </h5> : null}
         {lists.length < 1 ? null
-        :lists.map((list, index) => <List key={list.id + list.date}
-            id={list.id}
-            date={list.date}
+        :lists.map(({id, name}, index) => <List key={id + name}
+            id={id}
+            name={name}
+            colNum={'two'}
+            deleteList={deleteList}
             handleClick={viewCurrentList}
-            currentListId={currentList.id}
           />
         )}
       </div>

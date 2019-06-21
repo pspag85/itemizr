@@ -50,7 +50,7 @@ const Lists = withRouter(class extends Component {
     const currentList = lists[0]
     return (
       <Fragment>
-        <UserPage />
+        <UserPage navbar={true}/>
         <div id='lists-container'>
           <CreateList handleClick={createList}/>
           <h3 id='lists-header'>MY LISTS</h3>
