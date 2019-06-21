@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import {withRouter, Redirect} from 'react-router-dom'
+import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 const axios = require('axios')
 import UserPage from './user-page'
@@ -47,24 +47,28 @@ const Lists = withRouter(class extends Component {
   render() {
     const {viewCurrentList, handleClick} = this
     const {user, lists, createList} = this.props
-    const currentList = lists[0]
     return (
       <Fragment>
         <UserPage navbar={true}/>
         <div id='lists-container'>
           <CreateList handleClick={createList}/>
-          <h3 id='lists-header'>MY LISTS</h3>
+          <div id='lists-header' className='row'>
+            <h3>MY LISTS</h3>
+            <div></div>
+            <Link to='/edit-lists' style={{boxShadow: 'none'}}>
+              <h4>EDIT</h4>
+            </Link>
+          </div>
           <div className='col-header row'>
-            <ColHeader num={'three'} headers={['DATE', 'LIST NAME', 'LAST EDITED BY']}/>
+            <ColHeader colNum={'three'} headers={['DATE', 'LIST NAME', 'LAST EDITED BY']}/>
           </div>
           {!user.isAdmin ? <h5> Admin privileges required to delete a list </h5> : null}
           {lists.length < 1 ? null
-          :lists.map(({id, name, date}, index) => <List key={id + date}
+          :lists.map(({id, name, date, lastEditedBy}, index) => <List key={id + date}
               id={id}
               name={name}
               date={date}
-              handleClick={viewCurrentList}
-              currentListId={currentList.id}
+              lastEditedBy={lastEditedBy}
             />
           )}
         </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 
-const ColHeader = ({colNum, headers}) => headers.map(header => (
-  <div className={`${colNum} column`} key={header}>
+const ColHeader = ({headers}) => headers.map(header => (
+  <div className={`column light-font`} key={header}>
     <h4>{header}</h4>
   </div>
 ))

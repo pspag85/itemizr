@@ -18,6 +18,10 @@ const List = db.define('lists', {
     set: function(val) {
       return this.setDataValue('items', JSON.stringify(val));
     }
+  },
+  lastEditedBy: {
+    type: Sequelize.TEXT,
+    defaultValue: '---'
   }
 })
 

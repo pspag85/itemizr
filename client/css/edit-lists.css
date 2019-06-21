@@ -2,7 +2,11 @@
   width: 93.6%;
   margin-left: 40px;
   color: #6D5D9C;
-  padding: 12px 0 40px 4px;
+  padding: 18px 0 40px 4px;
+}
+
+#edit-lists-container #business-name {
+  left: 15.7vw;
 }
 
 #edit-lists-container {
@@ -10,17 +14,9 @@
   width: 100vw;
 }
 
-#edit-lists-container #current-row {
-  margin-left: 40px;
-  width: 93.6%;
-  padding: 0;
-}
-
-#edit-lists-container #current-row h4 {
-  width: 100%;
-}
-
 #edit-lists-container .row {
-  width: 93.6%;
+  width: 93.6vw;
   margin-left: 40px;
+  margin-right: 40px;
+  justify-content: space-between;
 }

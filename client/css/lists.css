@@ -1,23 +1,22 @@
 #lists-header {
-  width: 50%;
-  margin: 0 auto;
   color: #6D5D9C;
-  padding: 12px 50px 24px;
+  margin-right: 36px;
+  padding: 18px 0 40px 0;
+  border: none;
+  align-items: center;
+}
+
+#lists-header *:not(:last-child) {
+  flex-basis: 50%;
+}
+
+#lists-header a {
+  padding-right: 10px;
+  color: black;
+  text-decoration: none;
 }
 
 #lists-container {
   position: relative;
   width: 100vw;
-}
-
-#current-row {
-  margin: 0 auto;
-  width: 73.7%;
-  margin-right: 19px;
-  padding: 0;
-  border-bottom: 1px solid #BDBBC2;
-}
-
-#current-row h4 {
-  width: 100%;
 }

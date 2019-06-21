@@ -6,11 +6,11 @@ html, body {
 .row {
   width: 73.7%;
   margin: 0 auto;
-  margin-right: 19px;
+  margin-right: 40px;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   border-bottom: 1px solid #BDBBC2;
 }
 
@@ -21,12 +21,8 @@ html, body {
   display: inline-flex;
 }
 
-.three:not(:last-child) {
-  width: 33%;
-}
-
-.four:not(:last-child) {
-  width: 25%;
+.column:not(:last-child) {
+  flex-basis: 40%;
 }
 
 .item-form {
