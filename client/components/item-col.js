@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 const $ = require('jquery')
 import {updateItem} from '../store'
@@ -40,7 +40,7 @@ class ItemCol extends Component {
     const {input} = this.props
     const name = input ? input : ''
     return(
-      <div>
+      <Fragment>
         <form className='item-form' onSubmit={handleSubmit}>
          <input
             type='text' name={name}
@@ -48,7 +48,7 @@ class ItemCol extends Component {
             onChange={handleChange}
           />
        </form>
-      </div>
+      </Fragment>
     )
   }
 }

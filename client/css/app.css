@@ -7,11 +7,13 @@ html, body {
   width: 73.7%;
   margin: 0 auto;
   margin-right: 19px;
+  flex-wrap: nowrap;
   justify-content: space-between;
 }
 
 .column {
   text-align: left;
+  flex-wrap: nowrap;
   display: inline-flex;
 }
 
@@ -23,12 +25,12 @@ html, body {
   padding-right: 19.5%;
 }
 
-.item .column {
-  padding-right: 10%;
+.item-form {
+  padding-right: 60%;
 }
 
 .item input {
-  width: 180%;
+  width: 100%;
 }
 
 .delete {
@@ -58,6 +60,7 @@ html, body {
 
 .nav-wdth {
   width: 20vw;
+  min-width: 154px;
 }
 
 .top-ht {

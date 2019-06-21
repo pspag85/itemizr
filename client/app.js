@@ -8,7 +8,9 @@ import Login from './components/login'
 import UserPage from './components/user-page'
 import Users from './components/users'
 import Lists from './components/lists'
+import EditLists from './components/edit-lists'
 import Items from './components/items'
+import EditItems from './components/edit-items'
 import './css/app.css'
 
 const App = withRouter(class extends Component {
@@ -30,10 +32,12 @@ const App = withRouter(class extends Component {
         <UserPage />
         <Switch>
           <Route exact path='/items' component={Items} />
+          <Route exact path='/edit-items' component={EditItems} />
           <Route exact path='/lists' component={Lists} />
+          <Route exact path='/edit-lists' component={EditLists} />
           <Route exact path='/users' component={Users} />
           <Route exact path='/signup' component={Signup} />
-          <Route component={Lists} />
+          <Route component={Login} />
         </Switch>
       </Fragment>
     )
