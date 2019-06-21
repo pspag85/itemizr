@@ -20,11 +20,11 @@ class UserMenu extends Component {
     const {open} = this.state
     const {email} = this.props.user
     return (
-      <div id='user-menu'>
-        <img id='user-icon' src='/img/person-icon.png' onClick={handleClick} />
+      <div id='user-menu' className='pointer' onClick={handleClick}>
+        <img id='user-icon' src='/img/person-icon.png' />
         <h4 id='user-name'>{email}</h4>  
         {open ? (
-          <div>
+          <div id='user-dd-menu' className='bg-purple'>
             <Logout />
           </div>
         ): null}

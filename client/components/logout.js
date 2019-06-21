@@ -2,11 +2,11 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {logout} from '../store'
 
-const Logout = props => (
+const Logout = ({name, handleClick}) => (
   <div id='logout-btn-container'>
-    <button className='logout-btn' onClick={props.handleClick}>
-      Logout {props.name}
-    </button>
+    <div className='logout-btn' onClick={handleClick}>
+      Logout {name}
+    </div>
   </div>
 )
 

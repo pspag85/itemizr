@@ -14,3 +14,19 @@
 #user-name {
   padding-left: 10px;
 }
+
+#user-dd-menu {
+  position: relative;
+  width: 200px;
+  height: 136px;
+  margin: 11px -25px 0 0;
+  color: white;
+}
+
+#user-dd-menu * {
+  padding-top: 8px;
+}
+
+.logout-btn {
+  margin-right: 32px;
+}
