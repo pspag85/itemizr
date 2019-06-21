@@ -1,7 +1,8 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {withRouter, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 const axios = require('axios')
+import UserPage from './user-page'
 import CreateList from './create-list'
 import List from './list'
 import ColHeader from './col-header'
@@ -48,22 +49,26 @@ const Lists = withRouter(class extends Component {
     const {user, lists, createList} = this.props
     const currentList = lists[0]
     return (
-      <div id='lists-container'>
-        <CreateList handleClick={createList}/>
-        <h3 id='lists-header'>MY LISTS</h3>
-        <div className='col-header row'>
-          <ColHeader num={'three'} headers={['DATE', 'LIST NAME', 'LAST EDITED BY']}/>
+      <Fragment>
+        <UserPage />
+        <div id='lists-container'>
+          <CreateList handleClick={createList}/>
+          <h3 id='lists-header'>MY LISTS</h3>
+          <div className='col-header row'>
+            <ColHeader num={'three'} headers={['DATE', 'LIST NAME', 'LAST EDITED BY']}/>
+          </div>
+          {!user.isAdmin ? <h5> Admin privileges required to delete a list </h5> : null}
+          {lists.length < 1 ? null
+          :lists.map(({id, name, date}, index) => <List key={id + date}
+              id={id}
+              name={name}
+              date={date}
+              handleClick={viewCurrentList}
+              currentListId={currentList.id}
+            />
+          )}
         </div>
-        {!user.isAdmin ? <h5> Admin privileges required to delete a list </h5> : null}
-        {lists.length < 1 ? null
-        :lists.map((list, index) => <List key={list.id + list.date}
-            id={list.id}
-            date={list.date}
-            handleClick={viewCurrentList}
-            currentListId={currentList.id}
-          />
-        )}
-      </div>
+      </Fragment>
     )
   }
 })

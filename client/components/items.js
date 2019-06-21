@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
 const axios = require('axios') //API libary ajax
 import {connect} from 'react-redux'
-import UserMenu from './user-menu'
+import UserPage from './user-page'
 import AddItem from './add-item'
 import Item from './item'
 import ColHeader from './col-header'
@@ -23,7 +23,7 @@ class Items extends Component {
     const {items, logoutUser, deleteItem} = this.props
     return (
       <div id='items-container'>
-        <UserMenu />
+        <UserPage />
         <AddItem />
         <div className='col-header row'>
           <ColHeader num={'four'} headers={['Name', 'On Hand', 'Par', 'Order Qty']} />

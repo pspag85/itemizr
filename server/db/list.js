@@ -6,6 +6,10 @@ const List = db.define('lists', {
     type: Sequelize.DATE,
     defaultValue: Date.now()
   },
+  name: {
+    type: Sequelize.STRING,
+    defaultValue: '---'
+  },
   items: {
     type: Sequelize.TEXT,
     get: function() {

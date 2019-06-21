@@ -13,20 +13,21 @@ html, body {
 
 .column {
   text-align: left;
+  padding-left: 4px;
   flex-wrap: nowrap;
   display: inline-flex;
 }
 
 .three:not(:last-child) {
-  padding-right: 26%;
+  width: 33%;
 }
 
 .four:not(:last-child) {
-  padding-right: 19.5%;
+  width: 25%;
 }
 
 .item-form {
-  padding-right: 60%;
+  padding-right: 20%;
 }
 
 .item input {

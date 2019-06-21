@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding-bottom: 12px;
   color: #6D5D9C;
+  padding-left: 4px;
 }
 
 #lists-container {
@@ -12,8 +13,18 @@
 }
 
 #current-row {
-  width: 50%;
   margin: 0 auto;
+  width: 73.7%;
+  margin-right: 19px;
   padding: 0;
-  background-color: lightgray;
+  border-bottom: 1px solid #BDBBC2;
+}
+
+/*#current-row .column {
+  width: %;
+}*/
+
+#current-row h4 {
+  width: 100%;
+  padding: 0 0 0 4px;
 }

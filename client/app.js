@@ -29,7 +29,6 @@ const App = withRouter(class extends Component {
   render () {
     return (
       <Fragment>
-        <UserPage />
         <Switch>
           <Route exact path='/items' component={Items} />
           <Route exact path='/edit-items' component={EditItems} />
