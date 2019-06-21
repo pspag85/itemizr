@@ -3,7 +3,6 @@
   margin-right: 36px;
   padding: 18px 0 40px 0;
   border: none;
-  align-items: center;
 }
 
 #lists-header *:not(:last-child) {

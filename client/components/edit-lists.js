@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {withRouter, Redirect} from 'react-router-dom'
+import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 const axios = require('axios')
 import UserPage from './user-page'
@@ -50,7 +50,13 @@ const EditLists = withRouter(class extends Component {
     return (
       <div id='edit-lists-container'>
         <UserPage navbar={false}/>
-        <h3 id='edit-lists-header'>MY LISTS</h3>
+        <div id='edit-lists-header' className='row'>
+          <h3>MY LISTS</h3>
+          <div></div>
+          <Link to='/lists'>
+            <h4>&times;</h4>
+          </Link>
+        </div>      
         <div className='col-header row'>
           <ColHeader colNum={'three'} headers={['LIST NAME']}/>
         </div>
