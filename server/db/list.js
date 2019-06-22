@@ -10,15 +10,6 @@ const List = db.define('lists', {
     type: Sequelize.STRING,
     defaultValue: 'My List'
   },
-  items: {
-    type: Sequelize.TEXT,
-    get: function() {
-      return JSON.parse(this.getDataValue('items'));
-    },
-    set: function(val) {
-      return this.setDataValue('items', JSON.stringify(val));
-    }
-  },
   lastEditedBy: {
     type: Sequelize.TEXT,
     defaultValue: '---'

@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import ItemForm from './item-form'
 import {addItem} from '../store'
@@ -23,13 +24,14 @@ class AddItem extends Component {
   handleSubmit = async event => {
     event.preventDefault()
     const {name, onHand, par, orderQty} = event.target
-    const {createItem} = this.props
+    const {createItem, listId} = this.props
     try {
       const item = await createItem({
         name: name.value,
         onHand: onHand.value,
         par: par.value,
-        orderQty: orderQty.value
+        orderQty: orderQty.value,
+        listId
       })
       this.setState({open: false})
     } catch(err) {

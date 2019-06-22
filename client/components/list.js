@@ -1,7 +1,8 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
-const List = ({id, date, name, lastEditedBy, deleteList}) => {
-  return (
+const List = ({id, date, name, lastEditedBy, deleteList}) => (
+  <Link to={`/lists/${id}/order`}>
     <div className='row'>
       {date && <div className={`column`}>
         <h4 className='light-font'>{date.slice(0,10)}</h4>
@@ -17,6 +18,7 @@ const List = ({id, date, name, lastEditedBy, deleteList}) => {
         <h4 className='delete-txt light-font'>Delete this list</h4>
       </div>}
     </div>
-  )
-}
+  </Link>
+)
+
 export default List

@@ -15,13 +15,14 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
+  const {name, onHand, par, orderQty, listId} = req.body
   try {
     const item = await Item.create({
-      name: req.body.name,
-      onHand: req.body.onHand,
-      par: req.body.par,
-      orderQty: req.body.orderQty,
-      userId: req.session.userId
+      name,
+      onHand,
+      par,
+      orderQty, 
+      listId
     })
     res.json(item)
   } catch(err) {

@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {Link} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 const axios = require('axios') //API libary ajax
 import {connect} from 'react-redux'
 import UserPage from './user-page'
@@ -17,14 +17,22 @@ class Items extends Component {
     } catch(err) {
       console.error(err)
     }
+    history.listen(location => {
+      if (location.pathname !== this.props.location.pathname) {
+        this.props.location.pathname = location.pathname;
+        this.forceUpdate();
+      }
+    })
   }
 
   render() {
-    const {items, logoutUser, deleteItem} = this.props
+    const {items, logoutUser, deleteItem, location} = this.props
+    const {pathname} = location
+    const listId = pathname.split('/')[2]
     return (
       <div id='items-container'>
-        <UserPage />
-        <AddItem />
+        <UserPage navbar={true}/>
+        <AddItem listId={listId}/> {/*add supplier*/}
         <div className='col-header row'>
           <ColHeader num={'four'} headers={['Name', 'On Hand', 'Par', 'Order Qty']} />
         </div>
@@ -36,7 +44,6 @@ class Items extends Component {
             onHand={item.onHand}
             par={item.par}
             orderQty={item.orderQty}
-            remove={deleteItem}
           />
         )}
       </div>

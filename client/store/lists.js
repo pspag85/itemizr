@@ -35,12 +35,10 @@ export const getLists = () => async dispatch => {
 export const addList = listData => async dispatch => {
   try {
     const {data} = await axios.post(`/api/lists`, {
-        date: Date.now(),
-        items: []
+        date: Date.now()
       }
     )
     dispatch(addedList(data))
-    history.push('/items')
   } catch(err) {
     console.error(err)
   }
@@ -72,7 +70,7 @@ const listsReducer = (state = initialState, action) => {
           }
         })
       } else {
-        return [...state, action.list]
+        return [action.list, ...state]
       }
     case REMOVE_LIST:
       return state.filter(eachList => eachList.id !== action.listId)
