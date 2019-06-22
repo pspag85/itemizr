@@ -14,7 +14,7 @@ const List = ({id, date, name, lastEditedBy, deleteList}) => (
         <h4 className='light-font'>{lastEditedBy}</h4>
       </div>}
       {deleteList && <div className={`column pointer`} onClick={() => deleteList(id)}>
-        <img className='delete-icon' src='img/delete.png'/>
+        <img className='delete-icon' src='/img/delete.png'/>
         <h4 className='delete-txt light-font'>Delete this list</h4>
       </div>}
     </div>

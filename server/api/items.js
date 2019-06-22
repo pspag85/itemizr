@@ -1,11 +1,12 @@
 const router = require('express').Router()
 const {Item} = require('../db')
 
-router.get('/', async (req, res, next) => {
+router.get('/:listId', async (req, res, next) => {
+  const {listId} = req.params
   try {
     const items = await Item.findAll({
       where: {
-        userId: req.session.userId
+        listId
       }
     })
     res.json(items)

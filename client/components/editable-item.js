@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemCol from './item-col'
 
-var Item = ({id, name, onHand, par, orderQty}) => (
+var EditableItem = ({id, name, onHand, par, orderQty}) => (
   <div className='item row'>
     <div className='column'>
       <ItemCol input='name' name={name} id={id} />
@@ -18,4 +18,4 @@ var Item = ({id, name, onHand, par, orderQty}) => (
   </div>
 )
 
-export default Item
+export default EditableItem

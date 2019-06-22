@@ -29,9 +29,9 @@ const updatedItem = (itemId, itemData) => ({
   itemData
 })
 
-export const getItems = () => async dispatch => {
+export const getItems = listId => async dispatch => {
   try {
-    const {data} = await axios.get('/api/items')
+    const {data} = await axios.get(`/api/items/${listId}`)
     dispatch(gotItems(data))
   } catch(err) {
     console.error(err)

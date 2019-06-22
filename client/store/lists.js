@@ -4,9 +4,15 @@ import thunkMiddleware from 'redux-thunk'
 import axios from 'axios'
 import history from '../history'
 
+const RECEIVE_LIST = 'RECEIVE_LIST'
 const RECEIVE_LISTS = 'RECEIVE_LISTS'
 const INSERT_LIST = 'INSERT_LIST'
 const REMOVE_LIST = 'REMOVE_LIST'
+
+const gotList = list => ({
+  type: RECEIVE_LIST,
+  list
+})
 
 const gotLists = lists => ({
   type: RECEIVE_LISTS,
@@ -23,6 +29,15 @@ const removedList = listId => ({
   listId
 })
 
+export const getList = id => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/lists/${id}`)
+    dispatch(gotList(data))
+  } catch(err) {
+    console.error(err)
+  }
+}
+
 export const getLists = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/lists')
@@ -32,7 +47,7 @@ export const getLists = () => async dispatch => {
   }
 }
 
-export const addList = listData => async dispatch => {
+export const addList = () => async dispatch => {
   try {
     const {data} = await axios.post(`/api/lists`, {
         date: Date.now()
@@ -57,6 +72,8 @@ const initialState = []
 
 const listsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case RECEIVE_LIST:
+      return action.list
     case RECEIVE_LISTS:
       return action.lists
     case INSERT_LIST:

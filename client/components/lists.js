@@ -11,30 +11,29 @@ import '../css/lists.css'
 
 const Lists = withRouter(class extends Component {
 
-  componentDidMount = async () => {
-    try {
-      const lists = await this.props.loadLists()
+  async componentDidMount() {
+    const {user, loadLists} = this.props
+    if(user.id) {
+      try {
+      const lists = await loadLists()
     } catch(err) {
       console.error(err)
     }
   }
-
-  saveCurrentList = async () => {
-    let currentList
-    const {loadItems, saveCurrentList} = this.props
-    try {
-      const currentItems = await loadItems()
-      if(currentItems) {
-        currentList = await saveCurrentList(currentItems)
-      }
-    } catch(err) {
-      console.error(err)
-    }
   }
 
-  viewList = listId => {
-    this.props.history.push(`lists/${listId}/order`)
-  }
+  // saveCurrentList = async () => {
+  //   let currentList
+  //   const {loadItems, saveCurrentList} = this.props
+  //   try {
+  //     const currentItems = await loadItems()
+  //     if(currentItems) {
+  //       currentList = await saveCurrentList(currentItems)
+  //     }
+  //   } catch(err) {
+  //     console.error(err)
+  //   }
+  // }
 
   // clearQuantities = async () => {
   //   try{
@@ -55,7 +54,7 @@ const Lists = withRouter(class extends Component {
           <div id='lists-header' className='row'>
             <h3>MY LISTS</h3>
             <div></div>
-            <Link to='/edit-lists'>
+            <Link to='/lists/edit'>
               <h4>EDIT</h4>
             </Link>
           </div>
@@ -86,8 +85,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadLists: () => dispatch(getLists()),
   createList: () => dispatch(addList()),
-  deleteList: id => dispatch(removeList(id)),
-  loadItems: () => dispatch(getItems())
+  deleteList: id => dispatch(removeList(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Lists)

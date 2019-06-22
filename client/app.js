@@ -32,8 +32,8 @@ const App = withRouter(class extends Component {
         <Switch>
           <Route exact path='/lists/:listId/order' component={Items} />
           <Route exact path='/lists/:listId/edit' component={EditItems} />
-          <Route exact path='/lists' component={Lists} />
           <Route exact path='/lists/edit' component={EditLists} />
+          <Route exact path='/lists' component={Lists} />
           <Route exact path='/users' component={Users} />
           <Route exact path='/signup' component={Signup} />
           <Route component={Login} />
