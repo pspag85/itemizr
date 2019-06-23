@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import UserMenu from './user-menu'
-import CreateUserForm from './create-user-form'
+import AddUser from './add-user'
 import ColHeader from './col-header'
 import User from './user'
 import {getUsers, removeUser} from '../store'
@@ -25,7 +25,7 @@ const Users = withRouter(class extends Component {
       <div id='users-container'>
         <UserMenu />
         <Link to='/lists'>Back To Lists</Link>
-        <CreateUserForm />
+        <AddUser />
         <h2>My Users</h2>
         <div className='col-header row'>
           <ColHeader headers={['Date', 'Name', 'Email', 'isAdmin']} />

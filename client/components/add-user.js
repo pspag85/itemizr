@@ -5,7 +5,7 @@ import UserForm from './user-form'
 const {randomPasswordGen} = require('../utils')
 import {addUser} from '../store'
 
-class CreateUserForm extends Component {
+class AddUser extends Component {
   state = {
     open: false
   }
@@ -66,4 +66,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   createUser: userData => dispatch(addUser(userData))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateUserForm)
+export default connect(mapStateToProps, mapDispatchToProps)(AddUser)

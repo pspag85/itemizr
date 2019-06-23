@@ -1,0 +1,10 @@
+#add-item.add-item.row {
+  align-items: center;
+  justify-content: flex-start;
+  border: none;
+}
+
+#add-item h5 {
+  padding: .5px 0 0 6px;
+  font-size: 14.5px;
+}

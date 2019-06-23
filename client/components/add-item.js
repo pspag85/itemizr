@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import ItemForm from './item-form'
+import AddItemForm from './add-item-form'
 import {addItem} from '../store'
+import '../css/add-item.css'
 
 class AddItem extends Component {
   state = {
@@ -25,7 +26,6 @@ class AddItem extends Component {
     event.preventDefault()
     const {name, onHand, par, orderQty} = event.target
     const {createItem, listId} = this.props
-    console.log('listId:  ', listId)
     try {
       const item = await createItem({
         name: name.value,
@@ -46,15 +46,15 @@ class AddItem extends Component {
     return(
       <div>
         {open ? (
-          <ItemForm
+          <AddItemForm
             handleSubmit={handleSubmit}
             handleChange={handleChange}
             item={this.state}
           />
         ):(
-          <div className='add-container pointer' onClick={handleClick} >
-            <img className='add-btn' src='/img/add.png' />
-            <h3> Add Item </h3>
+          <div id='add-item' className='add-item pointer row' onClick={handleClick} >
+            <img className='add-item-btn' src='/img/add.png' />
+            <h5> Add new item </h5>
           </div>
         )}
       </div>

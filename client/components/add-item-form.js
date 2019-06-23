@@ -1,10 +1,10 @@
 import React from 'react'
 
-const ItemForm = ({handleChange, handleSubmit, item}) => {
+const AddItemForm = ({handleChange, handleSubmit, item}) => {
   const {name, onHand, par, orderQty} = item
   return(
-      <div id='items'>
-        <form id='add-item' onSubmit={handleSubmit}>
+      <div className='col-header row'>
+        <form id='add-item-form' onSubmit={handleSubmit}>
           <label htmlFor='name'> name </label>
           <input type='text' name='name' value={name} onChange={handleChange}/>
           <label htmlFor='onHand'> on hand </label>
@@ -19,4 +19,4 @@ const ItemForm = ({handleChange, handleSubmit, item}) => {
   )
 }
 
-export default ItemForm
+export default AddItemForm

@@ -7,7 +7,7 @@ import AddItem from './add-item'
 import EditItem from './item'
 import ColHeader from './col-header'
 import {getList, getItems, addItem, removeItem} from '../store'
-import '../css/items.css'
+import '../css/edit-items.css'
 
 class EditItems extends Component {
 
@@ -29,8 +29,7 @@ class EditItems extends Component {
     const {id, name} = list
     return (
       <div id='edit-items-container'>
-        <UserPage navbar={true} />
-        <AddItem listId={id}/>
+        <UserPage />
         <div id='items-header' className='row'>
           <h3>{name}</h3>
         </div>
@@ -47,6 +46,7 @@ class EditItems extends Component {
             orderQty={item.orderQty}
           />
         )}
+        <AddItem listId={id}/>
       </div>
     )
   }
