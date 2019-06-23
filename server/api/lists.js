@@ -13,11 +13,22 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.get('/:id', async ({params}, res, next) => {
+  try {
+    const list = await List.findById(params.id)
+    res.json(list)
+  } catch(err) {
+    console.error(err)
+  }  
+})
+
+router.post('/', async ({body, session}, res, next) => {
+  const {date} = body
+  const {userId} = session
   try {
     const list = await List.create({
-      date: req.body.date,
-      userId: req.session.userId
+      date,
+      userId
     })
     res.json(list)
   } catch(err){
@@ -25,14 +36,15 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.put('/', async (req, res, next) => {
+router.put('/', async ({session}, res, next) => {
+  const {user} = session
   try {
     const list = await List.findOne({
       order: [ ['id', 'DESC'], ['date', 'DESC'] ]
     })
     if(list) {
       list.update({
-        userId: req.session.userId
+        userId
       })
       res.json(list)
     }

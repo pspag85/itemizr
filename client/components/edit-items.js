@@ -1,42 +1,50 @@
-import React,{Component} from 'react'
-import {Link} from 'react-router-dom'
+import React, {Component} from 'react'
+import {withRouter, Link} from 'react-router-dom'
 const axios = require('axios') //API libary ajax
 import {connect} from 'react-redux'
-import UserMenu from './user-menu'
+import UserPage from './user-page'
 import AddItem from './add-item'
-import Item from './item'
+import EditItem from './item'
 import ColHeader from './col-header'
-import {getItems, addItem, removeItem} from '../store'
+import {getList, getItems, addItem, removeItem} from '../store'
+import '../css/items.css'
 
 class EditItems extends Component {
+
   async componentDidMount() {
-    const {loggedInUser, history, loadItems} = this.props
-    if(!loggedInUser.id) history.push('/')
+    const {user, loadItems, getCurrentList, history, location} = this.props
+    const {pathname} = location
+    const listId = pathname.split('/')[2]
+    if(!user.id) history.push('/')
     try {
-      const res = await loadItems()
+      await loadItems(listId)
+      await getCurrentList(listId)
     } catch(err) {
       console.error(err)
     }
   }
 
   render() {
-    const {items, logoutUser, deleteItem} = this.props
+    const {list, items, logoutUser, deleteItem} = this.props
+    const {id, name} = list
     return (
       <div id='edit-items-container'>
-        <UserMenu />
-        <AddItem />
+        <UserPage navbar={true} />
+        <AddItem listId={id}/>
+        <div id='items-header' className='row'>
+          <h3>{name}</h3>
+        </div>
         <div className='col-header row'>
           <ColHeader num={'four'} headers={['Name', 'On Hand', 'Par', 'Order Qty']} />
         </div>
-        {items.length < 1 ? <h2> no items </h2>
-        :items.map((item, index) => <Item
+        {!Array.isArray(items) ? <h2> no items </h2>
+        :items.map((item, index) => <EditItem
             key={item.id + item.name}
             id={item.id}
             name={item.name}
             onHand={item.onHand}
             par={item.par}
             orderQty={item.orderQty}
-            remove={deleteItem}
           />
         )}
       </div>
@@ -44,13 +52,11 @@ class EditItems extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  loggedInUser: state.user,
-  items: state.items
-})
+const mapStateToProps = ({user, lists, items}) => ({user, list: lists, items})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  loadItems: () => dispatch(getItems()),
+  getCurrentList: id => dispatch(getList(id)),
+  loadItems: listId => dispatch(getItems(listId)),
   createItem: () => dispatch(addItem()),
   deleteItem: id => dispatch(removeItem(id))
 })

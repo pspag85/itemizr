@@ -4,37 +4,34 @@ import {connect} from 'react-redux'
 const axios = require('axios')
 import UserPage from './user-page'
 import CreateList from './create-list'
-import List from './list'
+import EditList from './edit-list'
 import ColHeader from './col-header'
 import {getLists, addList, removeList, getItems, saveList} from '../store'
 import '../css/edit-lists.css'
 
 const EditLists = withRouter(class extends Component {
 
-  componentDidMount = async () => {
+  async componentDidMount() {
+    const {loadLists} = this.props
     try {
-      const lists = await this.props.loadLists()
+      const lists = await loadLists()
     } catch(err) {
       console.error(err)
     }
   }
 
-  saveCurrentList = async () => {
-    let currentList
-    const {loadItems, saveCurrentList} = this.props
-    try {
-      const currentItems = await loadItems()
-      if(currentItems) {
-        currentList = await saveCurrentList(currentItems)
-      }
-    } catch(err) {
-      console.error(err)
-    }
-  }
-
-  viewCurrentList = () => {
-    this.props.history.push('/items')
-  }
+  // saveCurrentList = async () => {
+  //   let currentList
+  //   const {loadItems, saveCurrentList} = this.props
+  //   try {
+  //     const currentItems = await loadItems()
+  //     if(currentItems) {
+  //       currentList = await saveCurrentList(currentItems)
+  //     }
+  //   } catch(err) {
+  //     console.error(err)
+  //   }
+  // }
 
   // clearQuantities = async () => {
   //   try{
@@ -45,11 +42,11 @@ const EditLists = withRouter(class extends Component {
   // }
 
   render() {
-    const {viewCurrentList, handleClick} = this
+    const {handleClick} = this
     const {user, lists, createList, deleteList} = this.props
     return (
       <div id='edit-lists-container'>
-        <UserPage navbar={false}/>
+        <UserPage />
         <div id='edit-lists-header' className='row'>
           <h3>MY LISTS</h3>
           <div></div>
@@ -61,13 +58,12 @@ const EditLists = withRouter(class extends Component {
           <ColHeader colNum={'three'} headers={['LIST NAME']}/>
         </div>
         {!user.isAdmin ? <h5> Admin privileges required to delete a list </h5> : null}
-        {lists.length < 1 ? null
-        :lists.map(({id, name}, index) => <List key={id + name}
+        {!Array.isArray(lists) ? null
+        :lists.map(({id, name}, index) => <EditList key={id + name}
             id={id}
             name={name}
             colNum={'two'}
             deleteList={deleteList}
-            handleClick={viewCurrentList}
           />
         )}
       </div>
@@ -75,10 +71,7 @@ const EditLists = withRouter(class extends Component {
   }
 })
 
-const mapStateToProps = state => ({
-  user: state.user,
-  lists: state.lists
-})
+const mapStateToProps = ({user, lists}) => ({user, lists})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadLists: () => dispatch(getLists()),

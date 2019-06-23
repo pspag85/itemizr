@@ -53,9 +53,7 @@ class ItemCol extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  loggedInUser: state.user
-})
+const mapStateToProps = ({user}) => ({user})
 
 const getItemId = props => props.id
 

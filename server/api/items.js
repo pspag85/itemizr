@@ -15,8 +15,8 @@ router.get('/:listId', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
-  const {name, onHand, par, orderQty, listId} = req.body
+router.post('/', async ({body}, res, next) => {
+  const {name, onHand, par, orderQty, listId} = body
   try {
     const item = await Item.create({
       name,

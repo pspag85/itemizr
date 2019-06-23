@@ -25,13 +25,14 @@ class AddItem extends Component {
     event.preventDefault()
     const {name, onHand, par, orderQty} = event.target
     const {createItem, listId} = this.props
+    console.log('listId:  ', listId)
     try {
       const item = await createItem({
         name: name.value,
         onHand: onHand.value,
         par: par.value,
         orderQty: orderQty.value,
-        listId
+        listId: listId
       })
       this.setState({open: false})
     } catch(err) {
@@ -61,10 +62,7 @@ class AddItem extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  loggedInUser: state.user,
-  items: state.items
-})
+const mapStateToProps = ({user, items}) => ({user, items})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   createItem: itemData => dispatch(addItem(itemData))

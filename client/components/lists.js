@@ -12,14 +12,12 @@ import '../css/lists.css'
 const Lists = withRouter(class extends Component {
 
   async componentDidMount() {
-    const {user, loadLists} = this.props
-    if(user.id) {
-      try {
+    const {loadLists} = this.props
+    try {
       const lists = await loadLists()
     } catch(err) {
       console.error(err)
     }
-  }
   }
 
   // saveCurrentList = async () => {
@@ -37,7 +35,7 @@ const Lists = withRouter(class extends Component {
 
   // clearQuantities = async () => {
   //   try{
-  //     await axios.put(`/api/items`)
+  //     await lists.put(`/api/items`)
   //   } catch(err) {
   //     console.error(err)
   //   }
@@ -77,10 +75,7 @@ const Lists = withRouter(class extends Component {
   }
 })
 
-const mapStateToProps = state => ({
-  user: state.user,
-  lists: state.lists
-})
+const mapStateToProps = ({user, lists}) => ({user, lists})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadLists: () => dispatch(getLists()),

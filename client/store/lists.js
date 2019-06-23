@@ -41,7 +41,6 @@ export const getList = id => async dispatch => {
 export const getLists = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/lists')
-    console.log('data:  ', data)
     dispatch(gotLists(data))
   } catch(err) {
     console.error(err)

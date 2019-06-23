@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {withRouter, Link} from 'react-router-dom'
-const axios = require('axios') //API libary ajax
 import {connect} from 'react-redux'
 import UserPage from './user-page'
 import AddItem from './add-item'
@@ -12,10 +11,10 @@ import '../css/items.css'
 class Items extends Component {
 
   async componentDidMount() {
-    const {loggedInUser, history, loadItems, location} = this.props
+    const {user, history, loadItems, location} = this.props
     const {pathname} = location
     const listId = pathname.split('/')[2]
-    if(!loggedInUser.id) history.push('/')
+    if(!user.id) history.push('/')
     try {
       const res = await loadItems(listId)
     } catch(err) {
@@ -54,7 +53,7 @@ class Items extends Component {
 }
 
 const mapStateToProps = state => ({
-  loggedInUser: state.user,
+  user: state.user,
   items: state.items
 })
 
