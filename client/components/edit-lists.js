@@ -55,14 +55,13 @@ const EditLists = withRouter(class extends Component {
           </Link>
         </div>      
         <div className='col-header row'>
-          <ColHeader colNum={'three'} headers={['LIST NAME']}/>
+          <ColHeader headers={['LIST NAME']}/>
         </div>
         {!user.isAdmin ? <h5> Admin privileges required to delete a list </h5> : null}
         {!Array.isArray(lists) ? null
         :lists.map(({id, name}, index) => <EditList key={id + name}
             id={id}
             name={name}
-            colNum={'two'}
             deleteList={deleteList}
           />
         )}

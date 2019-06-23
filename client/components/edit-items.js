@@ -6,36 +6,28 @@ import UserPage from './user-page'
 import AddItem from './add-item'
 import EditItem from './item'
 import ColHeader from './col-header'
-import {getList, getItems, addItem, removeItem} from '../store'
+import {getItems, addItem, removeItem} from '../store'
 import '../css/edit-items.css'
 
 class EditItems extends Component {
 
   async componentDidMount() {
-    const {user, loadItems, getCurrentList, history, location} = this.props
-    const {pathname} = location
-    const listId = pathname.split('/')[2]
+    const {user, listId, loadItems, history} = this.props
     if(!user.id) history.push('/')
     try {
       await loadItems(listId)
-      await getCurrentList(listId)
     } catch(err) {
       console.error(err)
     }
   }
 
   render() {
-    const {list, items, logoutUser, deleteItem} = this.props
-    const {id, name} = list
+    const {listId, items, logoutUser, deleteItem, closeList} = this.props
     return (
       <div id='edit-items-container'>
-        <UserPage />
-        <div id='items-header' className='row'>
-          <h3>{name}</h3>
-        </div>
         <div className='col-header row'>
           <ColHeader num={'four'} headers={['Name', 'On Hand', 'Par', 'Order Qty']} />
-        </div>
+        </div>      
         {!Array.isArray(items) ? <h2> no items </h2>
         :items.map((item, index) => <EditItem
             key={item.id + item.name}
@@ -46,16 +38,19 @@ class EditItems extends Component {
             orderQty={item.orderQty}
           />
         )}
-        <AddItem listId={id}/>
+        <AddItem listId={listId}/>
+        <div className='save'>
+          <h4 className='cancel' onClick={closeList}>CANCEL</h4>
+          <button className='save-button'>SAVE CHANGES</button>
+        </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({user, lists, items}) => ({user, list: lists, items})
+const mapStateToProps = ({user, items}) => ({user, items})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  getCurrentList: id => dispatch(getList(id)),
   loadItems: listId => dispatch(getItems(listId)),
   createItem: () => dispatch(addItem()),
   deleteItem: id => dispatch(removeItem(id))
