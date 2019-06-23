@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
 import {withRouter, Link} from 'react-router-dom'
-const axios = require('axios') //API libary ajax
 import {connect} from 'react-redux'
 import UserPage from './user-page'
 import AddItem from './add-item'
-import EditItem from './item'
+import EditItem from './edit-item'
 import ColHeader from './col-header'
 import {getItems, addItem, removeItem} from '../store'
 import '../css/edit-items.css'
@@ -26,7 +25,7 @@ class EditItems extends Component {
     return (
       <div id='edit-items-container'>
         <div className='col-header row'>
-          <ColHeader num={'four'} headers={['Name', 'On Hand', 'Par', 'Order Qty']} />
+          <ColHeader headers={['Name', 'On Hand', 'Par']} />
         </div>      
         {!Array.isArray(items) ? <h2> no items </h2>
         :items.map((item, index) => <EditItem
@@ -35,7 +34,7 @@ class EditItems extends Component {
             name={item.name}
             onHand={item.onHand}
             par={item.par}
-            orderQty={item.orderQty}
+            deleteItem={deleteItem}
           />
         )}
         <AddItem listId={listId}/>

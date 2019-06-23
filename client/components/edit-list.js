@@ -24,7 +24,6 @@ class EditList extends Component {
     const {editList, closeList} = this
     const {open} = this.state
     const {id, date, name, lastEditedBy, deleteList} = this.props
-    console.log('render:  ', this.state)
     return (
       <div className='pointer'>
         <div className='row' onClick={editList}>

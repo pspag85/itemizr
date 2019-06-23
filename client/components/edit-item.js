@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemCol from './item-col'
 
-var EditItem = ({id, name, onHand, par, orderQty}) => (
+var EditItem = ({id, name, onHand, par, orderQty, deleteItem}) => (
   <div className='item row'>
     <div className='column'>
       <ItemCol input='name' name={name} id={id} />
@@ -12,8 +12,8 @@ var EditItem = ({id, name, onHand, par, orderQty}) => (
     <div className='column'>
       <ItemCol input='par' par={par} id={id} />
     </div>
-    <div className='column'>
-      <ItemCol input='orderQty' orderQty={orderQty} id={id} />
+    <div onClick={() => deleteItem(id)} >
+      <h4>&times;</h4>
     </div>
   </div>
 )
