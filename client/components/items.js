@@ -28,7 +28,6 @@ class Items extends Component {
     const {pathname} = location
     const listId = pathname.split('/')[2]
     const {name} = getCurrentList(listId)
-    console.log('items:  ', items)
     return (
       <div id='items-container'>
         <UserPage navbar={true}/>

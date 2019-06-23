@@ -89,7 +89,6 @@ const itemsReducer = (state = initialState, action) => {
     case UPDATE_ITEM:
       return state.map((item, idx, arr) => {
         if(item.id === action.itemId) {
-          console.log('match:  ', action)
           item = action.itemData
         }
         return item
