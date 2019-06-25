@@ -52,14 +52,13 @@ const Lists = withRouter(class extends Component {
           <div id='lists-header' className='row'>
             <h3>MY LISTS</h3>
             <div></div>
-            <Link to='/lists/edit'>
-              <h4>EDIT</h4>
+            <Link to='/lists/edit' >
+              <h4 className='edit-btn bg-blue'>EDIT</h4>
             </Link>
           </div>
           <div className='col-header row'>
             <ColHeader colNum={'three'} headers={['DATE', 'LIST NAME', 'LAST EDITED BY']}/>
           </div>
-          {!user.isAdmin ? <h5> Admin privileges required to delete a list </h5> : null}
           {!Array.isArray(lists) ? null
           :lists.map(({id, name, date, lastEditedBy}, index) => (
             <List key={id + date}

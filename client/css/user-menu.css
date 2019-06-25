@@ -2,7 +2,7 @@
   width: 300px;
   position: absolute;
   top: 28px;
-  right: 44px;
+  right: 0;
   color: white;
   text-align: right;
 }
@@ -11,23 +11,23 @@
   display: inline-block;
 }
 
+#user-menu-btn {
+  margin-right: 40px;
+}
+
 #user-name {
-  padding-left: 10px;
+  padding-left: 18px;
 }
 
 #user-dd-menu {
   position: relative;
   width: 200px;
   height: 136px;
-  margin: 11px -25px 0 0;
+  margin-top: 11px;
   color: white;
   z-index: 100;
 }
 
 #user-dd-menu * {
   padding-top: 8px;
-}
-
-.logout-btn {
-  margin-right: 32px;
 }

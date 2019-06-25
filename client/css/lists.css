@@ -1,5 +1,4 @@
 #lists-header {
-  color: #6D5D9C;
   margin-right: 36px;
   padding: 18px 0 36px 0;
   border: none;
@@ -11,11 +10,14 @@
 
 #lists-container a:not(#navbar) {
   padding-right: 10px;
-  color: black;
-  text-decoration: none;
+
 }
 
 #lists-container {
   position: relative;
   width: 100vw;
+}
+
+#lists-container a {
+  display: flex;
 }

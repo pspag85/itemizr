@@ -8,12 +8,7 @@
 }
 
 #navbar a {
-  color: white;
   text-decoration: none;
   margin: 18px 0 0 46px;
   font-size: 18px;
-}
-
-.bg-purple {
-  background-color: #6D5D9C; 
 }

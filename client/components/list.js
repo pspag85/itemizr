@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 const List = ({id, date, name, lastEditedBy, deleteList}) => (
   <Link to={`/lists/${id}/order`}>
-    <div className='row'>
+    <div className='row bg-white'>
       {date && <div className={`column`}>
         <h4 className='light-font'>{date.slice(0,10)}</h4>
       </div>}
