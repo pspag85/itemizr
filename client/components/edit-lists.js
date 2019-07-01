@@ -22,7 +22,7 @@ const EditLists = withRouter(class extends Component {
 
   render() {
     const {handleClick} = this
-    const {user, lists, createList, deleteList} = this.props
+    const {user, lists, deleteList} = this.props
     return (
       <div id='edit-lists-container'>
         <UserPage />
@@ -38,11 +38,11 @@ const EditLists = withRouter(class extends Component {
         </div>
         {!user.isAdmin ? <h5> Admin privileges required to delete a list </h5> : null}
         {!Array.isArray(lists) ? null
-        :lists.map(({id, name, date}, index) => <EditList key={id + name}
+        :lists.map(({id, name, date, lastEditedBy}, index) => <EditList key={id + name}
             id={id}
             name={name}
             date={date}
-            lastEditedBy={user.name}
+            lastEditedBy={lastEditedBy || user.username}
             deleteList={deleteList}
           />
         )}
@@ -55,7 +55,6 @@ const mapStateToProps = ({user, lists}) => ({user, lists})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadLists: () => dispatch(getLists()),
-  createList: () => dispatch(addList()),
   deleteList: id => dispatch(removeList(id)),
   loadItems: () => dispatch(getItems())
 })

@@ -122,9 +122,13 @@ a {
   border-radius: 5px;
 }
 
-.delete {
+.alert {
   color: white;
   background-color: red;
+}
+
+.delete-list {
+  width: 200px;
 }
 
 .delete-txt {

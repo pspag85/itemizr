@@ -21,13 +21,13 @@ class AddUser extends Component {
   handleSubmit = async event => {
     event.preventDefault()
     const {name, email, isAdmin} = event.target
-    const password = randomPasswordGen()
+    //const password = randomPasswordGen() ==> //live
     try{
       const user = await this.props.createUser({
         name: name.value,
         date: Date.now(),
         email: email.value,
-        password: password,
+        password: 'fakepw',
         isAdmin: isAdmin.value
       })
       this.setState({open: false})
@@ -58,9 +58,7 @@ class AddUser extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.user
-})
+const mapStateToProps = ({user}) => ({user})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   createUser: userData => dispatch(addUser(userData))

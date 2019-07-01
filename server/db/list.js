@@ -11,8 +11,7 @@ const List = db.define('lists', {
     defaultValue: 'My List'
   },
   lastEditedBy: {
-    type: Sequelize.TEXT,
-    defaultValue: '---'
+    type: Sequelize.TEXT
   }
 })
 

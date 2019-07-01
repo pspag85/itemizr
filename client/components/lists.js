@@ -20,19 +20,6 @@ const Lists = withRouter(class extends Component {
     }
   }
 
-  // saveCurrentList = async () => {
-  //   let currentList
-  //   const {loadItems, saveCurrentList} = this.props
-  //   try {
-  //     const currentItems = await loadItems()
-  //     if(currentItems) {
-  //       currentList = await saveCurrentList(currentItems)
-  //     }
-  //   } catch(err) {
-  //     console.error(err)
-  //   }
-  // }
-
   // clearQuantities = async () => {
   //   try{
   //     await lists.put(`/api/items`)
@@ -65,7 +52,7 @@ const Lists = withRouter(class extends Component {
               id={id}
               name={name}
               date={date}
-              lastEditedBy={lastEditedBy}
+              lastEditedBy={lastEditedBy || user.username}
             />
           ))}
         </div>

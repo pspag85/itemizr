@@ -36,7 +36,7 @@ class EditList extends Component {
           {lastEditedBy ? <div className={`column`}>
             <h4 className='light-font'>{lastEditedBy}</h4>
           </div>  : <div>last</div>}
-          {deleteList && <div className={`column pointer`} onClick={() => deleteList(id)}>
+          {deleteList && <div className={`column pointer delete-list`} onClick={() => deleteList(id)}>
             <img className='delete-icon' src='/img/delete.png'/>
             <h4 className='delete-txt light-font'>Delete this list</h4>
           </div>}

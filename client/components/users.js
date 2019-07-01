@@ -9,12 +9,12 @@ import {getUsers, removeUser} from '../store'
 
 const Users = withRouter(class extends Component {
   state = {
-    deletePrivileges: this.props.loggedInUser.isAdmin
+    deletePrivileges: this.props.user.isAdmin
   }
 
   componentDidMount = async () => {
-    const {loggedInUser, history, loadUsers} = this.props
-    if(!loggedInUser.id) history.push('/')
+    const {user, history, loadUsers} = this.props
+    if(!user.id) history.push('/')
     loadUsers()
   }
 
@@ -32,13 +32,13 @@ const Users = withRouter(class extends Component {
         </div>
         {!deletePrivileges ? <h5> Admin privileges required to delete a user </h5> : null}
         {users.length < 1 ? <h2> No Users </h2>
-        :users.map((user, index) => <User
-            key={user.id + user.date}
-            id={user.id}
-            date={user.date}
-            name={user.name}
-            email={user.email}
-            isAdmin={user.isAdmin}
+        :users.map(({id, date, name, email, isAdmin}, index) => <User
+            key={id + date}
+            id={id}
+            date={date}
+            name={name}
+            email={email}
+            isAdmin={isAdmin}
             remove={deleteUser}
           />
         )}
@@ -47,10 +47,7 @@ const Users = withRouter(class extends Component {
   }
 })
 
-const mapStateToProps = state => ({
-  loggedInUser: state.user,
-  users: state.users
-})
+const mapStateToProps = ({user, users}) => ({user, users})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadUsers: () => dispatch(getUsers()),
