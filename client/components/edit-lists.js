@@ -20,27 +20,6 @@ const EditLists = withRouter(class extends Component {
     }
   }
 
-  // saveCurrentList = async () => {
-  //   let currentList
-  //   const {loadItems, saveCurrentList} = this.props
-  //   try {
-  //     const currentItems = await loadItems()
-  //     if(currentItems) {
-  //       currentList = await saveCurrentList(currentItems)
-  //     }
-  //   } catch(err) {
-  //     console.error(err)
-  //   }
-  // }
-
-  // clearQuantities = async () => {
-  //   try{
-  //     await axios.put(`/api/items`)
-  //   } catch(err) {
-  //     console.error(err)
-  //   }
-  // }
-
   render() {
     const {handleClick} = this
     const {user, lists, createList, deleteList} = this.props
@@ -49,7 +28,7 @@ const EditLists = withRouter(class extends Component {
         <UserPage />
         <div id='edit-lists-header' className='row'>
           <h3>MY LISTS</h3>
-          <div></div>
+          <br />
           <Link to='/lists'>
             <h4>&times;</h4>
           </Link>
@@ -59,9 +38,11 @@ const EditLists = withRouter(class extends Component {
         </div>
         {!user.isAdmin ? <h5> Admin privileges required to delete a list </h5> : null}
         {!Array.isArray(lists) ? null
-        :lists.map(({id, name}, index) => <EditList key={id + name}
+        :lists.map(({id, name, date}, index) => <EditList key={id + name}
             id={id}
             name={name}
+            date={date}
+            lastEditedBy={user.name}
             deleteList={deleteList}
           />
         )}

@@ -17,7 +17,7 @@ const Signup = props => {
         <Link to='/login'>Login</Link>
       </div>
       <br/>
-      <AuthForm handleSubmit={handleSubmit} />
+      <AuthForm handleSubmit={handleSubmit} isSignup={true} />
       <h4 ref={emailRef}></h4>
     </div>
   )
@@ -31,10 +31,17 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   async handleSubmit (evt) {
     evt.preventDefault()
     duplicateEmailHandler()
+    const company = evt.target.company.value
+    const username = evt.target.username.value
     const email = evt.target.email.value
     const password = evt.target.password.value
-    const isAdmin = true
-    const signupThunk = signup({email, password, isAdmin})
+    const signupThunk = signup({
+      company,
+      username,
+      email,
+      password,
+      isAdmin: true
+    })
     try {
       await dispatch(signupThunk)
       ownProps.history.push('/lists')

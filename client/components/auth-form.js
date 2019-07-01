@@ -1,10 +1,14 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 
-const AuthForm = ({handleSubmit}) => (
-	<form onSubmit={handleSubmit}>
-	  <input type='email' name='email'/>
-	  <input type='password' name='password' />
-	  <button type='submit'> submit </button>
+const AuthForm = ({handleSubmit, isSignup}) => (
+	<form className='flex-col' onSubmit={handleSubmit}>
+	  {isSignup && <Fragment>
+      <input type='company' name='company' placeholder='Company' />
+      <input type='username' name='username' placeholder='Username' />
+    </Fragment>}
+    <input type='email' name='email' placeholder='Email' />
+    <input type='password' name='password' placeholder='Password' />
+	  <button type='submit'> Submit </button>
 	</form>
 )
 

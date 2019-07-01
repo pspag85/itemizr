@@ -2,15 +2,18 @@ const {User, List, Item, db} = require('./server/db')//put USER back in here
 const {red, bgMagenta} = require('chalk')
 
 const userData = [
-  {
+  { 
+    username: 'Ol Paterson',
     email: 'p@mail.com',
     password: '111'
   },
   {
+    username: 'Jimmy B',
     email: 'j@mail.com',
     password: '222'
   },
   {
+    username: 'Charlie Spag',
     email: 'c@mail.com',
     password: '333'
   }
