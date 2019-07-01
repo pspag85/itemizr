@@ -16,7 +16,7 @@ const UserPage = ({user, navbar}) => {
   return (
     <div>
       <LogoHeader />
-      <BusinessName />
+      <BusinessName company={user.company}/>
       <UserMenu />
       {navbar ? <Navbar /> : null}
     </div>
