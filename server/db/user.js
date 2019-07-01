@@ -9,7 +9,7 @@ const User = db.define('users', {
   company: {
     type: Sequelize.STRING
   },
-  name: {
+  username: {
     type: Sequelize.STRING
   },
   email: {
