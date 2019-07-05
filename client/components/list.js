@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom'
 import ListOptionMenu from './list-option-menu'
 
 const List = ({id, date, name, lastEditedBy, deleteList}) => {
-  const [menuState, setMenuState] = useState('closed')
+  const [menuState, setMenuState] = useState(false)
 
-  const openMenu = () => setMenuState('open')
-  const closeMenu = () => setMenuState('closed')
+  const toggleMenu = () => setMenuState(!menuState)
+
   return (
     <div className='row bg-white'>
       <Link to={`/lists/${id}/order`} className='list-link'>
@@ -24,9 +24,9 @@ const List = ({id, date, name, lastEditedBy, deleteList}) => {
           <h4 className='delete-txt light-font'>Delete this list</h4>
         </div>}
       </Link>
-      <div className='list-menu-container column pointer bg-white' onClick={openMenu}>
+      <div className='list-menu-container column pointer bg-white' onClick={toggleMenu}>
         <img src='/img/more-vert.png' />
-        {menuState === 'open' && <div>menu</div>}
+        {menuState && <div>menu</div>}
       </div>
     </div>
   )
