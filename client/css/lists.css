@@ -8,11 +8,6 @@
   flex-basis: 50%;
 }
 
-#lists-container a:not(#navbar) {
-  padding-right: 10px;
-
-}
-
 #lists-container {
   position: relative;
   width: 100vw;
@@ -20,4 +15,9 @@
 
 #lists-container a {
   display: flex;
+}
+
+.list-link {
+  display: flex;
+  width: 100%;
 }
