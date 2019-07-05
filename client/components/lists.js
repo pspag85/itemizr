@@ -30,31 +30,31 @@ const Lists = withRouter(class extends Component {
 
   render() {
     const {handleClick} = this
-    const {user, lists, createList} = this.props
+    const {user, lists, createList, deleteList} = this.props
     return (
       <Fragment>
         <UserPage navbar={true}/>
-        <div id='lists-container'>
-          <CreateList handleClick={createList}/>
+        <CreateList handleClick={createList}/>
+        <div id='lists-body' className='wdth-73'>
           <div id='lists-header' className='row'>
             <h3>MY LISTS</h3>
-            <div></div>
-            <Link to='/lists/edit' >
-              <h4 className='edit-btn bg-blue'>EDIT</h4>
-            </Link>
           </div>
           <div className='col-header row'>
             <ColHeader colNum={'three'} headers={['DATE', 'LIST NAME', 'LAST EDITED BY']}/>
           </div>
           {!Array.isArray(lists) ? null
-          :lists.map(({id, name, date, lastEditedBy}, index) => (
-            <List key={id + date}
-              id={id}
-              name={name}
-              date={date}
-              lastEditedBy={lastEditedBy || user.username}
-            />
-          ))}
+          : <div className='lists-container box-shadow'>
+              {lists.map(({id, name, date, lastEditedBy}, index) => (
+                <List key={id + date}
+                  id={id}
+                  name={name}
+                  date={date}
+                  deleteList={deleteList}
+                  lastEditedBy={lastEditedBy || user.username}
+                />
+              ))}
+            </div>
+          }
         </div>
       </Fragment>
     )
