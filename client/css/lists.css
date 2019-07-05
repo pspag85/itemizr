@@ -19,13 +19,12 @@
 
 .list-menu {
   float: right;
-  width: 160px;
-  margin-right: 40px;
+  width: 180px;
   text-align: center;
   justify-content: center;
 }
 
 .list-menu div {
   margin: 1em;
-  padding-left: 18%;
+  padding-left: 20%;
 }
