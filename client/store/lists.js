@@ -30,7 +30,6 @@ const removedList = listId => ({
 })
 
 export const getList = id => async dispatch => {
-  console.log('id: ', id)
   try {
     const {data} = await axios.get(`/api/lists/${id}`)
     dispatch(gotList(data))
@@ -86,8 +85,10 @@ const listsReducer = (state = initialState, action) => {
       } else {
         return [action.list, ...state]
       }
+    case RECEIVE_LISTS:
+      return action.lists
     case INSERT_LIST:
-      return [...state, action.user];
+      return [...state, action.list]
     case REMOVE_LIST:
       return state.filter(eachList => eachList.id !== action.listId)
     default:

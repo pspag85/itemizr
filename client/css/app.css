@@ -124,9 +124,7 @@ a {
 }
 
 .edit-btn {
-  color: white;
-  padding: 8px 10px 6px 10px;
-  font-weight: 300;
+  height: 24px;
   border-radius: 5px;
 }
 
@@ -156,4 +154,8 @@ a {
   width: 10em;
   display: flex;
   flex-direction: column;
+}
+
+.order-btn {
+  float: right
 }
