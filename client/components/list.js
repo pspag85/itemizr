@@ -10,7 +10,7 @@ const List = ({id, date, name, lastEditedBy, deleteList}) => {
   return (
     <Fragment>
       <div className='row bg-white'>
-        <Link to={`/lists/${id}/order`} className='list-link'>
+        <Link to={`/lists/${id}`} className='list-link'>
           {date && <div className='column'>
             <h4 className='light-font'>{date.slice(0,10)}</h4>
           </div>}

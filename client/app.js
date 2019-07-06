@@ -30,7 +30,7 @@ const App = withRouter(class extends Component {
     return (
       <Fragment>
         <Switch>
-          <Route exact path='/lists/:listId/order' component={Items} />/>
+          <Route exact path='/lists/:listId' component={Items} />/>
           <Route exact path='/lists/edit' component={EditLists} />
           <Route exact path='/lists' component={Lists} />
           <Route exact path='/users' component={Users} />

@@ -30,6 +30,7 @@ const removedList = listId => ({
 })
 
 export const getList = id => async dispatch => {
+  console.log('id: ', id)
   try {
     const {data} = await axios.get(`/api/lists/${id}`)
     dispatch(gotList(data))
@@ -73,10 +74,6 @@ const initialState = []
 const listsReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_LIST:
-      return action.list
-    case RECEIVE_LISTS:
-      return action.lists
-    case INSERT_LIST:
       const alreadyIn = state.some(eachList => eachList.id === action.list.id)
       if (alreadyIn) {
         return state.map(eachList => {
@@ -89,6 +86,8 @@ const listsReducer = (state = initialState, action) => {
       } else {
         return [action.list, ...state]
       }
+    case INSERT_LIST:
+      return [...state, action.user];
     case REMOVE_LIST:
       return state.filter(eachList => eachList.id !== action.listId)
     default:
