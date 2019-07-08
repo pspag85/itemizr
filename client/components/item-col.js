@@ -18,20 +18,24 @@ class ItemCol extends Component {
     })
   }
 
-  handleSubmit = async event => {
+  handleSubmit = event => {
     event.preventDefault()
     const {id} = this.state
     const {input, putItem} = this.props
     const value = event.target.querySelector('input').value //The Document method querySelector() returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned.
     const itemData = {}
     itemData[input] = value
-    try {
-      const item = await putItem(id, itemData)
-      if(item){
-        $(() => {$('input').blur()})
-      }
-    } catch(err){
-      console.error(err)
+    const item = putItem(id, itemData)
+    if(item) {
+      $(() => {$('input').blur()})
+      const {name, onHand, par, orderQty} = item
+      this.setState({
+        id,
+        name,
+        onHand,
+        par,
+        orderQty
+      })
     }
   }
 
@@ -44,7 +48,7 @@ class ItemCol extends Component {
         <form className='item-form' onSubmit={handleSubmit}>
          <input
             type='text' name={name}
-            value={this.state[name] || ''}
+            value={this.state[name] }
             onChange={handleChange}
           />
        </form>
@@ -55,7 +59,7 @@ class ItemCol extends Component {
 
 const mapStateToProps = ({user}) => ({user})
 
-const getItemId = props => props.id
+const getItemId = ({id}) => id
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   putItem: (itemId, itemData) => dispatch(updateItem(itemId, itemData))

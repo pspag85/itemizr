@@ -42,9 +42,9 @@ class EditItems extends Component {
                 orderQty={orderQty}
               />
             ))}
+            <AddItem listId={currentList.id}/>
           </div>
           }
-          <AddItem listId={currentList.id}/>
           <div className='save'>
             <h4 className='cancel' onClick={closeList}>CANCEL</h4>
             <button className='save-button'>SAVE CHANGES</button>
