@@ -11,13 +11,9 @@ import '../css/lists.css'
 
 const Lists = withRouter(class extends Component {
 
-  async componentDidMount() {
+  componentDidMount() {
     const {loadLists} = this.props
-    try {
-      const lists = await loadLists()
-    } catch(err) {
-      console.error(err)
-    }
+    const lists = loadLists()
   }
 
   // clearQuantities = async () => {

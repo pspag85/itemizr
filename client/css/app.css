@@ -1,4 +1,6 @@
 html, body {
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   background: rgba(218, 234, 247, 0.15);
   font-family: 'Open-Sans', sans-serif;
@@ -122,9 +124,7 @@ a {
 }
 
 .edit-btn {
-  color: white;
-  padding: 8px 10px 6px 10px;
-  font-weight: 300;
+  height: 24px;
   border-radius: 5px;
 }
 
@@ -150,8 +150,20 @@ a {
   cursor: pointer;
 }
 
+.white {
+  color: white;
+}
+
 .flex-col {
   width: 10em;
   display: flex;
   flex-direction: column;
+}
+
+.order-btn {
+  float: right;
+  font-size: 20px;
+  padding: .2em 1em .2em 1em;
+  border-radius: 10px;
+  margin: 78px 40px 0 0;
 }

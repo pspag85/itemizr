@@ -8,9 +8,9 @@ import Login from './components/login'
 import UserPage from './components/user-page'
 import Users from './components/users'
 import Lists from './components/lists'
-import EditLists from './components/edit-lists'
 import Items from './components/items'
 import EditItems from './components/edit-items'
+import OrderItems from './components/order-items'
 import './css/app.css'
 
 const App = withRouter(class extends Component {
@@ -30,8 +30,9 @@ const App = withRouter(class extends Component {
     return (
       <Fragment>
         <Switch>
-          <Route exact path='/lists/:listId/order' component={Items} />/>
-          <Route exact path='/lists/edit' component={EditLists} />
+          <Route exact path='/lists/:listId' component={Items} />/>
+          <Route exact path='/lists/:listId/edit' component={EditItems} />
+          <Route exact path='/lists/:listId/order' component={OrderItems} />
           <Route exact path='/lists' component={Lists} />
           <Route exact path='/users' component={Users} />
           <Route exact path='/signup' component={Signup} />

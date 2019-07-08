@@ -17,16 +17,16 @@
   margin-top: -20px;
 }
 
-#edit-items-container #business-name {
+#edit-items-body #business-name {
   left: 15.7vw;
 }
 
-#edit-items-container {
+#edit-items-body {
   position: relative;
   width: 100vw;
 }
 
-#edit-items-container .row {
+#edit-items-body .row {
   width: 93.6vw;
   margin-left: 40px;
   margin-right: 40px;
@@ -34,6 +34,6 @@
   border: none;
 }
 
-#edit-items-container .col-header .column h4 {
+#edit-items-body .col-header .column h4 {
   width: 80px;
 }

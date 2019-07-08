@@ -31,16 +31,34 @@ router.post('/', async ({body}, res, next) => {
   }
 })
 
-router.put('/', async (req, res, next) => {
+// router.put('/', async (req, res, next) => { clear quantities route
+//   try {
+//     const items = await Item.findAll()
+//     if(items) {
+//       items.forEach(item => item.update({
+//           onHand: 0,
+//           orderQty: 0
+//         })
+//       )
+//     }
+//   } catch(err) {
+//     console.error(err)
+//   }
+// })
+
+router.put('/:listId', async (req, res, next) => {
+  const {listId} = req.params
   try {
-    const items = await Item.findAll()
-    if(items) {
-      items.forEach(item => item.update({
-          onHand: 0,
-          orderQty: 0
-        })
-      )
-    }
+    const items = await Item.findAll({
+      where: {
+        listId
+      }
+    })
+    items.forEach(item => {
+      item.update({
+        saved: true
+      })
+    })
   } catch(err) {
     console.error(err)
   }

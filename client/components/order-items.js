@@ -9,7 +9,7 @@ import ColHeader from './col-header'
 import {getList, getItems, addItem, removeItem} from '../store'
 import '../css/items.css'
 
-class Items extends Component {
+class OrderItems extends Component {
 
   componentDidMount() {
     const {user, getCurrentList, loadItems, history, location} = this.props
@@ -22,17 +22,19 @@ class Items extends Component {
 
   render() {
     const {items, currentList, logoutUser, deleteItem, location} = this.props
-    return currentList ? (
+    return (
       <Fragment>
         <UserPage navbar={true}/>
         <CreateList />
         <div id='items-body' className='wdth-73'>
           <div id='items-header' className='row'>
-            <h3>{currentList.name}</h3>
-            <div></div>
-            <Link to={`/lists/${currentList.id}/edit`} >
-              <img src='/img/edit-btn.png' className='edit-btn' />
-            </Link>       
+            {currentList && <Fragment>
+              <h3>{currentList.name}</h3>
+              <div></div>
+              <Link to={`/lists/${currentList.id}`} >
+                <h2>Cancel</h2>
+              </Link>
+            </Fragment>}         
           </div>
           <div className='col-header row'>
             <ColHeader num={'four'} headers={['Name', 'On Hand', 'Par', 'Order Qty']} />
@@ -52,9 +54,8 @@ class Items extends Component {
             </div>
           }
         </div>
-        <Link to={`/lists/${currentList.id}/order`} className='order-btn white bg-blue'>ORDER</Link>
       </Fragment>
-    ) : null
+    )
   }
 }
 
@@ -67,8 +68,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   deleteItem: id => dispatch(removeItem(id))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Items)
-
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(OrderItems)
