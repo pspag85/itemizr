@@ -52,7 +52,7 @@ class Items extends Component {
             </div>
           }
         </div>
-        <Link to={`/lists/${currentList.id}/order`} className='order-btn bg-blue'>Order</Link>
+        <Link to={`/lists/${currentList.id}/order`} className='order-btn white bg-blue'>ORDER</Link>
       </Fragment>
     ) : null
   }

@@ -150,6 +150,10 @@ a {
   cursor: pointer;
 }
 
+.white {
+  color: white;
+}
+
 .flex-col {
   width: 10em;
   display: flex;
@@ -157,5 +161,9 @@ a {
 }
 
 .order-btn {
-  float: right
+  float: right;
+  font-size: 20px;
+  padding: .2em 1em .2em 1em;
+  border-radius: 10px;
+  margin: 78px 40px 0 0;
 }
