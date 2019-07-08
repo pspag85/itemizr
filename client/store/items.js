@@ -72,18 +72,7 @@ const itemsReducer = (state = initialState, action) => {
     case RECEIVE_ITEMS:
       return action.items
     case INSERT_ITEM:
-      const alreadyIn = state.some(eachItem => eachItem.id === action.item.id)
-      if(alreadyIn) {
-        return state.map(eachItem => {
-          if(eachItem.id === action.item.id) {
-            return action.item
-          } else {
-            return eachItem
-          }
-        })
-      } else {
-        return [...state, action.item]
-      }
+      return [...state, action.item]
     case REMOVE_ITEM:
       return state.filter(eachItem => eachItem.id !== action.itemId)
     case UPDATE_ITEM:

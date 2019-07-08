@@ -9,44 +9,49 @@ import {getList, getItems, addItem, removeItem} from '../store'
 import '../css/edit-items.css'
 
 class EditItems extends Component {
-
+  
   componentDidMount() {
-    const {user, listId, getCurrentList, loadItems, history,} = this.props
+    const {user, getCurrentList, loadItems, history, location} = this.props
+    const {pathname} = location
+    const listId = pathname.split('/')[2]
     getCurrentList(listId)
     loadItems(listId)
     if(!user.id) history.push('/')
   }
-
   render() {
-    const {listId, currentList, items, logoutUser, deleteItem, closeList} = this.props
-    return (
+    const {currentList, items, logoutUser, deleteItem, closeList} = this.props
+    return currentList ? (
       <Fragment>
         <UserPage />
-        <div id='edit-items-container'>
+        <div id='edit-items-body'>
           <div id='items-header' className='row'>
-          {currentList && <h3>{currentList.name}</h3>  }      
+          <h3>{currentList.name}</h3>     
           </div>        
           <div className='col-header row'>
-            <ColHeader headers={['Name', 'On Hand', 'Par']} />
+            <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
           </div>      
-          {!Array.isArray(items) ? <h2> no items </h2>
-          :items.map((item, index) => <EditItem
-              key={item.id + item.name}
-              id={item.id}
-              name={item.name}
-              onHand={item.onHand}
-              par={item.par}
-              deleteItem={deleteItem}
-            />
-          )}
-          <AddItem listId={listId}/>
+          {items.length < 1 ? null
+          :<div className='items-container bg-white box-shadow'>
+            {items.map(({id, name, onHand, par, orderQty}, index) => (
+              <EditItem
+                key={id + name}
+                id={id}
+                name={name}
+                onHand={onHand}
+                par={par}
+                orderQty={orderQty}
+              />
+            ))}
+          </div>
+          }
+          <AddItem listId={currentList.id}/>
           <div className='save'>
             <h4 className='cancel' onClick={closeList}>CANCEL</h4>
             <button className='save-button'>SAVE CHANGES</button>
           </div>
         </div>
       </Fragment>
-    )
+    ) : null
   }
 }
 
