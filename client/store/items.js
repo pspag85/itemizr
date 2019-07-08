@@ -49,7 +49,7 @@ export const addItem = itemData => async dispatch => {
 
 export const removeItem = id => async dispatch => {
   try {
-    await axios.get(`/api/items/${id}`)
+    await axios.delete(`/api/items/${id}`)
     dispatch(removedItem(id))
   } catch(err) {
     console.error(err)
@@ -65,12 +65,20 @@ export const updateItem = (id, itemData) => async dispatch => {
   }
 }
 
+export const saveItems = listId => async dispatch => {
+  try {
+    await axios.put(`/api/items/${listId}`)
+  } catch(err) {
+    console.error(err)
+  }
+}
+
 const initialState = []
 
 const itemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ITEMS:
-      return action.items
+      return action.items.filter(item => item.saved)
     case INSERT_ITEM:
       return [...state, action.item]
     case REMOVE_ITEM:
@@ -81,7 +89,7 @@ const itemsReducer = (state = initialState, action) => {
           item = action.itemData
         }
         return item
-      })
+      })    
     default:
       return state
   }

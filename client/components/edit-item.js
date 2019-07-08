@@ -13,7 +13,7 @@ var EditItem = ({id, name, onHand, par, orderQty, deleteItem}) => (
       <ItemCol input='par' par={par} id={id} />
     </div>
     <div className='column'>
-      <ItemCol input='orderQty' par={orderQty} id={id} />
+      <ItemCol input='orderQty' orderQty={orderQty} id={id} />
     </div>
     <div onClick={() => deleteItem(id)} >
       <h4>&times;</h4>

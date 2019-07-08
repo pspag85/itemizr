@@ -5,21 +5,22 @@ import UserPage from './user-page'
 import AddItem from './add-item'
 import EditItem from './edit-item'
 import ColHeader from './col-header'
-import {getList, getItems, addItem, removeItem} from '../store'
+import {getList, getItems, addItem, removeItem, saveItems} from '../store'
 import '../css/edit-items.css'
 
 class EditItems extends Component {
   
   componentDidMount() {
     const {user, getCurrentList, loadItems, history, location} = this.props
+    if(!user.id) history.push('/')
     const {pathname} = location
     const listId = pathname.split('/')[2]
     getCurrentList(listId)
     loadItems(listId)
-    if(!user.id) history.push('/')
   }
+
   render() {
-    const {currentList, items, logoutUser, deleteItem, closeList} = this.props
+    const {currentList, items, logoutUser, deleteItem, closeList, saveChanges} = this.props
     return currentList ? (
       <Fragment>
         <UserPage />
@@ -30,9 +31,9 @@ class EditItems extends Component {
           <div className='col-header row'>
             <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
           </div>      
-          {items.length < 1 ? null
-          :<div className='items-container bg-white box-shadow'>
-            {items.map(({id, name, onHand, par, orderQty}, index) => (
+          <div className='edit-items-container bg-white box-shadow'>
+            {items.length < 1 ? null
+            :items.map(({id, name, onHand, par, orderQty}, index) => (
               <EditItem
                 key={id + name}
                 id={id}
@@ -40,14 +41,14 @@ class EditItems extends Component {
                 onHand={onHand}
                 par={par}
                 orderQty={orderQty}
+                deleteItem={deleteItem}
               />
             ))}
             <AddItem listId={currentList.id}/>
           </div>
-          }
           <div className='save'>
             <h4 className='cancel' onClick={closeList}>CANCEL</h4>
-            <button className='save-button'>SAVE CHANGES</button>
+            <button className='save-button pointer' onClick={() => saveChanges(currentList.id)}>SAVE CHANGES</button>
           </div>
         </div>
       </Fragment>
@@ -61,7 +62,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   getCurrentList: id => dispatch(getList(id)),
   loadItems: listId => dispatch(getItems(listId)),
   createItem: () => dispatch(addItem()),
-  deleteItem: id => dispatch(removeItem(id))
+  deleteItem: id => dispatch(removeItem(id)),
+  saveChanges: listId => dispatch(saveItems(listId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditItems)
