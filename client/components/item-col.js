@@ -28,14 +28,6 @@ class ItemCol extends Component {
     const item = putItem(id, itemData)
     if(item) {
       $(() => {$('input').blur()})
-      const {name, onHand, par, orderQty} = item
-      this.setState({
-        id,
-        name,
-        onHand,
-        par,
-        orderQty
-      })
     }
   }
 
@@ -48,7 +40,7 @@ class ItemCol extends Component {
         <form className='item-form' onSubmit={handleSubmit}>
          <input
             type='text' name={name}
-            value={this.state[name] }
+            value={this.state[name] || this.props.input}
             onChange={handleChange}
           />
        </form>
