@@ -7,6 +7,7 @@ const RECEIVE_ITEMS = 'RECEIVE_ITEMS'
 const INSERT_ITEM = 'INSERT_ITEM'
 const REMOVE_ITEM = 'REMOVE_ITEM'
 const UPDATE_ITEM = 'UPDATE_ITEM'
+const SAVE_ITEMS = 'SAVE_ITEMS'
 
 const gotItems = items => ({
   type: RECEIVE_ITEMS,
@@ -29,6 +30,11 @@ const updatedItem = (itemId, itemData) => ({
   itemData
 })
 
+const savedItems = items => ({
+  type: SAVE_ITEMS,
+  items
+})
+
 export const getItems = listId => async dispatch => {
   try {
     const {data} = await axios.get(`/api/items/${listId}`)
@@ -49,7 +55,7 @@ export const addItem = itemData => async dispatch => {
 
 export const removeItem = id => async dispatch => {
   try {
-    await axios.delete(`/api/items/${id}`)
+    await axios.get(`/api/items/${id}`)
     dispatch(removedItem(id))
   } catch(err) {
     console.error(err)
@@ -67,7 +73,16 @@ export const updateItem = (id, itemData) => async dispatch => {
 
 export const saveItems = listId => async dispatch => {
   try {
-    await axios.put(`/api/items/${listId}`)
+    const items = await axios.put(`/api/items/${listId}`)
+    dispatch(savedItems(items))
+  } catch(err) {
+    console.error(err)
+  }
+}
+
+export const cancelUpdate = listId => async dispatch => {
+  try {
+    await axios.delete(`/api/items/${listId}/cancel`)
   } catch(err) {
     console.error(err)
   }
@@ -89,7 +104,9 @@ const itemsReducer = (state = initialState, action) => {
           item = action.itemData
         }
         return item
-      })    
+      })
+    case SAVE_ITEMS:
+      return action.items      
     default:
       return state
   }

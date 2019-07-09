@@ -59,6 +59,7 @@ router.put('/:listId', async (req, res, next) => {
         saved: true
       })
     })
+    res.json(items)
   } catch(err) {
     console.error(err)
   }
@@ -87,6 +88,20 @@ router.delete('/:itemId', async (req, res, next) => {
       }
     })
     res.json(item)
+  } catch(err) {
+    console.error(err)
+  }
+})
+
+router.delete('/:listId/cancel', async (req, res, next) => {
+  const {listId} = req.params
+  try {
+    await Item.destroy({
+      where:{
+        saved: false,
+        listId
+      }
+    })
   } catch(err) {
     console.error(err)
   }
