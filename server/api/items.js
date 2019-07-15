@@ -47,11 +47,11 @@ router.post('/', async ({body}, res, next) => {
 // })
 
 router.put('/:listId', async (req, res, next) => {
-  const {listId} = req.params
+  // const {listId} = req.params
   try {
     const items = await Item.findAll({
       where: {
-        listId
+        listId: req.params.listId
       }
     })
     items.forEach(item => {

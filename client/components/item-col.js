@@ -40,7 +40,7 @@ class ItemCol extends Component {
         <form className='item-form' onSubmit={handleSubmit}>
          <input
             type='text' name={name}
-            value={this.state[name] || this.props.input}
+            value={this.state[name] || ''}
             onChange={handleChange}
           />
        </form>
