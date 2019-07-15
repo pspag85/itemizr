@@ -5,7 +5,7 @@ import UserPage from './user-page'
 import AddItem from './add-item'
 import EditItem from './edit-item'
 import ColHeader from './col-header'
-import {getList, getItems, addItem, destroyItem, saveItems, cancelUpdate} from '../store'
+import {getList, getItems, addItem, removeItem, saveItems, cancelUpdate} from '../store'
 import '../css/edit-items.css'
 
 class EditItems extends Component {
@@ -39,7 +39,7 @@ class EditItems extends Component {
             <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
           </div>      
           <div className='edit-items-container bg-white box-shadow'>
-            {!items ? null
+            {!Array.isArray(items) ? null
             :items.map(({id, name, onHand, par, orderQty}, index) => (
               <EditItem
                 key={id + name}
@@ -69,7 +69,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   getCurrentList: id => dispatch(getList(id)),
   loadItems: listId => dispatch(getItems(listId)),
   createItem: () => dispatch(addItem()),
-  deleteItem: id => dispatch(destroyItem(id)),
+  deleteItem: id => dispatch(removeItem(id)),
   saveChanges: listId => dispatch(saveItems(listId)),
   cancelChanges: listId => dispatch(cancelUpdate(listId))
 })

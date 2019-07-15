@@ -16,7 +16,6 @@ const EditItem = ({id, name, onHand, par, orderQty, deleteItem, putItem}) => {
     const value = event.target.querySelector('input').value //The Document method querySelector() returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned.
     const itemData = {...values}
     const item = putItem(id, itemData)
-    console.log('item:  ', item)
     if(item) {
       $(() => {$('input').blur()})
     }

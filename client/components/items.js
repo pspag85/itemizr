@@ -37,7 +37,7 @@ class Items extends Component {
           <div className='col-header row'>
             <ColHeader num={'four'} headers={['Name', 'On Hand', 'Par', 'Order Qty']} />
           </div>
-          {items.length < 1 ? null
+          {!Array.isArray(items) ? null
           : <div className='items-container box-shadow'>
               {items.map(({id, name, onHand, par, orderQty}, index) => (
                 <Item

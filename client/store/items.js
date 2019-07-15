@@ -1,12 +1,12 @@
 import {createStore, applyMiddleware} from 'redux'
 import loggerMiddleware from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
+import history from '../history'
 import axios from 'axios'
 
 const RECEIVE_ITEMS = 'RECEIVE_ITEMS'
 const INSERT_ITEM = 'INSERT_ITEM'
 const REMOVE_ITEM = 'REMOVE_ITEM'
-const UPDATE_ITEM = 'UPDATE_ITEM'
 const SAVE_ITEMS = 'SAVE_ITEMS'
 
 const gotItems = items => ({
@@ -22,12 +22,6 @@ const addedItem = item => ({
 const removedItem = itemId => ({
   type: REMOVE_ITEM,
   itemId
-})
-
-const updatedItem = (itemId, itemData) => ({
-  type: UPDATE_ITEM,
-  itemId,
-  itemData
 })
 
 const savedItems = items => ({
@@ -55,17 +49,8 @@ export const addItem = itemData => async dispatch => {
 
 export const removeItem = id => async dispatch => {
   try {
-    await axios.get(`/api/items/${id}`)
+    await axios.delete(`/api/items/${id}`)
     dispatch(removedItem(id))
-  } catch(err) {
-    console.error(err)
-  }
-}
-
-export const updateItem = (id, itemData) => async dispatch => {
-  try {
-    await axios.put(`/api/items/${id}`, itemData)
-    dispatch(updatedItem(id, itemData))
   } catch(err) {
     console.error(err)
   }
@@ -75,6 +60,7 @@ export const saveItems = listId => async dispatch => {
   try {
     const items = await axios.put(`/api/items/${listId}`)
     dispatch(savedItems(items))
+    history.push(`/lists/${listId}`)
   } catch(err) {
     console.error(err)
   }
@@ -98,13 +84,6 @@ const itemsReducer = (state = initialState, action) => {
       return [...state, action.item]
     case REMOVE_ITEM:
       return state.filter(eachItem => eachItem.id !== action.itemId)
-    case UPDATE_ITEM:
-      return state.map((item, idx, arr) => {
-        if(item.id === action.itemId) {
-          item = action.itemData
-        }
-        return item
-      })
     case SAVE_ITEMS:
       return action.items      
     default:
