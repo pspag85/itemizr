@@ -28,6 +28,8 @@ class EditItems extends Component {
   render() {
     const {cancelEdit} = this
     const {currentList, items, logoutUser, deleteItem, saveChanges} = this.props
+        console.log('items: ', items)
+
     return currentList ? (
       <Fragment>
         <UserPage />
@@ -55,7 +57,7 @@ class EditItems extends Component {
           </div>
           <div className='save'>
             <h4 className='cancel' onClick={cancelEdit}>CANCEL</h4>
-            <button className='save-button pointer' onClick={() => saveChanges(currentList.id)}>SAVE CHANGES</button>
+            <button className='save-button pointer' onClick={() => saveChanges(currentList.id, this.props.items)}>SAVE CHANGES</button>
           </div>
         </div>
       </Fragment>
@@ -70,7 +72,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   loadItems: listId => dispatch(getItems(listId)),
   createItem: () => dispatch(addItem()),
   deleteItem: id => dispatch(removeItem(id)),
-  saveChanges: listId => dispatch(saveItems(listId)),
+  saveChanges: (listId, items) => dispatch(saveItems(listId, items)),
   cancelChanges: listId => dispatch(cancelUpdate(listId))
 })
 

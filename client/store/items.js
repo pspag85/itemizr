@@ -38,9 +38,8 @@ export const getItems = listId => async dispatch => {
   }
 }
 
-export const addItem = itemData => async dispatch => {
+export const addItem = data => async dispatch => {
   try {
-    const {data} = await axios.post(`/api/items`, itemData)
     dispatch(addedItem(data))
   } catch(err) {
     console.error(err)
@@ -49,17 +48,19 @@ export const addItem = itemData => async dispatch => {
 
 export const removeItem = id => async dispatch => {
   try {
-    await axios.delete(`/api/items/${id}`)
     dispatch(removedItem(id))
   } catch(err) {
     console.error(err)
   }
 }
 
-export const saveItems = listId => async dispatch => {
+export const saveItems = (listId, items) => async dispatch => {
+  console.log('items: ', items)
   try {
-    const items = await axios.put(`/api/items/${listId}`)
-    dispatch(savedItems(items))
+    await axios.delete(`/api/items/${listId}`)
+    const {data} = await axios.post(`/api/items`, items)
+    console.log('items in store: ', data)
+    dispatch(savedItems(data))
     history.push(`/lists/${listId}`)
   } catch(err) {
     console.error(err)
@@ -68,7 +69,7 @@ export const saveItems = listId => async dispatch => {
 
 export const cancelUpdate = listId => async dispatch => {
   try {
-    await axios.delete(`/api/items/${listId}/cancel`)
+    console.log('changes canceled')
   } catch(err) {
     console.error(err)
   }
@@ -79,7 +80,7 @@ const initialState = []
 const itemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ITEMS:
-      return action.items.filter(item => item.saved)
+      return action.items
     case INSERT_ITEM:
       return [...state, action.item]
     case REMOVE_ITEM:

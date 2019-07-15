@@ -16,14 +16,6 @@ const Lists = withRouter(class extends Component {
     const lists = loadLists()
   }
 
-  // clearQuantities = async () => {
-  //   try{
-  //     await lists.put(`/api/items`)
-  //   } catch(err) {
-  //     console.error(err)
-  //   }
-  // }
-
   render() {
     const {handleClick} = this
     const {user, lists, createList, deleteList} = this.props
