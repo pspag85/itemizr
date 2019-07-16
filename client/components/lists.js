@@ -27,20 +27,24 @@ const Lists = withRouter(class extends Component {
           <div id='lists-header' className='row'>
             <h3>MY LISTS</h3>
           </div>
-          <div className='col-header row'>
-            <ColHeader colNum={'three'} headers={['DATE', 'LIST NAME', 'LAST EDITED BY']}/>
-          </div>
-          <div className='lists-container box-shadow'>
-            {lists && lists.map(({id, name, date, lastEditedBy}, index) => (
-              <List key={id + date}
-                id={id}
-                name={name}
-                date={date}
-                deleteList={deleteList}
-                lastEditedBy={lastEditedBy || user.username}
-              />
-            ))}
-          </div>
+          {lists.length < 1 ? <h4>Start by creating your first list</h4>
+          : <Fragment>
+              <div className='col-header row'>
+                <ColHeader colNum={'three'} headers={['DATE', 'LIST NAME', 'LAST EDITED BY']}/>
+              </div>
+              <div className='lists-container box-shadow'>
+                {Array.isArray(lists) && lists.map(({id, name, date, lastEditedBy}, index) => (
+                  <List key={id + date}
+                    id={id}
+                    name={name}
+                    date={date}
+                    deleteList={deleteList}
+                    lastEditedBy={lastEditedBy || user.username}
+                  />
+                ))}
+              </div>
+            </Fragment>
+          }
         </div>
       </Fragment>
     )
