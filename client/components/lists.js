@@ -28,7 +28,7 @@ const Lists = withRouter(class extends Component {
           </div>
           {lists.length < 1 ? <h4>Start by creating your first list</h4>
           : <Fragment>
-              <div className='col-header row'>
+              <div className='col-header row secondary-txt'>
                 <ColHeader colNum={'three'} headers={['DATE', 'LIST NAME', 'LAST EDITED BY']}/>
               </div>
               <div className='lists-container box-shadow'>

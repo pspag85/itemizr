@@ -35,7 +35,7 @@ class EditItems extends Component {
           <div className='header row font-20'>
           <h3>{currentList.name}</h3>     
           </div>        
-          <div className='col-header row'>
+          <div className='col-header row secondary-txt'>
             <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
           </div>      
           <div className='edit-items-container bg-white box-shadow'>
@@ -54,8 +54,8 @@ class EditItems extends Component {
             <AddItem listId={currentList.id}/>
           </div>
           <div className='save'>
-            <h4 className='cancel' onClick={cancelEdit}>CANCEL</h4>
-            <button className='save-button pointer' onClick={() => saveChanges(currentList.id, items)}>SAVE CHANGES</button>
+            <button className='action-btn white bg-blue pointer' onClick={() => saveChanges(currentList.id, items)}>SAVE CHANGES</button>
+            <h4 className='cancel-btn pointer light-font' onClick={cancelEdit}>CANCEL</h4>
           </div>
         </div>
       </Fragment>

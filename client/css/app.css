@@ -61,7 +61,7 @@ a {
   width: 100%;
 }
 
-.col-header {
+.secondary-txt {
   opacity: .3;
 }
 
@@ -117,7 +117,7 @@ a {
   border: 1px solid #BDBBC2;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .add-container {
@@ -177,7 +177,15 @@ a {
   flex-direction: column;
 }
 
-.order-btn {
+.cancel-btn {
+  color: red;
+  float: right;
+  font-size: 20px;
+  padding: .2em 1em .2em 1em;
+  margin: 78px 40px 0 0;
+}
+
+.action-btn {
   float: right;
   font-size: 20px;
   padding: .2em 1em .2em 1em;

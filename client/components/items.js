@@ -34,7 +34,7 @@ class Items extends Component {
               <img src='/img/edit-btn.png' className='edit-btn' />
             </Link>       
           </div>
-          <div className='col-header row'>
+          <div className='col-header row secondary-txt'>
             <ColHeader num={'four'} headers={['Name', 'On Hand', 'Par', 'Order Qty']} />
           </div>
           {!Array.isArray(items) ? null
@@ -52,7 +52,7 @@ class Items extends Component {
             </div>
           }
         </div>
-        <Link to={`/lists/${currentList.id}/order`} className='order-btn white bg-blue'>ORDER</Link>
+        <Link to={`/lists/${currentList.id}/order`} className='action-btn white bg-blue pointer'>ORDER</Link>
       </Fragment>
     ) : null
   }

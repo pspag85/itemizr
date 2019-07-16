@@ -1,0 +1,10 @@
+.list-form {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.list-form * {
+  margin: 20px;
+  width: 12em;
+}

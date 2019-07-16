@@ -26,10 +26,11 @@ const CreateList = ({createList, history}) => {
         <div className='header row font-20'>
           <h3>CREATE LIST</h3>
         </div>
-        <div className='edit-items-container bg-white box-shadow'>
-          <form className='item-form' onSubmit={handleClick}>
-            <label>LIST NAME</label>
+        <div className='bg-white box-shadow'>
+          <form className='list-form' onSubmit={handleClick}>
+            <label className='secondary-txt'>LIST NAME</label>
             <input
+              className='bg-white box-shadow font-20'
               type='text'
               value={listName}
               onChange={handleChange}
@@ -37,8 +38,8 @@ const CreateList = ({createList, history}) => {
           </form>
         </div>
         <div className='save'>
-          <Link to='/lists' className='cancel'>CANCEL</Link>
-          <button className='save-button pointer' onClick={handleClick}>CREATE</button>
+          <button className='action-btn white bg-blue pointer' onClick={handleClick}>CREATE</button>        
+          <Link to='/lists' className='cancel-btn pointer light-font'>CANCEL</Link>
         </div>
       </div>
     </div>
