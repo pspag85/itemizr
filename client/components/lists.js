@@ -1,9 +1,8 @@
 import React, {Component, Fragment} from 'react'
 import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-const axios = require('axios')
 import UserPage from './user-page'
-import CreateList from './create-list'
+import CreateListButton from './create-list-button'
 import List from './list'
 import ColHeader from './col-header'
 import {getLists, addList, removeList, getItems, saveList} from '../store'
@@ -18,11 +17,11 @@ const Lists = withRouter(class extends Component {
 
   render() {
     const {handleClick} = this
-    const {user, lists, createList, deleteList} = this.props
+    const {user, lists, deleteList} = this.props
     return (
       <Fragment>
         <UserPage navbar={true}/>
-        <CreateList handleClick={createList}/>
+        <CreateListButton />
         <div id='lists-body' className='wdth-73'>
           <div id='lists-header' className='row'>
             <h3>MY LISTS</h3>

@@ -8,6 +8,7 @@ import Login from './components/login'
 import UserPage from './components/user-page'
 import Users from './components/users'
 import Lists from './components/lists'
+import CreateList from './components/create-list'
 import Items from './components/items'
 import EditItems from './components/edit-items'
 import OrderItems from './components/order-items'
@@ -30,6 +31,7 @@ const App = withRouter(class extends Component {
     return (
       <Fragment>
         <Switch>
+          <Route exact path='/lists/create' component={CreateList} />
           <Route exact path='/lists/:listId' component={Items} />/>
           <Route exact path='/lists/:listId/edit' component={EditItems} />
           <Route exact path='/lists/:listId/order' component={OrderItems} />

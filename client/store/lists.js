@@ -47,10 +47,11 @@ export const getLists = () => async dispatch => {
   }
 }
 
-export const addList = () => async dispatch => {
+export const addList = name => async dispatch => {
   try {
     const {data} = await axios.post(`/api/lists`, {
-        date: Date.now()
+        date: Date.now(),
+        name
       }
     )
     dispatch(addedList(data))

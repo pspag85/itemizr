@@ -7,8 +7,7 @@ const List = db.define('lists', {
     defaultValue: Date.now()
   },
   name: {
-    type: Sequelize.STRING,
-    defaultValue: 'MY LIST'
+    type: Sequelize.STRING
   },
   lastEditedBy: {
     type: Sequelize.TEXT
