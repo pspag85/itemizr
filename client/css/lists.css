@@ -1,10 +1,9 @@
-#lists-header {
+#lists-body .header {
   margin-right: 36px;
-  padding: 18px 0 36px 0;
   border: none;
 }
 
-#lists-header *:not(:last-child) {
+#lists-body .header *:not(:last-child) {
   flex-basis: 50%;
 }
 

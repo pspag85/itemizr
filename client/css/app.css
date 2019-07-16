@@ -11,12 +11,21 @@ a {
   text-decoration: none;
 }
 
+.header {
+  margin: -10px 0 0 0;
+  padding: 26px 0 36px 4px;
+  font-size: ;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
 .row {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-start;
-  border-bottom: 1px solid #BDBBC2;
 }
 
 .wdth-73 {
@@ -25,11 +34,19 @@ a {
   margin-right: 40px;
 }
 
+.margin-40 {
+  margin: 40px;
+  margin-top: 0;
+}
+
 .column {
   text-align: left;
-  padding-left: 4px;
   flex-wrap: nowrap;
   display: inline-flex;
+}
+
+.column h4 {
+  padding-left: 4px;
 }
 
 .column:not(:last-child) {

@@ -32,7 +32,7 @@ class EditItems extends Component {
       <Fragment>
         <UserPage />
         <div id='edit-items-body'>
-          <div id='items-header' className='row'>
+          <div className='header row font-20'>
           <h3>{currentList.name}</h3>     
           </div>        
           <div className='col-header row'>

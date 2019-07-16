@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addList} from '../store'
+import UserPage from './user-page'
+import '../css/create-list.css'
 
 const CreateList = ({createList, history}) => {
 
@@ -19,19 +21,25 @@ const CreateList = ({createList, history}) => {
    
   return (
     <div>
-      <div className='edit-items-container bg-white box-shadow'>
-        <form className='item-form' onSubmit={handleClick}>
-          <label>LIST NAME</label>
-          <input
-            type='text'
-            value={listName}
-            onChange={handleChange}
-          />
-        </form>
-      </div>
-      <div className='save'>
-        <Link to='/lists' className='cancel'>CANCEL</Link>
-        <button className='save-button pointer' onClick={handleClick}>CREATE</button>
+      <UserPage />
+      <div className='margin-40'>
+        <div className='header row font-20'>
+          <h3>CREATE LIST</h3>
+        </div>
+        <div className='edit-items-container bg-white box-shadow'>
+          <form className='item-form' onSubmit={handleClick}>
+            <label>LIST NAME</label>
+            <input
+              type='text'
+              value={listName}
+              onChange={handleChange}
+            />
+          </form>
+        </div>
+        <div className='save'>
+          <Link to='/lists' className='cancel'>CANCEL</Link>
+          <button className='save-button pointer' onClick={handleClick}>CREATE</button>
+        </div>
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import CreateList from './create-list'
+import CreateListButton from './create-list-button'
 import UserPage from './user-page'
 import AddItem from './add-item'
 import Item from './item'
@@ -25,9 +25,9 @@ class Items extends Component {
     return currentList ? (
       <Fragment>
         <UserPage navbar={true}/>
-        <CreateList />
+        <CreateListButton />
         <div id='items-body' className='wdth-73'>
-          <div id='items-header' className='row'>
+          <div className='header row font-20'>
             <h3>{currentList.name}</h3>
             <div></div>
             <Link to={`/lists/${currentList.id}/edit`} >

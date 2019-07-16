@@ -23,7 +23,7 @@ const Lists = withRouter(class extends Component {
         <UserPage navbar={true}/>
         <CreateListButton />
         <div id='lists-body' className='wdth-73'>
-          <div id='lists-header' className='row'>
+          <div className='header row font-20'>
             <h3>MY LISTS</h3>
           </div>
           {lists.length < 1 ? <h4>Start by creating your first list</h4>

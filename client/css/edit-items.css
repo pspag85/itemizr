@@ -1,15 +1,8 @@
-#edit-items-header {
-  width: 93.6%;
-  margin: -10px 0 0 40px;
-  padding-left: 4px;
-  border: none;
-}
-
-#edit-items-header *:not(:last-child) {
+#edit-items-body .header *:not(:last-child) {
   flex-basis: 50%;
 }
 
-#edit-items-header a {
+#edit-items-body .header a {
   padding-right: 10px;
   color: black;
   text-decoration: none;
