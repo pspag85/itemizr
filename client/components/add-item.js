@@ -22,22 +22,18 @@ class AddItem extends Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  handleSubmit = async event => {
+  handleSubmit = event => {
     event.preventDefault()
     const {name, onHand, par, orderQty} = event.target
     const {createItem, listId} = this.props
-    try {
-      const item = await createItem({
-        name: name.value,
-        onHand: onHand.value,
-        par: par.value,
-        orderQty: orderQty.value,
-        listId: listId
-      })
-      this.setState({open: false})
-    } catch(err) {
-      console.error(err)
-    }
+    createItem({
+      name: name.value,
+      onHand: onHand.value,
+      par: par.value,
+      orderQty: orderQty.value,
+      listId: listId
+    })
+    this.setState({open: false})
   }
 
   render(){

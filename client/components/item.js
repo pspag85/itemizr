@@ -4,16 +4,16 @@ import ItemCol from './item-col'
 var Item = ({id, name, onHand, par, orderQty}) => (
   <div className='item row'>
     <div className='column'>
-      <ItemCol input='name' name={name} id={id} />
+      <ItemCol input='name' value={name} id={id} />
     </div>
     <div className='column'>
-      <ItemCol input='onHand' onHand={onHand} id={id} />
+      <ItemCol input='onHand' value={onHand} id={id} />
     </div>
     <div className='column'>
-      <ItemCol input='par' par={par} id={id} />
+      <ItemCol input='par' value={par} id={id} />
     </div>
     <div className='column'>
-      <ItemCol input='orderQty' orderQty={orderQty} id={id} />
+      <ItemCol input='orderQty' value={orderQty} id={id} />
     </div>
   </div>
 )
