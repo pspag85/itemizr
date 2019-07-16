@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import UserPage from './user-page'
+import AddItemButton from './add-item-button'
 import AddItem from './add-item'
 import EditItem from './edit-item'
 import ColHeader from './col-header'
@@ -33,12 +34,13 @@ class EditItems extends Component {
         <UserPage />
         <div id='edit-items-body'>
           <div className='header row font-20'>
-          <h3>{currentList.name}</h3>     
+          <h3>{currentList.name}</h3>
           </div>        
           <div className='col-header row secondary-txt'>
             <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
           </div>      
           <div className='edit-items-container bg-white box-shadow'>
+            <AddItem listId={currentList.id} open={true} />
             {!Array.isArray(items) ? null
             :items.map(({id, name, onHand, par, orderQty}, index) => (
               <EditItem
@@ -51,7 +53,7 @@ class EditItems extends Component {
                 deleteItem={deleteItem}
               />
             ))}
-            <AddItem listId={currentList.id}/>
+            <AddItemButton />
           </div>
           <div className='save'>
             <button className='action-btn white bg-blue pointer' onClick={() => saveChanges(currentList.id, items)}>SAVE CHANGES</button>

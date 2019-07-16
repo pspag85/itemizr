@@ -7,15 +7,21 @@ import '../css/add-item.css'
 
 class AddItem extends Component {
   state = {
-    open: false,
+    open: true,
     name: '',
     onHand: 0,
     par: 0,
     orderQty: 0
   }
 
-  handleClick = () => {
-    this.setState({open: true})
+  componentDidMount() {
+    const {items, newItem, open} = this.props
+    if(items.length > 0) {
+      this.setState({open: false})
+    }
+    if(newItem) {
+      this.setState({open})      
+    }
   }
 
   handleChange = event => {
@@ -37,21 +43,16 @@ class AddItem extends Component {
   }
 
   render(){
-    const {handleSubmit, handleChange, handleClick} = this
+    const {handleSubmit, handleChange} = this
     const {open} = this.state
     return(
       <div>
-        {open ? (
+        {open && (
           <AddItemForm
             handleSubmit={handleSubmit}
             handleChange={handleChange}
             item={this.state}
           />
-        ):(
-          <div id='add-item' className='add-item pointer row' onClick={handleClick} >
-            <img className='add-item-btn' src='/img/add.png' />
-            <h5> Add new item </h5>
-          </div>
         )}
       </div>
     )

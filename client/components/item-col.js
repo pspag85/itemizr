@@ -22,10 +22,7 @@ class ItemCol extends Component {
     const {value} = event.target//The Document method querySelector() returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned.
     const itemData = {}
     itemData[input] = value
-    const item = putItem(id, itemData)
-    if(item) {
-      $(() => {$('input').blur()})
-    }
+    putItem(id, itemData)
   }
 
   render(){
