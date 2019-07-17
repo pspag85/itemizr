@@ -7,21 +7,10 @@ import '../css/add-item.css'
 
 class AddItem extends Component {
   state = {
-    open: true,
     name: '',
     onHand: 0,
     par: 0,
     orderQty: 0
-  }
-
-  componentDidMount() {
-    const {items, newItem, open} = this.props
-    if(items.length > 0) {
-      this.setState({open: false})
-    }
-    if(newItem) {
-      this.setState({open})      
-    }
   }
 
   handleChange = event => {
@@ -31,7 +20,7 @@ class AddItem extends Component {
   handleSubmit = event => {
     event.preventDefault()
     const {name, onHand, par, orderQty} = event.target
-    const {createItem, listId} = this.props
+    const {createItem, listId, closeForm} = this.props
     createItem({
       name: name.value,
       onHand: onHand.value,
@@ -39,12 +28,12 @@ class AddItem extends Component {
       orderQty: orderQty.value,
       listId: listId
     })
-    this.setState({open: false})
+    closeForm()
   }
 
   render(){
     const {handleSubmit, handleChange} = this
-    const {open} = this.state
+    const {open} = this.props
     return(
       <div>
         {open && (

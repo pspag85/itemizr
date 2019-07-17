@@ -10,6 +10,9 @@ import {getList, getItems, addItem, removeItem, saveItems, cancelUpdate} from '.
 import '../css/edit-items.css'
 
 class EditItems extends Component {
+  state = {
+    open: false
+  }
   
   componentDidMount() {
     const {user, getCurrentList, loadItems, history, location} = this.props
@@ -20,6 +23,16 @@ class EditItems extends Component {
     loadItems(listId)
   }
 
+  openForm = () => {
+    console.log('open form')
+    this.setState({open: true})
+  }
+
+  closeForm = () => {
+    console.log('updating')
+    this.setState({open: false})
+  }
+
   cancelEdit = () => {
     const {currentList, cancelChanges, history} = this.props
     cancelChanges(currentList.id)
@@ -27,8 +40,11 @@ class EditItems extends Component {
   }
 
   render() {
-    const {cancelEdit} = this
+    const {openForm, closeForm, cancelEdit} = this
+    const {open} = this.state
     const {currentList, items, logoutUser, deleteItem, saveChanges} = this.props
+    const itemsArr = !Array.isArray(items) ? [] : items
+    const formState = items.length < 1 ? true : open
     return currentList ? (
       <Fragment>
         <UserPage />
@@ -40,9 +56,7 @@ class EditItems extends Component {
             <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
           </div>      
           <div className='edit-items-container bg-white box-shadow'>
-            <AddItem listId={currentList.id} open={true} />
-            {!Array.isArray(items) ? null
-            :items.map(({id, name, onHand, par, orderQty}, index) => (
+            {itemsArr.map(({id, name, onHand, par, orderQty}, index) => (
               <EditItem
                 key={id + name}
                 id={id}
@@ -53,7 +67,8 @@ class EditItems extends Component {
                 deleteItem={deleteItem}
               />
             ))}
-            <AddItemButton />
+            {formState && <AddItem listId={currentList.id} closeForm={closeForm} open={formState} />}
+            <AddItemButton listId={currentList.id} openForm={openForm} />
           </div>
           <div className='save'>
             <button className='action-btn white bg-blue pointer' onClick={() => saveChanges(currentList.id, items)}>SAVE CHANGES</button>
