@@ -21,7 +21,7 @@ const Items = withRouter(class extends Component {
   }
 
   render() {
-    const {items, currentList, deleteItem, orderPage} = this.props
+    const {items, currentList, deleteItem, selectItem, orderPage} = this.props
     return currentList ? (
       <Fragment>
         <UserPage navbar={true}/>
@@ -58,6 +58,8 @@ const Items = withRouter(class extends Component {
                   onHand={onHand}
                   par={par}
                   orderQty={orderQty}
+                  orderPage={orderPage}
+                  selectItem={selectItem}
                 />
               ))}
             </div>
