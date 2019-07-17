@@ -16,7 +16,6 @@ const Lists = withRouter(class extends Component {
   }
 
   render() {
-    const {handleClick} = this
     const {user, lists, deleteList} = this.props
     return (
       <Fragment>

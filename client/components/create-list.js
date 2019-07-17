@@ -1,13 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {addList} from '../store'
+import {getLists, addList} from '../store'
 import UserPage from './user-page'
 import '../css/create-list.css'
 
-const CreateList = ({createList, history}) => {
+const CreateList = ({loadLists, lists, createList, history}) => {
 
   const [listName, setListName] = useState('')  
+
+  useEffect(() => {
+    loadLists()
+  }, [loadLists])
+
+  const listId = !lists[0] ? 1 : lists[0].id + 1
+  console.log('listId:  ', listId)
 
   const handleChange = evt => {
     const {name, value} = evt.target
@@ -16,7 +23,7 @@ const CreateList = ({createList, history}) => {
 
   const handleClick = () => {
     createList(listName)
-    history.push('/lists')
+    history.push(`/lists/${listId}/edit`)
   }
    
   return (
@@ -46,8 +53,11 @@ const CreateList = ({createList, history}) => {
   )
 }
 
+const mapStateToProps = ({lists}) => ({lists})
+
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  loadLists: () => dispatch(getLists()),
   createList: name => dispatch(addList(name))
 })
 
-export default connect(null, mapDispatchToProps)(CreateList)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateList)
