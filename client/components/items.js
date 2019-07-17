@@ -21,7 +21,8 @@ const Items = withRouter(class extends Component {
   }
 
   render() {
-    const {items, currentList, deleteItem, selectItem, orderPage} = this.props
+    const {items, currentList, deleteItem, selectItem, orderPage, selectAllItems, allSelected} = this.props
+    console.log('all:  ', allSelected)
     return currentList ? (
       <Fragment>
         <UserPage navbar={true}/>
@@ -32,7 +33,7 @@ const Items = withRouter(class extends Component {
             <div></div>
             {orderPage ?
               <Fragment>
-                <div onClick={() => console.log('selecting all')} >
+                <div onClick={selectAllItems} >
                   <img src='/img/select-all.png' className='font-20 flex-start' />
                 </div>
                 <Link to={`/lists/${currentList.id}`} className='clear flex-start'>
@@ -60,6 +61,7 @@ const Items = withRouter(class extends Component {
                   orderQty={orderQty}
                   orderPage={orderPage}
                   selectItem={selectItem}
+                  selected={allSelected}
                 />
               ))}
             </div>
