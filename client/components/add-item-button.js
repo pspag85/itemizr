@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import AddItem from './add-item'
 import '../css/add-item.css'
 
 const AddItemButton = ({listId, openForm}) => (
