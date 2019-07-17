@@ -9,7 +9,7 @@ import ColHeader from './col-header'
 import {getList, getItems, addItem, removeItem} from '../store'
 import '../css/items.css'
 
-class Items extends Component {
+const Items = withRouter(class extends Component {
 
   componentDidMount() {
     const {user, getCurrentList, loadItems, history, location} = this.props
@@ -21,7 +21,7 @@ class Items extends Component {
   }
 
   render() {
-    const {items, currentList, logoutUser, deleteItem, location} = this.props
+    const {items, currentList, deleteItem, orderPage} = this.props
     return currentList ? (
       <Fragment>
         <UserPage navbar={true}/>
@@ -30,15 +30,26 @@ class Items extends Component {
           <div className='header row font-20'>
             <h3>{currentList.name}</h3>
             <div></div>
-            <Link to={`/lists/${currentList.id}/edit`} >
-              <img src='/img/edit-btn.png' className='edit-btn' />
-            </Link>       
+            {orderPage ?
+              <Fragment>
+                <div onClick={() => console.log('selecting all')} >
+                  <img src='/img/select-all.png' className='font-20 flex-start' />
+                </div>
+                <Link to={`/lists/${currentList.id}`} className='clear flex-start'>
+                  &times;
+                </Link>  
+              </Fragment>         
+              :
+              <Link to={`/lists/${currentList.id}/edit`} >
+                <img src='/img/edit-btn.png' className='edit-btn flex-start' />
+              </Link>
+            }    
           </div>
           <div className='col-header row secondary-txt'>
-            <ColHeader num={'four'} headers={['Name', 'On Hand', 'Par', 'Order Qty']} />
+            <ColHeader num={'four'} headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
           </div>
           {!Array.isArray(items) ? null
-          : <div className='items-container box-shadow'>
+          : <div className='items-container box-shadow bg-white'>
               {items.map(({id, name, onHand, par, orderQty}, index) => (
                 <Item
                   key={id + name}
@@ -52,11 +63,11 @@ class Items extends Component {
             </div>
           }
         </div>
-        <Link to={`/lists/${currentList.id}/order`} className='action-btn white bg-blue pointer'>ORDER</Link>
+        {!orderPage && <Link to={`/lists/${currentList.id}/order`} className='action-btn white bg-blue pointer'>ORDER</Link>}
       </Fragment>
     ) : null
   }
-}
+})
 
 const mapStateToProps = ({user, lists, items}) => ({user, currentList: lists[0], items})
 

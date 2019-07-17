@@ -95,6 +95,10 @@ a {
   background: white;
 }
 
+.flex-start {
+  align-self: flex-start;
+}
+
 .nav-wdth {
   width: 20vw;
   min-width: 154px;
@@ -148,6 +152,10 @@ a {
 .alert {
   color: white;
   background-color: red;
+}
+
+.clear {
+  font-size: 44px;
 }
 
 .delete-list {

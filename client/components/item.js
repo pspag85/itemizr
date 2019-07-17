@@ -1,19 +1,18 @@
 import React from 'react'
-import ItemCol from './item-col'
 
-var Item = ({id, name, onHand, par, orderQty}) => (
+const Item = ({id, name, onHand, par, orderQty}) => (
   <div className='item row'>
     <div className='column'>
-      <ItemCol input='name' value={name} id={id} />
+      <h5>{name}</h5>
     </div>
     <div className='column'>
-      <ItemCol input='onHand' value={onHand} id={id} />
+      <h5>{onHand}</h5>
     </div>
     <div className='column'>
-      <ItemCol input='par' value={par} id={id} />
+      <h5>{par}</h5>
     </div>
     <div className='column'>
-      <ItemCol input='orderQty' value={orderQty} id={id} />
+      <h5>{orderQty}</h5>
     </div>
   </div>
 )
