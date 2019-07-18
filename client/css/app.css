@@ -39,6 +39,10 @@ a {
   margin-top: 0;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .column {
   text-align: left;
   flex-wrap: nowrap;

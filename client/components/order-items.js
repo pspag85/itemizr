@@ -28,7 +28,15 @@ const OrderItems = withRouter(({loadItems, items, getCurrentList, currentList, l
       return item
     })
     setCheckedItems(currentlyCheckedItems)
-    console.log(checkedItems)
+  }
+
+  const clearSelection = () => {
+    console.log('selecting all')
+    const currentlyCheckedItems = checkedItems.map(item => {
+      if(item.checked) item.checked = false
+      return item
+    })
+    setCheckedItems(currentlyCheckedItems)
   }
 
   const selectItem = (id, evt) => {
@@ -47,6 +55,7 @@ const OrderItems = withRouter(({loadItems, items, getCurrentList, currentList, l
       orderPage={true}
       selectAllItems={selectAllItems} 
       allSelected={checkedItems.every(({checked}) => checked)}
+      clearSelection={clearSelection}
     />
   )
 })
