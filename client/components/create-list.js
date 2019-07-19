@@ -11,7 +11,7 @@ const CreateList = ({loadLists, lists, initializeList, createList, deleteList, s
 
   useEffect(() => {
     initializeList()
-  }, [initializeList])
+  }, [])
 
   useEffect(() => {
     loadLists()
@@ -25,7 +25,7 @@ const CreateList = ({loadLists, lists, initializeList, createList, deleteList, s
   const handleClick = () => {
     const listId = lists[0].id
     createList(listId, listName)
-    saveChanges(listId, [{id: 1, listId}])
+    saveChanges(listId, [{listId}], true)
     history.push(`/lists/${listId}/edit`)
   }
 
@@ -69,7 +69,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   initializeList: () => dispatch(addList()),  
   createList: (id, name) => dispatch(addListName(id, name)),
   deleteList: id => dispatch(removeList(id)),
-  saveChanges: (listId, items) => dispatch(saveItems(listId, items))
+  saveChanges: (listId, items, isInit) => dispatch(saveItems(listId, items, isInit))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateList)

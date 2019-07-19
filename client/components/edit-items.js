@@ -85,7 +85,7 @@ class EditItems extends Component {
             <AddItemButton listId={currentList.id} handleClick={addNewItem} />
           </div>
           <div className='save'>
-            <button className='action-btn white bg-blue pointer' onClick={() => saveChanges(currentList.id, items)}>SAVE CHANGES</button>
+            <button className='action-btn white bg-blue pointer' onClick={() => saveChanges(currentList.id, itemsArr)}>SAVE CHANGES</button>
             <h4 className='cancel-btn pointer light-font' onClick={cancelEdit}>CANCEL</h4>
           </div>
         </div>
