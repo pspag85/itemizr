@@ -93,7 +93,7 @@ const initialState = []
 const listsReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_LIST:
-      const alreadyIn = state.some(eachList => eachList.id === action.list.id)
+      const alreadyIn = state.some(({id}) => id && id === action.list.id)
       if (alreadyIn) {
         return state.map(eachList => {
           if (eachList.id === action.list.id) {
