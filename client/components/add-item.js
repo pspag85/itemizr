@@ -18,6 +18,7 @@ class AddItem extends Component {
   }
 
   handleSubmit = event => {
+    console.log('evt:  ', event.target)
     event.preventDefault()
     const {name, onHand, par, orderQty} = event.target
     const {createItem, listId, closeForm} = this.props
@@ -32,14 +33,14 @@ class AddItem extends Component {
   }
 
   render(){
-    const {handleSubmit, handleChange} = this
+    const {handleChange, handleSubmit} = this
     const {open} = this.props
     return(
       <div>
         {open && (
           <AddItemForm
-            handleSubmit={handleSubmit}
             handleChange={handleChange}
+            handleSubmit={handleSubmit}
             item={this.state}
           />
         )}

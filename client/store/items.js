@@ -70,11 +70,11 @@ export const updateItem = (id, itemData) => async dispatch => {
 }
 
 export const saveItems = (listId, items) => async dispatch => {
-  console.log('items: ', items)
+  console.log('items arg in store: ', items, listId)
   try {
     await axios.delete(`/api/items/${listId}`)
     const {data} = await axios.post(`/api/items`, items)
-    console.log('items in store: ', data)
+    console.log('items data in store: ', data)
     dispatch(savedItems(data))
     history.push(`/lists/${listId}`)
   } catch(err) {

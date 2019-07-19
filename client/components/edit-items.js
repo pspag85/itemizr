@@ -33,6 +33,12 @@ class EditItems extends Component {
     this.setState({open: false})
   }
 
+  addNewItem = () => {
+    const {items, createItem} = this.props
+    const id = items[0].id + 1
+    createItem({id})
+  }
+
   cancelEdit = () => {
     const {currentList, cancelChanges, history} = this.props
     cancelChanges(currentList.id)
@@ -40,7 +46,7 @@ class EditItems extends Component {
   }
 
   render() {
-    const {openForm, closeForm, cancelEdit} = this
+    const {openForm, closeForm, addNewItem, cancelEdit} = this
     const {open} = this.state
     const {currentList, items, logoutUser, deleteItem, saveChanges} = this.props
     const itemsArr = !Array.isArray(items) ? [] : items
@@ -67,8 +73,16 @@ class EditItems extends Component {
                 deleteItem={deleteItem}
               />
             ))}
-            {formState && <AddItem listId={currentList.id} closeForm={closeForm} open={formState} />}
-            <AddItemButton listId={currentList.id} openForm={openForm} />
+            {formState &&
+              <EditItem
+                // id={1}
+                name={''}
+                onHand={''}
+                par={''}
+                orderQty={''}
+              />
+            }
+            <AddItemButton listId={currentList.id} handleClick={addNewItem} />
           </div>
           <div className='save'>
             <button className='action-btn white bg-blue pointer' onClick={() => saveChanges(currentList.id, items)}>SAVE CHANGES</button>
@@ -85,6 +99,7 @@ const mapStateToProps = ({user, lists, items}) => ({user, currentList: lists[0],
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getCurrentList: id => dispatch(getList(id)),
   loadItems: listId => dispatch(getItems(listId)),
+  createItem: itemData => dispatch(addItem(itemData)),
   deleteItem: id => dispatch(removeItem(id)),
   saveChanges: (listId, items) => dispatch(saveItems(listId, items)),
   cancelChanges: listId => dispatch(cancelUpdate(listId))

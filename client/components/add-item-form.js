@@ -8,7 +8,7 @@ const AddItemForm = ({handleChange, handleSubmit, item}) => {
           <input type='text' name='name' value={name} onChange={handleChange}/>
           <input type='text' name='onHand' value={onHand} onChange={handleChange}/>
           <input type='text' name='par' value={par} onChange={handleChange}/>
-          <input type='text' name='orderQty' value={orderQty} onChange={handleChange}/>
+          <input type='text' name='orderQty' value={orderQty} onChange={handleChange} onBlur={handleSubmit}/>
           <button type='submit'> + </button>
         </form>
       </div>

@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getLists, addList} from '../store'
+import {getLists, addList, saveItems} from '../store'
 import UserPage from './user-page'
 import '../css/create-list.css'
 
-const CreateList = ({loadLists, lists, createList, history}) => {
+const CreateList = ({loadLists, lists, createList, saveChanges, history}) => {
 
   const [listName, setListName] = useState('')  
 
@@ -14,7 +14,6 @@ const CreateList = ({loadLists, lists, createList, history}) => {
   }, [loadLists])
 
   const listId = !lists[0] ? 1 : lists[0].id + 1
-  console.log('listId:  ', listId)
 
   const handleChange = evt => {
     const {name, value} = evt.target
@@ -23,6 +22,7 @@ const CreateList = ({loadLists, lists, createList, history}) => {
 
   const handleClick = () => {
     createList(listName)
+    saveChanges(listId, [{id: 1, listId}])
     history.push(`/lists/${listId}/edit`)
   }
    
@@ -57,7 +57,8 @@ const mapStateToProps = ({lists}) => ({lists})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadLists: () => dispatch(getLists()),
-  createList: name => dispatch(addList(name))
+  createList: name => dispatch(addList(name)),
+  saveChanges: (listId, items) => dispatch(saveItems(listId, items))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateList)
