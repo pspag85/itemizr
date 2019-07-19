@@ -14,9 +14,25 @@ router.get('/:listId', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    const items = await Item.bulkCreate(req.body)
+    const lastItem = await Item.findOne({
+      order: [ ['id', 'DESC']]
+    })
+    const id = lastItem.id + 1
+    res.json(id)
+  } catch(err) {
+    console.error(err)
+  }
+})
+
+router.post('/', async (req, res, next) => {
+  const savedItems = req.body.map(item => {
+    delete id
+    return item
+  })
+  try {
+    const items = await Item.bulkCreate(savedItems)
     res.json(items)
   } catch(err) {
     console.error(err)

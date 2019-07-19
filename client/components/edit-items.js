@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import axios from 'axios'
 import UserPage from './user-page'
 import AddItemButton from './add-item-button'
 import AddItem from './add-item'
@@ -23,20 +24,20 @@ class EditItems extends Component {
     loadItems(listId)
   }
 
-  openForm = () => {
-    console.log('open form')
-    this.setState({open: true})
-  }
-
-  closeForm = () => {
-    console.log('updating')
-    this.setState({open: false})
-  }
-
-  addNewItem = () => {
-    const {items, createItem} = this.props
-    const id = items[0].id + 1
-    createItem({id})
+  addNewItem = async () => {
+    const {items, createItem, location} = this.props
+    const {pathname} = location
+    const listId = pathname.split('/')[2]
+    try {
+      const {data} = await axios.get('/api/items')
+      let id = data
+      items.forEach(item => {
+        if(item.id === id) id += 1
+      })
+      if(id) createItem({id, listId})
+    } catch(err) {
+      console.error(err)
+    }
   }
 
   cancelEdit = () => {
@@ -46,7 +47,7 @@ class EditItems extends Component {
   }
 
   render() {
-    const {openForm, closeForm, addNewItem, cancelEdit} = this
+    const {addNewItem, cancelEdit} = this
     const {open} = this.state
     const {currentList, items, logoutUser, deleteItem, saveChanges} = this.props
     const itemsArr = !Array.isArray(items) ? [] : items
@@ -64,7 +65,6 @@ class EditItems extends Component {
           <div className='edit-items-container bg-white box-shadow'>
             {itemsArr.map(({id, name, onHand, par, orderQty}, index) => (
               <EditItem
-                key={id + name}
                 id={id}
                 name={name}
                 onHand={onHand}
@@ -73,16 +73,7 @@ class EditItems extends Component {
                 deleteItem={deleteItem}
               />
             ))}
-            {formState &&
-              <EditItem
-                // id={1}
-                name={''}
-                onHand={''}
-                par={''}
-                orderQty={''}
-              />
-            }
-            <AddItemButton listId={currentList.id} handleClick={addNewItem} />
+            <AddItemButton listId={currentList.id} addNewItem={addNewItem} />
           </div>
           <div className='save'>
             <button className='action-btn white bg-blue pointer' onClick={() => saveChanges(currentList.id, itemsArr)}>SAVE CHANGES</button>

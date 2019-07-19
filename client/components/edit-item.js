@@ -1,19 +1,19 @@
 import React from 'react'
-import ItemCol from './item-col'
+import ItemInput from './item-input'
 
 var EditItem = ({id, name, onHand, par, orderQty, deleteItem}) => (
   <div className='item row'>
     <div className='column'>
-      <ItemCol input='name' value={name} id={id} />
+      <ItemInput input='name' value={name} id={id} />
     </div>
     <div className='column'>
-      <ItemCol input='onHand' value={onHand} id={id} />
+      <ItemInput input='onHand' value={onHand} id={id} />
     </div>
     <div className='column'>
-      <ItemCol input='par' value={par} id={id} />
+      <ItemInput input='par' value={par} id={id} />
     </div>
     <div className='column'>
-      <ItemCol input='orderQty' value={orderQty} id={id} />
+      <ItemInput input='orderQty' value={orderQty} id={id} />
     </div>
     <div onClick={() => deleteItem(id)} >
       <h4>&times;</h4>
