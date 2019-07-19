@@ -7,6 +7,7 @@ import history from '../history'
 const RECEIVE_LIST = 'RECEIVE_LIST'
 const RECEIVE_LISTS = 'RECEIVE_LISTS'
 const INSERT_LIST = 'INSERT_LIST'
+const INSERT_LIST_NAME = 'INSERT_LIST_NAME'
 const REMOVE_LIST = 'REMOVE_LIST'
 
 const gotList = list => ({
@@ -22,6 +23,11 @@ const gotLists = lists => ({
 const addedList = list => ({
   type: 'INSERT_LIST',
   list
+})
+
+const addedListName = listName => ({
+  type: 'INSERT_LIST_NAME',
+  listName
 })
 
 const removedList = listId => ({
@@ -47,7 +53,7 @@ export const getLists = () => async dispatch => {
   }
 }
 
-export const addList = name => async dispatch => {
+export const addList = () => async dispatch => {
   try {
     const {data} = await axios.post(`/api/lists`, {
         date: Date.now(),
@@ -55,6 +61,19 @@ export const addList = name => async dispatch => {
       }
     )
     dispatch(addedList(data))
+  } catch(err) {
+    console.error(err)
+  }
+}
+
+export const addListName = (id, name) => async dispatch => {
+  try {
+    const {data} = await axios.put(`/api/lists/${id}`, {
+        name
+      }
+    )
+    console.log(data)
+    dispatch(addedListName(data))
   } catch(err) {
     console.error(err)
   }
@@ -90,6 +109,13 @@ const listsReducer = (state = initialState, action) => {
       return action.lists
     case INSERT_LIST:
       return [...state, action.list]
+    case INSERT_LIST_NAME:
+      return state.map((list, idx, arr) => {
+        if(list.id === action.listId) {
+          list = Object.assign(list, action.listName)
+        }
+        return list
+      })         
     case REMOVE_LIST:
       return state.filter(eachList => eachList.id !== action.listId)
     default:

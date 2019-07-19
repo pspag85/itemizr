@@ -22,7 +22,6 @@ const Items = withRouter(class extends Component {
 
   render() {
     const {items, currentList, deleteItem, selectItem, orderPage, selectAllItems, allSelected, clearSelection} = this.props
-    console.log('all:  ', allSelected)
     return currentList ? (
       <Fragment>
         <UserPage navbar={true}/>

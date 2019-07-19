@@ -1,19 +1,21 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getLists, addList, saveItems} from '../store'
+import {getLists, addList, addListName, saveItems} from '../store'
 import UserPage from './user-page'
 import '../css/create-list.css'
 
-const CreateList = ({loadLists, lists, createList, saveChanges, history}) => {
+const CreateList = ({loadLists, lists, initializeList, createList, saveChanges, history}) => {
 
   const [listName, setListName] = useState('')  
 
   useEffect(() => {
+    initializeList()
+  }, [initializeList])
+
+  useEffect(() => {
     loadLists()
   }, [loadLists])
-
-  const listId = !lists[0] ? 1 : lists[0].id + 1
 
   const handleChange = evt => {
     const {name, value} = evt.target
@@ -21,7 +23,8 @@ const CreateList = ({loadLists, lists, createList, saveChanges, history}) => {
   }
 
   const handleClick = () => {
-    createList(listName)
+    const listId = lists[0].id
+    createList(listId, listName)
     saveChanges(listId, [{id: 1, listId}])
     history.push(`/lists/${listId}/edit`)
   }
@@ -57,7 +60,8 @@ const mapStateToProps = ({lists}) => ({lists})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadLists: () => dispatch(getLists()),
-  createList: name => dispatch(addList(name)),
+  initializeList: () => dispatch(addList()),  
+  createList: (id, name) => dispatch(addListName(id, name)),
   saveChanges: (listId, items) => dispatch(saveItems(listId, items))
 })
 

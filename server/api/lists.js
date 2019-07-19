@@ -38,6 +38,17 @@ router.post('/', async ({body, session}, res, next) => {
   }
 })
 
+router.put('/:id', async ({body, params}, res, next) => {
+  const {name} = body
+  try {
+    const list = await List.findById(params.id)
+    list.update({name})
+    res.json(list)
+  } catch(err) {
+    console.error(err)
+  }  
+})
+
 router.put('/', async ({session}, res, next) => {
   const {user} = session
   try {
