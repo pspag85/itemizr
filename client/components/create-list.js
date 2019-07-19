@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getLists, addList, addListName, saveItems} from '../store'
+import {getLists, addList, addListName, removeList, saveItems} from '../store'
 import UserPage from './user-page'
 import '../css/create-list.css'
 
-const CreateList = ({loadLists, lists, initializeList, createList, saveChanges, history}) => {
+const CreateList = ({loadLists, lists, initializeList, createList, deleteList, saveChanges, history}) => {
 
   const [listName, setListName] = useState('')  
 
@@ -28,6 +28,12 @@ const CreateList = ({loadLists, lists, initializeList, createList, saveChanges, 
     saveChanges(listId, [{id: 1, listId}])
     history.push(`/lists/${listId}/edit`)
   }
+
+  const cancel = () => {
+    const listId = lists[0].id
+    deleteList(listId)
+    history.push('/lists')
+  }
    
   return (
     <div>
@@ -49,7 +55,7 @@ const CreateList = ({loadLists, lists, initializeList, createList, saveChanges, 
         </div>
         <div className='save'>
           <button className='action-btn white bg-blue pointer' onClick={handleClick}>CREATE</button>        
-          <Link to='/lists' className='cancel-btn pointer light-font'>CANCEL</Link>
+          <button className='cancel-btn pointer light-font' onClick={cancel}>CANCEL</button>
         </div>
       </div>
     </div>
@@ -62,6 +68,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   loadLists: () => dispatch(getLists()),
   initializeList: () => dispatch(addList()),  
   createList: (id, name) => dispatch(addListName(id, name)),
+  deleteList: id => dispatch(removeList(id)),
   saveChanges: (listId, items) => dispatch(saveItems(listId, items))
 })
 
