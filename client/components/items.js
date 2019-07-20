@@ -21,7 +21,7 @@ const Items = withRouter(class extends Component {
   }
 
   render() {
-    const {items, currentList, deleteItem, selectItem, orderPage, selectAllItems, allSelected, clearSelection} = this.props
+    const {items, currentList, deleteItem, selectItem, orderPage, selectedItems, selectAllItems, allSelected, clearSelection} = this.props
     return currentList ? (
       <Fragment>
         <UserPage navbar={true}/>
@@ -66,7 +66,8 @@ const Items = withRouter(class extends Component {
                   orderQty={orderQty}
                   orderPage={orderPage}
                   selectItem={selectItem}
-                  selected={allSelected}
+                  selected={selectedItems.find(item => item.id === id).checked}
+                  allSelected={allSelected}
                 />
               ))}
             </div>

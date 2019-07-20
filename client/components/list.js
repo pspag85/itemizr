@@ -7,7 +7,7 @@ const List = ({id, date, name, lastEditedBy, deleteList}) => {
 
   const toggleMenu = () => setMenuState(!menuState)
 
-  return (
+  return id && (
     <Fragment>
       <div className='row bg-white'>
         <Link to={`/lists/${id}`} className='list-link'>
