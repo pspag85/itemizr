@@ -1,13 +1,14 @@
 const router = require('express').Router()
-const {List} = require('../db')
+const {Item, List} = require('../db')
 
-router.get('/', async (req, res, next) => {
+router.get('/:id/items', async (req, res, next) => {
   try {
-    const lists = await List.findAll({
-      where: {userId: req.session.userId},
-      order: [ ['id', 'DESC'], ['date', 'DESC'] ]
+    const items = await Item.findAll({
+      where: {
+        listId: req.params.id
+      }
     })
-    res.json(lists)
+    res.json(items)
   } catch(err) {
     console.error(err)
   }
@@ -20,6 +21,18 @@ router.get('/:id', async ({params}, res, next) => {
   } catch(err) {
     console.error(err)
   }  
+})
+
+router.get('/', async (req, res, next) => {
+  try {
+    const lists = await List.findAll({
+      where: {userId: req.session.userId},
+      order: [ ['id', 'DESC'], ['date', 'DESC'] ]
+    })
+    res.json(lists)
+  } catch(err) {
+    console.error(err)
+  }
 })
 
 router.post('/', async ({body, session}, res, next) => {
@@ -66,11 +79,25 @@ router.put('/', async ({session}, res, next) => {
   }
 })
 
-router.delete('/:listId', async (req, res, next) => {
+
+router.delete('/:id/items', async (req, res, next) => {
+  try {
+    const items = await Item.destroy({
+      where: {
+        listId: req.params.id
+      }
+    })
+    res.end()
+  } catch(err) {
+    console.error(err)
+  }
+})
+
+router.delete('/:id', async (req, res, next) => {
   try {
     const list = await List.destroy({
       where:{
-        id: req.params.listId
+        id: req.params.id
       }
     })
     res.json(list)
