@@ -11,10 +11,7 @@ import {getList, getItems, addItem, removeItem, saveItems, cancelUpdate} from '.
 import '../css/edit-items.css'
 
 class EditItems extends Component {
-  state = {
-    open: false
-  }
-  
+
   componentDidMount() {
     const {user, getCurrentList, loadItems, history, location} = this.props
     if(!user.id) history.push('/')
@@ -48,10 +45,8 @@ class EditItems extends Component {
 
   render() {
     const {addNewItem, cancelEdit} = this
-    const {open} = this.state
     const {currentList, items, logoutUser, deleteItem, saveChanges} = this.props
-    const itemsArr = !Array.isArray(items) ? [] : items
-    const formState = items.length < 1 ? true : open
+    const itemsArr = !Array.isArray(items) ? [{}] : items
     return currentList ? (
       <Fragment>
         <UserPage />

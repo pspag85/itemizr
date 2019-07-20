@@ -46,7 +46,7 @@ router.delete('/:listId', async (req, res, next) => {
         listId: req.params.listId
       }
     })
-    res.json(items)
+    res.end()
   } catch(err) {
     console.error(err)
   }
