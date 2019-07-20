@@ -66,7 +66,7 @@ const Items = withRouter(class extends Component {
                   orderQty={orderQty}
                   orderPage={orderPage}
                   selectItem={selectItem}
-                  selected={selectedItems.find(item => item.id === id).checked}
+                  selected={selectedItems && selectedItems.find(item => item.id === id).checked}
                   allSelected={allSelected}
                 />
               ))}
