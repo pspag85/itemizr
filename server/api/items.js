@@ -32,7 +32,8 @@ router.post('/', async (req, res, next) => {
     return item
   })
   try {
-    const items = await Item.bulkCreate(savedItems)
+    const items = await Item.bulkCreate(savedItems, {returning: true})
+    console.log('items**********:     ', items)
     res.json(items)
   } catch(err) {
     console.error(err)

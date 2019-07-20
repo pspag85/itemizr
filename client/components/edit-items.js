@@ -10,7 +10,7 @@ import ColHeader from './col-header'
 import {getList, getItems, addItem, removeItem, saveItems, cancelUpdate} from '../store'
 import '../css/edit-items.css'
 
-const EditItems = ({user, getCurrentList, currentList, loadItems, items, deleteItem, saveChanges, cancelChanges, history, location}) => {
+const EditItems = ({user, getCurrentList, currentList, loadItems, items, createItem, deleteItem, saveChanges, cancelChanges, history, location}) => {
   if(!user.id) history.push('/')
   const {pathname} = location
   const listId = pathname.split('/')[2]
@@ -42,6 +42,7 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, deleteI
   }
 
   const itemsArr = !Array.isArray(items) ? [{}] : items
+  console.log('items arr:  ', itemsArr)
   return currentList ? (
     <Fragment>
       <UserPage />
