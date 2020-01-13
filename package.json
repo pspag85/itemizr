@@ -12,7 +12,7 @@
   "author": "Patsy Spagnuolo & James Byrd",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "body-parser": "^1.18.3",
     "chalk": "^2.4.2",
     "css-loader": "^2.1.0",
