@@ -17,7 +17,7 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
 
   useEffect(() => {
     getCurrentList(listId)
-  }, [])
+  }, [getCurrentList])
 
   useEffect(() => {
     loadItems(listId)

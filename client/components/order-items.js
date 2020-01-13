@@ -22,7 +22,6 @@ const OrderItems = withRouter(({loadItems, items, getCurrentList, currentList, l
   const [checkedItems, setCheckedItems] = useState(itemsArr)
 
   const selectAllItems = () => {
-    console.log('selecting all')
     const currentlyCheckedItems = checkedItems.map(item => {
       if(!item.checked) item.checked = true
       return item
@@ -31,7 +30,6 @@ const OrderItems = withRouter(({loadItems, items, getCurrentList, currentList, l
   }
 
   const clearSelection = () => {
-    console.log('selecting all')
     const currentlyCheckedItems = checkedItems.map(item => {
       if(item.checked) item.checked = false
       return item

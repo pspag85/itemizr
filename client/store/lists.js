@@ -72,7 +72,6 @@ export const addListName = (id, name) => async dispatch => {
         name
       }
     )
-    console.log(data)
     dispatch(addedListName(data))
   } catch(err) {
     console.error(err)

@@ -29,7 +29,7 @@ const Lists = withRouter(({user, loadLists, lists, deleteList}) => {
             </div>
             <div className='lists-container box-shadow'>
               {Array.isArray(lists) && lists.map(({id = null, name, date, lastEditedBy}, index) => (
-                <List key={id + date}
+                <List key={Math.random() + id}
                   id={id}
                   name={name}
                   date={date}

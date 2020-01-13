@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemInput from './item-input'
 
-var EditItem = ({id, name, onHand, par, orderQty, deleteItem}) => (
+const EditItem = ({id, name, onHand, par, orderQty, deleteItem}) => (
   <div className='item row'>
     <div className='column'>
       <ItemInput input='name' value={name} id={id} />
