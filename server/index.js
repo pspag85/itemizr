@@ -13,8 +13,8 @@ const webpackConfig = require('../webpack.config');
 const compiler = webpack(webpackConfig);
 
 app.use(require("webpack-hot-middleware")(compiler, {
-  'log': false, 
-  'path': '/__webpack_hmr', 
+  'log': false,
+  'path': '/__webpack_hmr',
   'heartbeat': 10 * 1000
 }));
 
@@ -60,7 +60,7 @@ const init = (async () => {
   try {
     await db.sync({force: true})
     db.authenticate().then(() => console.log('Connected to the Database'))
-    app.listen(PORT, () => console.log(`Server Listening on ${PORT}`))
+    app.listen(PORT, () => console.log(`Server Listening on http://localhost:${PORT}`))
   } catch(err) {
     console.log('Error Syncing to Database')
     console.error(err)
