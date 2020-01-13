@@ -9,7 +9,7 @@ const ItemInput = ({input, id, value, putItem}) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    const {value} = event.target
+    const {value} = event.target.children[0]
     const itemData = {}
     itemData[input] = value
     putItem(id, itemData)

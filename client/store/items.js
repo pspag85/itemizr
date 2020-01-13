@@ -62,6 +62,7 @@ export const removeItem = id => async dispatch => {
 }
 
 export const updateItem = (id, itemData) => async dispatch => {
+  console.log(id, itemData)
   try {
     dispatch(updatedItem(id, itemData))
   } catch(err) {
