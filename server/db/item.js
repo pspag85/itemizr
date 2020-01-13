@@ -17,10 +17,6 @@ const Item = db.define('items', {
   orderQty:{
     type: Sequelize.INTEGER,
     allowNull: true
-  },
-  saved: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false
   }
 })
 

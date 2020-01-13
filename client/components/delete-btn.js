@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemCol from './item-col'
 
-var DeleteButton = ({delete}) => (
+const DeleteButton = ({delete}) => (
   <div className='delete-btn'>
     <button className='delete' onClick={() => delete(id)}> - </button>
   </div>

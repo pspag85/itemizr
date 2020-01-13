@@ -10,14 +10,14 @@ import ColHeader from './col-header'
 import {getList, getItems, addItem, removeItem, saveItems, cancelUpdate} from '../store'
 import '../css/edit-items.css'
 
-const EditItems = ({user, getCurrentList, currentList, loadItems, items, deleteItem, saveChanges, cancelChanges, history, location}) => {
+const EditItems = ({user, getCurrentList, currentList, loadItems, items, createItem, deleteItem, saveChanges, cancelChanges, history, location}) => {
   if(!user.id) history.push('/')
   const {pathname} = location
   const listId = pathname.split('/')[2]
 
   useEffect(() => {
     getCurrentList(listId)
-  }, [])
+  }, [getCurrentList])
 
   useEffect(() => {
     loadItems(listId)
@@ -48,13 +48,14 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, deleteI
       <div id='edit-items-body'>
         <div className='header row font-20'>
         <h3>{currentList.name}</h3>
-        </div>        
+        </div>
         <div className='col-header row secondary-txt'>
           <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
-        </div>      
+        </div>
         <div className='edit-items-container bg-white box-shadow'>
           {items.map(({id, name, onHand, par, orderQty}, index) => (
             <EditItem
+              key={Math.random() + id}
               id={id}
               name={name}
               onHand={onHand}

@@ -38,7 +38,7 @@ const savedItems = items => ({
 
 export const getItems = listId => async dispatch => {
   try {
-    const {data} = await axios.get(`/api/items/${listId}`)
+    const {data} = await axios.get(`/api/lists/${listId}/items`)
     dispatch(gotItems(data))
   } catch(err) {
     console.error(err)
@@ -62,6 +62,7 @@ export const removeItem = id => async dispatch => {
 }
 
 export const updateItem = (id, itemData) => async dispatch => {
+  console.log(id, itemData)
   try {
     dispatch(updatedItem(id, itemData))
   } catch(err) {
@@ -71,7 +72,7 @@ export const updateItem = (id, itemData) => async dispatch => {
 
 export const saveItems = (listId, items, isInit) => async dispatch => {
   try {
-    !isInit && await axios.delete(`/api/items/${listId}`)
+    !isInit && await axios.delete(`/api/lists/${listId}/items`)
     const {data} = await axios.post(`/api/items`, items)
     dispatch(savedItems(data))
     !isInit && history.push(`/lists/${listId}`)
