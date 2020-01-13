@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')))
 app.use('/api', require('./api'))
 
 app.use((req, res, next) => {
-  if (path.extname(req.path).length > 0) {
+  if(path.extname(req.path).length > 0) {
     res.status(404).end()
   } else {
     next()
