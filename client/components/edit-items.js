@@ -42,20 +42,20 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
   }
 
   const itemsArr = !Array.isArray(items) ? [{}] : items
-  console.log('items arr:  ', itemsArr)
   return currentList ? (
     <Fragment>
       <UserPage />
       <div id='edit-items-body'>
         <div className='header row font-20'>
         <h3>{currentList.name}</h3>
-        </div>        
+        </div>
         <div className='col-header row secondary-txt'>
           <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
-        </div>      
+        </div>
         <div className='edit-items-container bg-white box-shadow'>
           {items.map(({id, name, onHand, par, orderQty}, index) => (
             <EditItem
+              key={Math.random() + id}
               id={id}
               name={name}
               onHand={onHand}
