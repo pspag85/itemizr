@@ -44,12 +44,12 @@ const Items = withRouter(class extends Component {
                 <Link to={`/lists/${currentList.id}`} className='clear flex-start'>
                   &times;
                 </Link>
-              </Fragment>         
+              </Fragment>
               :
               <Link to={`/lists/${currentList.id}/edit`} >
                 <img src='/img/edit-btn.png' className='edit-btn flex-start' />
               </Link>
-            }    
+            }
           </div>
           <div className='col-header row secondary-txt'>
             <ColHeader num={'four'} headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />

@@ -14,12 +14,15 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-  const savedItems = req.body.map(item => {
-    delete id
-    return item
-  })
+  // const savedItems = req.body.map(item => {
+  //   delete id
+  //   return item
+  // })
   try {
-    const items = await Item.bulkCreate(savedItems, {returning: true})
+    const items = await Item.bulkCreate(req.body, {
+      updateOnDuplicate: ["name", "onHand", "par", "orderQty", "listId"],
+      returning: true
+    })
     res.json(items)
   } catch(err) {
     console.error(err)

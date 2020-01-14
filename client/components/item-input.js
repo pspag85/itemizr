@@ -1,23 +1,14 @@
 import React, {useState, Fragment} from 'react'
 import {connect} from 'react-redux'
-import {updateItem} from '../store'
 
-const ItemInput = ({input, id, value, putItem}) => {
+const ItemInput = ({input, id, value, handleSubmit}) => {
   const [inputVal, setInputVal] = useState(value)
 
   const handleChange = event => setInputVal(event.target.value)
 
-  const handleSubmit = event => {
-    event.preventDefault()
-    const {value} = event.target.children[0]
-    const itemData = {}
-    itemData[input] = value
-    putItem(id, itemData)
-  }
-
   return input && (
     <Fragment>
-      <form className='item-form' onSubmit={handleSubmit} onBlur={handleSubmit}>
+      <form className='item-form' onSubmit={handleSubmit} onBlur={(evt) => handleSubmit(input, evt)}>
        <input
           type='text'
           value={inputVal || ''}
@@ -27,13 +18,8 @@ const ItemInput = ({input, id, value, putItem}) => {
     </Fragment>
   )
 }
+const getItemId = ({id}) => id
 
 const mapStateToProps = ({user}) => ({user})
 
-const getItemId = ({id}) => id
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  putItem: (itemId, itemData) => dispatch(updateItem(itemId, itemData))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ItemInput)
+export default connect(mapStateToProps, null)(ItemInput)
