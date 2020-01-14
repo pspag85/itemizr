@@ -15,8 +15,6 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
   const {pathname} = location
   const listId = pathname.split('/')[2]
 
-  const [itemsState, setItemsState] = useState(items)
-
   useEffect(() => {
     getCurrentList(listId)
   }, [])
@@ -25,18 +23,9 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
     loadItems(listId)
   }, [])
 
-  const submitItem = (evt, input) => {
-    event.preventDefault()
-    console.log('evt:  ', evt)
-    const {value} = event.target
-    const itemData = {}
-    itemData[input] = value
-    setItemsState([...itemsState, itemData])
-  }
-
-  const addItem = (evt) => {
+  const addNewItem =  () => {
     const newItem = {name: '', onHand: 0, par: 0, orderQty: 0}
-    setItemsState([...itemsState, newItem])
+    createItem(newItem)
   }
 
   const cancelEdit = () => {
@@ -44,7 +33,6 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
     history.push(`/lists/${currentList.id}`)
   }
 
-  // const itemsArr = !Array.isArray(itemsState) ? [{}] : itemsState
   return currentList ? (
     <Fragment>
       <UserPage />
@@ -56,7 +44,7 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
           <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
         </div>
         <div className='edit-items-container bg-white box-shadow'>
-          {Array.isArray(itemsState) && itemsState.map(({id, name, onHand, par, orderQty}, index) => (
+          {items.length > 0 && items.map(({id, name, onHand, par, orderQty}, index) => (
             <EditItem
               key={Math.random()}
               id={id}
@@ -64,11 +52,11 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
               onHand={onHand}
               par={par}
               orderQty={orderQty}
+              createItem={createItem}
               deleteItem={deleteItem}
-              submitItem={submitItem}
             />
           ))}
-          <AddItemButton listId={currentList.id} addNewItem={addItem} />
+          <AddItemButton listId={currentList.id} addNewItem={addNewItem} />
         </div>
         <div className='save'>
           <button className='action-btn white bg-blue pointer' onClick={() => saveChanges(currentList.id, items)}>SAVE CHANGES</button>
@@ -84,7 +72,7 @@ const mapStateToProps = ({user, lists, items}) => ({user, currentList: lists[0],
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getCurrentList: id => dispatch(getList(id)),
   loadItems: listId => dispatch(getItems(listId)),
-  createItem: () => dispatch(addItem()),
+  createItem: itemData => dispatch(addItem(itemData)),
   deleteItem: id => dispatch(removeItem(id)),
   saveChanges: (listId, items) => dispatch(saveItems(listId, items)),
   cancelChanges: listId => dispatch(cancelUpdate(listId))

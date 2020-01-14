@@ -5,21 +5,29 @@ import history from '../history'
 import axios from 'axios'
 
 const GET_ITEMS = 'GET_ITEMS'
-const REMOVE_ITEM = 'REMOVE_ITEM'
 const ADD_ITEM = 'ADD_ITEM'
+const REMOVE_ITEM = 'REMOVE_ITEM'
+const UPDATE_ITEM = 'UPDATE_ITEM'
 
 const gotItems = items => ({
   type: GET_ITEMS,
   items
 })
 
-const addedItem = () => ({
+const addedItem = item => ({
   type: ADD_ITEM,
-  item: {}
+  item
 })
+
 const removedItem = itemId => ({
   type: REMOVE_ITEM,
   itemId
+})
+
+const updatedItem = (itemId, itemData) => ({
+  type: UPDATE_ITEM,
+  itemId,
+  itemData
 })
 
 export const getItems = listId => async dispatch => {
@@ -31,6 +39,12 @@ export const getItems = listId => async dispatch => {
   }
 }
 
+export const addItem = () => dispatch => {
+  console.log('adding item')
+  const newItem = {name: '', onHand: 0, par: 0, orderQty: 0}
+  dispatch(addedItem(newItem))
+}
+
 export const removeItem = id => async dispatch => {
   try {
     dispatch(removedItem(id))
@@ -39,9 +53,13 @@ export const removeItem = id => async dispatch => {
   }
 }
 
-export const addItem = () => dispatch => {
-  console.log('adding item')
-  dispatch(addedItem)
+export const updateItem = (id, itemData) => async dispatch => {
+  console.log(id, itemData)
+  try {
+    dispatch(updatedItem(id, itemData))
+  } catch(err) {
+    console.error(err)
+  }
 }
 
 export const saveItems = (listId, items, isInit) => async dispatch => {
@@ -70,9 +88,16 @@ const itemsReducer = (state = initialState, action) => {
       return action.items
     case ADD_ITEM:
       console.log('action item:   ', action.item)
-      return [action.item, ...state]
+      return [...state, action.item]
     case REMOVE_ITEM:
       return state.filter(eachItem => eachItem.id !== action.itemId)
+    case UPDATE_ITEM:
+      return state.map((item, idx, arr) => {
+        if(item.id === action.itemId) {
+          item = Object.assign(item, action.itemData)
+        }
+        return item
+      })
     default:
       return state
   }
