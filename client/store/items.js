@@ -24,9 +24,8 @@ const removedItem = itemId => ({
   itemId
 })
 
-const updatedItem = (itemId, itemData) => ({
+const updatedItem = (itemData) => ({
   type: UPDATE_ITEM,
-  itemId,
   itemData
 })
 
@@ -40,7 +39,6 @@ export const getItems = listId => async dispatch => {
 }
 
 export const addItem = () => dispatch => {
-  console.log('adding item')
   const newItem = {name: '', onHand: 0, par: 0, orderQty: 0}
   dispatch(addedItem(newItem))
 }
@@ -53,10 +51,9 @@ export const removeItem = id => async dispatch => {
   }
 }
 
-export const updateItem = (id, itemData) => async dispatch => {
-  console.log(id, itemData)
+export const updateItem = (item) => async dispatch => {
   try {
-    dispatch(updatedItem(id, itemData))
+    dispatch(updatedItem(item))
   } catch(err) {
     console.error(err)
   }
@@ -93,10 +90,11 @@ const itemsReducer = (state = initialState, action) => {
       return state.filter(eachItem => eachItem.id !== action.itemId)
     case UPDATE_ITEM:
       return state.map((item, idx, arr) => {
-        if(item.id === action.itemId) {
+        if(item.name === action.itemData.name) {
           item = Object.assign(item, action.itemData)
+          return item
         }
-        return item
+        return action.itemData
       })
     default:
       return state

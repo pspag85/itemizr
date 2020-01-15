@@ -46,8 +46,7 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
         <div className='edit-items-container bg-white box-shadow'>
           {items.length > 0 && items.map(({id, name, onHand, par, orderQty}, index) => (
             <EditItem
-              key={Math.random()}
-              id={id}
+              key={Math.random() + name}
               name={name}
               onHand={onHand}
               par={par}
