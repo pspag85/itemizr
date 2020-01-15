@@ -2,16 +2,8 @@ import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {updateItem} from '../store'
 
-const EditItem = ({id, name, onHand, par, orderQty, putItem, deleteItem}) => {
-  const item = {
-    id,
-    name,
-    onHand,
-    par,
-    orderQty,
-    deleteItem
-  }
-
+const EditItem = ({item, putItem, deleteItem}) => {
+  const {name, onHand, par, orderQty} = item
   const [itemState, setItemState] = useState(item)
 
   const handleChange = event => {
@@ -49,7 +41,7 @@ const EditItem = ({id, name, onHand, par, orderQty, putItem, deleteItem}) => {
     </form>
   )
 }
-const mapStateToProps = ({user}) => ({user})
+const mapStateToProps = ({user, items}) => ({user, item: items[items.length - 1]})
 
 const getItemId = ({id}) => id
 

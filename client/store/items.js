@@ -39,7 +39,7 @@ export const getItems = listId => async dispatch => {
 }
 
 export const addItem = () => dispatch => {
-  const newItem = {name: '', onHand: 0, par: 0, orderQty: 0}
+  const newItem = {name: '', onHand: '', par: '', orderQty: ''}
   dispatch(addedItem(newItem))
 }
 
@@ -84,13 +84,14 @@ const itemsReducer = (state = initialState, action) => {
     case GET_ITEMS:
       return action.items
     case ADD_ITEM:
-      console.log('action item:   ', action.item)
       return [...state, action.item]
     case REMOVE_ITEM:
       return state.filter(eachItem => eachItem.id !== action.itemId)
     case UPDATE_ITEM:
+      console.log('action item:   ', action.itemData)
       return state.map((item, idx, arr) => {
         if(item.name === action.itemData.name) {
+          console.log('name match on update ')
           item = Object.assign(item, action.itemData)
           return item
         }

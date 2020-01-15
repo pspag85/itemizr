@@ -8,9 +8,9 @@ import '../css/add-item.css'
 class AddItem extends Component {
   state = {
     name: '',
-    onHand: 0,
-    par: 0,
-    orderQty: 0
+    onHand: '',
+    par: '',
+    orderQty: ''
   }
 
   handleChange = event => {
