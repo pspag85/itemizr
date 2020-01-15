@@ -15,7 +15,6 @@ const EditItem = ({id, name, onHand, par, orderQty, putItem, deleteItem}) => {
   const [itemState, setItemState] = useState(item)
 
   const handleChange = event => {
-    console.log('event on change:    ', event.target.value)
     const {value} = event.target
     const item = {...itemState}
     item[event.target.name] = value
@@ -24,7 +23,6 @@ const EditItem = ({id, name, onHand, par, orderQty, putItem, deleteItem}) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    console.log('event on submit:    ', event.target)
     const {value} = event.target
     const itemData = {...itemState}
     itemData[event.target.name] = value
