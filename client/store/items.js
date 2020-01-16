@@ -19,14 +19,14 @@ const addedItem = newItem => ({
   newItem
 })
 
-const removedItem = itemId => ({
+const removedItem = storeId => ({
   type: REMOVE_ITEM,
-  itemId
+  storeId
 })
 
-const updatedItem = (itemId, item) => ({
+const updatedItem = (storeId, item) => ({
   type: UPDATE_ITEM,
-  itemId,
+  storeId,
   item
 })
 
@@ -43,23 +43,29 @@ export const addItem = newItem => dispatch => {
   dispatch(addedItem(newItem))
 }
 
-export const removeItem = id => async dispatch => {
+export const removeItem = storeId => async dispatch => {
   try {
-    dispatch(removedItem(id))
+    dispatch(removedItem(storeId))
   } catch(err) {
     console.error(err)
   }
 }
 
-export const updateItem = (itemId, item) => async dispatch => {
+export const updateItem = (storeId, item) => dispatch => {
   try {
-    dispatch(updatedItem(itemId, item))
+    dispatch(updatedItem(storeId, item))
   } catch(err) {
     console.error(err)
   }
+}
+
+const removeStoreId = item => {
+  const {listId, name, onHand, par, orderQty} = item
+  return {listId, name, onHand, par, orderQty}
 }
 
 export const saveItems = (listId, items, isInit) => async dispatch => {
+  const formattedItems = items.map(removeStoreId)
   try {
     !isInit && await axios.delete(`/api/lists/${listId}/items`)
     const {data} = await axios.post(`/api/items`, items)
@@ -78,10 +84,10 @@ const itemsReducer = (state = initialState, action) => {
     case ADD_ITEM:
       return [...state, action.newItem]
     case REMOVE_ITEM:
-      return state.filter(eachItem => eachItem.id !== action.itemId)
+      return state.filter(eachItem => eachItem.storeId !== action.storeId)
     case UPDATE_ITEM:
       return state.map(item => {
-        if(item.id === action.itemId) {
+        if(item.storeId === action.storeId) {
           item = Object.assign(item, action.item)
         }
         return item

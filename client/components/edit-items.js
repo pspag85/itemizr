@@ -24,7 +24,7 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
   }, [loadItems])
 
   const addNewItem =  () => {
-    const newItem = {id: items.length + 1, name: '', onHand: '', par: '', orderQty: ''}
+    const newItem = {storeId: items.length + 1, name: '', onHand: 0, par: 0, orderQty: 0}
     createItem(newItem)
   }
 
@@ -43,10 +43,11 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
           <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
         </div>
         <div className='edit-items-container bg-white box-shadow'>
-          {items.length > 0 && items.map(({id, name, onHand, par, orderQty}, index) => (
+          {items.length > 0 && items.map(({storeId = 0, name, onHand, par, orderQty}, index) => (
             <EditItem
               key={Math.random() + name}
-              id={id}
+              listId={listId}
+              storeId={storeId}
               name={name}
               onHand={onHand}
               par={par}
@@ -72,9 +73,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   getCurrentList: id => dispatch(getList(id)),
   loadItems: listId => dispatch(getItems(listId)),
   createItem: newItem => dispatch(addItem(newItem)),
-  deleteItem: id => dispatch(removeItem(id)),
+  deleteItem: storeId => dispatch(removeItem(storeId)),
   saveChanges: (listId, items) => dispatch(saveItems(listId, items)),
-  cancelChanges: listId => dispatch(cancelUpdate(listId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditItems)

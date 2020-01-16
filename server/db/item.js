@@ -4,19 +4,19 @@ const db = require('./database')
 const Item = db.define('items', {
   name: {
     type: Sequelize.STRING,
-    allowNull: true
+    defaultValue: ''
   },
   onHand:{
     type: Sequelize.INTEGER,
-    allowNull: true
+    defaultValue: 0
   },
   par:{
     type: Sequelize.INTEGER,
-    allowNull: true
+    defaultValue: 0
   },
   orderQty:{
     type: Sequelize.INTEGER,
-    allowNull: true
+    defaultValue: 0
   }
 })
 
