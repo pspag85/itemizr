@@ -29,7 +29,6 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
   }
 
   const cancelEdit = () => {
-    cancelChanges(currentList.id)
     history.push(`/lists/${currentList.id}`)
   }
 
@@ -72,7 +71,7 @@ const mapStateToProps = ({user, lists, items}) => ({user, currentList: lists[0],
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getCurrentList: id => dispatch(getList(id)),
   loadItems: listId => dispatch(getItems(listId)),
-  createItem: itemData => dispatch(addItem(itemData)),
+  createItem: newItem => dispatch(addItem(newItem)),
   deleteItem: id => dispatch(removeItem(id)),
   saveChanges: (listId, items) => dispatch(saveItems(listId, items)),
   cancelChanges: listId => dispatch(cancelUpdate(listId))

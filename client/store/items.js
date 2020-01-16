@@ -14,9 +14,9 @@ const gotItems = items => ({
   items
 })
 
-const addedItem = item => ({
+const addedItem = newItem => ({
   type: ADD_ITEM,
-  item
+  newItem
 })
 
 const removedItem = itemId => ({
@@ -39,8 +39,8 @@ export const getItems = listId => async dispatch => {
   }
 }
 
-export const addItem = item => dispatch => {
-  dispatch(addedItem(item))
+export const addItem = newItem => dispatch => {
+  dispatch(addedItem(newItem))
 }
 
 export const removeItem = id => async dispatch => {
@@ -69,14 +69,6 @@ export const saveItems = (listId, items, isInit) => async dispatch => {
   }
 }
 
-export const cancelUpdate = listId => async dispatch => {
-  try {
-    console.log('changes canceled')
-  } catch(err) {
-    console.error(err)
-  }
-}
-
 const initialState = []
 
 const itemsReducer = (state = initialState, action) => {
@@ -84,12 +76,11 @@ const itemsReducer = (state = initialState, action) => {
     case GET_ITEMS:
       return action.items
     case ADD_ITEM:
-      return [...state, action.item]
+      return [...state, action.newItem]
     case REMOVE_ITEM:
       return state.filter(eachItem => eachItem.id !== action.itemId)
     case UPDATE_ITEM:
-      console.log(action.item)
-      return state.map((item, idx, arr) => {
+      return state.map(item => {
         if(item.id === action.itemId) {
           item = Object.assign(item, action.item)
         }

@@ -41,12 +41,9 @@ const EditItem = ({id, name, onHand, par, orderQty, putItem, deleteItem}) => {
     </form>
   )
 }
-const mapStateToProps = ({user}) => ({user})
-
-const getItemId = ({id}) => id
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   putItem: (itemId, itemData) => dispatch(updateItem(itemId, itemData))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditItem)
+export default connect(null, mapDispatchToProps)(EditItem)
