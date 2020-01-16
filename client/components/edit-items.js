@@ -17,14 +17,14 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
 
   useEffect(() => {
     getCurrentList(listId)
-  }, [])
+  }, [getCurrentList])
 
   useEffect(() => {
     loadItems(listId)
-  }, [])
+  }, [loadItems])
 
   const addNewItem =  () => {
-    const newItem = {name: '', onHand: 0, par: 0, orderQty: 0}
+    const newItem = {id: items.length + 1, name: '', onHand: '', par: '', orderQty: ''}
     createItem(newItem)
   }
 
@@ -47,6 +47,7 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
           {items.length > 0 && items.map(({id, name, onHand, par, orderQty}, index) => (
             <EditItem
               key={Math.random() + name}
+              id={id}
               name={name}
               onHand={onHand}
               par={par}
