@@ -12,7 +12,7 @@ const has_actual_primary_key = (model) => {
 
 // Uses true "upsert" if the model has a primary key, otherwise findOrCreate().
 const bulk_upsert = (model, rows) => {
-  return Promise.all(rows.map( (row) => {
+  return Promise.all(rows.map((row) => {
     if(has_actual_primary_key(model)) {
       return model.upsert(row)
     } else {
@@ -21,7 +21,7 @@ const bulk_upsert = (model, rows) => {
         defaults: row
       })
     }
-  }))
+  })).catch(err => console.error(err))
 }
 
 // module.exports = bulk_upsert
