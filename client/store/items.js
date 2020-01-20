@@ -43,7 +43,7 @@ export const addItem = newItem => dispatch => {
   dispatch(addedItem(newItem))
 }
 
-export const removeItem = storeId => async dispatch => {
+export const removeItem = storeId => dispatch => {
   try {
     dispatch(removedItem(storeId))
   } catch(err) {
@@ -66,9 +66,10 @@ const removeStoreId = item => {
 
 export const saveItems = (listId, items, isInit) => async dispatch => {
   const formattedItems = items.map(removeStoreId)
+  console.log('formattedItems:   ', formattedItems)
   try {
     !isInit && await axios.delete(`/api/lists/${listId}/items`)
-    const {data} = await axios.post(`/api/items`, items)
+    const {data} = await axios.post(`/api/items`, formattedItems)
     !isInit && history.push(`/lists/${listId}`)
   } catch(err) {
     console.error(err)
