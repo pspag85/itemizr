@@ -7,16 +7,16 @@ const Item = db.define('items', {
     defaultValue: ''
   },
   onHand:{
-    type: Sequelize.INTEGER,
-    defaultValue: 0
+    type: Sequelize.STRING,
+    defaultValue: ''
   },
   par:{
-    type: Sequelize.INTEGER,
-    defaultValue: 0
+    type: Sequelize.STRING,
+    defaultValue: ''
   },
   orderQty:{
-    type: Sequelize.INTEGER,
-    defaultValue: 0
+    type: Sequelize.STRING,
+    defaultValue: ''
   }
 })
 

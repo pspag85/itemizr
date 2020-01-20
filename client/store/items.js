@@ -19,14 +19,14 @@ const addedItem = newItem => ({
   newItem
 })
 
-const removedItem = storeId => ({
+const removedItem = id => ({
   type: REMOVE_ITEM,
-  storeId
+  id
 })
 
-const updatedItem = (storeId, item) => ({
+const updatedItem = (id, item) => ({
   type: UPDATE_ITEM,
-  storeId,
+  id,
   item
 })
 
@@ -43,34 +43,27 @@ export const addItem = newItem => dispatch => {
   dispatch(addedItem(newItem))
 }
 
-export const removeItem = storeId => dispatch => {
+export const removeItem = id => dispatch => {
   try {
-    dispatch(removedItem(storeId))
+    dispatch(removedItem(id))
   } catch(err) {
     console.error(err)
   }
 }
 
-export const updateItem = (storeId, item) => dispatch => {
+export const updateItem = (id, item) => dispatch => {
   try {
-    dispatch(updatedItem(storeId, item))
+    dispatch(updatedItem(id, item))
   } catch(err) {
     console.error(err)
   }
-}
-
-const removeStoreId = item => {
-  const {listId, name, onHand, par, orderQty} = item
-  return {listId, name, onHand, par, orderQty}
 }
 
 export const saveItems = (listId, items, isInit) => async dispatch => {
-  const formattedItems = items.map(removeStoreId)
-  console.log('formattedItems:   ', formattedItems)
   try {
-    !isInit && await axios.delete(`/api/lists/${listId}/items`)
-    const {data} = await axios.post(`/api/items`, formattedItems)
-    !isInit && history.push(`/lists/${listId}`)
+    // !isInit && await axios.delete(`/api/lists/${listId}/items`)
+    const {data} = await axios.post(`/api/items`, items)
+    if(data) history.push(`/lists/${listId}`)
   } catch(err) {
     console.error(err)
   }
@@ -85,10 +78,10 @@ const itemsReducer = (state = initialState, action) => {
     case ADD_ITEM:
       return [...state, action.newItem]
     case REMOVE_ITEM:
-      return state.filter(eachItem => eachItem.storeId !== action.storeId)
+      return state.filter(eachItem => eachItem.id !== action.id)
     case UPDATE_ITEM:
       return state.map(item => {
-        if(item.storeId === action.storeId) {
+        if(item.id === action.id) {
           item = Object.assign(item, action.item)
         }
         return item

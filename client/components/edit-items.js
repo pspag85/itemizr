@@ -23,9 +23,20 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
     loadItems(listId)
   }, [loadItems])
 
-  const addNewItem =  () => {
-    const newItem = {storeId: items.length + 1, name: '', onHand: 0, par: 0, orderQty: 0}
-    createItem(newItem)
+  const addNewItem = async () => {
+    try {
+      const {data} = await axios.get('/api/items')
+      let id = data
+      items.forEach(item => {
+        if(item.id !== id) id += 1
+      })
+      if(id) {
+        const newItem = {id, name: '', onHand: '', par: '', orderQty: '', listId}
+        createItem(newItem)
+      }
+    } catch(err) {
+      console.error(err)
+    }
   }
 
   const cancelEdit = () => {
@@ -43,11 +54,11 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
           <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
         </div>
         <div className='edit-items-container bg-white box-shadow'>
-          {items.length > 0 && items.map(({storeId = 0, name, onHand, par, orderQty}, index) => (
+          {items.length > 0 && items.map(({id, name, onHand, par, orderQty}, index) => (
             <EditItem
               key={Math.random() + name}
               listId={listId}
-              storeId={storeId}
+              id={id}
               name={name}
               onHand={onHand}
               par={par}
