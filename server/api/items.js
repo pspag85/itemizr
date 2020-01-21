@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Item} = require('../db')
+const {bulk_upsert} = require('../../utility/helpers')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -12,20 +13,6 @@ router.get('/', async (req, res, next) => {
     console.error(err)
   }
 })
-
-// Uses true "upsert" if the model has a primary key, otherwise findOrCreate().
-const bulk_upsert = (model, rows) => {
-  return Promise.all(rows.map(row => {
-    if(model.findOne({where: {id: row.id}})) {
-      return model.upsert(row)
-    } else {
-      return model.findOrCreate({
-        where: row,
-        defaults: row
-      })
-    }
-  })).catch(err => console.error(err))
-}
 
 router.post('/', (req, res, next) => {
   const items = bulk_upsert(Item, req.body)

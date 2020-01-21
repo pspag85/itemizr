@@ -61,7 +61,6 @@ export const updateItem = (id, item) => dispatch => {
 
 export const saveItems = (listId, items, isInit) => async dispatch => {
   try {
-    // !isInit && await axios.delete(`/api/lists/${listId}/items`)
     const {data} = await axios.post(`/api/items`, items)
     if(data) history.push(`/lists/${listId}`)
   } catch(err) {
