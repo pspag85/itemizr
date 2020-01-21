@@ -6,7 +6,8 @@ router.get('/:id/items', async (req, res, next) => {
     const items = await Item.findAll({
       where: {
         listId: req.params.id
-      }
+      },
+      order: [ ['id', 'ASC'], ['createdAt', 'ASC']]
     })
     res.json(items)
   } catch(err) {

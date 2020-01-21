@@ -7,7 +7,7 @@ router.get('/', async (req, res, next) => {
     const lastItem = await Item.findOne({
       order: [['id', 'DESC']]
     })
-    const id = lastItem ? {lastItem} : 1
+    const id = lastItem ? lastItem.id : 1
     res.json(id)
   } catch(err) {
     console.error(err)

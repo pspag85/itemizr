@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 import UserPage from './user-page'
 import AddItemButton from './add-item-button'
-import AddItem from './add-item'
 import EditItem from './edit-item'
 import ColHeader from './col-header'
 import {getList, getItems, addItem, removeItem, saveItems, cancelUpdate} from '../store'
@@ -28,7 +27,7 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
       const {data} = await axios.get('/api/items')
       let id = data
       items.forEach(item => {
-        if(item.id !== id) id += 1
+        if(item.id === id) id += 1
       })
       if(id) {
         const newItem = {id, name: '', onHand: '', par: '', orderQty: '', listId}
