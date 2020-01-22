@@ -7,7 +7,6 @@ import AddItemButton from './add-item-button'
 import EditItem from './edit-item'
 import ColHeader from './col-header'
 import {getList, getItems, addItem, removeItem, saveItems, cancelUpdate} from '../store'
-import '../css/edit-items.css'
 
 const EditItems = ({user, getCurrentList, currentList, loadItems, items, createItem, deleteItem, saveChanges, cancelChanges, history, location}) => {
   if(!user.id) history.push('/')
@@ -45,14 +44,14 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
   return currentList ? (
     <Fragment>
       <UserPage />
-      <div id='edit-items-page'>
-        <div className='header hz-mrg-40 hz-pdg-40 font-20'>
+      <div id='edit-items-page' className='items-page'>
+        <div className='header font-20'>
         <h3>{currentList.name}</h3>
         </div>
         <div className='col-header row flex secondary-txt'>
           <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
         </div>
-        <div className='edit-items-container bg-white box-shadow'>
+        <div className='items-container bg-white box-shadow'>
           {items.length > 0 && items.map(({id, name, onHand, par, orderQty}, index) => (
             <EditItem
               key={Math.random() + name}

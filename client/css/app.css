@@ -20,22 +20,15 @@ a {
 }
 
 .header {
-  margin: -10px 0 0 0;
-  padding: 26px 0 36px 4px;
+  padding: 40px 0;
+}
+
+.header h3 {
+  margin: 0;
 }
 
 .font-20 {
   font-size: 20px;
-}
-
-.hz-mrg-40 {
-  margin-right: 40px;
-  margin-left: 40px;
-}
-
-.hz-pdg-40 {
-  padding-right: 40px;
-  padding-left: 40px;
 }
 
 .vt-pdg-20 {
@@ -44,15 +37,10 @@ a {
 }
 
 .row {
+  display: flex;
   flex-wrap: nowrap;
+  align-items: center;
   justify-content: flex-start;
-  padding-left: 40px;
-}
-
-.wdth-73 {
-  width: 73.7%;
-  margin: 0 auto;
-  margin-right: 40px;
 }
 
 .margin-40 {
@@ -62,10 +50,6 @@ a {
 
 .underline {
   text-decoration: underline;
-}
-
-.flex {
-  display: flex;
 }
 
 .column {
@@ -121,7 +105,7 @@ a {
 }
 
 .col-header.row {
-  margin: 0 40px;
+  margin-left: 40px;
   padding-bottom: 8px;
 }
 
@@ -156,7 +140,7 @@ a {
 }
 
 .nav-wdth {
-  width: 20vw;
+  width: 200px;
   min-width: 154px;
   border-right: 1px ;
 }

@@ -22,7 +22,7 @@ const EditItem = ({listId, id, name, onHand, par, orderQty, putItem, deleteItem}
   }
 
   return (
-    <form className='item-form row flex vt-pdg-20' onSubmit={handleSubmit} onBlur={handleSubmit}>
+    <form className='item-form row vt-pdg-20' onSubmit={handleSubmit} onBlur={handleSubmit}>
       <div className='column'>
         <input type="text" name='name' value={itemState.name || name} onChange={handleChange} />
       </div>

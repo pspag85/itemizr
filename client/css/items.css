@@ -1,17 +1,15 @@
-#items-body .header *:not(:last-child) {
+#items-page .header *:not(:last-child) {
   flex-basis: 50%;
 }
 
-#items-container a {
-  padding-right: 10px;
-  text-decoration: none;
+#items-page {
+  margin-left: 200px;
 }
 
-#items-container .row {
-  color: black; 
+.items-page {
+  padding: 0 40px 0 40px;
 }
 
-#items-container {
-  position: relative;
-  width: 100vw;
+.items-container {
+  padding-left: 40px;
 }
