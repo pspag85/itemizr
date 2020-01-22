@@ -7,7 +7,7 @@ import '../css/create-list.css'
 
 const CreateList = ({loadLists, lists, initializeList, createList, deleteList, saveChanges, history}) => {
 
-  const [listName, setListName] = useState('')  
+  const [listName, setListName] = useState('')
 
   useEffect(() => {
     initializeList()
@@ -25,7 +25,6 @@ const CreateList = ({loadLists, lists, initializeList, createList, deleteList, s
   const handleClick = () => {
     const listId = lists[0].id
     createList(listId, listName)
-    saveChanges(listId, [{listId}], true)
     history.push(`/lists/${listId}/edit`)
   }
 
@@ -34,12 +33,12 @@ const CreateList = ({loadLists, lists, initializeList, createList, deleteList, s
     deleteList(listId)
     history.push('/lists')
   }
-   
+
   return (
     <div>
       <UserPage />
       <div className='margin-40'>
-        <div className='header row font-20'>
+        <div className='header font-20'>
           <h3>CREATE LIST</h3>
         </div>
         <div className='bg-white box-shadow'>
@@ -54,7 +53,7 @@ const CreateList = ({loadLists, lists, initializeList, createList, deleteList, s
           </form>
         </div>
         <div className='save'>
-          <button className='action-btn white bg-blue pointer' onClick={handleClick}>CREATE</button>        
+          <button className='action-btn white bg-blue pointer' onClick={handleClick}>CREATE</button>
           <button className='cancel-btn pointer light-font' onClick={cancel}>CANCEL</button>
         </div>
       </div>
@@ -66,7 +65,7 @@ const mapStateToProps = ({lists}) => ({lists})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadLists: () => dispatch(getLists()),
-  initializeList: () => dispatch(addList()),  
+  initializeList: () => dispatch(addList()),
   createList: (id, name) => dispatch(addListName(id, name)),
   deleteList: id => dispatch(removeList(id)),
   saveChanges: (listId, items, isInit) => dispatch(saveItems(listId, items, isInit))

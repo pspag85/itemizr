@@ -1,10 +1,9 @@
-import React, {useEffect, Fragment} from 'react'
+import React, {useState, useEffect, Fragment} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import UserPage from './user-page'
 import AddItemButton from './add-item-button'
-import AddItem from './add-item'
 import EditItem from './edit-item'
 import ColHeader from './col-header'
 import {getList, getItems, addItem, removeItem, saveItems, cancelUpdate} from '../store'
@@ -30,37 +29,40 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
       items.forEach(item => {
         if(item.id === id) id += 1
       })
-      if(id) createItem({id, listId})
+      if(id) {
+        const newItem = {id, name: '', onHand: '', par: '', orderQty: '', listId}
+        createItem(newItem)
+      }
     } catch(err) {
       console.error(err)
     }
   }
 
   const cancelEdit = () => {
-    cancelChanges(currentList.id)
     history.push(`/lists/${currentList.id}`)
   }
 
-  const itemsArr = !Array.isArray(items) ? [{}] : items
   return currentList ? (
     <Fragment>
       <UserPage />
-      <div id='edit-items-body'>
-        <div className='header row font-20'>
+      <div id='edit-items-page'>
+        <div className='header hz-mrg-40 hz-pdg-40 font-20'>
         <h3>{currentList.name}</h3>
         </div>
-        <div className='col-header row secondary-txt'>
+        <div className='col-header row flex secondary-txt'>
           <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
         </div>
         <div className='edit-items-container bg-white box-shadow'>
-          {items.map(({id, name, onHand, par, orderQty}, index) => (
+          {items.length > 0 && items.map(({id, name, onHand, par, orderQty}, index) => (
             <EditItem
-              key={Math.random() + id}
+              key={Math.random() + name}
+              listId={listId}
               id={id}
               name={name}
               onHand={onHand}
               par={par}
               orderQty={orderQty}
+              createItem={createItem}
               deleteItem={deleteItem}
             />
           ))}
@@ -80,10 +82,9 @@ const mapStateToProps = ({user, lists, items}) => ({user, currentList: lists[0],
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getCurrentList: id => dispatch(getList(id)),
   loadItems: listId => dispatch(getItems(listId)),
-  createItem: itemData => dispatch(addItem(itemData)),
-  deleteItem: id => dispatch(removeItem(id)),
+  createItem: newItem => dispatch(addItem(newItem)),
+  deleteItem: storeId => dispatch(removeItem(storeId)),
   saveChanges: (listId, items) => dispatch(saveItems(listId, items)),
-  cancelChanges: listId => dispatch(cancelUpdate(listId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditItems)

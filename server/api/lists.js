@@ -6,7 +6,8 @@ router.get('/:id/items', async (req, res, next) => {
     const items = await Item.findAll({
       where: {
         listId: req.params.id
-      }
+      },
+      order: [ ['id', 'ASC'], ['createdAt', 'ASC']]
     })
     res.json(items)
   } catch(err) {
@@ -20,7 +21,7 @@ router.get('/:id', async ({params}, res, next) => {
     res.json(list)
   } catch(err) {
     console.error(err)
-  }  
+  }
 })
 
 router.get('/', async (req, res, next) => {
@@ -59,7 +60,7 @@ router.put('/:id', async ({body, params}, res, next) => {
     res.json(list)
   } catch(err) {
     console.error(err)
-  }  
+  }
 })
 
 router.put('/', async ({session}, res, next) => {

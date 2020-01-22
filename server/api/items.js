@@ -1,29 +1,22 @@
 const router = require('express').Router()
 const {Item} = require('../db')
+const {bulk_upsert} = require('../../utility/helpers')
 
 router.get('/', async (req, res, next) => {
   try {
     const lastItem = await Item.findOne({
       order: [['id', 'DESC']]
     })
-    const id = lastItem.id + 1
+    const id = lastItem ? lastItem.id : 1
     res.json(id)
   } catch(err) {
     console.error(err)
   }
 })
 
-router.post('/', async (req, res, next) => {
-  const savedItems = req.body.map(item => {
-    delete id
-    return item
-  })
-  try {
-    const items = await Item.bulkCreate(savedItems, {returning: true})
-    res.json(items)
-  } catch(err) {
-    console.error(err)
-  }
+router.post('/', (req, res, next) => {
+  const items = bulk_upsert(Item, req.body)
+  res.json(items)
 })
 
 module.exports = router
