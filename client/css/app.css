@@ -11,21 +11,42 @@ a {
   text-decoration: none;
 }
 
+.flex {
+  display: flex;
+}
+
+.ctr-items {
+  align-items: center;
+}
+
 .header {
   margin: -10px 0 0 0;
   padding: 26px 0 36px 4px;
-  font-size: ;
 }
 
 .font-20 {
   font-size: 20px;
 }
 
+.hz-mrg-40 {
+  margin-right: 40px;
+  margin-left: 40px;
+}
+
+.hz-pdg-40 {
+  padding-right: 40px;
+  padding-left: 40px;
+}
+
+.vt-pdg-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .row {
-  display: flex;
   flex-wrap: nowrap;
-  align-items: center;
   justify-content: flex-start;
+  padding-left: 40px;
 }
 
 .wdth-73 {
@@ -43,26 +64,56 @@ a {
   text-decoration: underline;
 }
 
+.flex {
+  display: flex;
+}
+
 .column {
-  text-align: left;
+  width: 25%;
   flex-wrap: nowrap;
-  display: inline-flex;
+  align-items: center;
+  text-align: left;
+  white-space: nowrap;
+}
+
+#edit-items-page .column:first-of-type {
+  margin-right: 40px;
+}
+
+#edit-items-page .column:last-of-type {
+  margin-right: 0px;
 }
 
 .column h4 {
-  padding-left: 4px;
-}
-
-.column:not(:last-child) {
-  flex-basis: 40%;
+  padding-left: 2px;
 }
 
 .item-form {
-  padding-right: 20%;
+  height: 20px;
+  align-items: center;
 }
 
-.item input {
-  width: 100%;
+.item-form .column {
+  height: 20px;
+  display: flex;
+}
+
+.item-form input {
+  width: 40%;
+}
+
+.item-form .column:first-of-type input {
+  width: 85%;
+}
+
+.item-form .column:last-of-type input {
+  margin-right: 30%;
+}
+
+.item-form p {
+  width: 0;
+  margin: 0 4px;
+  font-size: 20px;
 }
 
 .secondary-txt {
@@ -70,6 +121,7 @@ a {
 }
 
 .col-header.row {
+  margin: 0 40px;
   padding-bottom: 8px;
 }
 

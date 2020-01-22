@@ -38,7 +38,7 @@ const CreateList = ({loadLists, lists, initializeList, createList, deleteList, s
     <div>
       <UserPage />
       <div className='margin-40'>
-        <div className='header row font-20'>
+        <div className='header font-20'>
           <h3>CREATE LIST</h3>
         </div>
         <div className='bg-white box-shadow'>

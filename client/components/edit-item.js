@@ -22,7 +22,7 @@ const EditItem = ({listId, id, name, onHand, par, orderQty, putItem, deleteItem}
   }
 
   return (
-    <form className='item-row item-form' onSubmit={handleSubmit} onBlur={handleSubmit}>
+    <form className='item-form row flex vt-pdg-20' onSubmit={handleSubmit} onBlur={handleSubmit}>
       <div className='column'>
         <input type="text" name='name' value={itemState.name || name} onChange={handleChange} />
       </div>
@@ -32,11 +32,9 @@ const EditItem = ({listId, id, name, onHand, par, orderQty, putItem, deleteItem}
       <div className='column'>
         <input type="number" name='par' value={itemState.par || par} onChange={handleChange} />
       </div>
-      <div className='column'>
+      <div className='column flex'>
         <input type="number" name='orderQty' value={itemState.orderQty || orderQty} onChange={handleChange} />
-      </div>
-      <div onClick={() => deleteItem(id)} >
-        <h4>&times;</h4>
+        <p onClick={() => deleteItem(id)}>&times;</p>
       </div>
     </form>
   )
