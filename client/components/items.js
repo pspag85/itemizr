@@ -3,7 +3,6 @@ import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import CreateListButton from './create-list-button'
 import UserPage from './user-page'
-import AddItem from './add-item'
 import Item from './item'
 import ColHeader from './col-header'
 import {getList, getItems, addItem, removeItem} from '../store'
@@ -44,12 +43,12 @@ const Items = withRouter(class extends Component {
                 <Link to={`/lists/${currentList.id}`} className='clear flex-start'>
                   &times;
                 </Link>
-              </Fragment>         
+              </Fragment>
               :
               <Link to={`/lists/${currentList.id}/edit`} >
                 <img src='/img/edit-btn.png' className='edit-btn flex-start' />
               </Link>
-            }    
+            }
           </div>
           <div className='col-header row secondary-txt'>
             <ColHeader num={'four'} headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />

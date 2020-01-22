@@ -6,16 +6,16 @@ const Item = ({id, name, onHand, par, orderQty, orderPage, selectItem, selected,
     <div className='item row'>
       {orderPage && <InputCheckbox checked={selected || allSelected} handleChange={evt => selectItem(id, evt)}/>}
       <div className='column'>
-        <h5>{name}</h5>
+        <h5>{name || ''}</h5>
       </div>
       <div className='column'>
-        <h5>{onHand}</h5>
+        <h5>{onHand || ''}</h5>
       </div>
       <div className='column'>
-        <h5>{par}</h5>
+        <h5>{par || ''}</h5>
       </div>
       <div className='column'>
-        <h5>{orderQty}</h5>
+        <h5>{orderQty || ''}</h5>
       </div>
     </div>
   )

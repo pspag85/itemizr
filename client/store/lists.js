@@ -72,7 +72,6 @@ export const addListName = (id, name) => async dispatch => {
         name
       }
     )
-    console.log(data)
     dispatch(addedListName(data))
   } catch(err) {
     console.error(err)
@@ -115,7 +114,7 @@ const listsReducer = (state = initialState, action) => {
           list = Object.assign(list, action.listName)
         }
         return list
-      })         
+      })
     case REMOVE_LIST:
       return state.filter(eachList => eachList.id !== action.listId)
     default:
