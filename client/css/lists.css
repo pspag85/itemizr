@@ -1,9 +1,9 @@
-#lists-body .header {
-  margin-right: 36px;
-  border: none;
+#lists-page {
+  margin-left: 220px;
+  padding: 0 40px 0 40px;
 }
 
-#lists-body .header *:not(:last-child) {
+#lists-page .header *:not(:last-child) {
   flex-basis: 50%;
 }
 
@@ -12,8 +12,9 @@
   width: 100%;
 }
 
-.list-menu-container {
-  padding-right: 12px;
+.column.list-menu-container {
+  width: 0;
+  padding-right: 20px;
 }
 
 .list-menu {

@@ -36,6 +36,10 @@ a {
   padding-bottom: 20px;
 }
 
+.row-container {
+  padding-left: 40px;
+}
+
 .row {
   display: flex;
   flex-wrap: nowrap;
@@ -60,6 +64,16 @@ a {
   white-space: nowrap;
 }
 
+#lists-page .col-header .column:nth-of-type(2),
+#lists-page .col-header .column:nth-of-type(3) {
+  margin-left: 0;
+}
+
+#lists-page .column:not(.list-menu-container) {
+  width: 33%;
+  margin-left: 20px;
+}
+
 #edit-items-page .column:first-of-type {
   margin-right: 40px;
 }
@@ -68,7 +82,7 @@ a {
   margin-right: 0px;
 }
 
-.column h4 {
+#edit-items-page .column h4 {
   padding-left: 2px;
 }
 
@@ -105,7 +119,7 @@ a {
 }
 
 .col-header.row {
-  margin-left: 40px;
+  padding-left: 40px;
   padding-bottom: 8px;
 }
 

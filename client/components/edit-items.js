@@ -48,10 +48,10 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
         <div className='header font-20'>
         <h3>{currentList.name}</h3>
         </div>
-        <div className='col-header row flex secondary-txt'>
+        <div className='col-header row secondary-txt'>
           <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
         </div>
-        <div className='items-container bg-white box-shadow'>
+        <div className='row-container bg-white box-shadow'>
           {items.length > 0 && items.map(({id, name, onHand, par, orderQty}, index) => (
             <EditItem
               key={Math.random() + name}

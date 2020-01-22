@@ -54,7 +54,7 @@ const Items = withRouter(class extends Component {
             <ColHeader num={'four'} headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
           </div>
           {!Array.isArray(items) ? null
-          : <div className='items-container box-shadow bg-white'>
+          : <div className='row-container box-shadow bg-white'>
               {items.map(({id, name, onHand, par, orderQty}, index) => (
                 <Item
                   key={id + name}

@@ -18,7 +18,7 @@ const Lists = withRouter(({user, loadLists, lists, deleteList}) => {
     <Fragment>
       <UserPage navbar={true}/>
       <CreateListButton />
-      <div id='lists-body' className='wdth-73'>
+      <div id='lists-page'>
         <div className='header row font-20'>
           <h3>MY LISTS</h3>
         </div>
@@ -27,7 +27,7 @@ const Lists = withRouter(({user, loadLists, lists, deleteList}) => {
             <div className='col-header row secondary-txt'>
               <ColHeader colNum={'three'} headers={['DATE', 'LIST NAME', 'LAST EDITED BY']}/>
             </div>
-            <div className='lists-container box-shadow'>
+            <div className='row-container bg-white box-shadow'>
               {Array.isArray(lists) && lists.map(({id = null, name, date, lastEditedBy}, index) => (
                 <List key={Math.random() + id}
                   id={id}
