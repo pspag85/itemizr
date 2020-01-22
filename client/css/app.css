@@ -140,9 +140,9 @@ a {
 }
 
 .nav-wdth {
-  width: 200px;
+  width: 220px;
   min-width: 154px;
-  border-right: 1px ;
+  border-right: 1px;
 }
 
 .top-ht {
@@ -167,8 +167,8 @@ a {
 .add-container {
   position: fixed;
   top: 100px;
-  margin: 20px 0 20px 1.7%;
-  width: 16vw;
+  margin: 20px;
+  padding: 0 10px;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -181,7 +181,7 @@ a {
 
 .add-btn {
   height: 24px;
-  margin: 19px 12px 0 6px;
+  margin: 19.5px 10px 0 0;
 }
 
 .edit-btn {
