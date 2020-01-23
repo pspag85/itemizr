@@ -29,15 +29,16 @@
 }
 
 .list-menu {
-  float: right;
+  position: absolute;
+  right: 40px;
   width: 180px;
   text-align: center;
   justify-content: center;
 }
 
 .list-menu div {
+  display: inline-flex;
   margin: 1em;
-  padding-left: 20%;
 }
 
 @media only screen and (max-width: 1000px) {
