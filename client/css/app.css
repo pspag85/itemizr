@@ -58,10 +58,16 @@ a {
 
 .column {
   width: 25%;
+  display: inline-block;
   flex-wrap: nowrap;
   align-items: center;
   text-align: left;
   white-space: nowrap;
+  /* text-overflow: ellipsis; =>  *****TODO FIX***** */
+}
+
+.column *:not(.list-menu-container) {
+  overflow: hidden;
 }
 
 #edit-items-page .column:first-of-type {
