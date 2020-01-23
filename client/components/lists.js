@@ -1,7 +1,7 @@
 import React, {useEffect, Fragment} from 'react'
 import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import UserPage from './user-page'
+import TopNav from './top-nav'
 import CreateListButton from './create-list-button'
 import List from './list'
 import ColHeader from './col-header'
@@ -16,7 +16,7 @@ const Lists = withRouter(({user, loadLists, lists, deleteList}) => {
 
   return (
     <Fragment>
-      <UserPage navbar={true}/>
+      <TopNav showNavbar={true}/>
       <CreateListButton />
       <div id='lists-page'>
         <div className='header row font-20'>
