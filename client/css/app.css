@@ -37,7 +37,7 @@ a {
 }
 
 .row-container {
-  padding-left: 40px;
+  padding-left: 20px;
 }
 
 .row {
@@ -62,16 +62,6 @@ a {
   align-items: center;
   text-align: left;
   white-space: nowrap;
-}
-
-#lists-page .col-header .column:nth-of-type(2),
-#lists-page .col-header .column:nth-of-type(3) {
-  margin-left: 0;
-}
-
-#lists-page .column:not(.list-menu-container) {
-  width: 33%;
-  margin-left: 20px;
 }
 
 #edit-items-page .column:first-of-type {
@@ -119,7 +109,7 @@ a {
 }
 
 .col-header.row {
-  padding-left: 40px;
+  padding-left: 20px;
   padding-bottom: 8px;
 }
 

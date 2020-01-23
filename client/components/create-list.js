@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getLists, addList, addListName, removeList, saveItems} from '../store'
-import TopNav from './top-nav'
+import UserNav from './user-nav'
 import '../css/create-list.css'
 
 const CreateList = ({loadLists, lists, initializeList, createList, deleteList, saveChanges, history}) => {
@@ -36,7 +36,7 @@ const CreateList = ({loadLists, lists, initializeList, createList, deleteList, s
 
   return (
     <div>
-      <TopNav />
+      <UserNav />
       <div className='margin-40'>
         <div className='header font-20'>
           <h3>CREATE LIST</h3>
