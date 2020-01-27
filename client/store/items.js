@@ -59,7 +59,8 @@ export const updateItem = (id, item) => dispatch => {
   }
 }
 
-export const saveItems = (listId, items, isInit) => async dispatch => {
+export const saveItems = (listId, items) => async dispatch => {
+
   try {
     const {data} = await axios.post(`/api/items`, items)
     if(data) history.push(`/lists/${listId}`)

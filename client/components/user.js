@@ -19,7 +19,7 @@ const User = props => {
       <div className='column cell'>
         {isAdmin}
       </div>
-    </div>    
+    </div>
   ):(
     <div className='item-row'>
       <div className='column cell'>

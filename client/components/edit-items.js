@@ -25,9 +25,6 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
     try {
       const {data} = await axios.get('/api/items')
       let id = data
-      items.forEach(item => {
-        if(item.id === id) id += 1
-      })
       if(id) {
         const newItem = {id, name: '', onHand: '', par: '', orderQty: '', listId}
         createItem(newItem)

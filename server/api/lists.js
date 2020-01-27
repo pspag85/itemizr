@@ -17,7 +17,7 @@ router.get('/:id/items', async (req, res, next) => {
 
 router.get('/:id', async ({params}, res, next) => {
   try {
-    const list = await List.findById(params.id)
+    const list = await List.findByPk(params.id)
     res.json(list)
   } catch(err) {
     console.error(err)
@@ -37,13 +37,12 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async ({body, session}, res, next) => {
-  const {date, name, username} = body
+  const {date, name} = body
   const {userId} = session
   try {
     const list = await List.create({
       date,
       name,
-      username,
       userId
     })
     res.json(list)
@@ -55,7 +54,7 @@ router.post('/', async ({body, session}, res, next) => {
 router.put('/:id', async ({body, params}, res, next) => {
   const {name} = body
   try {
-    const list = await List.findById(params.id)
+    const list = await List.findByPk(params.id)
     list.update({name})
     res.json(list)
   } catch(err) {
