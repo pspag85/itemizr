@@ -75,8 +75,22 @@ a {
   overflow: hidden;
 }
 
-.col-header {
+.col-header .column {
+  padding-right: 19px;
+}
+
+.col-header * {
   overflow: hidden;
+}
+
+.col-header.row {
+  padding-left: 20px;
+  padding-bottom: 8px;
+}
+
+.col-header .column h4 {
+  margin: 1px 1px 1px 0;
+  /* padding-right: 20px; */
 }
 
 #edit-items-page .column:first-of-type {
@@ -121,15 +135,6 @@ a {
 
 .secondary-txt {
   opacity: .3;
-}
-
-.col-header.row {
-  padding-left: 20px;
-  padding-bottom: 8px;
-}
-
-.col-header .column h4 {
-  margin: 1px 1px 1px 0;
 }
 
 #logout-btn-container {
