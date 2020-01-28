@@ -32,7 +32,7 @@ const CreateList = ({saveChanges, history}) => {
   return (
     <div>
       <UserBar />
-      <div className='margin-40'>
+      <div className='page-pdg margin-40'>
         <div className='header font-20'>
           <h3>CREATE LIST</h3>
         </div>
