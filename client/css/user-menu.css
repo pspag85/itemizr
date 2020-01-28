@@ -1,8 +1,8 @@
 #user-menu {
-  width: 300px;
+  height: 100%;
   position: absolute;
-  top: 28px;
   right: 0;
+  bottom: 0;
   color: white;
   text-align: right;
 }
@@ -12,18 +12,25 @@
 }
 
 #user-menu-btn {
-  margin-right: 40px;
+  position: fixed;
+  right: 64px;
 }
 
 #username {
-  padding-left: 18px;
+  position: fixed;
+  top: 20px;
+  font-weight: 300;
+}
+
+#user-icon {
+  margin: 30px 10px 0 0;
 }
 
 #user-dd-menu {
   position: relative;
   width: 200px;
   height: 136px;
-  margin-top: 11px;
+  top: 96px;
   color: white;
   z-index: 100;
 }

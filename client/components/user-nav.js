@@ -4,25 +4,26 @@ import {connect} from 'react-redux'
 import {logout} from '../store'
 import LogoHeader from './logo-header'
 import Navbar from './navbar'
-import BusinessName from './business-name'
+import TopHeader from './top-header'
 import UserMenu from './user-menu'
 import Lists from './lists'
+import '../css/user-nav.css'
 
-const UserPage = ({user, navbar}) => {
+const UserNav = ({user, showSideNav}) => {
   if(!user.id) {
     return <Redirect to='/' />
   }
 
   return (
-    <div>
+    <div id='user-nav'>
       <LogoHeader />
-      <BusinessName company={user.company}/>
+      <TopHeader company={user.company}/>
       <UserMenu />
-      {navbar ? <Navbar /> : null}
+      {showSideNav ? <Navbar /> : null}
     </div>
   )
 }
 
 const mapStateToProps = ({user}) => ({user})
 
-export default connect(mapStateToProps, null)(UserPage)
+export default connect(mapStateToProps, null)(UserNav)

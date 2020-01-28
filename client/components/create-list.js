@@ -1,48 +1,43 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {getLists, addList, addListName, removeList, saveItems} from '../store'
-import UserPage from './user-page'
+import axios from 'axios'
+import {getLists, addList, removeList, saveItems} from '../store'
+import UserNav from './user-nav'
 import '../css/create-list.css'
 
-const CreateList = ({loadLists, lists, initializeList, createList, deleteList, saveChanges, history}) => {
+const CreateList = ({saveChanges, history}) => {
 
   const [listName, setListName] = useState('')
-
-  useEffect(() => {
-    initializeList()
-  }, [])
-
-  useEffect(() => {
-    loadLists()
-  }, [loadLists])
 
   const handleChange = evt => {
     const {name, value} = evt.target
     setListName(value)
   }
 
-  const handleClick = () => {
-    const listId = lists[0].id
-    createList(listId, listName)
-    history.push(`/lists/${listId}/edit`)
+  const addNewList = async evt => {
+    evt.preventDefault()
+    const {data} = await axios.post(`/api/lists`, {
+        date: Date.now(),
+        listName
+      }
+    )
+    const {id} = data
+    history.push(`/lists/${id}/edit`)
   }
 
   const cancel = () => {
-    const listId = lists[0].id
-    deleteList(listId)
     history.push('/lists')
   }
 
   return (
     <div>
-      <UserPage />
+      <UserNav />
       <div className='margin-40'>
         <div className='header font-20'>
           <h3>CREATE LIST</h3>
         </div>
         <div className='bg-white box-shadow'>
-          <form className='list-form' onSubmit={handleClick}>
+          <form className='list-form' onSubmit={addNewList}>
             <label className='secondary-txt'>LIST NAME</label>
             <input
               className='bg-white box-shadow font-20'
@@ -53,7 +48,7 @@ const CreateList = ({loadLists, lists, initializeList, createList, deleteList, s
           </form>
         </div>
         <div className='save'>
-          <button className='action-btn white bg-blue pointer' onClick={handleClick}>CREATE</button>
+          <button className='action-btn white bg-blue pointer' onClick={addNewList}>CREATE</button>
           <button className='cancel-btn pointer light-font' onClick={cancel}>CANCEL</button>
         </div>
       </div>
@@ -61,14 +56,4 @@ const CreateList = ({loadLists, lists, initializeList, createList, deleteList, s
   )
 }
 
-const mapStateToProps = ({lists}) => ({lists})
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  loadLists: () => dispatch(getLists()),
-  initializeList: () => dispatch(addList()),
-  createList: (id, name) => dispatch(addListName(id, name)),
-  deleteList: id => dispatch(removeList(id)),
-  saveChanges: (listId, items, isInit) => dispatch(saveItems(listId, items, isInit))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateList)
+export default CreateList;

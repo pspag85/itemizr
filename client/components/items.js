@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import CreateListButton from './create-list-button'
-import UserPage from './user-page'
+import UserNav from './user-nav'
 import Item from './item'
 import ColHeader from './col-header'
 import {getList, getItems, addItem, removeItem} from '../store'
@@ -23,7 +23,7 @@ const Items = withRouter(class extends Component {
     const {items, currentList, deleteItem, selectItem, orderPage, selectedItems, selectAllItems, allSelected, clearSelection} = this.props
     return currentList ? (
       <Fragment>
-        <UserPage navbar={true}/>
+        <UserNav showSideNav={true}/>
         <CreateListButton />
         <div id='items-page' className='items-page'>
           <div className='header row font-20'>

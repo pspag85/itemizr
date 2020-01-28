@@ -37,7 +37,7 @@ a {
 }
 
 .row-container {
-  padding-left: 40px;
+  padding-left: 20px;
 }
 
 .row {
@@ -58,20 +58,17 @@ a {
 
 .column {
   width: 25%;
+  display: inline-block;
   flex-wrap: nowrap;
   align-items: center;
   text-align: left;
   white-space: nowrap;
+  /* text-overflow: ellipsis; =>  *****TODO FIX***** */
 }
 
-#lists-page .col-header .column:nth-of-type(2),
-#lists-page .col-header .column:nth-of-type(3) {
-  margin-left: 0;
-}
-
-#lists-page .column:not(.list-menu-container) {
-  width: 33%;
-  margin-left: 20px;
+.column *:not(.list-menu-container),
+.column *:not(.list-menu div) {
+  overflow: hidden;
 }
 
 #edit-items-page .column:first-of-type {
@@ -119,7 +116,7 @@ a {
 }
 
 .col-header.row {
-  padding-left: 40px;
+  padding-left: 20px;
   padding-bottom: 8px;
 }
 
@@ -131,10 +128,6 @@ a {
   position: fixed;
   right: 40px;
   width: 100px;
-}
-
-.bg-prpl {
-  background: #542437;
 }
 
 .bg-blue {
@@ -195,7 +188,7 @@ a {
 
 .add-btn {
   height: 24px;
-  margin: 19.5px 10px 0 0;
+  margin: 19.5px 6px 0 0;
 }
 
 .edit-btn {

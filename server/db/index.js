@@ -19,6 +19,5 @@ module.exports = {
   Item,
   List,
   User
-
 }
 

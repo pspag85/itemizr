@@ -1,13 +1,13 @@
-#business-name {
+#top-header {
   position: fixed;
-  top: 0;
-  left: 20vw;
+  top: 24px;
+  left: 240px;
   width: 80vw;
   font-size: 28px;
 }
 
-#business-name h2 {
+#top-header h2 {
   position: relative;
-  margin-left: 3.5%;
+  margin: 0 0 0 3.5%;
   color: white;
 }
