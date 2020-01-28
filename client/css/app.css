@@ -75,6 +75,10 @@ a {
   overflow: hidden;
 }
 
+.col-header {
+  overflow: hidden;
+}
+
 #edit-items-page .column:first-of-type {
   margin-right: 40px;
 }

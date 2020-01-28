@@ -22,8 +22,8 @@ class UserMenu extends Component {
     return (
       <div id='user-menu' className='pointer' onClick={handleClick}>
         <div id='user-menu--btn'>
-          <img id='user-icon' src='/img/person-icon.png' />
-          <h4 id='username'>{username}</h4>
+          <img src='/img/person-icon.png' />
+          <h4>{username}</h4>
         </div>
         {open ? (
           <div id='user-menu--dd' className='bg-blue'>
