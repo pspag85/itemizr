@@ -11,30 +11,30 @@
   display: inline-block;
 }
 
-#user-menu-btn {
+#user-menu--btn {
   position: fixed;
   right: 64px;
 }
 
-#username {
+#user-menu h4 {
   position: fixed;
   top: 20px;
   font-weight: 300;
 }
 
-#user-icon {
+#user-menu img {
   margin: 30px 10px 0 0;
 }
 
-#user-dd-menu {
+#user-menu--dd {
   position: relative;
   width: 200px;
-  height: 136px;
+  height: 106px;
   top: 96px;
   color: white;
   z-index: 100;
 }
 
-#user-dd-menu * {
+#user-menu--dd * {
   padding-top: 8px;
 }

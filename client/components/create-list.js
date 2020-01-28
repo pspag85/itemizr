@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import {getLists, addList, removeList, saveItems} from '../store'
-import UserNav from './user-nav'
+import UserBar from './user-bar'
 import '../css/create-list.css'
 
 const CreateList = ({saveChanges, history}) => {
@@ -31,7 +31,7 @@ const CreateList = ({saveChanges, history}) => {
 
   return (
     <div>
-      <UserNav />
+      <UserBar />
       <div className='margin-40'>
         <div className='header font-20'>
           <h3>CREATE LIST</h3>

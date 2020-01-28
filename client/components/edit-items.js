@@ -2,7 +2,7 @@ import React, {useState, useEffect, Fragment} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import axios from 'axios'
-import UserNav from './user-nav'
+import UserBar from './user-bar'
 import AddItemButton from './add-item-button'
 import EditItem from './edit-item'
 import ColHeader from './col-header'
@@ -43,8 +43,8 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
 
   return currentList ? (
     <Fragment>
-      <UserNav />
-      <div id='edit-items-page' className='items-page'>
+      <UserBar />
+      <div id='edit-items-page' className='page-pdg'>
         <div className='header font-20'>
         <h3>{currentList.name}</h3>
         </div>

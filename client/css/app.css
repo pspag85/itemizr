@@ -36,6 +36,10 @@ a {
   padding-bottom: 20px;
 }
 
+.page-pdg {
+  padding: 100px 40px 0 40px;
+}
+
 .row-container {
   padding-left: 20px;
 }

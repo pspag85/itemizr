@@ -7,23 +7,23 @@ import Navbar from './navbar'
 import TopHeader from './top-header'
 import UserMenu from './user-menu'
 import Lists from './lists'
-import '../css/user-nav.css'
+import '../css/user-bar.css'
 
-const UserNav = ({user, showSideNav}) => {
+const UserBar = ({user, showNav}) => {
   if(!user.id) {
     return <Redirect to='/' />
   }
 
   return (
-    <div id='user-nav'>
+    <div id='user-bar'>
       <LogoHeader />
       <TopHeader company={user.company}/>
       <UserMenu />
-      {showSideNav ? <Navbar /> : null}
+      {showNav ? <Navbar /> : null}
     </div>
   )
 }
 
 const mapStateToProps = ({user}) => ({user})
 
-export default connect(mapStateToProps, null)(UserNav)
+export default connect(mapStateToProps, null)(UserBar)
