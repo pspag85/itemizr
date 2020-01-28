@@ -25,7 +25,7 @@ const Lists = withRouter(({user, loadLists, lists, deleteList}) => {
         {lists.length < 1 || !Array.isArray(lists) ? <h4>Start by creating your first list</h4>
         : <Fragment>
             <div className='col-header row secondary-txt'>
-              <ColHeader colNum={'three'} headers={['DATE', 'LIST NAME', 'LAST EDITED BY']}/>
+              <ColHeader headers={['DATE  \u{2191}', 'LIST NAME  \u{2191}', 'LAST EDITED BY \u{2191}']}/>
             </div>
             <div className='row-container bg-white box-shadow'>
               {lists.map(({id, name, date, lastEditedBy}, index) => (
