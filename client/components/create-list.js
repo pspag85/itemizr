@@ -18,7 +18,7 @@ const CreateList = ({saveChanges, history}) => {
     evt.preventDefault()
     const {data} = await axios.post(`/api/lists`, {
         date: Date.now(),
-        listName
+        name: listName
       }
     )
     const {id} = data
