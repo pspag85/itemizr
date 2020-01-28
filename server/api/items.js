@@ -2,7 +2,7 @@ const router = require('express').Router()
 const {Item} = require('../db')
 const {bulk_upsert} = require('../../utility/helpers')
 
-router.get('/', async (req, res, next) => {
+router.get('/new', async (req, res, next) => {
   try {
     const lastItem = await Item.findOne({
       order: [['id', 'DESC']]

@@ -23,7 +23,7 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
 
   const addNewItem = async () => {
     try {
-      const {data} = await axios.get('/api/items')
+      const {data} = await axios.get('/api/items/new')
       let id = data
       items.forEach(item => {
         if(item.id === id) id += 1
