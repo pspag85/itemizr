@@ -15,7 +15,7 @@ const UserBar = ({user, showNav}) => {
   }
 
   return (
-    <div id='user-bar'>
+    <div id='user-bar' className='bg-prpl'>
       <LogoHeader />
       <TopHeader company={user.company}/>
       <UserMenu />

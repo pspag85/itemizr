@@ -51,7 +51,7 @@ const OrderItems = withRouter(({loadItems, items, getCurrentList, currentList, l
     <Items
       selectItem={selectItem}
       orderPage={true}
-      selectAllItems={selectAllItems} 
+      selectAllItems={selectAllItems}
       allSelected={checkedItems.every(({checked}) => checked)}
       selectedItems={checkedItems}
       clearSelection={clearSelection}

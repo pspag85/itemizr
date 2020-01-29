@@ -49,7 +49,7 @@ const CreateList = ({saveChanges, history}) => {
         </div>
         <div className='save'>
           <button className='action-btn white bg-blue pointer' onClick={addNewList}>CREATE</button>
-          <button className='cancel-btn pointer light-font' onClick={cancel}>CANCEL</button>
+          <button className='action-btn cancel-btn pointer light-font' onClick={cancel}>CANCEL</button>
         </div>
       </div>
     </div>

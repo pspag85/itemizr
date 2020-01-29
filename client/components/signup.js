@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {signup} from '../store'
@@ -10,16 +10,21 @@ const Signup = props => {
   const {handleSubmit} = props
 
   return (
-    <div>
-      <h1>Signup:</h1>
-      <div>
-        <h2>Already have an account?</h2>
-        <Link to='/login'>Login</Link>
+    <Fragment>
+      <div className='auth-sidebar'></div>
+      <div className='auth-wrapper bg-white vh-100'>
+        <div className='auth-container bg-lt-blue'>
+          <h1>Signup:</h1>
+          <div>
+            <h2>Already have an account?</h2>
+            <Link to='/login'>Login</Link>
+          </div>
+          <br/>
+          <AuthForm handleSubmit={handleSubmit} isSignup={true} />
+          <h4 ref={emailRef}></h4>
+        </div>
       </div>
-      <br/>
-      <AuthForm handleSubmit={handleSubmit} isSignup={true} />
-      <h4 ref={emailRef}></h4>
-    </div>
+    </Fragment>
   )
 }
 
