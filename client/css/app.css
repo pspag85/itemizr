@@ -11,6 +11,10 @@ a {
   text-decoration: none;
 }
 
+button {
+  cursor: pointer;
+}
+
 .flex {
   display: flex;
 }
@@ -146,7 +150,7 @@ input:-webkit-autofill:active  {
   /* text-overflow: ellipsis; =>  *****TODO FIX***** */
 }
 
-.column h4 {
+.column h4:not(.delete-txt) {
   overflow: hidden;
 }
 
@@ -355,7 +359,7 @@ input:-webkit-autofill:active  {
 }
 
 .action-btn {
-  font-size: 16px;
+  font-size: 14px;
   padding: .4em 1em .4em 1em;
   border-radius: 5px;
   margin: 78px 40px 0 0;
