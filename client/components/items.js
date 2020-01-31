@@ -11,9 +11,8 @@ import '../css/items.css'
 const Items = withRouter(class extends Component {
 
   componentDidMount() {
-    const {user, getCurrentList, loadItems, history, location} = this.props
+    const {user, listId, getCurrentList, loadItems, history, location} = this.props
     const {pathname} = location
-    const listId = pathname.split('/')[2]
     getCurrentList(listId)
     loadItems(listId)
     if(!user.id) history.push('/')
@@ -23,11 +22,8 @@ const Items = withRouter(class extends Component {
     const {items, currentList, deleteItem, selectItem, orderPage, selectedItems, selectAllItems, allSelected, clearSelection} = this.props
     return currentList ? (
       <Fragment>
-        <UserBar showNav={true}/>
-        <div id='items-page' className='page-pdg'>
+        <div>
           <div className='header row font-20'>
-            <h3>{currentList.name}</h3>
-            <div></div>
             {orderPage ?
               <Fragment>
                 {allSelected ?

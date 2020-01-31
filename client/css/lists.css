@@ -6,6 +6,13 @@
   flex-basis: 50%;
 }
 
+#lists-page .row-container {
+  background-color: transparent;
+}
+
+#lists-page .row {
+  margin: 20px 0;
+}
 
 #lists-page .col-header .column:nth-of-type(2),
 #lists-page .col-header .column:nth-of-type(3) {
