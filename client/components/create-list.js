@@ -5,8 +5,7 @@ import {getLists, addList, removeList, saveItems} from '../store'
 import UserBar from './user-bar'
 import '../css/create-list.css'
 
-const CreateList = ({saveChanges, history}) => {
-
+const CreateList = ({history}) => {
   const [listName, setListName] = useState('')
 
   const handleChange = evt => {

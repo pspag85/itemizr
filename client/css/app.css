@@ -291,13 +291,12 @@ input:-webkit-autofill:active  {
 }
 
 .add-container {
-  position: fixed;
-  top: 100px;
-  margin: 20px;
+  width: 200px;
   padding: 0 10px;
   display: flex;
   justify-content: center;
   text-align: center;
+  background-color: white;
 }
 
 .add-container h3 {

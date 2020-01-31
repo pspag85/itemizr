@@ -17,7 +17,6 @@ const Lists = withRouter(({user, loadLists, lists, deleteList}) => {
   return (
     <Fragment>
       <UserBar showNav={true}/>
-      <CreateListButton />
       <div id='lists-page' className='page-pdg'>
         <div className='header row font-20'>
           <h3>MY LISTS</h3>

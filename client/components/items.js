@@ -24,7 +24,6 @@ const Items = withRouter(class extends Component {
     return currentList ? (
       <Fragment>
         <UserBar showNav={true}/>
-        <CreateListButton />
         <div id='items-page' className='page-pdg'>
           <div className='header row font-20'>
             <h3>{currentList.name}</h3>
