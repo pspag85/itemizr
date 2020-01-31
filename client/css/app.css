@@ -61,7 +61,9 @@ a {
 }
 
 .auth-form input {
+  height: 20px;
   margin: 10px 0;
+  border-radius: 3px;
 }
 
 .auth-container .action-btn {
@@ -266,14 +268,14 @@ input:-webkit-autofill:active  {
 }
 
 .rnd-crnr {
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .box-shadow {
   border: 1px solid #BDBBC2;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .add-container {
@@ -343,7 +345,7 @@ input:-webkit-autofill:active  {
 .action-btn {
   font-size: 16px;
   padding: .4em 1em .4em 1em;
-  border-radius: 10px;
+  border-radius: 5px;
   margin: 78px 40px 0 0;
 }
 
@@ -385,7 +387,7 @@ input:-webkit-autofill:active  {
   }
 }
 
-@media screen only and (max-width: 800px) {
+@media only screen and (max-width: 800px) {
   #edit-items-page.page-pdg {
     padding-right: 0;
   }
