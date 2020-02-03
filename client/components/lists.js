@@ -3,7 +3,7 @@ import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import UserBar from './user-bar'
 import List from './list'
-import {getLists, addList, removeList, getItems, saveList} from '../store'
+import {getLists, removeList, getItems, saveList} from '../store'
 import '../css/lists.css'
 
 const Lists = withRouter(({user, loadLists, lists, deleteList}) => {

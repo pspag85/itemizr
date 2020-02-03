@@ -8,6 +8,7 @@ import Login from './components/login'
 import UserBar from './components/user-bar'
 import Users from './components/users'
 import Suppliers from './components/suppliers';
+import AddSupplier from './components/add-supplier';
 import Lists from './components/lists'
 import CreateList from './components/create-list'
 import Items from './components/items'
@@ -38,6 +39,7 @@ const App = withRouter(class extends Component {
           <Route exact path='/lists/:listId/order' component={OrderItems} />
           <Route exact path='/lists' component={Lists} />
           <Route exact path='/users' component={Users} />
+          <Route exact path='/suppliers/add' component={AddSupplier} />
           <Route exact path='/suppliers' component={Suppliers} />
           <Route exact path='/signup' component={Signup} />
           <Route component={Login} />
