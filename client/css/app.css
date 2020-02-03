@@ -2,7 +2,6 @@ html, body {
   width: 100vw;
   height: 100vh;
   margin: 0;
-  background: rgba(218, 234, 247, 0.15);
   font-family: 'Open-Sans', sans-serif;
 }
 
@@ -222,11 +221,11 @@ input:-webkit-autofill:active  {
 }
 
 .bg-blue {
-  background: #00A0B0;
+  background: #01C4D8;
 }
 
 .bg-lt-blue {
-  background: rgba(218, 234, 247, 0.15);
+  background: #EDF5FA;
 }
 
 .bg-white {
@@ -234,7 +233,7 @@ input:-webkit-autofill:active  {
 }
 
 .bg-prpl {
-  background-color: #542437;
+  background-color: #C9E3F2;
 }
 
 .flex-start {
