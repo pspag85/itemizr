@@ -1,14 +1,14 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import {withRouter, Redirect, Link} from 'react-router-dom'
 import axios from 'axios'
-import AddSupplier from './add-supplier'
 
 const Suppliers = withRouter(() => {
+  const [suppliers, setSuppliers] = useState([])
 
-  const loadSuppliers = async => {
+  const loadSuppliers = async () => {
     try {
-      const {data} = axios.get('/api/suppliers')
-      console.log('data:   ', data)
+      const {data} = await axios.get('/api/suppliers')
+      setSuppliers(data)
     } catch(err) {
       console.error(err)
     }
@@ -43,7 +43,22 @@ const Suppliers = withRouter(() => {
           <h3>Suppliers</h3>
         </div>
         <div className='bg-white box-shadow'>
-          Suppliers List...
+          <table>
+            <thead>
+              <tr>
+                <th>NAME</th>
+                <th>CONTACT</th>
+              </tr>
+            </thead>
+            <tbody>
+              {suppliers.map(({name, contact}) => <tr
+                key={name + Math.random()}
+                className='supplier'>
+                <td>{name}</td>
+                <td>{contact}</td>
+              </tr>)}
+            </tbody>
+          </table>
         </div>
         <Link to='/suppliers/add' className='add-container pointer box-shadow'>
           <h3>+ Add Supplier</h3>

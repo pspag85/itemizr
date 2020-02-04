@@ -4,8 +4,7 @@ const {Supplier, Item, List} = require('../db')
 router.get('/', async (req, res, next) => {
   try {
     const suppliers = await Supplier.findAll({
-      where: {userId: req.session.userId},
-      order: [ ['id', 'DESC'] ]
+      where: {userId: req.session.userId}
     })
     res.json(suppliers)
   } catch(err) {
