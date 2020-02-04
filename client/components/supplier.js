@@ -5,9 +5,9 @@ import CreateListButton from './create-list-button';
 
 const Supplier = withRouter(({match}) => {
   const [supplier, setSupplier] = useState({name: '', contact: ''})
+  const {id} = match.params
 
   const loadSupplier = async () => {
-    const {id} = match.params
     try {
       const {data} = await axios.get(`/api/suppliers/${id}`)
       setSupplier(data)
@@ -30,7 +30,7 @@ const Supplier = withRouter(({match}) => {
           <h4>{supplier.contact}</h4>
         </div>
       </div>
-      <CreateListButton />
+      <CreateListButton supplierId={supplier.id}/>
     </div>
   )
 })

@@ -5,7 +5,10 @@ import {getLists, addList, removeList, saveItems} from '../store'
 import UserBar from './user-bar'
 import '../css/create-list.css'
 
-const CreateList = ({history}) => {
+const CreateList = ({match, history}) => {
+  const {supplierId} = match.params
+  console.log(match.params)
+
   const [listName, setListName] = useState('')
 
   const handleChange = evt => {
@@ -17,7 +20,8 @@ const CreateList = ({history}) => {
     evt.preventDefault()
     const {data} = await axios.post(`/api/lists`, {
         date: Date.now(),
-        name: listName
+        name: listName,
+        supplierId
       }
     )
     const {id} = data
