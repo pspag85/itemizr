@@ -3,14 +3,34 @@ import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import UserBar from './user-bar'
 import List from './list'
-import {getLists, removeList, getItems, saveList} from '../store'
+import axios from 'axios'
 import '../css/lists.css'
 
-const Lists = withRouter(({user, loadLists, lists, deleteList}) => {
+const Lists = withRouter(() => {
+  const [lists, setLists] = useState([])
+
+  const getLists = async () => {
+    try {
+      const {data} = await axios.get(`/api/lists/`)
+      setLists(data)
+    } catch(err) {
+      console.error(err)
+    }
+  }
 
   useEffect(() => {
-    loadLists()
+    getLists()
   }, [])
+
+  const deleteList = async (id) => {
+    try {
+      await axios.delete(`/api/lists/${id}`)
+      const updatedLists = lists.filter(list => list.id !== id)
+      setLists(updatedLists)
+    } catch(err) {
+      console.error(err)
+    }
+  }
 
   return (
     <Fragment>
@@ -38,11 +58,4 @@ const Lists = withRouter(({user, loadLists, lists, deleteList}) => {
   )
 })
 
-const mapStateToProps = ({user, lists}) => ({user, lists})
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  loadLists: () => dispatch(getLists()),
-  deleteList: id => dispatch(removeList(id))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Lists)
+export default Lists

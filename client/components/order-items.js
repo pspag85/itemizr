@@ -1,22 +1,34 @@
 import React, {useState, useEffect} from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import axios from 'axios'
 import Items from './items'
-import {getList, getItems} from '../store'
+import {getItems} from '../store'
 import '../css/items.css'
 
-const OrderItems = withRouter(({loadItems, items, getCurrentList, currentList, location}) => {
-
+// duplicate logic in EditItems component needs to be abstracted
+const OrderItems = withRouter(({loadItems, items, location}) => {
   const {pathname} = location
   const listId = pathname.split('/')[2]
 
-  useEffect(() => {
-    getCurrentList(listId)
-  }, [getCurrentList])
+  const [list, setList] = useState([])
+
+  const getList = async id => {
+    try {
+      const {data} = await axios.get(`/api/lists/${id}`)
+      setList(data)
+    } catch(err) {
+      console.error(err)
+    }
+  }
 
   useEffect(() => {
-    loadItems()
-  }, [loadItems])
+    getList(listId)
+  }, [])
+
+  useEffect(() => {
+    loadItems(list.id)
+  }, [])
 
   const itemsArr = items.map(({id}) => ({id, checked: false}))
   const [checkedItems, setCheckedItems] = useState(itemsArr)
@@ -62,7 +74,6 @@ const OrderItems = withRouter(({loadItems, items, getCurrentList, currentList, l
 const mapStateToProps = ({items}) => ({items})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  getCurrentList: id => dispatch(getList(id)),
   loadItems: listId => dispatch(getItems(listId))
 })
 

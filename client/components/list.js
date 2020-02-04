@@ -24,7 +24,7 @@ const List = ({id, name, supplierId, deleteList}) => {
 
   useEffect(() => {
     getSupplier()
-  }, {})
+  }, [])
 
   return id && (
     <Fragment>

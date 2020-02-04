@@ -6,20 +6,31 @@ import UserBar from './user-bar'
 import AddItemButton from './add-item-button'
 import EditItem from './edit-item'
 import ColHeader from './col-header'
-import {getList, getItems, addItem, removeItem, saveItems, cancelUpdate} from '../store'
+import {getItems, addItem, removeItem, saveItems, cancelUpdate} from '../store'
 
-const EditItems = ({user, getCurrentList, currentList, loadItems, items, createItem, deleteItem, saveChanges, cancelChanges, history, location}) => {
+const EditItems = ({user, loadItems, items, createItem, deleteItem, saveChanges, cancelChanges, history, location}) => {
   if(!user.id) history.push('/')
   const {pathname} = location
   const listId = pathname.split('/')[2]
 
+  const [list, setList] = useState([])
+
   useEffect(() => {
-    getCurrentList(listId)
-  }, [getCurrentList])
+    getList(listId)
+  }, [])
 
   useEffect(() => {
     loadItems(listId)
-  }, [loadItems])
+  }, [])
+
+  const getList = async id => {
+    try {
+      const {data} = await axios.get(`/api/lists/${id}`)
+      setList(data)
+    } catch(err) {
+      console.error(err)
+    }
+  }
 
   const addNewItem = async () => {
     try {
@@ -38,15 +49,15 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
   }
 
   const cancelEdit = () => {
-    history.push(`/lists/${currentList.id}`)
+    history.push('/lists')
   }
 
-  return currentList ? (
+  return list ? (
     <Fragment>
       <UserBar />
       <div id='edit-items-page' className='page-pdg'>
         <div className='header font-20'>
-        <h3>{currentList.name}</h3>
+        <h3>{list.name}</h3>
         </div>
         <div className='col-header row secondary-txt'>
           <ColHeader headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
@@ -65,10 +76,10 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
               deleteItem={deleteItem}
             />
           ))}
-          <AddItemButton listId={currentList.id} addNewItem={addNewItem} />
+          <AddItemButton listId={list.id} addNewItem={addNewItem} />
         </div>
         <div className='save'>
-          <button className='action-btn white bg-blue pointer' onClick={() => saveChanges(currentList.id, items)}>SAVE CHANGES</button>
+          <button className='action-btn white bg-blue pointer' onClick={() => saveChanges(list.id, items)}>SAVE CHANGES</button>
           <button className='action-btn cancel-btn pointer light-font' onClick={cancelEdit}>CANCEL</button>
         </div>
       </div>
@@ -76,10 +87,9 @@ const EditItems = ({user, getCurrentList, currentList, loadItems, items, createI
   ) : null
 }
 
-const mapStateToProps = ({user, lists, items}) => ({user, currentList: lists[0], items})
+const mapStateToProps = ({user, items}) => ({user, items})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  getCurrentList: id => dispatch(getList(id)),
   loadItems: listId => dispatch(getItems(listId)),
   createItem: newItem => dispatch(addItem(newItem)),
   deleteItem: storeId => dispatch(removeItem(storeId)),
