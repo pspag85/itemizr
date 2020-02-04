@@ -1,6 +1,7 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import {withRouter, Redirect, Link} from 'react-router-dom'
 import axios from 'axios'
+import SupplierLink from './supplier-link';
 
 const Suppliers = withRouter(() => {
   const [suppliers, setSuppliers] = useState([])
@@ -43,22 +44,13 @@ const Suppliers = withRouter(() => {
           <h3>Suppliers</h3>
         </div>
         <div className='bg-white box-shadow'>
-          <table>
-            <thead>
-              <tr>
-                <th>NAME</th>
-                <th>CONTACT</th>
-              </tr>
-            </thead>
-            <tbody>
-              {suppliers.map(({name, contact}) => <tr
-                key={name + Math.random()}
-                className='supplier'>
-                <td>{name}</td>
-                <td>{contact}</td>
-              </tr>)}
-            </tbody>
-          </table>
+          {suppliers.map(({id, name, contact}) => <SupplierLink
+            key={name + Math.random()}
+            className='supplier'
+            id={id}
+            name={name}
+            contact={contact}
+          />)}
         </div>
         <Link to='/suppliers/add' className='add-container pointer box-shadow'>
           <h3>+ Add Supplier</h3>

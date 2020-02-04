@@ -24,7 +24,7 @@ const Items = withRouter(class extends Component {
       <Fragment>
         <div>
           <div className='header row font-20'>
-            {orderPage ?
+            {orderPage ? // TODO:  CREATE ORDERLINK COMPONENT FOR THIS TERNARY
               <Fragment>
                 {allSelected ?
                   <div onClick={clearSelection} >
