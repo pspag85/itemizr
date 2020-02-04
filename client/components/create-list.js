@@ -25,7 +25,7 @@ const CreateList = ({history}) => {
   }
 
   const cancel = () => {
-    history.push('/lists')
+    history.goBack()
   }
 
   return (
