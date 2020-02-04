@@ -22,10 +22,11 @@ const Lists = withRouter(({user, loadLists, lists, deleteList}) => {
         {lists.length < 1 || !Array.isArray(lists) ? <h4>Start by creating your first list</h4>
         : <Fragment>
             <div className='row-container bg-white'>
-              {lists.map(({id, name, date, lastEditedBy}, index) => (
+              {lists.map(({id, name, date, supplierId}) => (
                 <List key={Math.random() + id}
                   id={id}
                   name={name}
+                  supplierId={supplierId}
                   deleteList={deleteList}
                 />
               ))}
@@ -41,7 +42,6 @@ const mapStateToProps = ({user, lists}) => ({user, lists})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadLists: () => dispatch(getLists()),
-  createList: () => dispatch(addList()),
   deleteList: id => dispatch(removeList(id))
 })
 

@@ -34,7 +34,7 @@ const App = withRouter(class extends Component {
     return (
       <Fragment>
         <Switch>
-          <Route exact path='/lists/create/:supplierId' component={CreateList} />
+          <Route exact path='/lists/suppliers/:supplierId/create' component={CreateList} />
           <Route exact path='/lists/:listId' component={Items} />/>
           <Route exact path='/lists/:listId/edit' component={EditItems} />
           <Route exact path='/lists/:listId/order' component={OrderItems} />

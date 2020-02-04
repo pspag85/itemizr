@@ -7,7 +7,6 @@ import '../css/create-list.css'
 
 const CreateList = ({match, history}) => {
   const {supplierId} = match.params
-  console.log(match.params)
 
   const [listName, setListName] = useState('')
 
