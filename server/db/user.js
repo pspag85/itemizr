@@ -6,7 +6,7 @@ const User = db.define('users', {
     type: Sequelize.DATE,
     defaultValue: Date.now()
   },
-  company: {
+  business: {
     type: Sequelize.STRING
   },
   username: {

@@ -1,4 +1,10 @@
+#user-menu {
+  height: 50px;
+  margin: 20px 15px 10px;
+  padding-left: 20px;
+  border-radius: 25px;
+}
+
 #user-menu h4 {
-  margin-bottom: 10px;
-  font-weight: 300;
+  margin: 0;
 }

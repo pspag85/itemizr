@@ -37,12 +37,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   async handleSubmit (evt) {
     evt.preventDefault()
     duplicateEmailHandler()
-    const company = evt.target.company.value
+    const business = evt.target.business.value
     const username = evt.target.username.value
     const email = evt.target.email.value
     const password = evt.target.password.value
     const signupThunk = signup({
-      company,
+      business,
       username,
       email,
       password,

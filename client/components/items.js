@@ -18,16 +18,16 @@ const Items = withRouter(({user, loadItems, items, listId, selectItem, orderPage
   return listId ? (
     <Fragment>
       <div>
-        <div className='header row font-20'>
+        <div className='header row ft-20'>
           {orderPage ? // TODO:  CREATE ORDERLINK COMPONENT FOR THIS TERNARY
             <Fragment>
               {allSelected ?
                 <div onClick={clearSelection} >
-                  <h3 src='/img/clear.png' className='font-20 flex-start light-font underline'>CLEAR</h3>
+                  <h3 src='/img/clear.png' className='ft-20 flex-start light-font underline'>CLEAR</h3>
                 </div>
                 :
                 <div onClick={selectAllItems} >
-                  <h3 className='font-20 flex-start light-font underline'>SELECT ALL</h3>
+                  <h3 className='ft-20 flex-start light-font underline'>SELECT ALL</h3>
                 </div>
               }
               <Link to={`/lists/${listId}`} className='clear flex-start'>
@@ -62,7 +62,7 @@ const Items = withRouter(({user, loadItems, items, listId, selectItem, orderPage
           </div>
         }
       </div>
-      {!orderPage && <Link to={`/lists/${listId}/order`} className='action-btn white bg-blue pointer'>ORDER</Link>}
+      {!orderPage && <Link to={`/lists/${listId}/order`} className='action-btn white bg-drk-blue pointer'>ORDER</Link>}
     </Fragment>
   ) : null
 })

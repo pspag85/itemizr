@@ -35,14 +35,14 @@ const CreateList = ({match, history}) => {
     <div>
       <UserBar />
       <div className='page-pdg margin-40'>
-        <div className='header font-20'>
+        <div className='header ft-20'>
           <h3>CREATE LIST</h3>
         </div>
         <div className='bg-white box-shadow'>
           <form className='list-form' onSubmit={addNewList}>
             <label className='secondary-txt'>LIST NAME</label>
             <input
-              className='bg-white box-shadow font-20'
+              className='bg-white box-shadow ft-20'
               type='text'
               value={listName}
               onChange={handleChange}
@@ -50,7 +50,7 @@ const CreateList = ({match, history}) => {
           </form>
         </div>
         <div className='save'>
-          <button className='action-btn white bg-blue pointer' onClick={addNewList}>CREATE</button>
+          <button className='action-btn white bg-drk-blue pointer' onClick={addNewList}>CREATE</button>
           <button className='action-btn cancel-btn pointer light-font' onClick={cancel}>CANCEL</button>
         </div>
       </div>

@@ -40,7 +40,7 @@ const Suppliers = withRouter(() => {
   return (
     <Fragment>
       <div className='page-pdg'>
-        <div className='header row font-20'>
+        <div className='header row ft-20'>
           <h3>Suppliers</h3>
         </div>
         <div className='bg-white box-shadow'>

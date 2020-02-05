@@ -85,11 +85,11 @@ input:-webkit-autofill:active  {
   width: 200px;
 }
 
-.font-20 {
+.ft-20 {
   font-size: 20px;
 }
 
-.font-8 {
+.ft-8 {
   font-size: 8px;
 }
 
@@ -219,6 +219,10 @@ input:-webkit-autofill:active  {
 }
 
 .bg-blue {
+  background-color: #C9E3F2;
+}
+
+.bg-drk-blue {
   background: #01C4D8;
 }
 

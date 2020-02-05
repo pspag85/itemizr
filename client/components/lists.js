@@ -36,7 +36,7 @@ const Lists = withRouter(() => {
     <Fragment>
       <UserBar showNav={true}/>
       <div id='lists-page' className='page-pdg'>
-        <div className='tp-mrg-20 font-8'>
+        <div className='tp-mrg-20 ft-8'>
           <h4>Search</h4>
         </div>
         {lists.length < 1 || !Array.isArray(lists) ? <h4>Start by creating your first list</h4>

@@ -56,7 +56,7 @@ const EditItems = ({user, loadItems, items, createItem, deleteItem, saveChanges,
     <Fragment>
       <UserBar />
       <div id='edit-items-page' className='page-pdg'>
-        <div className='header font-20'>
+        <div className='header ft-20'>
         <h3>{list.name}</h3>
         </div>
         <div className='col-header row secondary-txt'>
@@ -79,7 +79,7 @@ const EditItems = ({user, loadItems, items, createItem, deleteItem, saveChanges,
           <AddItemButton listId={list.id} addNewItem={addNewItem} />
         </div>
         <div className='save'>
-          <button className='action-btn white bg-blue pointer' onClick={() => saveChanges(list.id, items)}>SAVE CHANGES</button>
+          <button className='action-btn white bg-drk-blue pointer' onClick={() => saveChanges(list.id, items)}>SAVE CHANGES</button>
           <button className='action-btn cancel-btn pointer light-font' onClick={cancelEdit}>CANCEL</button>
         </div>
       </div>
