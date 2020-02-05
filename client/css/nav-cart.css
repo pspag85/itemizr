@@ -1,7 +1,6 @@
 #nav-cart {
-  height: 100%;
   position: absolute;
-  text-align: right;
+  top: 26px;
 }
 
 #nav-cart * {
@@ -15,13 +14,13 @@
 
 #nav-cart h4 {
   position: fixed;
-  top: 12px;
+  top: 10px;
   font-weight: 300;
 }
 
 #nav-cart img {
   height: 20px;
-  margin: 28px 8px 0 0;
+  margin-right: 8px;
 }
 
 #nav-cart--dd {

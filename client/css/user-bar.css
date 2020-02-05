@@ -10,3 +10,7 @@
   height: 52px;
   border-bottom: 1px solid #AABCC6;
 }
+
+#header-container h2 {
+  margin: 24px 0;
+}
