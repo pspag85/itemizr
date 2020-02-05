@@ -13,8 +13,10 @@ const UserBar = ({user}) => {
   }
 
   return (
-    <div id='user-bar' className='bg-prpl'>
-      <NavCart />
+    <div id='user-bar'>
+      <div id='header-container'>
+        <NavCart />
+      </div>
       <Navbar />
     </div>
   )
