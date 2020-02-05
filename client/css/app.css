@@ -215,8 +215,6 @@ input:-webkit-autofill:active  {
 }
 
 #logout-btn-container {
-  position: fixed;
-  right: 40px;
   width: 100px;
 }
 
@@ -386,12 +384,6 @@ input:-webkit-autofill:active  {
     padding-left: 20px;
   }
 
-  #user-menu--btn {
-    position: fixed;
-    right: 44px;
-  }
-
-  .edit-btn,
   .action-btn {
     margin-right: 20px;
   }

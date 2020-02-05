@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {withRouter, Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import UserMenu from './user-menu'
+import NavCart from './nav-cart'
 import AddUser from './add-user'
 import ColHeader from './col-header'
 import User from './user'
@@ -23,7 +23,7 @@ const Users = withRouter(class extends Component {
     const {users, deleteUser} = this.props
     return (
       <div id='users-container'>
-        <UserMenu />
+        <NavCart />
         <Link to='/lists'>Back To Lists</Link>
         <AddUser />
         <h2>My Users</h2>

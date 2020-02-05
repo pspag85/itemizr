@@ -6,7 +6,8 @@ import Items from './items'
 import {getItems} from '../store'
 import '../css/items.css'
 
-// duplicate logic in EditItems component needs to be abstracted
+// ****TODO: needs to be refactored as collapsable just like edit items
+
 const OrderItems = withRouter(({loadItems, items, location}) => {
   const {pathname} = location
   const listId = pathname.split('/')[2]

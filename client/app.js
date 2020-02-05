@@ -24,7 +24,7 @@ const App = withRouter(class extends Component {
     let path = pathname === '/' ? '/lists' : pathname
     try {
       await store.dispatch(getMe())
-      history.push(`${path}`)
+      history.push(path)
     } catch(err) {
       console.error(err)
     }

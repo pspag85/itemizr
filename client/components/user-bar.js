@@ -4,22 +4,18 @@ import {connect} from 'react-redux'
 import {logout} from '../store'
 import LogoHeader from './logo-header'
 import Navbar from './navbar'
-import TopHeader from './top-header'
-import UserMenu from './user-menu'
-import Lists from './lists'
+import NavCart from './nav-cart'
 import '../css/user-bar.css'
 
-const UserBar = ({user, showNav}) => {
+const UserBar = ({user}) => {
   if(!user.id) {
     return <Redirect to='/' />
   }
 
   return (
     <div id='user-bar' className='bg-prpl'>
-      <LogoHeader />
-      <TopHeader company={user.company}/>
-      <UserMenu />
-      {showNav ? <Navbar /> : null}
+      <NavCart />
+      <Navbar />
     </div>
   )
 }

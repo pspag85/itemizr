@@ -1,0 +1,39 @@
+#nav-cart {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-align: right;
+}
+
+#nav-cart * {
+  display: inline-block;
+}
+
+#nav-cart--btn {
+  position: fixed;
+  right: 64px;
+}
+
+#nav-cart h4 {
+  position: fixed;
+  top: 20px;
+  font-weight: 300;
+}
+
+#nav-cart img {
+  margin: 30px 10px 0 0;
+}
+
+#nav-cart--dd {
+  position: relative;
+  width: 200px;
+  height: 106px;
+  top: 96px;
+  color: white;
+  z-index: 100;
+}
+
+#nav-cart--dd * {
+  padding-top: 8px;
+}
