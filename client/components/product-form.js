@@ -1,41 +1,38 @@
 
 import React, {useState} from 'react'
-import {connect} from 'react-redux'
-import {updateProduct} from '../store'
+import axios from 'axios'
 
-const ProductForm = ({id, name, onHand, par, orderQty, putProduct, cancel}) => {
-  const product = {id, name, onHand, par, orderQty}
-  const [productState, setProductState] = useState(product)
+const ProductForm = ({cancel}) => {
+  const [product, setProduct] = useState({name: '', onHand: '', par: '', orderQty: ''})
 
   const handleChange = event => {
-    const {value} = event.target
-    const product = {...productState}
-    product[event.target.name] = value
-    setProductState(product)
+    const {name, value} = event.target
+    setProduct({...product, [name]: value})
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault()
-    const {name, value} = event.target
-    const product = {...productState}
-    product[name] = value
-    putProduct(id, product)
+    try {
+      await axios.post('/api/products', product)
+    } catch(err) {
+      console.error(err)
+    }
   }
 
   return (
     <div>
-      <form className='product-form row vt-pdg-20' onSubmit={handleSubmit} onBlur={handleSubmit}>
+      <form className='product-form row vt-pdg-20' onSubmit={handleSubmit}>
         <div className='column'>
-          <input type="text" name='name' value={productState.name || name} onChange={handleChange} />
+          <input type="text" name='name' value={product.name} onChange={handleChange} />
         </div>
         <div className='column'>
-          <input type="number" name='onHand' value={productState.onHand || onHand} onChange={handleChange} />
+          <input type="number" name='onHand' value={product.onHand} onChange={handleChange} />
         </div>
         <div className='column'>
-          <input type="number" name='par' value={productState.par || par} onChange={handleChange} />
+          <input type="number" name='par' value={product.par} onChange={handleChange} />
         </div>
         <div className='column'>
-          <input type="number" name='orderQty' value={productState.orderQty || orderQty} onChange={handleChange} />
+          <input type="number" name='orderQty' value={product.orderQty} onChange={handleChange} />
         </div>
         <div>
           <button type='submit' className='action-btn white bg-drk-blue pointer' onClick={handleSubmit}>ADD</button>
@@ -46,8 +43,4 @@ const ProductForm = ({id, name, onHand, par, orderQty, putProduct, cancel}) => {
   )
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  putProduct: (id, productData) => dispatch(updateProduct(id, productData))
-})
-
-export default connect(null, mapDispatchToProps)(ProductForm)
+export default ProductForm;

@@ -11,9 +11,14 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/', (req, res, next) => {
-  const product = bulk_upsert(Product, req.body)
-  res.json(product)
+router.post('/', async (req, res, next) => {
+  try {
+    const products = await Product.create(req.body)
+    res.json(products)
+  } catch(err) {
+    console.error(err)
+  }
 })
+
 
 module.exports = router
