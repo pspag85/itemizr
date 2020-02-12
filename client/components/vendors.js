@@ -1,22 +1,22 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import {withRouter, Redirect, Link} from 'react-router-dom'
 import axios from 'axios'
-import SupplierLink from './supplier-link';
+import VendorLink from './vendor-link';
 
-const Suppliers = withRouter(() => {
-  const [suppliers, setSuppliers] = useState([])
+const Vendors = withRouter(() => {
+  const [vendors, setVendors] = useState([])
 
-  const loadSuppliers = async () => {
+  const loadVendors = async () => {
     try {
-      const {data} = await axios.get('/api/suppliers')
-      setSuppliers(data)
+      const {data} = await axios.get('/api/vendors')
+      setVendors(data)
     } catch(err) {
       console.error(err)
     }
   }
 
   useEffect(() => {
-    loadSuppliers()
+    loadVendors()
   }, [])
 
   const [values, setValues] = useState({name: '', contact: ''})
@@ -27,10 +27,10 @@ const Suppliers = withRouter(() => {
     setValues({...values, [name]: value})
   }
 
-  const addNewSupplier = async evt => {
+  const addNewVendor = async evt => {
     evt.preventDefault()
     const {name, contact} = values
-    const {data} = await axios.post('/api/suppliers', {
+    const {data} = await axios.post('/api/vendors', {
         name,
         contact
       }
@@ -41,23 +41,23 @@ const Suppliers = withRouter(() => {
     <Fragment>
       <div className='page-pdg'>
         <div className='header row ft-20'>
-          <h3>Suppliers</h3>
+          <h3>Vendors</h3>
         </div>
         <div className='bg-white box-shadow'>
-          {suppliers.map(({id, name, contact}) => <SupplierLink
+          {vendors.map(({id, name, contact}) => <VendorLink
             key={name + Math.random()}
-            className='supplier'
+            className='vendor'
             id={id}
             name={name}
             contact={contact}
           />)}
         </div>
-        <Link to='/suppliers/add' className='add-container pointer box-shadow'>
-          <h3>+ Add Supplier</h3>
+        <Link to='/vendors/add' className='add-container pointer box-shadow'>
+          <h3>+ Add Vendor</h3>
         </Link>
       </div>
     </Fragment>
   )
 })
 
-export default Suppliers
+export default Vendors

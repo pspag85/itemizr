@@ -7,9 +7,9 @@ import Signup from './components/signup'
 import Login from './components/login'
 import UserBar from './components/user-bar'
 import Users from './components/users'
-import Supplier from './components/supplier'
-import Suppliers from './components/suppliers';
-import AddSupplier from './components/add-supplier';
+import Vendor from './components/vendor'
+import Vendors from './components/vendors';
+import AddVendor from './components/add-vendor';
 import Lists from './components/lists'
 import CreateList from './components/create-list'
 import Items from './components/items'
@@ -34,15 +34,15 @@ const App = withRouter(class extends Component {
     return (
       <Fragment>
         <Switch>
-          <Route exact path='/lists/suppliers/:supplierId/create' component={CreateList} />
+          <Route exact path='/lists/vendors/:vendorId/create' component={CreateList} />
           <Route exact path='/lists/:listId' component={Items} />/>
           <Route exact path='/lists/:listId/edit' component={EditItems} />
           <Route exact path='/lists/:listId/order' component={OrderItems} />
           <Route exact path='/lists' component={Lists} />
           <Route exact path='/users' component={Users} />
-          <Route exact path='/suppliers/add' component={AddSupplier} />
-          <Route exact path='/suppliers/:id' component={Supplier} />
-          <Route exact path='/suppliers' component={Suppliers} />
+          <Route exact path='/vendors/add' component={AddVendor} />
+          <Route exact path='/vendors/:id' component={Vendor} />
+          <Route exact path='/vendors' component={Vendors} />
           <Route exact path='/signup' component={Signup} />
           <Route component={Login} />
         </Switch>

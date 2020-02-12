@@ -42,11 +42,11 @@ const Lists = withRouter(() => {
         {lists.length < 1 || !Array.isArray(lists) ? <h4>Start by creating your first list</h4>
         : <Fragment>
             <div className='row-container bg-white'>
-              {lists.map(({id, name, date, supplierId}) => (
+              {lists.map(({id, name, date, vendorId}) => (
                 <List key={Math.random() + id}
                   id={id}
                   name={name}
-                  supplierId={supplierId}
+                  vendorId={vendorId}
                   deleteList={deleteList}
                 />
               ))}

@@ -37,14 +37,14 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async ({body, session}, res, next) => {
-  const {date, name, supplierId} = body
+  const {date, name, vendorId} = body
   const {userId} = session
   try {
     const list = await List.create({
       date,
       name,
       userId,
-      supplierId
+      vendorId
     })
     res.json(list)
   } catch(err){

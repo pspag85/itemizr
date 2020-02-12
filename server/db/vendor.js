@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('./database')
 
-const Supplier = db.define('suppliers', {
+const Vendor = db.define('vendors', {
   name: {
     type: Sequelize.STRING,
     defaultValue: ''
@@ -12,4 +12,4 @@ const Supplier = db.define('suppliers', {
   }
 })
 
-module.exports = Supplier
+module.exports = Vendor

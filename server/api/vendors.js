@@ -1,12 +1,12 @@
 const router = require('express').Router()
-const {Supplier, Item, List} = require('../db')
+const {Vendor, Item, List} = require('../db')
 
 router.get('/', async (req, res, next) => {
   try {
-    const suppliers = await Supplier.findAll({
+    const vendors = await Vendor.findAll({
       where: {userId: req.session.userId}
     })
-    res.json(suppliers)
+    res.json(vendors)
   } catch(err) {
     console.error(err)
   }
@@ -16,12 +16,12 @@ router.post('/', async ({body, session}, res, next) => {
   const {name, contact} = body
   const {userId} = session
   try {
-    const supplier = await Supplier.create({
+    const vendor = await Vendor.create({
       name,
       contact,
       userId
     })
-    res.json(supplier)
+    res.json(vendor)
   } catch(err){
     console.error(err)
   }
@@ -30,8 +30,8 @@ router.post('/', async ({body, session}, res, next) => {
 router.get('/:id', async (req, res, next) => {
   const {id} = req.params
   try {
-    const supplier = await Supplier.findByPk(id)
-    res.json(supplier)
+    const vendor = await Vendor.findByPk(id)
+    res.json(vendor)
   } catch(err) {
     console.error(err)
   }

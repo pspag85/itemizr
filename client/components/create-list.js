@@ -6,7 +6,7 @@ import UserBar from './user-bar'
 import '../css/create-list.css'
 
 const CreateList = ({match, history}) => {
-  const {supplierId} = match.params
+  const {vendorId} = match.params
 
   const [listName, setListName] = useState('')
 
@@ -20,7 +20,7 @@ const CreateList = ({match, history}) => {
     const {data} = await axios.post(`/api/lists`, {
         date: Date.now(),
         name: listName,
-        supplierId
+        vendorId
       }
     )
     const {id} = data

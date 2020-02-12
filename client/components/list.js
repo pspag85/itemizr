@@ -4,26 +4,26 @@ import axios from 'axios'
 import ListOptionMenu from './list-option-menu'
 import Items from './items';
 
-const List = ({id, name, supplierId, deleteList}) => {
+const List = ({id, name, vendorId, deleteList}) => {
   const [menuState, setMenuState] = useState(false)
   const toggleMenu = () => setMenuState(!menuState)
 
   const [listState, setListState] = useState(false)
   const toggleList = () => setListState(!listState)
 
-  const [supplier, setSupplier] = useState({})
+  const [vendor, setVendor] = useState({})
 
-  const getSupplier = async () => {
+  const getVendor = async () => {
     try {
-      const {data} = await axios.get(`/api/suppliers/${supplierId}`)
-      setSupplier(data)
+      const {data} = await axios.get(`/api/vendors/${vendorId}`)
+      setVendor(data)
     } catch(err) {
       console.error(err)
     }
   }
 
   useEffect(() => {
-    getSupplier()
+    getVendor()
   }, [])
 
   return id && (
@@ -34,7 +34,7 @@ const List = ({id, name, supplierId, deleteList}) => {
             <h4 className='light-font'>{name}</h4>
           </div>
           <div className='column'>
-            <h4 className='light-font'>{supplier.name}</h4>
+            <h4 className='light-font'>{vendor.name}</h4>
           </div>
         </div>
         <div className='list-menu-container column pointer bg-white' onClick={toggleMenu}>

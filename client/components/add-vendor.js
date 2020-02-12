@@ -2,7 +2,7 @@ import React, {useState, useEffect, Fragment} from 'react'
 import {withRouter, Redirect, Link} from 'react-router-dom'
 import axios from 'axios'
 
-const AddSupplier = withRouter(({history}) => {
+const AddVendor = withRouter(({history}) => {
 
   const [values, setValues] = useState({name: '', contact: ''})
 
@@ -11,26 +11,26 @@ const AddSupplier = withRouter(({history}) => {
     setValues({...values, [name]: value})
   }
 
-  const addNewSupplier = async evt => {
+  const addNewVendor = async evt => {
     evt.preventDefault()
     const {name, contact} = values
-    const {data} = await axios.post('/api/suppliers', {
+    const {data} = await axios.post('/api/vendors', {
         name,
         contact
       }
     )
-    history.push(`/suppliers`)
+    history.push(`/vendors`)
   }
 
   const cancel = () => {
-    history.push('/suppliers')
+    history.push('/vendors')
   }
 
   return (
     <Fragment>
       <div className='page-pdg'>
         <div className='bg-white box-shadow'>
-          <form className='list-form' onSubmit={addNewSupplier}>
+          <form className='list-form' onSubmit={addNewVendor}>
             <label className='secondary-txt'>SUPPLIER NAME</label>
             <input
               className='bg-white box-shadow ft-20'
@@ -50,7 +50,7 @@ const AddSupplier = withRouter(({history}) => {
           </form>
         </div>
         <div className='save'>
-          <button className='action-btn white bg-drk-blue pointer' type='submit' onClick={addNewSupplier}>CREATE</button>
+          <button className='action-btn white bg-drk-blue pointer' type='submit' onClick={addNewVendor}>CREATE</button>
           <button className='action-btn cancel-btn pointer light-font' onClick={cancel}>CANCEL</button>
         </div>
       </div>
@@ -58,4 +58,4 @@ const AddSupplier = withRouter(({history}) => {
   )
 })
 
-export default AddSupplier
+export default AddVendor
