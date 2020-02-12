@@ -7,12 +7,22 @@ import ColHeader from './col-header'
 import {getProducts} from '../store'
 import '../css/products.css'
 
-const Products = withRouter(({user, loadProducts, product, listId, selectProduct, orderPage, selectedProducts, selectAllProducts, allSelected, clearSelection, history, location}) => {
-  const {pathname} = location
+const Products = withRouter(({
+  user,
+  loadProducts,
+  product,
+  selectProduct,
+  orderPage,
+  selectedProducts,
+  selectAllProducts,
+  allSelected,
+  clearSelection,
+  history
+}) => {
   if(!user.id) history.push('/')
 
   useEffect(() => {
-    loadProducts(listId)
+    loadProducts()
   }, [])
 
   return listId ? (
@@ -62,7 +72,6 @@ const Products = withRouter(({user, loadProducts, product, listId, selectProduct
           </div>
         }
       </div>
-      {!orderPage && <Link to={`/lists/${listId}/order`} className='action-btn white bg-drk-blue pointer'>ORDER</Link>}
     </Fragment>
   ) : null
 })
