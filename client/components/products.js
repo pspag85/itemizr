@@ -1,4 +1,4 @@
-import React, {useEffect, Fragment} from 'react'
+import React, {useState, useEffect, Fragment} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import axios from 'axios'
@@ -6,55 +6,44 @@ import Product from './product'
 import ColHeader from './col-header'
 import {getProducts} from '../store'
 import '../css/products.css'
+import UserBar from './user-bar'
+import AddProductButton from './add-product-button';
+import ProductForm from './product-form'
 
 const Products = withRouter(({
   user,
-  loadProducts,
-  product,
-  selectProduct,
-  orderPage,
-  selectedProducts,
-  selectAllProducts,
-  allSelected,
-  clearSelection,
   history
 }) => {
   if(!user.id) history.push('/')
+
+  const [products, setProducts] = useState([])
+  const [formState, setFormState] = useState(false)
+
+  const loadProducts = async () => {
+    try {
+      const {data} = axios.get('/api/products')
+      setProducts(data)
+    } catch(err) {
+      console.error(err)
+    }
+  }
 
   useEffect(() => {
     loadProducts()
   }, [])
 
-  return listId ? (
+  const addNewProduct = () => setFormState(true)
+  const closeProductForm = () => setFormState(false)
+
+  return (
     <Fragment>
-      <div>
-        <div className='header row ft-20'>
-          {orderPage ? // TODO:  CREATE ORDERLINK COMPONENT FOR THIS TERNARY
-            <Fragment>
-              {allSelected ?
-                <div onClick={clearSelection} >
-                  <h3 src='/img/clear.png' className='ft-20 flex-start light-font underline'>CLEAR</h3>
-                </div>
-                :
-                <div onClick={selectAllProducts} >
-                  <h3 className='ft-20 flex-start light-font underline'>SELECT ALL</h3>
-                </div>
-              }
-              <Link to={`/lists/${listId}`} className='clear flex-start'>
-                &times;
-              </Link>
-            </Fragment>
-            :
-            <Link to={`/lists/${listId}/edit`} >
-              <img src='/img/edit-btn.png' className='edit-btn flex-start' />
-            </Link>
-          }
-        </div>
+      <UserBar showNav={true} />
+      <div className='page-pdg'>
         <div className='col-header row secondary-txt'>
           <ColHeader num={'four'} headers={['PRODUCT', 'ON HAND', 'PAR', 'ORDER QTY']} />
         </div>
-        {!Array.isArray(product) ? null
-        : <div className='row-container box-shadow bg-white'>
+        {!products ? null
+        : <div className='row-container'>
             {products.map(({id, name, onHand, par, orderQty}, index) => (
               <Product
                 key={id + name}
@@ -63,27 +52,17 @@ const Products = withRouter(({
                 onHand={onHand}
                 par={par}
                 orderQty={orderQty}
-                orderPage={orderPage}
-                selectProduct={selectProduct}
-                selected={selectedProducts && selectedProducts.find(product => product.id === id).checked}
-                allSelected={allSelected}
               />
-            ))}
+              ))}
           </div>
         }
+        {formState ? <ProductForm cancel={closeProductForm} />
+        : <AddProductButton addNewProduct={addNewProduct} />}
       </div>
     </Fragment>
-  ) : null
+  )
 })
 
-const mapStateToProps = ({user, product}) => ({user, product})
+const mapStateToProps = ({user}) => ({user})
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  loadProducts:   () => dispatch(getProducts())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Products)
-
-
-
-
+export default connect(mapStateToProps, null)(Products)

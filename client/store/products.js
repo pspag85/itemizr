@@ -9,9 +9,9 @@ const ADD_PRODUCT = 'ADD_PRODUCT'
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 
-const gotProducts = product => ({
+const gotProducts = products => ({
   type: GET_PRODUCTS,
-  product
+  products
 })
 
 const addedProduct = newProduct => ({
@@ -30,9 +30,9 @@ const updatedProduct = (id, product) => ({
   product
 })
 
-export const getProducts = listId => async dispatch => {
+export const getProducts = () => async dispatch => {
   try {
-    const {data} = await axios.get(`/api/lists/${listId}/product`)
+    const {data} = await axios.get(`/api/products`)
     dispatch(gotProducts(data))
   } catch(err) {
     console.error(err)
@@ -59,11 +59,10 @@ export const updateProduct = (id, product) => dispatch => {
   }
 }
 
-export const saveProducts = (listId, product) => async dispatch => {
+export const saveProducts = (products) => async dispatch => {
 
   try {
-    const {data} = await axios.post(`/api/product`, product)
-    if(data) history.push(`/lists/${listId}`)
+    const {data} = await axios.post(`/api/products`, products)
   } catch(err) {
     console.error(err)
   }
@@ -74,7 +73,7 @@ const initialState = []
 const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PRODUCTS:
-      return action.product
+      return action.products
     case ADD_PRODUCT:
       return [...state, action.newProduct]
     case REMOVE_PRODUCT:

@@ -20,7 +20,7 @@ class UserMenu extends Component {
     const {open} = this.state
     const {business} = this.props.user
     return (
-      <div id='user-menu' className='flex ctr-product bg-blue ft-20 pointer' onClick={handleClick}>
+      <div id='user-menu' className='flex ctr-items bg-blue ft-20 pointer' onClick={handleClick}>
         <div id='user-menu--btn'>
           <h4>{business}</h4>
         </div>

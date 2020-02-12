@@ -18,7 +18,7 @@ const Signup = ({handleSubmit}) => (
             <br />
             <AuthForm handleSubmit={handleSubmit} isSignup={true}/>
             <p ref={emailRef} className='mrg-0'></p>
-            <div className='flex ctr-product space-around w-200 hz-pdg-10 light-font'>
+            <div className='flex ctr-items space-around w-200 hz-pdg-10 light-font'>
               <p>Already have an account?</p>
               <Link to='/login' className='underline'>Login</Link>
             </div>
