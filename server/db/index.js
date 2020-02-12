@@ -2,32 +2,21 @@
 
 const Sequelize = require('sequelize')
 const db = require('./database')
-const Item = require('./item')
-const List = require('./list')
+const Product = require('./product')
 const Vendor = require('./vendor')
 const User = require('./user')
-
-List.belongsTo(User)
-User.hasMany(List)
 
 Vendor.belongsTo(User)
 User.hasMany(Vendor)
 
-Item.belongsTo(List)
-List.hasMany(Item)
-
-Item.belongsTo(Vendor)
-Vendor.hasMany(Item, {as: 'products'})
-
-List.belongsTo(Vendor)
-Vendor.hasMany(List)
+Product.belongsTo(Vendor)
+Vendor.hasMany(Product, {as: 'products'})
 
 User.hasMany(User, {as: 'employees'})
 
 module.exports = {
   db,
-  Item,
-  List,
+  Product,
   Vendor,
   User
 }

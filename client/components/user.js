@@ -6,7 +6,7 @@ const User = props => {
   const date = props.date.slice(0, 10)
   const isAdmin = props.isAdmin ? 'TRUE' : 'FALSE'
   return id === 1 ? (
-    <div className='item-row'>
+    <div className='product-row'>
       <div className='column cell'>
         {date}
       </div>
@@ -21,7 +21,7 @@ const User = props => {
       </div>
     </div>
   ):(
-    <div className='item-row'>
+    <div className='product-row'>
       <div className='column cell'>
         {date}
       </div>

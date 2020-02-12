@@ -10,18 +10,15 @@ import Users from './components/users'
 import Vendor from './components/vendor'
 import Vendors from './components/vendors';
 import AddVendor from './components/add-vendor';
-import Lists from './components/lists'
-import CreateList from './components/create-list'
-import Items from './components/items'
-import EditItems from './components/edit-items'
-import OrderItems from './components/order-items'
+import Products from './components/products'
+import EditProducts from './components/edit-products'
 import './css/app.css'
 
 const App = withRouter(class extends Component {
   async componentDidMount() {
     const {history, location} = this.props
     const {pathname} = location
-    let path = pathname === '/' ? '/lists' : pathname
+    let path = pathname === '/' ? '/product' : pathname
     try {
       await store.dispatch(getMe())
       history.push(path)
@@ -34,11 +31,6 @@ const App = withRouter(class extends Component {
     return (
       <Fragment>
         <Switch>
-          <Route exact path='/lists/vendors/:vendorId/create' component={CreateList} />
-          <Route exact path='/lists/:listId' component={Items} />/>
-          <Route exact path='/lists/:listId/edit' component={EditItems} />
-          <Route exact path='/lists/:listId/order' component={OrderItems} />
-          <Route exact path='/lists' component={Lists} />
           <Route exact path='/users' component={Users} />
           <Route exact path='/vendors/add' component={AddVendor} />
           <Route exact path='/vendors/:id' component={Vendor} />

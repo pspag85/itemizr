@@ -2,17 +2,17 @@ import React, {useEffect, Fragment} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import axios from 'axios'
-import Item from './item'
+import Product from './product'
 import ColHeader from './col-header'
-import {getItems} from '../store'
-import '../css/items.css'
+import {getProducts} from '../store'
+import '../css/products.css'
 
-const Items = withRouter(({user, loadItems, items, listId, selectItem, orderPage, selectedItems, selectAllItems, allSelected, clearSelection, history, location}) => {
+const Products = withRouter(({user, loadProducts, product, listId, selectProduct, orderPage, selectedProducts, selectAllProducts, allSelected, clearSelection, history, location}) => {
   const {pathname} = location
   if(!user.id) history.push('/')
 
   useEffect(() => {
-    loadItems(listId)
+    loadProducts(listId)
   }, [])
 
   return listId ? (
@@ -26,7 +26,7 @@ const Items = withRouter(({user, loadItems, items, listId, selectItem, orderPage
                   <h3 src='/img/clear.png' className='ft-20 flex-start light-font underline'>CLEAR</h3>
                 </div>
                 :
-                <div onClick={selectAllItems} >
+                <div onClick={selectAllProducts} >
                   <h3 className='ft-20 flex-start light-font underline'>SELECT ALL</h3>
                 </div>
               }
@@ -41,12 +41,12 @@ const Items = withRouter(({user, loadItems, items, listId, selectItem, orderPage
           }
         </div>
         <div className='col-header row secondary-txt'>
-          <ColHeader num={'four'} headers={['ITEM', 'ON HAND', 'PAR', 'ORDER QTY']} />
+          <ColHeader num={'four'} headers={['PRODUCT', 'ON HAND', 'PAR', 'ORDER QTY']} />
         </div>
-        {!Array.isArray(items) ? null
+        {!Array.isArray(product) ? null
         : <div className='row-container box-shadow bg-white'>
-            {items.map(({id, name, onHand, par, orderQty}, index) => (
-              <Item
+            {products.map(({id, name, onHand, par, orderQty}, index) => (
+              <Product
                 key={id + name}
                 id={id}
                 name={name}
@@ -54,8 +54,8 @@ const Items = withRouter(({user, loadItems, items, listId, selectItem, orderPage
                 par={par}
                 orderQty={orderQty}
                 orderPage={orderPage}
-                selectItem={selectItem}
-                selected={selectedItems && selectedItems.find(item => item.id === id).checked}
+                selectProduct={selectProduct}
+                selected={selectedProducts && selectedProducts.find(product => product.id === id).checked}
                 allSelected={allSelected}
               />
             ))}
@@ -67,13 +67,13 @@ const Items = withRouter(({user, loadItems, items, listId, selectItem, orderPage
   ) : null
 })
 
-const mapStateToProps = ({user, items}) => ({user, items})
+const mapStateToProps = ({user, product}) => ({user, product})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  loadItems: listId => dispatch(getItems(listId))
+  loadProducts:   () => dispatch(getProducts())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Items)
+export default connect(mapStateToProps, mapDispatchToProps)(Products)
 
 
 

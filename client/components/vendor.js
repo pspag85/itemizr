@@ -1,7 +1,6 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import axios from 'axios'
-import CreateListButton from './create-list-button';
 
 const Vendor = withRouter(({match}) => {
   const [vendor, setVendor] = useState({name: '', contact: ''})
@@ -30,7 +29,6 @@ const Vendor = withRouter(({match}) => {
           <h4>{vendor.contact}</h4>
         </div>
       </div>
-      <CreateListButton vendorId={vendor.id}/>
     </div>
   )
 })

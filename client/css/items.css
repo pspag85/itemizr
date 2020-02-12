@@ -1,7 +1,0 @@
-#items-page .header *:not(:last-child) {
-  flex-basis: 50%;
-}
-
-#items-page {
-  margin-left: 20px;
-}

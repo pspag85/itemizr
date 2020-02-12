@@ -18,8 +18,8 @@ button {
   display: flex;
 }
 
-.ctr-items {
-  align-items: center;
+.ctr-product {
+  align-product: center;
 }
 
 .ctr-txt {
@@ -130,7 +130,7 @@ input:-webkit-autofill:active  {
 .row {
   display: flex;
   flex-wrap: nowrap;
-  align-items: center;
+  align-product: center;
   justify-content: flex-start;
 }
 
@@ -147,7 +147,7 @@ input:-webkit-autofill:active  {
   width: 25%;
   display: inline-block;
   flex-wrap: nowrap;
-  align-items: center;
+  align-product: center;
   text-align: left;
   white-space: nowrap;
   /* text-overflow: ellipsis; =>  *****TODO FIX***** */
@@ -174,41 +174,41 @@ input:-webkit-autofill:active  {
   margin: 1px 1px 1px 0;
 }
 
-#edit-items-page .column:first-of-type {
+#edit-product-page .column:first-of-type {
   margin-right: 40px;
 }
 
-#edit-items-page .column:last-of-type {
+#edit-product-page .column:last-of-type {
   margin-right: 0px;
 }
 
-#edit-items-page .column h4 {
+#edit-product-page .column h4 {
   padding-left: 2px;
 }
 
-.item-form {
+.product-form {
   height: 20px;
-  align-items: center;
+  align-product: center;
 }
 
-.item-form .column {
+.product-form .column {
   height: 20px;
   display: flex;
 }
 
-.item-form input {
+.product-form input {
   width: 40%;
 }
 
-.item-form .column:first-of-type input {
+.product-form .column:first-of-type input {
   width: 85%;
 }
 
-.item-form .column:last-of-type input {
+.product-form .column:last-of-type input {
   margin-right: 30%;
 }
 
-.item-form p {
+.product-form p {
   width: 0;
   margin: 0 4px;
   font-size: 20px;
@@ -382,12 +382,12 @@ input:-webkit-autofill:active  {
 
 @media only screen and (max-width: 1000px) {
   #lists-page.page-pdg,
-  #items-page.page-pdg {
+  #product-page.page-pdg {
     padding-right: 0;
     padding-left: 20px;
   }
 
-  #edit-items-page.page-pdg {
+  #edit-product-page.page-pdg {
     padding-right: 20px;
     padding-left: 20px;
   }
@@ -402,7 +402,7 @@ input:-webkit-autofill:active  {
 }
 
 @media only screen and (max-width: 800px) {
-  #edit-items-page.page-pdg {
+  #edit-product-page.page-pdg {
     padding-right: 0;
   }
 }

@@ -6,7 +6,7 @@ import UserMenu from './user-menu';
 const Navbar = withRouter(() => (
   <div id='navbar' className='bg-lt-blue nav-wdth'>
     <UserMenu />
-    <Link to='/lists'>Inventory</Link>
+    <Link to='/products'>Products</Link>
     <Link to='/vendors'>Vendors</Link>
     <Link to='/users'>Admin Settings</Link>
   </div>

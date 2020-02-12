@@ -1,10 +1,10 @@
 import React from 'react'
 import InputCheckbox from './input-checkbox'
 
-const Item = ({id, name, onHand, par, orderQty, orderPage, selectItem, selected, allSelected}) => {
+const Product = ({id, name, onHand, par, orderQty, orderPage, selectProduct, selected, allSelected}) => {
   return (
-    <div className='item row'>
-      {orderPage && <InputCheckbox checked={selected || allSelected} handleChange={evt => selectItem(id, evt)}/>}
+    <div className='product row'>
+      {orderPage && <InputCheckbox checked={selected || allSelected} handleChange={evt => selectProduct(id, evt)}/>}
       <div className='column'>
         <h5>{name || ''}</h5>
       </div>
@@ -21,4 +21,4 @@ const Item = ({id, name, onHand, par, orderQty, orderPage, selectItem, selected,
   )
 }
 
-export default Item
+export default Product

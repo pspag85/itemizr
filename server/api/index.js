@@ -1,7 +1,6 @@
 const router = require('express').Router()
 
-router.use('/items', require('./items'))
-router.use('/lists', require('./lists'))
+router.use('/products', require('./products'))
 router.use('/vendors', require('./vendors'))
 router.use('/users', require('./users'))
 

@@ -1,0 +1,7 @@
+#product-page .header *:not(:last-child) {
+  flex-basis: 50%;
+}
+
+#product-page {
+  margin-left: 20px;
+}
