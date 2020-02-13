@@ -6,7 +6,12 @@ const Vendor = db.define('vendors', {
     type: Sequelize.STRING,
     defaultValue: ''
   },
-  contact: {
+  email: {
+    type: Sequelize.STRING,
+    defaultValue: '',
+    isEmail: true
+  },
+  phone: {
     type: Sequelize.STRING,
     defaultValue: ''
   }

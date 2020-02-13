@@ -13,26 +13,17 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async ({body, session}, res, next) => {
-  const {name, contact} = body
+  const {name, email, phone} = body
   const {userId} = session
   try {
     const vendor = await Vendor.create({
       name,
-      contact,
+      email,
+      phone,
       userId
     })
     res.json(vendor)
   } catch(err){
-    console.error(err)
-  }
-})
-
-router.get('/:id', async (req, res, next) => {
-  const {id} = req.params
-  try {
-    const vendor = await Vendor.findByPk(id)
-    res.json(vendor)
-  } catch(err) {
     console.error(err)
   }
 })

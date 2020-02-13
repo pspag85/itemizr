@@ -1,10 +1,18 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import {withRouter, Redirect, Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 import axios from 'axios'
-import VendorLink from './vendor-link';
+import UserBar from './user-bar';
+import ColHeader from './col-header'
+import Vendor from './vendor'
+import VendorForm from './vendor-form';
+import AddVendorButton from './add-vendor-button';
 
-const Vendors = withRouter(() => {
+const Vendors = withRouter(({user, history}) => {
+  if(!user.id) history.push('/')
+
   const [vendors, setVendors] = useState([])
+  const [formState, setFormState] = useState(false)
 
   const loadVendors = async () => {
     try {
@@ -22,42 +30,41 @@ const Vendors = withRouter(() => {
   const [values, setValues] = useState({name: '', contact: ''})
 
   const handleChange = evt => {
-    console.log(evt.target.value)
     const {name, value} = evt.target
     setValues({...values, [name]: value})
   }
 
-  const addNewVendor = async evt => {
-    evt.preventDefault()
-    const {name, contact} = values
-    const {data} = await axios.post('/api/vendors', {
-        name,
-        contact
-      }
-    )
-  }
+
+  const addVendor = () => setFormState(true)
+  const closeVendorForm = () => setFormState(false)
 
   return (
     <Fragment>
+      <UserBar showNav={true} />
       <div className='page-pdg'>
-        <div className='header row ft-20'>
-          <h3>Vendors</h3>
+        <div className='col-header row secondary-txt'>
+          <ColHeader num={'four'} headers={['Name', 'Email', 'Phone', 'Products']} />
         </div>
-        <div className='bg-white box-shadow'>
-          {vendors.map(({id, name, contact}) => <VendorLink
-            key={name + Math.random()}
-            className='vendor'
-            id={id}
-            name={name}
-            contact={contact}
-          />)}
-        </div>
-        <Link to='/vendors/add' className='add-container pointer box-shadow'>
-          <h3>+ Add Vendor</h3>
-        </Link>
+        {!vendors ? null
+        : <div className='row-container'>
+            {vendors.map(({id, name, email, phone}) => <Vendor
+              key={name + Math.random()}
+              className='vendor'
+              id={id}
+              name={name}
+              email={email}
+              phone={phone}
+            />)}
+          </div>
+        }
+        {formState ? <VendorForm close={closeVendorForm} />
+        : <AddVendorButton addVendor={addVendor} />}
       </div>
     </Fragment>
   )
 })
 
-export default Vendors
+const mapStateToProps = ({user}) => ({user})
+
+export default connect(mapStateToProps, null)(Vendors)
+

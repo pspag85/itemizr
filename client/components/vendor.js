@@ -1,36 +1,20 @@
-import React, {useState, useEffect, Fragment} from 'react'
-import {withRouter, Link} from 'react-router-dom'
-import axios from 'axios'
+import React from 'react'
+import InputCheckbox from './input-checkbox'
 
-const Vendor = withRouter(({match}) => {
-  const [vendor, setVendor] = useState({name: '', contact: ''})
-  const {id} = match.params
-
-  const loadVendor = async () => {
-    try {
-      const {data} = await axios.get(`/api/vendors/${id}`)
-      setVendor(data)
-    } catch(err) {
-      console.error(err)
-    }
-  }
-
-  useEffect(() => {
-    loadVendor()
-  }, [])
-
+const Vendor = ({id, name, email, phone}) => {
   return (
-    <div className='page-pdg'>
-      <div className='row bg-white box-shadow'>
-        <div className='column'>
-          <h4>{vendor.name}</h4>
-        </div>
-        <div className='column'>
-          <h4>{vendor.contact}</h4>
-        </div>
+    <div className='product row'>
+      <div className='column'>
+        <h5>{name || ''}</h5>
+      </div>
+      <div className='column'>
+        <h5>{email || ''}</h5>
+      </div>
+      <div className='column'>
+        <h5>{phone || ''}</h5>
       </div>
     </div>
   )
-})
+}
 
 export default Vendor

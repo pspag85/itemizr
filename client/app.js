@@ -7,9 +7,7 @@ import Signup from './components/signup'
 import Login from './components/login'
 import UserBar from './components/user-bar'
 import Users from './components/users'
-import Vendor from './components/vendor'
-import Vendors from './components/vendors';
-import AddVendor from './components/add-vendor';
+import Vendors from './components/vendors'
 import Products from './components/products'
 import EditProducts from './components/edit-products'
 import './css/app.css'
@@ -32,8 +30,6 @@ const App = withRouter(class extends Component {
       <Fragment>
         <Switch>
           <Route exact path='/users' component={Users} />
-          <Route exact path='/vendors/add' component={AddVendor} />
-          <Route exact path='/vendors/:id' component={Vendor} />
           <Route exact path='/vendors' component={Vendors} />
           <Route exact path='/products' component={Products} />
           <Route exact path='/signup' component={Signup} />
