@@ -2,7 +2,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 
-const ProductForm = ({cancel}) => {
+const ProductForm = ({closeProductForm}) => {
   const [product, setProduct] = useState({name: '', onHand: '', par: '', orderQty: ''})
 
   const handleChange = event => {
@@ -16,6 +16,8 @@ const ProductForm = ({cancel}) => {
       await axios.post('/api/products', product)
     } catch(err) {
       console.error(err)
+    } finally {
+      closeProductForm()
     }
   }
 
@@ -36,7 +38,7 @@ const ProductForm = ({cancel}) => {
         </div>
         <div>
           <button type='submit' className='action-btn white bg-drk-blue pointer' onClick={handleSubmit}>ADD</button>
-          <button className='action-btn cancel-btn pointer light-font' onClick={cancel}>CANCEL</button>
+          <button className='action-btn cancel-btn pointer light-font' onClick={closeProductForm}>CANCEL</button>
         </div>
       </form>
     </div>

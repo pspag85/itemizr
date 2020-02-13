@@ -10,10 +10,7 @@ import UserBar from './user-bar'
 import AddProductButton from './add-product-button';
 import ProductForm from './product-form'
 
-const Products = withRouter(({
-  user,
-  history
-}) => {
+const Products = withRouter(({user, history}) => {
   if(!user.id) history.push('/')
 
   const [products, setProducts] = useState([])
@@ -21,7 +18,7 @@ const Products = withRouter(({
 
   const loadProducts = async () => {
     try {
-      const {data} = axios.get('/api/products')
+      const {data} = await axios.get('/api/products')
       setProducts(data)
     } catch(err) {
       console.error(err)
@@ -56,7 +53,7 @@ const Products = withRouter(({
               ))}
           </div>
         }
-        {formState ? <ProductForm cancel={closeProductForm} />
+        {formState ? <ProductForm closeProductForm={closeProductForm} />
         : <AddProductButton addNewProduct={addNewProduct} />}
       </div>
     </Fragment>
