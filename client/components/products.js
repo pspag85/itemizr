@@ -37,7 +37,7 @@ const Products = withRouter(({user, history}) => {
       <UserBar showNav={true} />
       <div className='page-pdg'>
         <div className='col-header row secondary-txt'>
-          <ColHeader num={'four'} headers={['PRODUCT', 'ON HAND', 'PAR', 'ORDER QTY']} />
+          <ColHeader headers={['PRODUCT', 'ON HAND', 'PAR', 'ORDER QTY']} />
         </div>
         {!products ? null
         : <div className='row-container'>

@@ -27,14 +27,6 @@ const Vendors = withRouter(({user, history}) => {
     loadVendors()
   }, [])
 
-  const [values, setValues] = useState({name: '', contact: ''})
-
-  const handleChange = evt => {
-    const {name, value} = evt.target
-    setValues({...values, [name]: value})
-  }
-
-
   const addVendor = () => setFormState(true)
   const closeVendorForm = () => setFormState(false)
 
@@ -43,7 +35,7 @@ const Vendors = withRouter(({user, history}) => {
       <UserBar showNav={true} />
       <div className='page-pdg'>
         <div className='col-header row secondary-txt'>
-          <ColHeader num={'four'} headers={['Name', 'Email', 'Phone', 'Products']} />
+          <ColHeader headers={['Name', 'Email', 'Phone', 'Products']} />
         </div>
         {!vendors ? null
         : <div className='row-container'>
