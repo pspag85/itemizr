@@ -29,7 +29,7 @@ const Products = withRouter(({user, history}) => {
     loadProducts()
   }, [])
 
-  const updateProducts = product => setProducts([...products, product])
+  const updateProducts = newProduct => setProducts([...products, newProduct])
   const openProductForm = () => setFormState(true)
   const closeProductForm = () => setFormState(false)
 

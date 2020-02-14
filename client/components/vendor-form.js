@@ -1,23 +1,30 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 
-const VendorForm = ({close}) => {
+const VendorForm = ({updateVendors, closeVendorForm}) => {
   const [vendor, setVendor] = useState({name: '', email: '', phone: ''})
+
+  const addVendor = async vendor => {
+    try {
+      const {data} = await axios.post('/api/vendors', vendor)
+      updateVendors(data)
+    } catch(err) {
+      console.error(err)
+    }
+  }
 
   const handleChange = event => {
     const {name, value} = event.target
     setVendor({...vendor, [name]: value})
   }
 
-  const handleSubmit = async event => {
+  const handleSubmit = event => {
     event.preventDefault()
-    try {
-      await axios.post('/api/vendors', vendor)
-    } catch(err) {
-      console.error(err)
-    } finally {
-      close()
-    }
+    const {name, value} = event.target
+    const newVendor = {...vendor, [name]: value}
+    addVendor(newVendor)
+    setVendor({name: '', email: '', phone: ''})
+    closeVendorForm()
   }
 
   return (
@@ -34,7 +41,7 @@ const VendorForm = ({close}) => {
         </div>
         <div>
           <button type='submit' className='action-btn white bg-drk-blue pointer' onClick={handleSubmit}>ADD</button>
-          <button className='action-btn cancel-btn pointer light-font' onClick={close}>CANCEL</button>
+          <button className='action-btn cancel-btn pointer light-font' onClick={closeVendorForm}>CANCEL</button>
         </div>
       </form>
     </div>

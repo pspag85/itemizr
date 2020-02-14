@@ -27,6 +27,7 @@ const Vendors = withRouter(({user, history}) => {
     loadVendors()
   }, [])
 
+  const updateVendors = newVendor => setVendors([...vendors, newVendor])
   const addVendor = () => setFormState(true)
   const closeVendorForm = () => setFormState(false)
 
@@ -49,7 +50,7 @@ const Vendors = withRouter(({user, history}) => {
             />)}
           </div>
         }
-        {formState ? <VendorForm close={closeVendorForm} />
+        {formState ? <VendorForm updateVendors={updateVendors} closeVendorForm={closeVendorForm} />
         : <AddVendorButton addVendor={addVendor} />}
       </div>
     </Fragment>
