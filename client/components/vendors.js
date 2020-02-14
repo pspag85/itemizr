@@ -1,7 +1,7 @@
 import React, {useState, useEffect, Fragment} from 'react'
-import {withRouter, Redirect, Link} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import axios from 'axios'
+import {fetchData} from '../../utility/helpers'
 import UserBar from './user-bar';
 import ColHeader from './col-header'
 import Vendor from './vendor'
@@ -14,14 +14,7 @@ const Vendors = withRouter(({user, history}) => {
   const [vendors, setVendors] = useState([])
   const [formState, setFormState] = useState(false)
 
-  const loadVendors = async () => {
-    try {
-      const {data} = await axios.get('/api/vendors')
-      setVendors(data)
-    } catch(err) {
-      console.error(err)
-    }
-  }
+  const loadVendors = () => fetchData('vendors', setVendors)
 
   useEffect(() => {
     loadVendors()

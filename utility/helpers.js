@@ -1,16 +1,23 @@
-const bulk_upsert = (model, rows) => {
-  return Promise.all(rows.map(row => {
-    if(model.findOne({where: {id: row.id}})) {
-      return model.upsert(row)
-    } else {
-      return model.findOrCreate({
-        where: row,
-        defaults: row
-      })
-    }
-  })).catch(err => console.error(err))
+import axios from 'axios'
+
+export const fetchData = async (path, setData) => {
+  try {
+    const {data} = await axios.get(`/api/${path}`)
+    setData(data)
+  } catch(err) {
+    console.error(err)
+  }
 }
 
-module.exports = {
-  bulk_upsert
+export const randomIntGen = () => Math.floor(Math.random() * Math.floor(10))
+
+export const randomPasswordGen = () => {
+  let password = ''
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  for(let i = 0; i < 8; i += 1) {
+    let index = randomIntGen()
+    let char = chars[index]
+    password += char
+  }
+  return password
 }
