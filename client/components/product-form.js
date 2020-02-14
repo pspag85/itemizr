@@ -2,23 +2,30 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 
-const ProductForm = ({closeProductForm}) => {
+const ProductForm = ({updateProducts, closeProductForm}) => {
   const [product, setProduct] = useState({name: '', onHand: '', par: '', orderQty: ''})
+
+  const addProduct = async product => {
+    try {
+      const {data} = await axios.post('/api/products', product)
+      updateProducts(data)
+    } catch(err) {
+      console.error(err)
+    }
+  }
 
   const handleChange = event => {
     const {name, value} = event.target
     setProduct({...product, [name]: value})
   }
 
-  const handleSubmit = async event => {
+  const handleSubmit = event => {
     event.preventDefault()
-    try {
-      await axios.post('/api/products', product)
-    } catch(err) {
-      console.error(err)
-    } finally {
-      closeProductForm()
-    }
+    const {name, value} = event.target
+    const newProduct = {...product, [name]: value}
+    addProduct(newProduct)
+    setProduct({name: '', onHand: '', par: '', orderQty: ''})
+    closeProductForm()
   }
 
   return (

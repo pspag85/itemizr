@@ -29,7 +29,8 @@ const Products = withRouter(({user, history}) => {
     loadProducts()
   }, [])
 
-  const addNewProduct = () => setFormState(true)
+  const updateProducts = product => setProducts([...products, product])
+  const openProductForm = () => setFormState(true)
   const closeProductForm = () => setFormState(false)
 
   return (
@@ -53,8 +54,8 @@ const Products = withRouter(({user, history}) => {
               ))}
           </div>
         }
-        {formState ? <ProductForm closeProductForm={closeProductForm} />
-        : <AddProductButton addNewProduct={addNewProduct} />}
+        {formState ? <ProductForm updateProducts={updateProducts} closeProductForm={closeProductForm} />
+        : <AddProductButton openProductForm={openProductForm} />}
       </div>
     </Fragment>
   )
