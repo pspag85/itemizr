@@ -2,7 +2,7 @@ import React from 'react'
 
 const UserForm = ({handleChange, handleSubmit}) => (
   <div id='product'>
-    <form id='add-product' onSubmit={handleSubmit}>
+    <form id='add-data' onSubmit={handleSubmit}>
       <label htmlFor='name'> name </label>
       <input type='text' name='name' onChange={handleChange}/>
       <label htmlFor='email'> email </label>

@@ -3,7 +3,7 @@ import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import UserBar from './user-bar'
-import AddProductButton from './add-product-button'
+import AddDataButton from './add-data-button'
 import EditProduct from './edit-product'
 import ColHeader from './col-header'
 import {getProducts, addProduct, removeProduct, saveProducts, cancelUpdate} from '../store'
@@ -59,7 +59,7 @@ const EditProducts = ({user, loadProducts, product, createProduct, deleteProduct
               deleteProduct={deleteProduct}
             />
           ))}
-          <AddProductButton addNewProduct={addNewProduct} />
+          <AddDataButton addNewProduct={addNewProduct} />
         </div>
         <div className='save'>
           <button className='action-btn white bg-drk-blue pointer' onClick={() => saveChanges(list.id, product)}>SAVE CHANGES</button>

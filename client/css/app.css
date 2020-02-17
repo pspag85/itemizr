@@ -186,29 +186,29 @@ input:-webkit-autofill:active  {
   padding-left: 2px;
 }
 
-.product-form {
+.data-form {
   height: 20px;
   align-product: center;
 }
 
-.product-form .column {
+.data-form .column {
   height: 20px;
   display: flex;
 }
 
-.product-form input {
+.data-form input {
   width: 40%;
 }
 
-.product-form .column:first-of-type input {
+.data-form .column:first-of-type input {
   width: 85%;
 }
 
-.product-form .column:last-of-type input {
+.data-form .column:last-of-type input {
   margin-right: 30%;
 }
 
-.product-form p {
+.data-form p {
   width: 0;
   margin: 0 4px;
   font-size: 20px;

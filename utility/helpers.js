@@ -1,14 +1,3 @@
-import axios from 'axios'
-
-export const fetchData = async (path, setData) => {
-  try {
-    const {data} = await axios.get(`/api/${path}`)
-    setData(data)
-  } catch(err) {
-    console.error(err)
-  }
-}
-
 export const randomIntGen = () => Math.floor(Math.random() * Math.floor(10))
 
 export const randomPasswordGen = () => {
