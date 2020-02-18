@@ -16,14 +16,19 @@ const withData = (WrappedComponent, model) => {
     const loadData = async () => {
       try {
         const {data} = await axios.get(`/api/${model}`)
-        setData(data)
       } catch(err) {
         console.error(err)
       }
     }
 
     useEffect(() => {
-      loadData()
+      let isCancelled = false
+      loadData().then(data => {
+        if(!isCancelled) {
+          setData(data)
+        }
+      })
+      isCancelled = true
     }, [])
 
     const updateData = newItem => setData([...data, newItem])

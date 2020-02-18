@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const {Product} = require('../db')
-const {bulk_upsert} = require('../../utility/helpers')
 
 router.get('/', async (req, res, next) => {
   try {

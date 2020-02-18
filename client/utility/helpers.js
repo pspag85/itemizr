@@ -1,4 +1,4 @@
-export const randomIntGen = () => Math.floor(Math.random() * Math.floor(10))
+const randomIntGen = () => Math.floor(Math.random() * Math.floor(10))
 
 export const randomPasswordGen = () => {
   let password = ''

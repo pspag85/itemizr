@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 const axios = require('axios')
 import UserForm from './user-form'
-const {randomPasswordGen} = require('../../utility/helpers')
+import {randomPasswordGen} from '../utility/helpers'
 import {addUser} from '../store'
 
 class AddUser extends Component {
