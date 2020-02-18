@@ -10,7 +10,7 @@ import '../css/list.css'
 
 const withData = (WrappedComponent, model) => {
   return (props) => {
-    const [data, setData] = useState([])
+    const [dataState, setDataState] = useState([])
     const [formState, setFormState] = useState(false)
 
     const loadData = async () => {
@@ -25,13 +25,25 @@ const withData = (WrappedComponent, model) => {
       let isCancelled = false
       loadData().then(data => {
         if(!isCancelled) {
-          setData(data)
+          setDataState(data)
         }
       })
       isCancelled = true
     }, [])
 
-    const updateData = newItem => setData([...data, newItem])
+    const insertData = newRow => setDataState([...dataState, newRow])
+
+    const deleteRow = async (id) => {
+      try {
+        await axios.delete(`/api/${model}/${id}`)
+      } catch(err) {
+        console.error(err)
+      } finally {
+        const newDataState = dataState.filter(row => row.id !== id)
+        setDataState(newDataState)
+      }
+    }
+
     const openForm = () => setFormState(true)
     const closeForm = () => setFormState(false)
 
@@ -39,9 +51,9 @@ const withData = (WrappedComponent, model) => {
       <Fragment>
         <UserBar showNav={true} />
         <div className='page-pdg'>
-          {!data ? null : <WrappedComponent data={data} {...props} />}
+          {!dataState ? null : <WrappedComponent data={dataState} {...props} deleteRow={deleteRow}/>}
           {formState
-            ? <AddDataForm model={model} updateData={updateData} closeForm={closeForm} />
+            ? <AddDataForm model={model} insertData={insertData} closeForm={closeForm} />
             : <AddDataButton openForm={openForm} dataName={model} />
           }
         </div>

@@ -3,7 +3,7 @@ import ColHeader from './col-header'
 import Product from './product'
 import withData from './with-data';
 
-const Products = withData(({data}) => (
+const Products = withData(({data, deleteRow}) => (
   <Fragment>
     <div className='col-header row secondary-txt'>
       <ColHeader headers={['PRODUCT', 'ON HAND', 'PAR', 'ORDER QTY']} />
@@ -17,6 +17,7 @@ const Products = withData(({data}) => (
           onHand={onHand}
           par={par}
           orderQty={orderQty}
+          deleteRow={deleteRow}
         />
       ))}
     </div>

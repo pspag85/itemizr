@@ -1,14 +1,14 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 
-const AddDataForm = ({model, updateData, closeForm}) => {
+const AddDataForm = ({model, insertData, closeForm}) => {
   const initialFormState = model === 'products' ? {name: '', onHand: '', par: '', orderQty: ''} : {name: '', email: '', phone: ''}
   const [formState, setFormState] = useState(initialFormState)
 
   const addData = async data => {
     try {
       const {data} = await axios.post(`/api/${model}`, formState)
-      updateData(data)
+      insertData(data)
     } catch(err) {
       console.error(err)
     }
@@ -32,7 +32,7 @@ const AddDataForm = ({model, updateData, closeForm}) => {
     <div>
       <form className='data-form row vt-pdg-20' onSubmit={handleSubmit}>
         {Object.keys(formState).map((key, idx) => (
-          <div className='column'>
+          <div key={key} className='column'>
             <input
               type={idx > 0 && model !== 'vendors' ? 'number' : 'text'}
               name={key} value={formState[key]}
