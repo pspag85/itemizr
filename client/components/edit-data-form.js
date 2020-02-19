@@ -1,14 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, version} from 'react'
 import axios from 'axios'
 
-const AddDataForm = ({model, insertData, closeForm}) => {
-  const initialFormState = model === 'products' ? {name: '', onHand: '', par: '', orderQty: ''} : {name: '', email: '', phone: ''}
-  const [formState, setFormState] = useState(initialFormState)
+const EditDataForm = ({initialState, id, model, updateData, closeForm}) => {
+  const [formState, setFormState] = useState(initialState)
 
-  const addData = async formData => {
+  const editData = async formData => {
     try {
-      const {data} = await axios.post(`/api/${model}`, formData)
-      insertData(data)
+      const {data} = await axios.put(`/api/${model}`, formData)
     } catch(err) {
       console.error(err)
     }
@@ -22,9 +20,10 @@ const AddDataForm = ({model, insertData, closeForm}) => {
   const handleSubmit = event => {
     event.preventDefault()
     const {name, value} = event.target
-    const data = {...formState, [name]: value}
-    addData(data)
-    setFormState(initialFormState)
+    const data = {id, ...formState, [name]: value}
+    editData(data)
+    updateData(data)
+    setFormState(initialState)
     closeForm()
   }
 
@@ -41,7 +40,7 @@ const AddDataForm = ({model, insertData, closeForm}) => {
           </div>
         ))}
         <div>
-          <button type='submit' className='action-btn white bg-drk-blue pointer' onClick={handleSubmit}>ADD</button>
+          <button type='submit' className='action-btn white bg-drk-blue pointer' onClick={handleSubmit}>SAVE</button>
           <button className='action-btn cancel-btn pointer light-font' onClick={closeForm}>CANCEL</button>
         </div>
       </form>
@@ -49,4 +48,4 @@ const AddDataForm = ({model, insertData, closeForm}) => {
   )
 }
 
-export default AddDataForm;
+export default EditDataForm;

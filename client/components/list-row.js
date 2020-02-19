@@ -1,19 +1,39 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useToggleState} from '../utility/hooks'
 import RowDropDown from './row-drop-down'
+import EditDataForm from './edit-data-form'
 
-const ListRow = ({rowData, deleteRow}) => {
+const ListRow = ({id, rowData, model, updateData, editRow, deleteRow}) => {
   const {toggleState, toggleMenu} = useToggleState()
+  const [editFormState, setEditFormState] = useState(false)
+  const rowValues = Object.values(rowData)
+
+  const openEditForm = () => setEditFormState(true)
+  const closeEditForm = () => {
+    toggleMenu()
+    setEditFormState(false)
+  }
+
   return (
     <div className='product row'>
-      {rowData.map(columnData => <div className='column'>
-          <h5>{columnData}</h5>
+      {editFormState ? (
+        <EditDataForm
+          initialState={rowData}
+          id={id}
+          model={model}
+          updateData={updateData}
+          closeForm={closeEditForm}
+        />
+      ) : rowValues.map(columnValue => (
+        <div key={id + Math.random()}
+          className='column'>
+          <h5>{columnValue}</h5>
         </div>
-      )}
+      ))}
       <div className='row-menu-container column pointer bg-white' onClick={toggleMenu}>
         <img src='/img/more-vert.png' />
       </div>
-      {toggleState && <RowDropDown id={id} deleteRow={deleteRow} />}
+      {toggleState && <RowDropDown id={id} editRow={openEditForm} deleteRow={deleteRow} />}
     </div>
   )
 }

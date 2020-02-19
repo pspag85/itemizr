@@ -8,58 +8,59 @@ import AddDataForm from './add-data-form'
 import AddDataButton from './add-data-button'
 import '../css/list.css'
 
-const withData = (WrappedComponent, model) => {
-  return (props) => {
-    const [dataState, setDataState] = useState([])
-    const [formState, setFormState] = useState(false)
+const withData = (WrappedComponent, model) => (props) => {
+  const [dataState, setDataState] = useState([])
+  const [addFormState, setAddFormState] = useState(false)
 
-    const loadData = async () => {
+  useEffect(() => {
+    async function fetchData() {
+      let isCancelled = false
       try {
         const {data} = await axios.get(`/api/${model}`)
-      } catch(err) {
-        console.error(err)
-      }
-    }
-
-    useEffect(() => {
-      let isCancelled = false
-      loadData().then(data => {
         if(!isCancelled) {
           setDataState(data)
         }
-      })
-      isCancelled = true
-    }, [])
-
-    const insertData = newRow => setDataState([...dataState, newRow])
-
-    const deleteRow = async (id) => {
-      try {
-        await axios.delete(`/api/${model}/${id}`)
       } catch(err) {
         console.error(err)
       } finally {
-        const newDataState = dataState.filter(row => row.id !== id)
-        setDataState(newDataState)
+        isCancelled = true
       }
     }
+    fetchData()
+  }, [])
 
-    const openForm = () => setFormState(true)
-    const closeForm = () => setFormState(false)
-
-    return (
-      <Fragment>
-        <UserBar showNav={true} />
-        <div className='page-pdg'>
-          {!dataState ? null : <WrappedComponent data={dataState} {...props} deleteRow={deleteRow}/>}
-          {formState
-            ? <AddDataForm model={model} insertData={insertData} closeForm={closeForm} />
-            : <AddDataButton openForm={openForm} dataName={model} />
-          }
-        </div>
-      </Fragment>
-    )
+  const insertData = newData => setDataState([...dataState, newData])
+  const updateData = updatedData => {
+    const newDataState = dataState.map(rowData => rowData.id === updatedData.id ? updatedData : rowData)
+    setDataState(newDataState)
   }
+
+  const deleteRow = async (id) => {
+    try {
+      await axios.delete(`/api/${model}/${id}`)
+    } catch(err) {
+      console.error(err)
+    } finally {
+      const newDataState = dataState.filter(row => row.id !== id)
+      setDataState(newDataState)
+    }
+  }
+
+  const openAddForm = () => setAddFormState(true)
+  const closeAddForm = () => setAddFormState(false)
+
+  return (
+    <Fragment>
+      <UserBar showNav={true} />
+      <div className='page-pdg'>
+        {dataState && <WrappedComponent data={dataState} model={model} updateData={updateData} deleteRow={deleteRow} {...props} />}
+        {addFormState
+          ? <AddDataForm model={model} insertData={insertData} closeForm={closeAddForm} />
+          : <AddDataButton openForm={openAddForm} dataName={model} />
+        }
+      </div>
+    </Fragment>
+  )
 }
 
 export default withData
