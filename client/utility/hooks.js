@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
-export const useMenuState = () => {
-  const [menuState, setMenuState] = useState(false)
-  const toggleMenu = () => setMenuState(!menuState)
-  return {menuState, toggleMenu};
+export const useToggleState = () => {
+  const [toggleState, setMenuState] = useState(false)
+  const toggleMenu = () => setMenuState(!toggleState)
+  return {toggleState, toggleMenu};
 }

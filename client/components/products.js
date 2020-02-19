@@ -1,22 +1,19 @@
 import React, {Fragment} from 'react'
 import ColHeader from './col-header'
-import Product from './product'
-import withData from './with-data';
+import withListData from './with-list-data';
+import ListRow from './list-row';
 
-const Products = withData(({data, deleteRow}) => (
+const Products = withListData(({data, deleteRow}) => (
   <Fragment>
     <div className='col-header row secondary-txt'>
       <ColHeader headers={['PRODUCT', 'ON HAND', 'PAR', 'ORDER QTY']} />
     </div>
     <div className='row-container'>
       {data.map(({id, name, onHand, par, orderQty}, index) => (
-        <Product
-          key={id + name}
+        <ListRow
+          key={id + Math.random()}
           id={id}
-          name={name}
-          onHand={onHand}
-          par={par}
-          orderQty={orderQty}
+          rowData={[name, onHand, par, orderQty]}
           deleteRow={deleteRow}
         />
       ))}
