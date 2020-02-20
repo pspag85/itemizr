@@ -6,17 +6,24 @@ const Product = db.define('product', {
     type: Sequelize.STRING,
     defaultValue: ''
   },
-  onHand:{
+  category: {
     type: Sequelize.STRING,
-    defaultValue: ''
+  },
+  unit: {
+    type: Sequelize.FLOAT,
+    defaultValue: 0.00
+  },
+  onHand:{
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   },
   par:{
-    type: Sequelize.STRING,
-    defaultValue: ''
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   },
   orderQty:{
-    type: Sequelize.STRING,
-    defaultValue: ''
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 })
 

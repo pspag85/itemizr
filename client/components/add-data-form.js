@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import { useFormState } from '../utility/hooks'
+import { isTextField } from '../utility/helpers'
+import DataForm from './data-form';
 
 const AddDataForm = ({model, insertData, closeForm}) => {
-  const initialFormState = model === 'products' ? {name: '', onHand: '', par: '', orderQty: ''} : {name: '', email: '', phone: ''}
-  const [formState, setFormState] = useState(initialFormState)
+  const {formState, setFormState} = useFormState(model, null)
 
   const addData = async formData => {
     try {
@@ -24,28 +26,16 @@ const AddDataForm = ({model, insertData, closeForm}) => {
     const {name, value} = event.target
     const data = {...formState, [name]: value}
     addData(data)
-    setFormState(initialFormState)
     closeForm()
   }
 
   return (
-    <div>
-      <form className='data-form row vt-pdg-20' onSubmit={handleSubmit}>
-        {Object.keys(formState).map((key, idx) => (
-          <div key={key} className='column'>
-            <input
-              type={idx > 0 && model !== 'vendors' ? 'number' : 'text'}
-              name={key} value={formState[key]}
-              onChange={handleChange}
-            />
-          </div>
-        ))}
-        <div>
-          <button type='submit' className='action-btn white bg-drk-blue pointer' onClick={handleSubmit}>ADD</button>
-          <button className='action-btn cancel-btn pointer light-font' onClick={closeForm}>CANCEL</button>
-        </div>
-      </form>
-    </div>
+    <DataForm
+      formState={formState}
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+      closeForm={closeForm}
+    />
   )
 }
 

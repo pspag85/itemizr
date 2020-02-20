@@ -10,3 +10,29 @@ export const randomPasswordGen = () => {
   }
   return password
 }
+
+export const createInitialState = model => {
+  const initialProductState = {
+    name: '',
+    productNumber: 0,
+    category: '',
+    vendor: '',
+    unit: 0.00,
+    par: 0,
+    onHand: 0,
+    orderQty: 0
+  }
+
+  const initialVendorState = {
+    name: '',
+    email: '',
+    phone: ''
+  }
+
+  return model === 'products' ? initialProductState : initialVendorState
+}
+
+export const isTextField = field => {
+  const textFields = ['name', 'category', 'vendor', 'email', 'phone']
+  return textFields.includes(field)
+}

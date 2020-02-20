@@ -8,7 +8,7 @@ import AddDataForm from './add-data-form'
 import AddDataButton from './add-data-button'
 import '../css/list.css'
 
-const withData = (WrappedComponent, model) => (props) => {
+const withListData = (WrappedComponent, model) => (props) => {
   const [dataState, setDataState] = useState([])
   const [addFormState, setAddFormState] = useState(false)
 
@@ -35,7 +35,7 @@ const withData = (WrappedComponent, model) => (props) => {
     setDataState(newDataState)
   }
 
-  const deleteRow = async (id) => {
+  const deleteRow = async id => {
     try {
       await axios.delete(`/api/${model}/${id}`)
     } catch(err) {
@@ -63,4 +63,4 @@ const withData = (WrappedComponent, model) => (props) => {
   )
 }
 
-export default withData
+export default withListData
