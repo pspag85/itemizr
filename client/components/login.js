@@ -26,20 +26,20 @@ const Login = ({handleSubmit}) => (
   </div>
 )
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch, {history}) => ({
   async handleSubmit (evt) {
     evt.preventDefault()
     const email = evt.target.email.value
     const password = evt.target.password.value
     const loginThunk = login({email, password})
     try {
-      await dispatch(loginThunk)
-      ownProps.history.push('/products')
+      const user = await dispatch(loginThunk)
+      const path = !user ? '/login' : '/products'
+      history.push(`${path}`)
     } catch(err) {
       console.error(err)
     }
   }
 })
 
-export default connect(null, mapDispatchToProps)(Login)
-
+export default connect(null, mapDispatchToProps)(Login);

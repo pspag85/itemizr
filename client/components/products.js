@@ -1,13 +1,10 @@
 import React, {Fragment, useEffect} from 'react'
 import ColHeader from './col-header'
-import withListData from './with-list-data';
 import ListRow from './list-row';
 import useApiRequest from '../api/request';
 
-const Products = ({data, updateData, deleteRow}) => {
+const Products = ({updateData, deleteRow}) => {
   const [{ status, response }, makeRequest] = useApiRequest('/api/products')
-  console.log('status:  ', status, '\n', 'response:  ', response)
-
   useEffect(() => {
     makeRequest()
   }, [])

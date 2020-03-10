@@ -45,7 +45,7 @@ router.get('/user', async (req, res, next) => {
     if(!req.session.userId) {
       res.sendStatus(401)
     } else {
-      const user = await User.findById(req.session.userId)
+      const user = await User.findByPk(req.session.userId)
       if(!user) {
         res.sendStatus(401)
       } else {

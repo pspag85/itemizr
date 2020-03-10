@@ -4,8 +4,6 @@ import {connect} from 'react-redux'
 import {signup} from '../store'
 import AuthForm from './auth-form'
 
-const emailRef = React.createRef()
-
 const Signup = ({handleSubmit}) => (
   <div className='flex h-100-pct'>
     <span className='auth-sidebar vh-100 bg-prpl'></span>
@@ -17,7 +15,7 @@ const Signup = ({handleSubmit}) => (
             <h2>Welcome Back!</h2>
             <br />
             <AuthForm handleSubmit={handleSubmit} isSignup={true}/>
-            <p ref={emailRef} className='mrg-0'></p>
+            {/* {<p ref={emailRef} className='mrg-0'></p>} */}
             <div className='flex ctr-items space-around w-200 hz-pdg-10 light-font'>
               <p>Already have an account?</p>
               <Link to='/login' className='underline'>Login</Link>
@@ -29,14 +27,9 @@ const Signup = ({handleSubmit}) => (
   </div>
 )
 
-const duplicateEmailHandler = () => {
-  emailRef.current.textContent = 'Email already in use'
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch, {history}) => ({
   async handleSubmit (evt) {
     evt.preventDefault()
-    duplicateEmailHandler()
     const business = evt.target.business.value
     const username = evt.target.username.value
     const email = evt.target.email.value
@@ -49,8 +42,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       isAdmin: true
     })
     try {
-      await dispatch(signupThunk)
-      ownProps.history.push('/products')
+      const user = await dispatch(signupThunk)
+      const path = !user ? '/login' : '/products'
+      history.push(`${path}`)
     } catch(err) {
       console.error(err)
     }

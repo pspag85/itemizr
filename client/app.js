@@ -1,15 +1,13 @@
-import React, {Component, Fragment} from 'react'
-import {hot} from 'react-hot-loader'
+import React, {Component, Fragment, useEffect} from 'react'
 import {Route, Switch, withRouter} from 'react-router-dom'
 import history from './history'
+import {hot} from 'react-hot-loader'
 import store, {getMe} from './store'
 import Signup from './components/signup'
 import Login from './components/login'
-import UserBar from './components/user-bar'
 import Users from './components/users'
 import Vendors from './components/vendors'
 import Products from './components/products'
-import EditProducts from './components/edit-products'
 import './css/app.css'
 
 const App = withRouter(class extends Component {
@@ -18,8 +16,9 @@ const App = withRouter(class extends Component {
     const {pathname} = location
     let path = pathname === '/' ? '/products' : pathname
     try {
-      await store.dispatch(getMe())
-      history.push(path)
+      const user = await store.dispatch(getMe())
+      path = !user ? '/login' : path
+      history.push(`${path}`)
     } catch(err) {
       console.error(err)
     }
@@ -33,11 +32,12 @@ const App = withRouter(class extends Component {
           <Route exact path='/vendors' component={Vendors} />
           <Route exact path='/products' component={Products} />
           <Route exact path='/signup' component={Signup} />
-          <Route component={Login} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/' component={Products} />
         </Switch>
       </Fragment>
-    )
+    );
   }
-})
+});
 
 export default hot(module)(App)
