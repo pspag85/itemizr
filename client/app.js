@@ -3,10 +3,7 @@ import {Route, Switch, withRouter} from 'react-router-dom'
 import history from './history'
 import {hot} from 'react-hot-loader'
 import store, {getMe} from './store'
-import Signup from './views/signup'
-import Login from './views/login'
-import Vendors from './views/vendors'
-import Products from './views/products'
+import Routes from './routes';
 import './css/app.css'
 
 const App = withRouter(class extends Component {
@@ -26,13 +23,7 @@ const App = withRouter(class extends Component {
   render () {
     return (
       <Fragment>
-        <Switch>
-          <Route exact path='/vendors' component={Vendors} />
-          <Route exact path='/products' component={Products} />
-          <Route exact path='/signup' component={Signup} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/' component={Products} />
-        </Switch>
+        <Routes />
       </Fragment>
     );
   }
