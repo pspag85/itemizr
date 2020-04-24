@@ -12,21 +12,19 @@ const Vendors = ({updateData, deleteRow}) => {
 
   return (
     <Fragment>
-      <div className='page-pdg'>
-        <div className='col-header row secondary-txt'>
-          <ColHeader headers={['Name', 'Email', 'Phone', 'Products']} />
-        </div>
-        <div className='row-container'>
-          {response && response.map(({id, name, email, phone}) => (
-            <ListRow
-              key={id + Math.random()}
-              id={id}
-              rowData={{name, email, phone}}
-              updateData={updateData}
-              deleteRow={deleteRow}
-            />
-          ))}
-        </div>
+      <div className='col-header row secondary-txt'>
+        <ColHeader headers={['Name', 'Email', 'Phone', 'Products']} />
+      </div>
+      <div className='row-container'>
+        {response && response.map(({id, name, email, phone}) => (
+          <ListRow
+            key={id + Math.random()}
+            id={id}
+            rowData={{name, email, phone}}
+            updateData={updateData}
+            deleteRow={deleteRow}
+          />
+        ))}
       </div>
     </Fragment>
   )

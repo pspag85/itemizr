@@ -1,8 +1,9 @@
 import React, {Component, Fragment, useEffect} from 'react'
-import {Route, Switch, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import history from './history'
 import {hot} from 'react-hot-loader'
 import store, {getMe} from './store'
+import Navbar from './components/navbar';
 import Routes from './routes';
 import './css/app.css'
 
@@ -23,6 +24,7 @@ const App = withRouter(class extends Component {
   render () {
     return (
       <Fragment>
+        <Navbar />
         <Routes />
       </Fragment>
     );

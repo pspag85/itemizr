@@ -7,7 +7,7 @@ import Login from './views/login'
 import NotFound from './views/not-found'
 
 const Routes = () => (
-  <Fragment>
+  <div className='page-pdg'>
     <Switch>
       <Route exact path='/products' component={Products} />
       <Route exact path='/vendors' component={Vendors} />
@@ -15,7 +15,7 @@ const Routes = () => (
       <Route exact path='/login' component={Login} />
       <Route component={NotFound} />
     </Switch>
-  </Fragment>
+  </div>
 );
 
 export default Routes

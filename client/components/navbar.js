@@ -1,7 +1,7 @@
 import React from 'react'
 import {withRouter, Link} from 'react-router-dom'
-import '../css/navbar.css'
 import UserMenu from './user-menu';
+import '../css/navbar.css'
 
 const Navbar = withRouter(() => (
   <div id='navbar' className='bg-lt-blue nav-wdth'>
