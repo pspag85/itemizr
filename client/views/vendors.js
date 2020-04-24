@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect} from 'react'
-import ColHeader from './col-header'
-import ListRow from './list-row';
+import ColHeader from '../components/col-header'
+import ListRow from '../components/list-row';
 import useApiRequest from '../api/request';
 
 const Vendors = ({pdateData, deleteRow}) => {
