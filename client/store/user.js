@@ -15,7 +15,7 @@ const gotMe = user => ({
 
 export const getMe = () => async dispatch => {
   try {
-    const {data} = await axios.get('/api/users/user')
+    const {data} = await axios.get('/api/auth')
     const {user} = dispatch(gotMe(data))
     return user
   } catch(err) {
@@ -25,7 +25,7 @@ export const getMe = () => async dispatch => {
 
 export const signup = formData => async dispatch => {
   try {
-    const {data} = await axios.post('/api/users/signup', formData)
+    const {data} = await axios.post('/api/auth/signup', formData)
     const {user} = dispatch(gotMe(data))
     return user
   } catch(err) {
@@ -35,7 +35,7 @@ export const signup = formData => async dispatch => {
 
 export const login = formData => async dispatch => {
   try {
-    const {data} = await axios.put('/api/users/login', formData)
+    const {data} = await axios.put('/api/auth/login', formData)
     const {user} = dispatch(gotMe(data))
     return user
   } catch(err) {
@@ -45,7 +45,7 @@ export const login = formData => async dispatch => {
 
 export const logout = () => async dispatch => {
   try {
-    await axios.delete('/api/users/logout')
+    await axios.delete('/api/auth/logout')
     dispatch(gotMe(initialState))
     history.push('/login')
   } catch(err) {

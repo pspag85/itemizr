@@ -8,7 +8,6 @@ const Navbar = withRouter(() => (
     <UserMenu />
     <Link to='/products'>Products</Link>
     <Link to='/vendors'>Vendors</Link>
-    <Link to='/users'>Admin Settings</Link>
   </div>
 ))
 

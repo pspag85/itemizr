@@ -5,7 +5,6 @@ import {hot} from 'react-hot-loader'
 import store, {getMe} from './store'
 import Signup from './components/signup'
 import Login from './components/login'
-import Users from './components/users'
 import Vendors from './components/vendors'
 import Products from './components/products'
 import './css/app.css'
@@ -28,7 +27,6 @@ const App = withRouter(class extends Component {
     return (
       <Fragment>
         <Switch>
-          <Route exact path='/users' component={Users} />
           <Route exact path='/vendors' component={Vendors} />
           <Route exact path='/products' component={Products} />
           <Route exact path='/signup' component={Signup} />
