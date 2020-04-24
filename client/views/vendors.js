@@ -1,23 +1,17 @@
-import React, {Fragment, useEffect} from 'react'
+import React, {Fragment, useState, useEffect} from 'react'
 import ColHeader from '../components/col-header'
 import ListRow from '../components/list-row';
+import AddDataButton from '../components/add-data-button';
 import useApiRequest from '../api/request';
 
-const Vendors = ({pdateData, deleteRow}) => {
-  const [addFormState, setAddFormState] = useState(false)
-
-  const [{ status, response }, makeRequest] = useApiRequest('/api/products')
+const Vendors = ({updateData, deleteRow}) => {
+  const [{status, response}, makeRequest] = useApiRequest('/api/vendors')
   useEffect(() => {
     makeRequest()
   }, [])
 
-
-  const openAddForm = () => setAddFormState(true)
-  const closeAddForm = () => setAddFormState(false)
-
   return (
     <Fragment>
-      <UserBar showNav={true} />
       <div className='page-pdg'>
         <div className='col-header row secondary-txt'>
           <ColHeader headers={['Name', 'Email', 'Phone', 'Products']} />
@@ -33,10 +27,6 @@ const Vendors = ({pdateData, deleteRow}) => {
             />
           ))}
         </div>
-        {addFormState
-          ? <AddDataForm model={model} insertData={insertData} closeForm={closeAddForm} />
-          : <AddDataButton openForm={openAddForm} dataName={model} />
-        }
       </div>
     </Fragment>
   )
