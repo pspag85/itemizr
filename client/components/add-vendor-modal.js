@@ -12,7 +12,8 @@ const AddVendorModal = (props) => {
         } modal>
         {close => (
           <div id='vendor-modal' className='modal'>
-            Add a vendor
+            <h2 className='header'>Add a vendor</h2>
+            <a className="close" onClick={close}>&times;</a>
           </div>
         )}
       </Popup>
