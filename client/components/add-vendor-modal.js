@@ -12,7 +12,7 @@ const AddVendorModal = (props) => {
         } modal>
         {close => (
           <div id='vendor-modal' className='modal'>
-            Modal
+            Add a vendor
           </div>
         )}
       </Popup>

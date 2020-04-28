@@ -370,23 +370,24 @@ input:-webkit-autofill:active  {
   border-radius: 25px;
 }
 
-.project-modal {
+.modal {
   margin: 0;
   padding: 0;
   height: 100vh;
-  min-width: 100vw;
 }
 
 .popup-overlay {
-  min-width: 100vw;
-  margin: 0;
+  width: calc(100% - 200px);
+  margin: 0 0 0 200px;
   padding: 0;
 }
 
 .popup-content {
   min-width: 100%;
-  margin: 0;
+  height: 100%;
   padding: 0;
+  border: none !important;
+  padding: 20px !important;
 }
 
 @media only screen and (max-width: 1224px) {
