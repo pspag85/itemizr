@@ -8,7 +8,7 @@ const Login = ({handleSubmit}) => (
   <div className='flex h-100-pct'>
     <span className='auth-sidebar vh-100 bg-prpl'></span>
     <div className='auth-wrapper bg-white'>
-      <div className='auth-container bg-white box-shadow rnd-crnr'>
+      <div className='auth-container bg-white box-shadow'>
         <div className='flex h-100-pct bg-lt-blue space-around'>
           <img src='/img/signup.png' />
           <div className='flex-col tp-mrg-10 ctr-txt'>

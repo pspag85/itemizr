@@ -1,11 +1,11 @@
 import React from 'react'
 import '../css/header.css'
 
-const Header = () => {
-  const header = location.pathname.split('/')[1]
+const Header = ({title, action}) => {
   return (
-    <div className='header'>
-      <h2>{header}</h2>
+    <div className='header flex ctr-items space-between'>
+      <h2>{title}</h2>
+      {action}
     </div>
   )
 }

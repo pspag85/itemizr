@@ -1,7 +1,8 @@
-import React, {Fragment, useState, useEffect} from 'react'
+import React, {Fragment, useEffect} from 'react'
+import Header from '../components/header';
+import AddVendorModal from '../components/add-vendor-modal';
 import ColHeader from '../components/col-header'
 import ListRow from '../components/list-row';
-import AddDataButton from '../components/add-data-button';
 import useApiRequest from '../api/request';
 
 const Vendors = ({updateData, deleteRow}) => {
@@ -12,6 +13,7 @@ const Vendors = ({updateData, deleteRow}) => {
 
   return (
     <Fragment>
+      <Header title='Vendors' action={<AddVendorModal />} />
       <div className='col-header row secondary-txt'>
         <ColHeader headers={['Name', 'Email', 'Phone', 'Products']} />
       </div>
