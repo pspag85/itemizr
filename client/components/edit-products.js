@@ -5,7 +5,7 @@ import axios from 'axios'
 import UserBar from './user-bar'
 import AddDataButton from './add-data-button'
 import EditProduct from './edit-product'
-import ColHeader from './col-header'
+import ListHeader from './list-header'
 import {getProducts, addProduct, removeProduct, saveProducts, cancelUpdate} from '../store'
 import products from './products'
 
@@ -43,8 +43,8 @@ const EditProducts = ({user, loadProducts, product, createProduct, deleteProduct
         <div className='header ft-20'>
         <h3>Products</h3>
         </div>
-        <div className='col-header row secondary-txt'>
-          <ColHeader headers={['PRODUCT', 'ON HAND', 'PAR', 'ORDER QTY']} />
+        <div className='list-header row secondary-txt'>
+          <ListHeader headers={['PRODUCT', 'ON HAND', 'PAR', 'ORDER QTY']} />
         </div>
         <div className='row-container bg-white box-shadow'>
           {products.length > 0 && products.map(({id, name, onHand, par, orderQty}, index) => (

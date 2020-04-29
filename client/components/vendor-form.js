@@ -3,7 +3,18 @@ import history from '../history'
 import axios from 'axios'
 
 const VendorForm = ({closeForm}) => {
-  const [formState, setFormState] = useState({})
+  const [vendor, setVendor] = useState({
+    vendor: '',
+    email: '',
+    phone: '',
+    firstName: '',
+    lastName: '',
+    address_1: '',
+    address_2: '',
+    city: '',
+    state: '',
+    zip: ''
+  })
 
   const addVendor = async vendor => {
     try {
@@ -15,14 +26,14 @@ const VendorForm = ({closeForm}) => {
 
   const handleChange = event => {
     const {name, value} = event.target
-    setFormState({...formState, [name]: value})
+    setVendor({...vendor, [name]: value})
   }
 
   const handleSubmit = event => {
     event.preventDefault()
     const {name, value} = event.target
-    const vendor = {...formState, [name]: value}
-    addVendor(vendor)
+    const vendorData = {...vendor, [name]: value}
+    addVendor(vendorData)
     closeForm()
   }
 

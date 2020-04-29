@@ -155,19 +155,19 @@ input:-webkit-autofill:active  {
   overflow: hidden;
 }
 
-.col-header .column {
+.list-header .column {
   padding-right: 19px;
 }
 
-.col-header * {
+.list-header * {
   overflow: hidden;
 }
 
-.col-header.row {
+.list-header.row {
   padding: 8px 0 8px 8px;
 }
 
-.col-header .column h4 {
+.list-header .column h4 {
   margin: 1px 1px 1px 0;
 }
 

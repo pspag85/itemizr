@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect} from 'react'
-import ColHeader from '../components/col-header'
+import ListHeader from '../components/list-header'
 import ListRow from '../components/list-row';
 import useApiRequest from '../api/request';
 
@@ -11,8 +11,8 @@ const Products = ({updateData, deleteRow}) => {
 
   return (
     <Fragment>
-      <div className='col-header row secondary-txt'>
-        <ColHeader headers={['Item', 'No.', 'Category', 'Vendor', 'Unit', 'Par', 'On-hand', 'Qty']} />
+      <div className='list-header row secondary-txt'>
+        <ListHeader headers={['Item', 'No.', 'Category', 'Vendor', 'Unit', 'Par', 'On-hand', 'Qty']} />
       </div>
       <div className='row-container'>
         {response && response.map(({id, name, category, vendor, unit, par, onHand, orderQty}) => (

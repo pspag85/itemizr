@@ -992,9 +992,9 @@ exports.default = AuthForm;
 
 /***/ }),
 
-/***/ "./client/components/col-headers.js":
+/***/ "./client/components/list-headers.js":
 /*!******************************************!*\
-  !*** ./client/components/col-headers.js ***!
+  !*** ./client/components/list-headers.js ***!
   \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1012,10 +1012,10 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ColHeaders = function ColHeaders(props) {
+var ListHeaders = function ListHeaders(props) {
   return _react2.default.createElement(
     'div',
-    { className: 'colHeaders' },
+    { className: 'ListHeaders' },
     _react2.default.createElement(
       'div',
       { className: 'itemRow' },
@@ -1067,7 +1067,7 @@ var ColHeaders = function ColHeaders(props) {
   );
 };
 
-exports.default = ColHeaders;
+exports.default = ListHeaders;
 
 /***/ }),
 
@@ -1441,9 +1441,9 @@ var _item = __webpack_require__(/*! ./item */ "./client/components/item.js");
 
 var _item2 = _interopRequireDefault(_item);
 
-var _colHeaders = __webpack_require__(/*! ./col-headers */ "./client/components/col-headers.js");
+var _ListHeaders = __webpack_require__(/*! ./list-headers */ "./client/components/list-headers.js");
 
-var _colHeaders2 = _interopRequireDefault(_colHeaders);
+var _ListHeaders2 = _interopRequireDefault(_ListHeaders);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1635,7 +1635,7 @@ var Items = function (_Component) {
           ' logout'
         ),
         _react2.default.createElement(_addItem2.default, { update: this.updateItems }),
-        _react2.default.createElement(_colHeaders2.default, {
+        _react2.default.createElement(_ListHeaders2.default, {
           col_1: 'Name',
           col_2: 'On Hand',
           col_3: 'Par',
@@ -2714,9 +2714,9 @@ var _createUser = __webpack_require__(/*! ./create-user */ "./client/components/
 
 var _createUser2 = _interopRequireDefault(_createUser);
 
-var _colHeaders = __webpack_require__(/*! ./col-headers */ "./client/components/col-headers.js");
+var _ListHeaders = __webpack_require__(/*! ./list-headers */ "./client/components/list-headers.js");
 
-var _colHeaders2 = _interopRequireDefault(_colHeaders);
+var _ListHeaders2 = _interopRequireDefault(_ListHeaders);
 
 var _user = __webpack_require__(/*! ./user */ "./client/components/user.js");
 
@@ -2881,7 +2881,7 @@ var UserSettings = (0, _reactRouterDom.withRouter)(function (_Component) {
           null,
           'My Users'
         ),
-        _react2.default.createElement(_colHeaders2.default, {
+        _react2.default.createElement(_ListHeaders2.default, {
           col_1: 'Date',
           col_2: 'Name',
           col_3: 'Email',
@@ -16468,7 +16468,7 @@ exports.push([module.i, "#add-item {\n  font-size: 40px;\n  align-self: center;\
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".itemRow {\n margin-left: 20%;\n}\n\n.column {\n  display: inline-block;\n}\n\n.cell {\n  padding-right: 100px;\n  padding-left: 20px;\n}\n\n.remove {\n  color: white;\n  background-color: red;\n}\n\n.colHeaders .column{\n  width: 173px;\n  border: .25px solid black;\n}\n\n.colHeaders .column h4{\n  margin: 1px;\n}\n.logoutBtn{\n  margin-left: 90%;\n}\n", ""]);
+exports.push([module.i, ".itemRow {\n margin-left: 20%;\n}\n\n.column {\n  display: inline-block;\n}\n\n.cell {\n  padding-right: 100px;\n  padding-left: 20px;\n}\n\n.remove {\n  color: white;\n  background-color: red;\n}\n\n.ListHeaders .column{\n  width: 173px;\n  border: .25px solid black;\n}\n\n.ListHeaders .column h4{\n  margin: 1px;\n}\n.logoutBtn{\n  margin-left: 90%;\n}\n", ""]);
 
 
 
