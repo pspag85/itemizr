@@ -11,7 +11,7 @@ const Login = ({handleSubmit}) => (
       <div className='auth-container bg-white box-shadow'>
         <div className='flex h-100-pct bg-lt-blue space-around'>
           <img src='/img/signup.png' />
-          <div className='flex-col tp-mrg-10 ctr-txt'>
+          <div className='flex-col top-mrg-10 ctr-txt'>
             <h2>Welcome Back!</h2>
             <br/>
             <AuthForm handleSubmit={handleSubmit} />

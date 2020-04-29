@@ -13,15 +13,10 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async ({body, session}, res, next) => {
-  const {name, email, phone} = body
   const {userId} = session
+  const vendorData = {...body, userId}
   try {
-    const vendor = await Vendor.create({
-      name,
-      email,
-      phone,
-      userId
-    })
+    const vendor = await Vendor.create(vendorData)
     res.json(vendor)
   } catch(err){
     console.error(err)

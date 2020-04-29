@@ -36903,7 +36903,7 @@ var properties = {};
 
 // A few React string attributes have a different name.
 // This is a mapping from React prop names to the attribute names.
-[['acceptCharset', 'accept-charset'], ['className', 'class'], ['htmlFor', 'for'], ['httpEquiv', 'http-equiv']].forEach(function (_ref) {
+[['acceptCharset', 'accept-charset'], ['className', 'class'], ['htmlFor', 'for'], ['httpEquiv', 'httop-equiv']].forEach(function (_ref) {
   var name = _ref[0],
       attributeName = _ref[1];
 
@@ -40757,7 +40757,7 @@ var possibleStandardNames = {
   hreflang: 'hrefLang',
   htmlfor: 'htmlFor',
   httpequiv: 'httpEquiv',
-  'http-equiv': 'httpEquiv',
+  'httop-equiv': 'httpEquiv',
   icon: 'icon',
   id: 'id',
   innerhtml: 'innerHTML',

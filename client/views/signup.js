@@ -11,11 +11,11 @@ const Signup = ({handleSubmit}) => (
       <div className='auth-container bg-white box-shadow'>
         <div className='flex h-100-pct bg-lt-blue space-around'>
           <img src='/img/signup.png' />
-          <div className='flex-col tp-mrg-10 ctr-txt content-box'>
+          <div className='flex-col top-mrg-10 ctr-txt content-box'>
             <h2>Welcome Back!</h2>
             <br />
             <AuthForm handleSubmit={handleSubmit} isSignup={true}/>
-            {/* {<p ref={emailRef} className='mrg-0'></p>} */}
+            {/* {<p ref={emailRef}></p>} */}
             <div className='flex ctr-items space-around w-200 hz-pdg-10 light-font'>
               <p>Already have an account?</p>
               <Link to='/login' className='underline'>Login</Link>
