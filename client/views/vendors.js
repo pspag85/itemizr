@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect} from 'react'
+import React, {Fragment, useState, useEffect, useCallback} from 'react'
 import axios from 'axios'
 import Header from '../components/header';
 import AddVendorModal from '../components/add-vendor-modal';
@@ -8,15 +8,16 @@ import ListRow from '../components/list-row';
 const Vendors = (props) => {
   const [vendors, setVendors] = useState([])
 
-  const getVendors = async () => {
+  const getVendors = useCallback(async () => {
     try {
       const {data} = await axios.get('/api/vendors')
-      return data
+      setVendors(data)
     } catch(err) {
       console.error(err)
     }
-  }
+  }, [setVendors])
 
+  const insertVendor = newVendor => setVendors([...vendors, newVendor])
   const updateVendors = vendorData => {
     const updatedVendors = vendors.map(vendor => {
       return vendor.id === vendorData.id ? vendorData : vendor
@@ -36,18 +37,12 @@ const Vendors = (props) => {
   }
 
   useEffect(() => {
-    let isSubscribed = true
-    getVendors().then(vendors => {
-      if(isSubscribed) {
-        setVendors(vendors)
-      }
-    })
-    return () => isSubscribed = false
-  }, []) // put getVendors in the array to load when modal closes, but still need to stop the fetching once that happens
+    getVendors()
+  }, [getVendors])
 
   return (
     <Fragment>
-      <Header title='Vendors' action={<AddVendorModal />} />
+      <Header title='Vendors' action={<AddVendorModal insertVendor={insertVendor} />} />
       <div className='top-mrg-20'>
         <ListHeader headers={['Name', 'Email', 'Phone', 'Products']} />
         <div className='row-container'>

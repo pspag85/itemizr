@@ -2,7 +2,7 @@ import React, {Fragment} from 'react'
 import Popup from 'reactjs-popup'
 import VendorForm from './vendor-form'
 
-const AddVendorModal = (props) => {
+const AddVendorModal = ({insertVendor}) => {
   return (
     <Fragment>
       <Popup
@@ -14,8 +14,8 @@ const AddVendorModal = (props) => {
         {close => (
           <div id='vendor-modal' className='modal'>
             <h2 className='header'>Add a vendor</h2>
-            <a className="close" onClick={close}>&times;</a>
-            <VendorForm closeForm={close}/>
+            <a className='close' onClick={close}>&times;</a>
+            <VendorForm insertVendor={insertVendor} closeForm={close} />
           </div>
         )}
       </Popup>

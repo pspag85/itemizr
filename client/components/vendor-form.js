@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import history from '../history'
 import axios from 'axios'
 
-const VendorForm = ({closeForm}) => {
+const VendorForm = ({insertVendor, closeForm}) => {
   const [vendor, setVendor] = useState({
     vendor: '',
     email: '',
@@ -19,6 +19,7 @@ const VendorForm = ({closeForm}) => {
   const addVendor = async vendor => {
     try {
       const {data} = await axios.post('/api/vendors', vendor)
+      insertVendor(data)
     } catch(err) {
       console.error(err)
     }

@@ -3,7 +3,7 @@ import {useToggleState} from '../utility/hooks'
 import RowDropDown from './row-drop-down'
 import EditDataForm from './edit-data-form'
 
-const ListRow = ({id, rowData, model, updateData, editRow, deleteRow}) => {
+const ListRow = ({id, rowData, model, updateData, deleteRow}) => {
   const {toggleState, toggleMenu} = useToggleState()
   const [editFormState, setEditFormState] = useState(false)
 
