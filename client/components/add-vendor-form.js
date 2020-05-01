@@ -90,7 +90,7 @@ const VendorForm = ({insertVendor, closeForm}) => {
           <input name='zipcode' onChange={handleChange} />
         </div>
         <div>
-          <button type='submit' className='action-btn white bg-drk-blue pointer' onClick={handleSubmit}>SAVE</button>
+          <button type='submit' className='action-btn' onClick={handleSubmit}>SAVE</button>
           <button className='action-btn cancel-btn pointer light-font' onClick={closeForm}>CANCEL</button>
         </div>
       </form>

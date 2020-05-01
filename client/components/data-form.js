@@ -5,7 +5,7 @@ import { isTextField } from '../utility/helpers'
 
 const DataForm = ({formState, handleChange, handleSubmit, closeForm}) => (
   <div>
-    <form className='data-form row vt-pdg-20' onSubmit={handleSubmit}>
+    <form className='product-form row vt-pdg-20' onSubmit={handleSubmit}>
       {Object.keys(formState).map(key => (
         <div key={key} className='column'>
           {key === 'productNumber' ? <h5>{formState[key] < 1 ? '--' : formState[key]}</h5>
@@ -18,7 +18,7 @@ const DataForm = ({formState, handleChange, handleSubmit, closeForm}) => (
         </div>
       ))}
       <div>
-        <button type='submit' className='action-btn white bg-drk-blue pointer' onClick={handleSubmit}>SAVE</button>
+        <button type='submit' className='action-btn' onClick={handleSubmit}>SAVE</button>
         <button className='action-btn cancel-btn pointer light-font' onClick={closeForm}>CANCEL</button>
       </div>
     </form>

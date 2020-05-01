@@ -22,7 +22,7 @@ const EditProduct = ({listId, id, name, onHand, par, orderQty, putProduct, delet
   }
 
   return (
-    <form className='data-form row vt-pdg-20' onSubmit={handleSubmit} onBlur={handleSubmit}>
+    <form className='product-form row vt-pdg-20' onSubmit={handleSubmit} onBlur={handleSubmit}>
       <div className='column'>
         <input type="text" name='name' value={productState.name || name} onChange={handleChange} />
       </div>

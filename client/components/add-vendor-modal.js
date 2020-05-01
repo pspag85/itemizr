@@ -1,13 +1,13 @@
 import React, {Fragment} from 'react'
 import Popup from 'reactjs-popup'
-import VendorForm from './vendor-form'
+import AddVendorForm from './add-vendor-form'
 
 const AddVendorModal = ({insertVendor}) => {
   return (
     <Fragment>
       <Popup
         trigger={
-          <button className='action-btn white bg-drk-blue pointer'>
+          <button className='action-btn'>
             Add a vendor
           </button>
         } modal>
@@ -15,7 +15,7 @@ const AddVendorModal = ({insertVendor}) => {
           <div id='vendor-modal' className='modal'>
             <h2 className='header'>Add a vendor</h2>
             <a className='close' onClick={close}>&times;</a>
-            <VendorForm insertVendor={insertVendor} closeForm={close} />
+            <AddVendorForm insertVendor={insertVendor} closeForm={close} />
           </div>
         )}
       </Popup>

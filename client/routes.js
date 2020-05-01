@@ -1,10 +1,10 @@
 import React, {Fragment} from 'react'
 import {Route, Switch} from 'react-router-dom'
-import Products from './views/products'
-import Vendors from './views/vendors'
-import Signup from './views/signup'
-import Login from './views/login'
-import NotFound from './views/not-found'
+import Products from './pages/products'
+import Vendors from './pages/vendors'
+import Signup from './pages/signup'
+import Login from './pages/login'
+import NotFound from './pages/not-found'
 
 const Routes = () => (
   <div className='page-pdg'>

@@ -3,9 +3,9 @@ import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import UserBar from './user-bar'
-import AddDataButton from './add-data-button'
+import AddProductButton from './add-product-button'
 import EditProduct from './edit-product'
-import ListHeader from './list-header'
+import TableHeader from './table-header'
 import {getProducts, addProduct, removeProduct, saveProducts, cancelUpdate} from '../store'
 import products from './products'
 
@@ -43,10 +43,10 @@ const EditProducts = ({user, loadProducts, product, createProduct, deleteProduct
         <div className='header ft-20'>
         <h3>Products</h3>
         </div>
-        <div className='list-header row secondary-txt'>
-          <ListHeader headers={['PRODUCT', 'ON HAND', 'PAR', 'ORDER QTY']} />
+        <div className='table-header row secondary-txt'>
+          <TableHeader headers={['PRODUCT', 'ON HAND', 'PAR', 'ORDER QTY']} />
         </div>
-        <div className='row-container bg-white box-shadow'>
+        <div className='table-body bg-white box-shadow'>
           {products.length > 0 && products.map(({id, name, onHand, par, orderQty}, index) => (
             <EditProduct
               key={Math.random() + name}
@@ -59,10 +59,10 @@ const EditProducts = ({user, loadProducts, product, createProduct, deleteProduct
               deleteProduct={deleteProduct}
             />
           ))}
-          <AddDataButton addNewProduct={addNewProduct} />
+          <AddProductButton addNewProduct={addNewProduct} />
         </div>
         <div className='save'>
-          <button className='action-btn white bg-drk-blue pointer' onClick={() => saveChanges(list.id, product)}>SAVE CHANGES</button>
+          <button className='action-btn' onClick={() => saveChanges(list.id, product)}>SAVE CHANGES</button>
           <button className='action-btn cancel-btn pointer light-font' onClick={cancelEdit}>CANCEL</button>
         </div>
       </div>

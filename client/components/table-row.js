@@ -3,7 +3,7 @@ import {useToggleState} from '../utility/hooks'
 import RowDropDown from './row-drop-down'
 import EditDataForm from './edit-data-form'
 
-const ListRow = ({id, rowData, model, updateData, deleteRow}) => {
+const TableRow = ({id, rowData, model, updateData, deleteRow}) => {
   const {toggleState, toggleMenu} = useToggleState()
   const [editFormState, setEditFormState] = useState(false)
 
@@ -16,7 +16,7 @@ const ListRow = ({id, rowData, model, updateData, deleteRow}) => {
   const rowValues = Object.values(rowData)
 
   return (
-    <div className='product row'>
+    <tr>
       {editFormState ? (
         <EditDataForm
           id={id}
@@ -26,17 +26,17 @@ const ListRow = ({id, rowData, model, updateData, deleteRow}) => {
           closeForm={closeEditForm}
         />
       ) : rowValues.map(columnValue => (
-        <div key={columnValue + Math.random()}
+        <td key={columnValue + Math.random()}
           className='column'>
           <h5>{columnValue}</h5>
-        </div>
+        </td>
       ))}
-      <div className='row-menu-container column pointer bg-white' onClick={toggleMenu}>
+      <td className='row-menu-container column pointer bg-white' onClick={toggleMenu}>
         <img src='/img/more-vert.png' />
-      </div>
+      </td>
       {toggleState && <RowDropDown id={rowValues.id} editRow={openEditForm} deleteRow={deleteRow} />}
-    </div>
+    </tr>
   )
 }
 
-export default ListRow
+export default TableRow

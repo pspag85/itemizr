@@ -3,9 +3,9 @@ import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import UserBar from './user-bar'
-import ListHeader from './list-header'
-import AddDataForm from './add-data-form'
-import AddDataButton from './add-data-button'
+import TableHeader from './table-header'
+import AddProductForm from './add-product-form'
+import AddProductButton from './add-product-button'
 import '../css/list.css'
 
 const withListData = (WrappedComponent, model) => (props) => {
@@ -55,8 +55,8 @@ const withListData = (WrappedComponent, model) => (props) => {
       <div className='page-pdg'>
         {dataState && <WrappedComponent data={dataState} model={model} updateData={updateData} deleteRow={deleteRow} {...props} />}
         {addFormState
-          ? <AddDataForm model={model} insertData={insertData} closeForm={closeAddForm} />
-          : <AddDataButton openForm={openAddForm} dataName={model} />
+          ? <AddProductForm model={model} insertData={insertData} closeForm={closeAddForm} />
+          : <AddProductButton openForm={openAddForm} dataName={model} />
         }
       </div>
     </Fragment>
