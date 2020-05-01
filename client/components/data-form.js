@@ -8,7 +8,6 @@ const DataForm = ({formState, handleChange, handleSubmit, closeForm}) => (
     <form className='product-form row vt-pdg-20' onSubmit={handleSubmit}>
       {Object.keys(formState).map(key => (
         <div key={key} className='column'>
-          {key === 'productNumber' ? <h5>{formState[key] < 1 ? '--' : formState[key]}</h5>
           : <input
               type={isTextField(key) ? 'text' : 'number'}
               name={key} value={formState[key]}

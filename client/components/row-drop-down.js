@@ -1,16 +1,16 @@
 import React from 'react'
 
 const RowDropDown = ({id, editRow, deleteRow}) => (
-  <div className='row-menu bg-white box-shadow'>
-    <div className='column pointer edit-btn' onClick={() => editRow(id)}>
-      <img className='edit-icon' src='/img/edit.png'/>
-      <h4 className='edit-txt light-font'>Edit</h4>
+  <td className='row-menu bg-white box-shadow'>
+    <div onClick={() => editRow(id)}>
+      <img src='/img/edit.png'/>
+      <h4>Edit</h4>
     </div>
-    <div className='column pointer delete-list' onClick={() => deleteRow(id)}>
-      <img className='delete-icon' src='/img/delete.png'/>
-      <h4 className='delete-txt light-font'>Delete</h4>
+    <div onClick={() => deleteRow(id)}>
+      <img src='/img/delete.png'/>
+      <h4 className='delete-txt'>Delete</h4>
     </div>
-  </div>
+  </td>
 )
 
 export default RowDropDown

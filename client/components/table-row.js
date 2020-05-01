@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {useToggleState} from '../utility/hooks'
 import RowDropDown from './row-drop-down'
 import EditDataForm from './edit-data-form'
+import '../css/table-row.css'
 
 const TableRow = ({id, rowData, model, updateData, deleteRow}) => {
   const {toggleState, toggleMenu} = useToggleState()
@@ -16,7 +17,7 @@ const TableRow = ({id, rowData, model, updateData, deleteRow}) => {
   const rowValues = Object.values(rowData)
 
   return (
-    <tr>
+    <tr className='light-font'>
       {editFormState ? (
         <EditDataForm
           id={id}
@@ -31,10 +32,12 @@ const TableRow = ({id, rowData, model, updateData, deleteRow}) => {
           <h5>{columnValue}</h5>
         </td>
       ))}
-      <td className='row-menu-container column pointer bg-white' onClick={toggleMenu}>
+      <td className='column pointer bg-white' onClick={toggleMenu}>
         <img src='/img/more-vert.png' />
       </td>
-      {toggleState && <RowDropDown id={rowValues.id} editRow={openEditForm} deleteRow={deleteRow} />}
+      {toggleState && (
+        <RowDropDown id={id} editRow={openEditForm} deleteRow={deleteRow} />
+      )}
     </tr>
   )
 }

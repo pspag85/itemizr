@@ -324,24 +324,15 @@ input:-webkit-autofill:active  {
 
 .alert {
   color: white;
-  background-color: red;
+  background-color: #DE3434;
 }
 
 .clear {
   font-size: 44px;
 }
 
-.delete-list {
-  width: 200px;
-}
-
 .delete-txt {
-  margin: 2px 0 0 8px;
-}
-
-.delete-icon {
-  height: 18px;
-  width: auto;
+  color: #DE3434;
 }
 
 .pointer {
@@ -362,7 +353,7 @@ input:-webkit-autofill:active  {
 }
 
 .cancel-btn {
-  color: red;
+  color: #DE3434;
 }
 
 .action-btn {

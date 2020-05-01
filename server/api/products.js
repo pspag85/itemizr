@@ -11,8 +11,14 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
+  const {unit} = req.body
+  const floatingPointUnit = parseFloat(unit)
+  const productData = {
+    unit: floatingPointUnit,
+    ...req.body
+  }
   try {
-    const product = await Product.create(req.body)
+    const product = await Product.create(productData)
     res.json(product)
   } catch(err) {
     console.error(err)

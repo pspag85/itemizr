@@ -51,15 +51,29 @@ const Products = (props) => {
       <table className='top-mrg-20'>
         <TableHeader headers={['Item', 'No.', 'Category', 'Vendor', 'Unit', 'Par', 'On-hand']} />
         <tbody className='table-body'>
-          {products && products.map(({id, name, category, product, unit, par, onHand}) => (
-            <TableRow
-              key={id + Math.random()}
-              id={id}
-              rowData={{name, productNumber: id, category, product, unit, par, onHand}}
-              updateData={updateProducts}
-              deleteRow={deleteProduct}
-            />
-          ))}
+          {products && products.map((product) => {
+            const {id, name, category, vendor, unit, par, onHand} = product
+            const productNumber = id.toString()
+            const stringUnit = unit === 0 ? '0.00' : unit.toString()
+            const productData = {
+              name,
+              productNumber,
+              category,
+              vendor,
+              unit: stringUnit,
+              par,
+              onHand
+            }
+            return (
+              <TableRow
+                key={id + Math.random()}
+                id={id}
+                rowData={productData}
+                updateData={updateProducts}
+                deleteRow={deleteProduct}
+              />
+            )
+          })}
         </tbody>
       </table>
       {addFormState

@@ -8,15 +8,16 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
     productNumber: '',
     category: '',
     vendor: '',
-    unit: 0,
+    unit: '0.00',
     par: 0,
     onHand: 0
   })
 
+  const [msgState, setMsgState] = useState(false)
+
   const addProduct = async product => {
     try {
       const {data} = await axios.post('/api/products', product)
-      console.log('data: ', data)
       insertProduct(data)
     } catch(err) {
       console.error(err)
@@ -34,6 +35,13 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
     closeForm()
   }
 
+  const displayReadOnlyMsg = () => {
+    setTimeout(() => {
+      setMsgState(false)
+    }, 2000)
+    setMsgState(true)
+  }
+
   return (
     <div className='product-form-wrapper'>
       <form className='product-form row vt-pdg-20' onSubmit={handleSubmit}>
@@ -43,12 +51,13 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
           name='name' value={product.name}
           onChange={handleChange}
         />
-        <input
-          key='productNumber'
-          placeholder={product.productNumber || 'No.'}
-          name='productNumber' value={product.productNumber}
-          onChange={handleChange}
-        />
+        <span onClick={displayReadOnlyMsg}>
+          <input
+            key='productNumber'
+            placeholder={product.productNumber || 'No.'}
+            disabled
+          />
+        </span>
         <input
           key='category'
           placeholder={product.category || 'Category'}
@@ -58,7 +67,7 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
         <input
           key='vendor'
           placeholder={product.vendor || 'Vendor'}
-          vendor='name' value={product.vendor}
+          name='vendor' value={product.vendor}
           onChange={handleChange}
         />
         <input
@@ -81,6 +90,7 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
         />
       </form>
       <div>
+        {msgState && <span>Product number is read only</span>}
         <button type='submit' className='action-btn' onClick={handleSubmit}>SAVE</button>
         <button className='action-btn cancel-btn pointer light-font' onClick={closeForm}>CANCEL</button>
       </div>
