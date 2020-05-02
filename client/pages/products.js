@@ -48,7 +48,7 @@ const Products = (props) => {
   return (
     <Fragment>
       <Header title='Products' />
-      <table className='top-mrg-20'>
+      <table>
         <TableHeader headers={['Item', 'No.', 'Category', 'Vendor', 'Unit', 'Par', 'On-hand']} />
         <tbody className='table-body'>
           {products && products.map((product) => {

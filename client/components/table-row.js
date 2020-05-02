@@ -27,8 +27,7 @@ const TableRow = ({id, rowData, model, updateData, deleteRow}) => {
           closeForm={closeEditForm}
         />
       ) : rowValues.map(columnValue => (
-        <td key={columnValue + Math.random()}
-          className='column'>
+        <td key={columnValue + Math.random()}>
           <h5>{columnValue}</h5>
         </td>
       ))}

@@ -4,7 +4,7 @@ const TableHeader = ({headers}) => (
   <thead className='table-header'>
     <tr>
       {headers.map(header => (
-        <th className='column lt-gray' key={header}>
+        <th key={header}>
           {header}
         </th>
       ))}
