@@ -5,10 +5,12 @@ import { isTextField } from '../utility/helpers'
 const AddProductForm = ({addData, insertProduct, closeForm}) => {
   const [product, setProduct] = useState({
     name: '',
-    productNumber: '',
+    productNumber: 0,
     category: '',
     vendor: '',
-    unit: '0.00',
+    price: '0.00',
+    quantity: 0,
+    unit: '',
     par: 0,
     onHand: 0
   })
@@ -59,31 +61,39 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
           />
         </span>
         <input
-          key='category'
           placeholder={product.category || 'Category'}
           name='category' value={product.category}
           onChange={handleChange}
         />
         <input
-          key='vendor'
           placeholder={product.vendor || 'Vendor'}
           name='vendor' value={product.vendor}
           onChange={handleChange}
         />
+        <div className='price-container'>
+          <input
+            placeholder={product.price}
+            name='price' value={product.price}
+            onChange={handleChange}
+          />
+          <input
+            placeholder={product.quantity}
+            name='quantity' value={product.quantity}
+            onChange={handleChange}
+          />
+          <select name='unit' onChange={handleChange} defaultValue='Unit'>
+            <option value='unit'>Unit</option>
+            <option value='case'>Case</option>
+            <option value='tray'>Tray</option>
+            <option value='bag'>Bag</option>
+          </select>
+        </div>
         <input
-          key='unit'
-          placeholder={product.unit}
-          name='unit' value={product.unit}
-          onChange={handleChange}
-        />
-        <input
-          key='par'
           placeholder={product.par}
           name='par' value={product.par}
           onChange={handleChange}
         />
         <input
-          key='onHand'
           placeholder={product.onHand}
           name='onHand' value={product.onHand}
           onChange={handleChange}

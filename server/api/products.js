@@ -11,10 +11,10 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-  const {unit} = req.body
-  const floatingPointUnit = parseFloat(unit)
+  const {price} = req.body
+  const priceNumber = parseFloat(price)
   const productData = {
-    unit: floatingPointUnit,
+    price: priceNumber,
     ...req.body
   }
   try {

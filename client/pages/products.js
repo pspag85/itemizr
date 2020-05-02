@@ -52,15 +52,19 @@ const Products = (props) => {
         <TableHeader headers={['Item', 'No.', 'Category', 'Vendor', 'Unit', 'Par', 'On-hand']} />
         <tbody className='table-body'>
           {products && products.map((product) => {
-            const {id, name, category, vendor, unit, par, onHand} = product
+            const {id,name, category, vendor, price, quantity, unit, par, onHand} = product
             const productNumber = id.toString()
-            const stringUnit = unit === 0 ? '0.00' : unit.toString()
+            let priceString = price === 0 ? '$0.00' : `$${price.toString()}`
+            if(priceString.length < 5) priceString += '0'
             const productData = {
               name,
               productNumber,
               category,
               vendor,
-              unit: stringUnit,
+              price: priceString,
+          // these values should be used in Price table cell:
+              // quantity,
+              // unit,
               par,
               onHand
             }

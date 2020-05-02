@@ -4,14 +4,21 @@ const db = require('./database')
 const Product = db.define('product', {
   name: {
     type: Sequelize.STRING,
-    defaultValue: ''
+    allowNull: false
   },
   category: {
     type: Sequelize.STRING,
   },
-  unit: {
+  price: {
     type: Sequelize.FLOAT,
     defaultValue: 0.00
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+  unit: {
+    type: Sequelize.STRING,
   },
   onHand:{
     type: Sequelize.INTEGER,
