@@ -1,5 +1,5 @@
 import React from 'react'
-import ItemCol from './item-col'
+import ProductCol from './product-col'
 
 const DeleteButton = ({delete}) => (
   <div className='delete-btn'>

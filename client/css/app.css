@@ -2,7 +2,7 @@ html, body {
   width: 100vw;
   height: 100vh;
   margin: 0;
-  background: rgba(218, 234, 247, 0.15);
+  padding: 0;
   font-family: 'Open-Sans', sans-serif;
 }
 
@@ -19,20 +19,16 @@ button {
   display: flex;
 }
 
+.flex-start {
+  align-items: top;
+}
+
 .ctr-items {
   align-items: center;
 }
 
 .ctr-txt {
   text-align: center;
-}
-
-.header {
-  padding: 40px 0;
-}
-
-.header h3 {
-  margin: 0;
 }
 
 .auth-sidebar {
@@ -57,6 +53,7 @@ button {
   margin: 0 auto;
   z-index: 1;
   font-size: 12px;
+  border-radius: 3px;
 }
 
 .auth-container img {
@@ -86,11 +83,15 @@ input:-webkit-autofill:active  {
   width: 200px;
 }
 
-.font-20 {
+.ft-20 {
   font-size: 20px;
 }
 
-.font-8 {
+.ft-14 {
+  font-size: 14px;
+}
+
+.ft-8 {
   font-size: 8px;
 }
 
@@ -102,7 +103,7 @@ input:-webkit-autofill:active  {
   margin-top: 20px;
 }
 
-.tp-mrg-10 {
+.top-mrg-10 {
   margin-top: 10px;
 }
 
@@ -117,11 +118,7 @@ input:-webkit-autofill:active  {
 }
 
 .page-pdg {
-  padding: 100px 80px 0 80px;
-}
-
-.row-container {
-  padding-left: 20px;
+  padding: 20px 0 0 240px;
 }
 
 .row {
@@ -140,72 +137,85 @@ input:-webkit-autofill:active  {
   text-decoration: underline;
 }
 
-.column {
+/* .column {
   width: 25%;
   display: inline-block;
   flex-wrap: nowrap;
   align-items: center;
   text-align: left;
   white-space: nowrap;
-  /* text-overflow: ellipsis; =>  *****TODO FIX***** */
 }
 
 .column h4:not(.delete-txt) {
   overflow: hidden;
+} */
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
 }
 
-.col-header .column {
-  padding-right: 19px;
+/* table h5 {
+  margin: 0;
+} */
+
+th,
+td {
+  padding: 8px;
 }
 
-.col-header * {
-  overflow: hidden;
-}
-
-.col-header.row {
-  padding-left: 20px;
+.table-header {
   padding-bottom: 8px;
+  box-sizing: border-box;
+  border-bottom: 3px solid #AABCC6 !important;
 }
 
-.col-header .column h4 {
-  margin: 1px 1px 1px 0;
+.table-header th {
+  text-align: left;
+  opacity: 0.5;
 }
 
-#edit-items-page .column:first-of-type {
+#edit-product-page .column:first-of-type {
   margin-right: 40px;
 }
 
-#edit-items-page .column:last-of-type {
+#edit-product-page .column:last-of-type {
   margin-right: 0px;
 }
 
-#edit-items-page .column h4 {
+#edit-product-page .column h4 {
   padding-left: 2px;
 }
 
-.item-form {
+.product-form-wrapper {
+  border: 1px solid black;
+}
+
+.product-form {
+  display: flex;
   height: 20px;
   align-items: center;
 }
 
-.item-form .column {
+.product-form .column {
   height: 20px;
   display: flex;
 }
 
-.item-form input {
+.product-form input {
   width: 40%;
 }
 
-.item-form .column:first-of-type input {
+.product-form .column:first-of-type input {
   width: 85%;
 }
 
-.item-form .column:last-of-type input {
+.product-form .column:last-of-type input {
   margin-right: 30%;
 }
 
-.item-form p {
+.product-form p {
   width: 0;
   margin: 0 4px;
   font-size: 20px;
@@ -216,17 +226,19 @@ input:-webkit-autofill:active  {
 }
 
 #logout-btn-container {
-  position: fixed;
-  right: 40px;
   width: 100px;
 }
 
 .bg-blue {
-  background: #00A0B0;
+  background-color: #C9E3F2;
+}
+
+.bg-drk-blue {
+  background: #01C4D8;
 }
 
 .bg-lt-blue {
-  background: rgba(218, 234, 247, 0.15);
+  background: #EDF5FA;
 }
 
 .bg-white {
@@ -234,7 +246,7 @@ input:-webkit-autofill:active  {
 }
 
 .bg-prpl {
-  background-color: #542437;
+  background-color: #C9E3F2;
 }
 
 .flex-start {
@@ -275,12 +287,16 @@ input:-webkit-autofill:active  {
   justify-content: space-around;
 }
 
+.space-between {
+  justify-content: space-between;
+}
+
 .light-font {
   font-weight: 350;
 }
 
-.rnd-crnr {
-  border-radius: 3px;
+.light-font * {
+  font-weight: 350;
 }
 
 .box-shadow {
@@ -291,13 +307,12 @@ input:-webkit-autofill:active  {
 }
 
 .add-container {
-  position: fixed;
-  top: 100px;
-  margin: 20px;
+  width: 200px;
   padding: 0 10px;
   display: flex;
   justify-content: center;
   text-align: center;
+  background-color: white;
 }
 
 .add-container h3 {
@@ -317,24 +332,15 @@ input:-webkit-autofill:active  {
 
 .alert {
   color: white;
-  background-color: red;
+  background-color: #DE3434;
 }
 
 .clear {
   font-size: 44px;
 }
 
-.delete-list {
-  width: 200px;
-}
-
 .delete-txt {
-  margin: 2px 0 0 8px;
-}
-
-.delete-icon {
-  height: 18px;
-  width: auto;
+  color: #DE3434;
 }
 
 .pointer {
@@ -355,56 +361,83 @@ input:-webkit-autofill:active  {
 }
 
 .cancel-btn {
-  color: red;
+  color: #DE3434;
 }
 
 .action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 128px;
+  height: 32px;
+  padding: 2px 4px;
   font-size: 14px;
-  padding: .4em 1em .4em 1em;
-  border-radius: 5px;
-  margin: 78px 40px 0 0;
+  border-radius: 25px;
+  background-color: #01C4D8;
+  color: white;
+  cursor: pointer;
 }
 
-.page-pdg .action-btn {
-  float: right;
+.modal {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.popup-overlay {
+  width: calc(100% - 220px);
+  margin: 0 0 0 220px;
+  padding: 0;
+}
+
+.popup-content {
+  min-width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none !important;
+  padding: 20px !important;
+}
+
+.close {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  right: 20px;
+  opacity: 0.8;
+  transition: all 200ms;
+  text-decoration: none;
+  font-size: 3.2em;
+  margin-right: 1em;
+  cursor: pointer;
+  color: black;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 @media only screen and (max-width: 1224px) {
   .page-pdg {
-    padding-right: 40px;
-    padding-left: 40px
+    padding-right: 20px;
+    padding-left: 240px
   }
 }
 
 @media only screen and (max-width: 1000px) {
   #lists-page.page-pdg,
-  #items-page.page-pdg {
+  #product-page.page-pdg {
     padding-right: 0;
-    padding-left: 20px;
+    padding-left: 220px;
   }
 
-  #edit-items-page.page-pdg {
+  #edit-product-page.page-pdg {
     padding-right: 20px;
     padding-left: 20px;
-  }
-
-  #user-menu--btn {
-    position: fixed;
-    right: 44px;
-  }
-
-  .edit-btn,
-  .action-btn {
-    margin-right: 20px;
-  }
-
-  #top-header h2 {
-    margin-left: 0;
   }
 }
 
 @media only screen and (max-width: 800px) {
-  #edit-items-page.page-pdg {
+  #edit-product-page.page-pdg {
     padding-right: 0;
   }
 }

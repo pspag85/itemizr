@@ -1,8 +1,8 @@
-const {User, List, Item, db} = require('./server/db')//put USER back in here
+const {User, List, Product, db} = require('./server/db')//put USER back in here
 const {red, bgMagenta} = require('chalk')
 
 const userData = [
-  { 
+  {
     username: 'Ol Paterson',
     email: 'p@mail.com',
     password: '111'
@@ -28,7 +28,7 @@ const date4 = now.setDate(now.getDate() - 30)
 const listData = [
   {
     date: date4,
-    items: [
+    product: [
       {
         id: 1,
         name: 'pickles',
@@ -61,7 +61,7 @@ const listData = [
   },
   {
     date: date3,
-    items: [
+    product: [
       {
         id: 3,
         name: 'oranges',
@@ -87,7 +87,7 @@ const listData = [
   },
   {
     date: date2,
-    items: [
+    product: [
       {
         id: 6,
         name: 'steaks',
@@ -127,11 +127,11 @@ const listData = [
   },
   {
     date: date1,
-    items: []
+    product: []
   }
 ]
 
-const itemData = [
+const productData = [
   {
     name: 'apples',
     onHand: 40,
@@ -151,7 +151,7 @@ const seed = async n => {
     await db.sync({force: true})
     await User.bulkCreate(userData)
     await List.bulkCreate(listData)
-    await Item.bulkCreate(itemData)
+    await Product.bulkCreate(productData)
     console.log(bgMagenta('Seeding success!'))
     db.close()
   } catch(err) {

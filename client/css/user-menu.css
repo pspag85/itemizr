@@ -1,40 +1,10 @@
 #user-menu {
-  height: 100%;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  color: white;
-  text-align: right;
-}
-
-#user-menu * {
-  display: inline-block;
-}
-
-#user-menu--btn {
-  position: fixed;
-  right: 64px;
+  height: 50px;
+  margin: 20px 15px 10px;
+  padding-left: 20px;
+  border-radius: 25px;
 }
 
 #user-menu h4 {
-  position: fixed;
-  top: 20px;
-  font-weight: 300;
-}
-
-#user-menu img {
-  margin: 30px 10px 0 0;
-}
-
-#user-menu--dd {
-  position: relative;
-  width: 200px;
-  height: 106px;
-  top: 96px;
-  color: white;
-  z-index: 100;
-}
-
-#user-menu--dd * {
-  padding-top: 8px;
+  margin: 0;
 }

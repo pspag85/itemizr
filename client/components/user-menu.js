@@ -18,15 +18,14 @@ class UserMenu extends Component {
   render() {
     const {handleClick} = this
     const {open} = this.state
-    const {username} = this.props.user
+    const {business} = this.props.user
     return (
-      <div id='user-menu' className='pointer' onClick={handleClick}>
+      <div id='user-menu' className='flex ctr-items bg-blue ft-20 pointer' onClick={handleClick}>
         <div id='user-menu--btn'>
-          <img src='/img/person-icon.png' />
-          <h4>{username}</h4>
+          <h4>{business}</h4>
         </div>
         {open ? (
-          <div id='user-menu--dd' className='bg-blue'>
+          <div id='user-menu--dd' className='bg-drk-blue'>
             <Logout />
           </div>
         ): null}

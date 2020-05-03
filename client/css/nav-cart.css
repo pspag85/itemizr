@@ -1,0 +1,37 @@
+#nav-cart {
+  position: absolute;
+  top: 26px;
+}
+
+#nav-cart * {
+  display: inline-block;
+}
+
+#nav-cart--link {
+  position: fixed;
+  right: 40px;
+}
+
+#nav-cart h4 {
+  position: fixed;
+  top: 10px;
+  font-weight: 300;
+}
+
+#nav-cart img {
+  height: 20px;
+  margin-right: 8px;
+}
+
+#nav-cart--dd {
+  position: relative;
+  width: 200px;
+  height: 106px;
+  top: 96px;
+  color: white;
+  z-index: 100;
+}
+
+#nav-cart--dd * {
+  padding-top: 8px;
+}
