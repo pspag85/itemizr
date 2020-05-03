@@ -62,9 +62,10 @@ const Products = (props) => {
               category,
               vendor,
               price: priceString,
-          // these values should be used in Price table cell:
-              // quantity,
-              // unit,
+              // these values should be used in Price table cell:
+              quantity,
+              unit,
+
               par,
               onHand
             }

@@ -14,7 +14,31 @@ const TableRow = ({id, rowData, model, updateData, deleteRow}) => {
     setEditFormState(false)
   }
 
-  const rowValues = Object.values(rowData)
+  const columns = Object.keys(rowData)
+  const priceKeys = ['price', 'quantity', 'unit']
+
+  const renderPriceColumn = (column) => (
+    column === 'price' ? (
+      <td className='price-column' key={column + Math.random()}>
+        <p>{rowData.price}</p>
+        <p>{rowData.quantity}</p>
+        <p>{rowData.unit}</p>
+      </td>
+    ) : (
+      null
+    )
+  )
+
+  const renderCells = () => (
+    columns.map(column => priceKeys.includes(column)
+      ? renderPriceColumn(column)
+      : (
+        <td key={column + Math.random()}>
+          {rowData[column]}
+        </td>
+      )
+    )
+  )
 
   return (
     <tr className='light-font'>
@@ -26,11 +50,7 @@ const TableRow = ({id, rowData, model, updateData, deleteRow}) => {
           updateData={updateData}
           closeForm={closeEditForm}
         />
-      ) : rowValues.map(columnValue => (
-        <td key={columnValue + Math.random()}>
-          <h5>{columnValue}</h5>
-        </td>
-      ))}
+      ) : renderCells()}
       <td className='column pointer bg-white' onClick={toggleMenu}>
         <img src='/img/more-vert.png' />
       </td>
