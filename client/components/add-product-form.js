@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-import { isTextField } from '../utility/helpers'
 
 const AddProductForm = ({addData, insertProduct, closeForm}) => {
   const [product, setProduct] = useState({
@@ -10,7 +9,7 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
     vendor: '',
     price: '0.00',
     quantity: 0,
-    unit: '',
+    unit: 'Unit',
     par: 0,
     onHand: 0
   })
@@ -83,10 +82,10 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
             onChange={handleChange}
           />
           <select name='unit' onChange={handleChange} defaultValue='Unit'>
-            <option value='unit'>Unit</option>
-            <option value='case'>Case</option>
-            <option value='tray'>Tray</option>
-            <option value='bag'>Bag</option>
+            <option value='Unit'>Unit</option>
+            <option value='Case'>Case</option>
+            <option value='Tray'>Tray</option>
+            <option value='Bag'>Bag</option>
           </select>
         </div>
         <input

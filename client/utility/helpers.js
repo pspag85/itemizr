@@ -11,28 +11,18 @@ export const randomPasswordGen = () => {
   return password
 }
 
-export const createInitialState = model => {
-  const initialProductState = {
-    name: '',
-    productNumber: 0,
-    category: '',
-    vendor: '',
-    unit: 0.00,
-    par: 0,
-    onHand: 0,
-    orderQty: 0
+export const formatNumToThreeDigitStr = (num) => {
+  const numStr = num.toString()
+  let prefix = ''
+  for(let i = numStr.length; i < 3; i += 1) {
+    prefix += '0'
   }
-
-  const initialVendorState = {
-    name: '',
-    email: '',
-    phone: ''
-  }
-
-  return model === 'products' ? initialProductState : initialVendorState
+  return prefix += numStr
 }
 
-export const isTextField = field => {
-  const textFields = ['name', 'category', 'vendor', 'email', 'phone']
-  return textFields.includes(field)
+export const formatPriceToStr = (price) => {
+  let priceStr = price === 0 ? '$0.00' : `$${price.toString()}`
+  if(priceStr.length < 5) priceStr += '0'
+  return priceStr
 }
+

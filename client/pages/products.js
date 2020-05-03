@@ -5,6 +5,7 @@ import TableHeader from '../components/table-header'
 import TableRow from '../components/table-row';
 import AddProductForm from '../components/add-product-form'
 import AddProductButton from '../components/add-product-button'
+import {formatNumToThreeDigitStr, formatPriceToStr} from '../utility/helpers'
 
 const Products = (props) => {
   const [products, setProducts] = useState([])
@@ -49,15 +50,14 @@ const Products = (props) => {
   const tableHeaders = ['Item', 'No.', 'Category', 'Vendor', 'Unit', 'Par', 'On-hand']
 
   const formatProduct = ({id, name, category, vendor, price, quantity, unit, par, onHand}) => {
-    const productNumber = id.toString()
-    let priceString = price === 0 ? '$0.00' : `$${price.toString()}`
-    if(priceString.length < 5) priceString += '0'
+    const productNumber = formatNumToThreeDigitStr(id)
+    const priceStr = formatPriceToStr(price)
     const productData = {
       name,
       productNumber,
       category,
       vendor: vendor.name,
-      price: priceString,
+      price: priceStr,
       quantity,
       unit,
       par,

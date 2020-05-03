@@ -1,7 +1,4 @@
-import React, {useState} from 'react'
-import axios from 'axios'
-import { useFormState } from '../utility/hooks'
-import { isTextField } from '../utility/helpers'
+import React from 'react'
 
 const DataForm = ({formState, handleChange, handleSubmit, closeForm}) => (
   <div>
@@ -9,7 +6,6 @@ const DataForm = ({formState, handleChange, handleSubmit, closeForm}) => (
       {Object.keys(formState).map(key => (
         <div key={key} className='column'>
           : <input
-              type={isTextField(key) ? 'text' : 'number'}
               name={key} value={formState[key]}
               onChange={handleChange}
             />
