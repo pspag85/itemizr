@@ -10,6 +10,15 @@ const Products = (props) => {
   const [products, setProducts] = useState([])
   const [addFormState, setAddFormState] = useState(false)
 
+  const insertProduct = newProduct => setProducts([...products, newProduct])
+
+  const updateProducts = productData => {
+    const updatedProducts = products.map(product => {
+      return product.id === productData.id ? productData : product
+    })
+    setProducts(updatedProducts)
+  }
+
   const getProducts = useCallback(async () => {
     try {
       const {data} = await axios.get('/api/products')
@@ -18,17 +27,6 @@ const Products = (props) => {
       console.error(err)
     }
   }, [setProducts])
-
-  const insertProduct = newProduct => {
-    console.log('newProduct:  ', newProduct)
-    setProducts([...products, newProduct])
-  }
-  const updateProducts = productData => {
-    const updatedProducts = products.map(product => {
-      return product.id === productData.id ? productData : product
-    })
-    setProducts(updatedProducts)
-  }
 
   const deleteProduct = async id => {
     try {
@@ -51,7 +49,6 @@ const Products = (props) => {
   const tableHeaders = ['Item', 'No.', 'Category', 'Vendor', 'Unit', 'Par', 'On-hand']
 
   const formatProduct = ({id, name, category, vendor, price, quantity, unit, par, onHand}) => {
-    const vendorName = typeof vendor === 'string' ? vendor : vendor.name
     const productNumber = id.toString()
     let priceString = price === 0 ? '$0.00' : `$${price.toString()}`
     if(priceString.length < 5) priceString += '0'
@@ -59,7 +56,7 @@ const Products = (props) => {
       name,
       productNumber,
       category,
-      vendor: vendorName,
+      vendor: vendor.name,
       price: priceString,
       quantity,
       unit,
@@ -72,7 +69,6 @@ const Products = (props) => {
   const renderProducts = () => (
     products.map((product) => {
       const productData = formatProduct(product)
-      console.log('product data:  ', productData)
       return (
         <TableRow
           key={product.id + Math.random()}

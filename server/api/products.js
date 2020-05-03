@@ -4,7 +4,10 @@ const {Product, Vendor} = require('../db')
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll({
-      include: Vendor
+      include: {
+        model: Vendor,
+        attributes: ['name']
+      }
     })
     res.json(products)
   } catch(err) {
