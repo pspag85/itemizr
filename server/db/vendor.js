@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('./database')
 
 const Vendor = db.define('vendors', {
-  vendor: {
+  name: {
     type: Sequelize.STRING,
     defaultValue: ''
   },

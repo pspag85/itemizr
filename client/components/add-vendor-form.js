@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const VendorForm = ({insertVendor, closeForm}) => {
   const [vendor, setVendor] = useState({
-    vendor: '',
+    name: '',
     email: '',
     phone: '',
     firstName: '',
@@ -42,8 +42,8 @@ const VendorForm = ({insertVendor, closeForm}) => {
     <div>
       <form onSubmit={handleSubmit}>
         <div className='form-row'>
-          <label htmlFor='vendor'>Vendor name</label>
-          <input name='vendor' onChange={handleChange} />
+          <label htmlFor='name'>Vendor name</label>
+          <input name='name' onChange={handleChange} />
         </div>
         <div className='form-row'>
           <label htmlFor='email'>Email</label>

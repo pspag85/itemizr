@@ -1,5 +1,17 @@
 tr {
   border-bottom: 1px solid #DADADA;
+  vertical-align: top;
+}
+
+tr p {
+  margin: 0;
+}
+
+.unit-container p {
+  display: inline-block;
+  margin: 4px 2px 0;
+  opacity: 0.5;
+  font-size: 14px;
 }
 
 .row-menu {

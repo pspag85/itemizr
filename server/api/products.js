@@ -1,9 +1,11 @@
 const router = require('express').Router()
-const {Product} = require('../db')
+const {Product, Vendor} = require('../db')
 
 router.get('/', async (req, res, next) => {
   try {
-    const products = await Product.findAll()
+    const products = await Product.findAll({
+      include: Vendor
+    })
     res.json(products)
   } catch(err) {
     console.error(err)
@@ -13,11 +15,17 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   const {price} = req.body
   const priceNumber = parseFloat(price)
-  const productData = {
-    price: priceNumber,
-    ...req.body
-  }
   try {
+    const vendor = await Vendor.findOne({
+      where: {
+        name: req.body.vendor
+      }
+    })
+    const productData = {
+      price: priceNumber,
+      vendorId: vendor.id,
+      ...req.body
+    }
     const product = await Product.create(productData)
     res.json(product)
   } catch(err) {

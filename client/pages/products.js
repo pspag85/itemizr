@@ -19,7 +19,10 @@ const Products = (props) => {
     }
   }, [setProducts])
 
-  const insertProduct = newProduct => setProducts([...products, newProduct])
+  const insertProduct = newProduct => {
+    console.log('newProduct:  ', newProduct)
+    setProducts([...products, newProduct])
+  }
   const updateProducts = productData => {
     const updatedProducts = products.map(product => {
       return product.id === productData.id ? productData : product
@@ -45,40 +48,50 @@ const Products = (props) => {
     getProducts()
   }, [getProducts])
 
+  const tableHeaders = ['Item', 'No.', 'Category', 'Vendor', 'Unit', 'Par', 'On-hand']
+
+  const formatProduct = ({id, name, category, vendor, price, quantity, unit, par, onHand}) => {
+    const vendorName = typeof vendor === 'string' ? vendor : vendor.name
+    const productNumber = id.toString()
+    let priceString = price === 0 ? '$0.00' : `$${price.toString()}`
+    if(priceString.length < 5) priceString += '0'
+    const productData = {
+      name,
+      productNumber,
+      category,
+      vendor: vendorName,
+      price: priceString,
+      quantity,
+      unit,
+      par,
+      onHand
+    }
+    return productData
+  }
+
+  const renderProducts = () => (
+    products.map((product) => {
+      const productData = formatProduct(product)
+      console.log('product data:  ', productData)
+      return (
+        <TableRow
+          key={product.id + Math.random()}
+          id={product.id}
+          rowData={productData}
+          updateData={updateProducts}
+          deleteRow={deleteProduct}
+        />
+      )
+    })
+  )
+
   return (
     <Fragment>
       <Header title='Products' />
       <table>
-        <TableHeader headers={['Item', 'No.', 'Category', 'Vendor', 'Unit', 'Par', 'On-hand']} />
+        <TableHeader headers={tableHeaders} />
         <tbody className='table-body'>
-          {products && products.map((product) => {
-            const {id,name, category, vendor, price, quantity, unit, par, onHand} = product
-            const productNumber = id.toString()
-            let priceString = price === 0 ? '$0.00' : `$${price.toString()}`
-            if(priceString.length < 5) priceString += '0'
-            const productData = {
-              name,
-              productNumber,
-              category,
-              vendor,
-              price: priceString,
-              // these values should be used in Price table cell:
-              quantity,
-              unit,
-
-              par,
-              onHand
-            }
-            return (
-              <TableRow
-                key={id + Math.random()}
-                id={id}
-                rowData={productData}
-                updateData={updateProducts}
-                deleteRow={deleteProduct}
-              />
-            )
-          })}
+          {products && renderProducts()}
         </tbody>
       </table>
       {addFormState

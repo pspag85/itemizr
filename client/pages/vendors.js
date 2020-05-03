@@ -46,11 +46,11 @@ const Vendors = (props) => {
       <table className='top-mrg-20'>
         <TableHeader headers={['Name', 'Email', 'Phone', 'Products']} />
         <tbody className='table-body'>
-          {vendors && vendors.map(({id, vendor, email, phone}) => (
+          {vendors && vendors.map(({id, name, email, phone}) => (
             <TableRow
               key={id + Math.random()}
               id={id}
-              rowData={{vendor, email, phone}}
+              rowData={{name, email, phone}}
               updateData={updateVendors}
               deleteRow={deleteVendor}
             />

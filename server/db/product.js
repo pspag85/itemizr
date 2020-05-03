@@ -19,6 +19,7 @@ const Product = db.define('product', {
   },
   unit: {
     type: Sequelize.STRING,
+    defaultValue: 'Unit'
   },
   onHand:{
     type: Sequelize.INTEGER,

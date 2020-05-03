@@ -18,9 +18,10 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
   const [msgState, setMsgState] = useState(false)
 
   const addProduct = async product => {
+    const {vendor} = product // not sure about this approach -- see line 54 of pages/products
     try {
       const {data} = await axios.post('/api/products', product)
-      insertProduct(data)
+      insertProduct({vendor, ...data})
     } catch(err) {
       console.error(err)
     }

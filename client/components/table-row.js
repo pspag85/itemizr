@@ -21,8 +21,11 @@ const TableRow = ({id, rowData, model, updateData, deleteRow}) => {
     column === 'price' ? (
       <td className='price-column' key={column + Math.random()}>
         <p>{rowData.price}</p>
-        <p>{rowData.quantity}</p>
-        <p>{rowData.unit}</p>
+        <span className='unit-container'>
+          <p>{rowData.quantity}</p>
+          <p>/</p>
+          <p>{rowData.unit}</p>
+        </span>
       </td>
     ) : (
       null

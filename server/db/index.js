@@ -10,7 +10,7 @@ Vendor.belongsTo(User)
 User.hasMany(Vendor)
 
 Product.belongsTo(Vendor)
-Vendor.hasMany(Product, {as: 'products'})
+Vendor.hasMany(Product)
 
 User.hasMany(User, {as: 'employees'})
 
