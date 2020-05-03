@@ -22,7 +22,5 @@ export const formatNumToThreeDigitStr = (num) => {
 
 export const formatPriceToStr = (price) => {
   let priceStr = price === 0 ? '$0.00' : `$${price.toString()}`
-  if(priceStr.length < 5) priceStr += '0'
   return priceStr
 }
-

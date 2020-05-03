@@ -1,0 +1,43 @@
+.product-form-wrapper {
+  height: 200px;
+  border: 1px solid #DADADA;
+}
+
+.product-form {
+  display: flex;
+  height: 20px;
+  align-items: center;
+}
+
+.product-form .column {
+  height: 20px;
+  display: flex;
+}
+
+.product-form input {
+  width: 40%;
+}
+
+.product-form .column:first-of-type input {
+  width: 85%;
+}
+
+.product-form .column:last-of-type input {
+  margin-right: 30%;
+}
+
+.product-form p {
+  width: 0;
+  margin: 0 4px;
+  font-size: 20px;
+}
+
+#product-number:active:after {
+  content:attr(title);
+  padding:5px;
+  border:1px solid #ccc;
+  top:5px;
+  right:10%;
+  background: #bada55;
+  color: black;
+}

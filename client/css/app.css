@@ -184,39 +184,6 @@ td {
   padding-left: 2px;
 }
 
-.product-form-wrapper {
-  border: 1px solid black;
-}
-
-.product-form {
-  display: flex;
-  height: 20px;
-  align-items: center;
-}
-
-.product-form .column {
-  height: 20px;
-  display: flex;
-}
-
-.product-form input {
-  width: 40%;
-}
-
-.product-form .column:first-of-type input {
-  width: 85%;
-}
-
-.product-form .column:last-of-type input {
-  margin-right: 30%;
-}
-
-.product-form p {
-  width: 0;
-  margin: 0 4px;
-  font-size: 20px;
-}
-
 .secondary-txt {
   opacity: .3;
 }
@@ -409,6 +376,11 @@ td {
   &:hover {
     opacity: 1;
   }
+}
+
+.user-msg {
+  height: 20px;
+  margin: 10px 0;
 }
 
 @media only screen and (max-width: 1224px) {

@@ -1,7 +1,10 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import '../css/add-product-form.css'
 
 const AddProductForm = ({addData, insertProduct, closeForm}) => {
+  const [userMsg, setUserMsg] = useState('')
+
   const [product, setProduct] = useState({
     name: '',
     productNumber: 0,
@@ -14,7 +17,7 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
     onHand: 0
   })
 
-  const [msgState, setMsgState] = useState(false)
+  const displayUserMsg = (msg) => setUserMsg(msg)
 
   const addProduct = async product => {
     const vendor = {name: product.vendor}
@@ -26,6 +29,15 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
     }
   }
 
+  const validateForm = (product) => {
+    if(!product.vendor) {
+      // TODO: Make 'Vendor required' bold. Make 'vendors' a link to /vendors
+      displayUserMsg('Vendor required. Go to vendors to create a vendor for this product')
+      return false
+    }
+    return true
+  }
+
   const handleChange = event => {
     const {name, value} = event.target
     setProduct({...product, [name]: value})
@@ -33,15 +45,11 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    addProduct(product)
-    closeForm()
-  }
-
-  const displayReadOnlyMsg = () => {
-    setTimeout(() => {
-      setMsgState(false)
-    }, 2000)
-    setMsgState(true)
+    const validated = validateForm(product)
+    if(validated) {
+      addProduct(product)
+      closeForm()
+    }
   }
 
   return (
@@ -53,13 +61,13 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
           name='name' value={product.name}
           onChange={handleChange}
         />
-        <span onClick={displayReadOnlyMsg}>
-          <input
-            key='productNumber'
-            placeholder={product.productNumber || 'No.'}
-            disabled
-          />
-        </span>
+        <input
+          id='product-number'
+          key='productNumber'
+          placeholder={product.productNumber || 'No.'}
+          title='Product number is read only' // TODO: show on click
+          disabled
+        />
         <input
           placeholder={product.category || 'Category'}
           name='category' value={product.category}
@@ -99,8 +107,8 @@ const AddProductForm = ({addData, insertProduct, closeForm}) => {
           onChange={handleChange}
         />
       </form>
+      <div className='user-msg'>{userMsg}</div>
       <div>
-        {msgState && <span>Product number is read only</span>}
         <button type='submit' className='action-btn' onClick={handleSubmit}>SAVE</button>
         <button className='action-btn cancel-btn pointer light-font' onClick={closeForm}>CANCEL</button>
       </div>
