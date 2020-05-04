@@ -4,6 +4,7 @@ const {Product, Vendor} = require('../db')
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll({
+      order: [['id', 'ASC']],
       include: {
         model: Vendor,
         attributes: ['name']
@@ -55,10 +56,7 @@ router.put('/', async (req, res, next) => {
       where: {id: req.body.id}
     })
 		if(!product) res.sendStatus(500)
-		res.status(200).json({
-			message: 'Updated successfully',
-			product
-		})
+		res.status(200).json(product)
   } catch(err) {
     console.error(err)
   }

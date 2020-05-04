@@ -8,7 +8,7 @@ const TableRow = ({id, rowData, model, updateData, deleteRow}) => {
   const {toggleState, toggleMenu} = useToggleState()
   const [editFormState, setEditFormState] = useState(false)
 
-  const openEditForm = () => setEditFormState(true)
+  const openEditDataForm = () => setEditFormState(true)
   const closeEditForm = () => {
     toggleMenu()
     setEditFormState(false)
@@ -58,7 +58,7 @@ const TableRow = ({id, rowData, model, updateData, deleteRow}) => {
         <img src='/img/more-vert.png' />
       </td>
       {toggleState && (
-        <RowDropDown id={id} editRow={openEditForm} deleteRow={deleteRow} />
+        <RowDropDown id={id} editRow={openEditDataForm} deleteRow={deleteRow} />
       )}
     </tr>
   )

@@ -2,18 +2,20 @@ import React, {Fragment, useState, useEffect, useCallback} from 'react'
 import axios from 'axios'
 import Header from '../components/header';
 import TableHeader from '../components/table-header'
-import TableRow from '../components/table-row';
-import AddProductForm from '../components/add-product-form'
+import Product from '../components/product';
+import EditProduct from '../components/edit-product';
+import AddProductForm from '../components/add-product'
 import AddProductButton from '../components/add-product-button'
 import {formatNumToThreeDigitStr, formatPriceToStr} from '../utility/helpers'
+import {useToggleState} from '../utility/hooks';
 
 const Products = (props) => {
   const [products, setProducts] = useState([])
   const [addFormState, setAddFormState] = useState(false)
+  const [editFormState, setEditFormState] = useState({id: null, isOpen: false})
 
-  const insertProduct = newProduct => setProducts([...products, newProduct])
-
-  const updateProducts = productData => {
+  const insertProduct = (newProduct) => setProducts([...products, newProduct])
+  const updateProducts = (productData) => {
     const updatedProducts = products.map(product => {
       return product.id === productData.id ? productData : product
     })
@@ -29,7 +31,7 @@ const Products = (props) => {
     }
   }, [setProducts])
 
-  const deleteProduct = async id => {
+  const deleteProduct = async (id) => {
     try {
       await axios.delete(`/api/products/${id}`)
     } catch(err) {
@@ -42,6 +44,13 @@ const Products = (props) => {
 
   const openAddForm = () => setAddFormState(true)
   const closeAddForm = () => setAddFormState(false)
+
+  const openEditForm = (id) => {
+    setEditFormState({id, isOpen: true})
+  }
+  const closeEditForm = (id) => {
+    setEditFormState({id: null, isOpen: false})
+  }
 
   useEffect(() => {
     getProducts()
@@ -69,12 +78,23 @@ const Products = (props) => {
   const renderProducts = () => (
     products.map((product) => {
       const productData = formatProduct(product)
-      return (
-        <TableRow
+      const {id, isOpen} = editFormState
+      const editMode = id === product.id && isOpen
+      return editMode ? (
+        <EditProduct
           key={product.id + Math.random()}
           id={product.id}
-          rowData={productData}
-          updateData={updateProducts}
+          currentState={productData}
+          updateProducts={updateProducts}
+          closeForm={closeEditForm}
+        />
+      ) : (
+        <Product
+          key={product.id + Math.random()}
+          id={product.id}
+          product={productData}
+          editProduct={openEditForm}
+          updateProducts={updateProducts}
           deleteRow={deleteProduct}
         />
       )
