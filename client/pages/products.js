@@ -1,4 +1,5 @@
 import React, {Fragment, useState, useEffect, useCallback} from 'react'
+import {useToggleState} from '../utility/hooks';
 import axios from 'axios'
 import Header from '../components/header';
 import TableHeader from '../components/table-header'
@@ -7,7 +8,6 @@ import EditProduct from '../components/edit-product';
 import AddProductForm from '../components/add-product'
 import AddProductButton from '../components/add-product-button'
 import {formatNumToThreeDigitStr, formatPriceToStr} from '../utility/helpers'
-import {useToggleState} from '../utility/hooks';
 
 const Products = (props) => {
   const [products, setProducts] = useState([])

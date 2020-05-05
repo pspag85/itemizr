@@ -21,6 +21,6 @@ export const formatNumToThreeDigitStr = (num) => {
 }
 
 export const formatPriceToStr = (price) => {
-  const priceStr = !price || price === 0 ? '$0.00' : `$${price.toString()}`
+  const priceStr = !price || price === 0 ? '0.00' : `${price.toString()}`
   return priceStr
 }

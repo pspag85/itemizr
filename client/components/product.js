@@ -13,7 +13,7 @@ const Product = ({id, product, editProduct, deleteRow}) => {
   const renderPrice = (column) => (
     column === 'price' ? (
       <td className='price-column' key={column + Math.random()}>
-        <p>{product.price}</p>
+        <p>$ {product.price}</p>
         <span className='unit-container'>
           <p>{product.quantity}</p>
           <p>/</p>

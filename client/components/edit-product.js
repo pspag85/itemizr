@@ -9,18 +9,18 @@ const EditProduct = ({id, currentState, updateProducts, closeForm}) => {
 
   const displayUserMsg = (msg) => setUserMsg(msg)
 
-  const editProduct = async (product) => {
-    const vendor = {name: product.vendor}
+  const editProduct = async (productData) => {
+    const vendor = {name: productData.vendor}
     try {
-      await axios.put('/api/products', {id, ...product})
-      updateProducts({id, vendor, ...product})
+      await axios.put('/api/products', {id, ...productData})
+      updateProducts({id, ...productData, vendor})
     } catch(err) {
       console.error(err)
     }
   }
 
-  const validateVendor = (product) => {
-    if(!product.vendor) {
+  const validateVendor = (productData) => {
+    if(!productData.vendor) {
       // TODO: Make 'Vendor required' bold. Make 'vendors' a link to /vendors
       displayUserMsg('Vendor required. Go to vendors to create a vendor for this product')
       return false
