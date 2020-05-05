@@ -1,47 +1,66 @@
 import React, {useState} from 'react'
-import {connect} from 'react-redux'
-import {updateProduct} from '../store'
+import axios from 'axios'
+import ProductForm from './product-form';
+import FormButtons from './form-buttons'
 
-const EditProduct = ({listId, id, name, onHand, par, orderQty, putProduct, deleteProduct}) => {
-  const product = {id, name, onHand, par, orderQty}
-  const [productState, setProductState] = useState(product)
+const EditProduct = ({id, currentState, updateProducts, closeForm}) => {
+  const [userMsg, setUserMsg] = useState('')
+  const [product, setProduct] = useState(currentState)
 
-  const handleChange = event => {
-    const {value} = event.target
-    const product = {...productState}
-    product[event.target.name] = value
-    setProductState(product)
+  const displayUserMsg = (msg) => setUserMsg(msg)
+
+  const editProduct = async (productData) => {
+    const vendor = {name: productData.vendor}
+    try {
+      await axios.put('/api/products', {id, ...productData})
+      updateProducts({id, ...productData, vendor})
+    } catch(err) {
+      console.error(err)
+    }
   }
 
-  const handleSubmit = event => {
-    event.preventDefault()
+  const validateVendor = (productData) => {
+    if(!productData.vendor) {
+      // TODO: Make 'Vendor required' bold. Make 'vendors' a link to /vendors
+      displayUserMsg('Vendor required. Go to vendors to create a vendor for this product')
+      return false
+    }
+    return true
+  }
+
+  const handleChange = (event) => {
     const {name, value} = event.target
-    const product = {listId, ...productState}
-    product[name] = value
-    putProduct(id, product)
+    setProduct({...product, [name]: value})
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const validated = validateVendor(product)
+    if(validated) {
+      editProduct(product)
+      closeForm()
+    }
   }
 
   return (
-    <form className='product-form row vt-pdg-20' onSubmit={handleSubmit} onBlur={handleSubmit}>
-      <div className='column'>
-        <input type="text" name='name' value={productState.name || name} onChange={handleChange} />
-      </div>
-      <div className='column'>
-        <input type="number" name='onHand' value={productState.onHand || onHand} onChange={handleChange} />
-      </div>
-      <div className='column'>
-        <input type="number" name='par' value={productState.par || par} onChange={handleChange} />
-      </div>
-      <div className='column flex'>
-        <input type="number" name='orderQty' value={productState.orderQty || orderQty} onChange={handleChange} />
-        <p onClick={() => deleteProduct(id)}>&times;</p>
-      </div>
-    </form>
+    <tr>
+      <td colSpan='8'>
+        <ProductForm
+          product={product}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          userMsg={userMsg}
+          formButtons={
+            <FormButtons
+              submitText='Save'
+              handleSubmit={handleSubmit}
+              closeForm={closeForm}
+            />
+          }
+        />
+      </td>
+    </tr>
   )
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  putProduct: (id, productData) => dispatch(updateProduct(id, productData))
-})
-
-export default connect(null, mapDispatchToProps)(EditProduct)
+export default EditProduct;

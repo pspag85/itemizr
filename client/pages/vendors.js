@@ -1,9 +1,9 @@
 import React, {Fragment, useState, useEffect, useCallback} from 'react'
 import axios from 'axios'
 import Header from '../components/header';
-import AddVendorModal from '../components/add-vendor-modal';
+import AddVendor from '../components/add-vendor';
 import TableHeader from '../components/table-header'
-import TableRow from '../components/table-row';
+import Vendor from '../components/vendor';
 
 const Vendors = (props) => {
   const [vendors, setVendors] = useState([])
@@ -42,15 +42,15 @@ const Vendors = (props) => {
 
   return (
     <Fragment>
-      <Header title='Vendors' action={<AddVendorModal insertVendor={insertVendor} />} />
+      <Header title='Vendors' action={<AddVendor insertVendor={insertVendor} />} />
       <table className='top-mrg-20'>
         <TableHeader headers={['Name', 'Email', 'Phone', 'Products']} />
         <tbody className='table-body'>
           {vendors && vendors.map(({id, name, email, phone}) => (
-            <TableRow
+            <Vendor
               key={id + Math.random()}
               id={id}
-              rowData={{name, email, phone}}
+              vendor={{name, email, phone}}
               updateData={updateVendors}
               deleteRow={deleteVendor}
             />
