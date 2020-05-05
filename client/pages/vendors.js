@@ -36,6 +36,13 @@ const Vendors = (props) => {
     }
   }
 
+  const openEditForm = (id) => {
+    setEditFormState({id, isOpen: true})
+  }
+  const closeEditForm = (id) => {
+    setEditFormState({id: null, isOpen: false})
+  }
+
   useEffect(() => {
     getVendors()
   }, [getVendors])
@@ -51,7 +58,7 @@ const Vendors = (props) => {
               key={id + Math.random()}
               id={id}
               vendor={{name, email, phone}}
-              updateData={updateVendors}
+              editVendor={openEditForm}
               deleteRow={deleteVendor}
             />
           ))}

@@ -11,39 +11,39 @@ const VendorForm = ({
   <div>
     <form onSubmit={handleSubmit}>
       <div className='form-row'>
-        <label htmlFor='name'>Vendor name</label>
+        <label htmlFor='name'>{vendor.name || 'Vendor name'}</label>
         <input name='name' onChange={handleChange} />
       </div>
       <div className='form-row'>
-        <label htmlFor='email'>Email</label>
+        <label htmlFor='email'>{vendor.email || 'Email'}</label>
         <input name='email' onChange={handleChange} />
       </div>
       <div className='form-row'>
-        <label htmlFor='phone'>Phone</label>
+        <label htmlFor='phone'>{vendor.phone || 'Phone'}</label>
         <input name='phone' onChange={handleChange} />
       </div>
       <div className='form-row'>
-        <label htmlFor='firstName'>First Name</label>
+        <label htmlFor='firstName'>{vendor.firstName || 'First Name'}</label>
         <input name='firstName' onChange={handleChange} />
       </div>
       <div className='form-row'>
-        <label htmlFor='lastName'>Last Name</label>
+        <label htmlFor='lastName'>{vendor.lastName || 'Last Name'}</label>
         <input name='lastName' onChange={handleChange} />
       </div>
       <div className='form-row'>
-        <label htmlFor='address_1'>Address Line 1</label>
+        <label htmlFor='address_1'>{vendor.address_1 || 'Address Line 1'}</label>
         <input name='address_1' onChange={handleChange} />
       </div>
       <div className='form-row'>
-        <label htmlFor='address_2'>Address Line 2</label>
+        <label htmlFor='address_2'>{vendor.address_2 || 'Address Line 2'}</label>
         <input name='address_2' onChange={handleChange} />
       </div>
       <div className='form-row'>
-        <label htmlFor='city'>City</label>
+        <label htmlFor='city'>{vendor.city || 'City'}</label>
         <input name='city' onChange={handleChange} />
       </div>
       <div className='form-row'>
-        <label htmlFor='state'>Province / State</label>
+        <label htmlFor='state'>{vendor.state || 'Province / State'}</label>
         <select name='state' onChange={handleChange}>
           <option value='Arizona'>Arizona</option>
           <option value='California'>California</option>
@@ -55,13 +55,10 @@ const VendorForm = ({
         </select>
       </div>
       <div className='form-row'>
-        <label htmlFor='zipcode'>Postal / Zipcode</label>
+        <label htmlFor='zipcode'>{vendor.state || 'Postal / Zipcode'}</label>
         <input name='zipcode' onChange={handleChange} />
       </div>
-      <div>
-        <button type='submit' className='action-btn' onClick={handleSubmit}>SAVE</button>
-        <button className='action-btn cancel-btn pointer light-font' onClick={closeForm}>CANCEL</button>
-      </div>
+      <div>{formButtons}</div>
     </form>
   </div>
 )

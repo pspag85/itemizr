@@ -1,7 +1,8 @@
 import React, {Fragment, useState} from 'react'
 import history from '../history'
 import axios from 'axios'
-import Popup from 'reactjs-popup'
+import Modal from './modal';
+import ModalTrigger from './modal-trigger';
 import VendorForm from './vendor-form'
 import FormButtons from './form-buttons';
 
@@ -33,41 +34,40 @@ const AddVendor = ({insertVendor}) => {
     setVendor({...vendor, [name]: value})
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event, closeForm) => {
     event.preventDefault()
     const {name, value} = event.target
     const vendorData = {...vendor, [name]: value}
     addVendor(vendorData)
+    closeForm()
   }
+
+  const renderVendorForm = (closeForm) => (
+    <VendorForm
+      vendor={vendor}
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+      userMsg=''
+      formButtons={
+        <FormButtons
+          submitText='Add'
+          handleSubmit={(e) => handleSubmit(e, closeForm)}
+          closeForm={closeForm}
+        />
+      }
+    />
+  )
+
+  const renderAddVendorButton = (open) => (
+    <ModalTrigger  open={open} text='Add a vendor'/>
+  )
 
   return (
     <Fragment>
-      <Popup
-        trigger={
-          <button className='action-btn'>
-            Add a vendor
-          </button>
-        } modal>
-        {close => (
-          <div className='modal'>
-            <h2 className='header'>Add a vendor</h2>
-            <a className='close' onClick={close}>&times;</a>
-            <VendorForm
-              vendor={vendor}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-              userMsg=''
-              formButtons={
-                <FormButtons
-                  submitText='Add'
-                  handleSubmit={handleSubmit}
-                  closeForm={close}
-                />
-              }
-            />
-          </div>
-        )}
-      </Popup>
+      <Modal
+        trigger={renderAddVendorButton}
+        renderModalContent={renderVendorForm}
+      />
     </Fragment>
   )
 }
