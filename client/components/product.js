@@ -1,57 +1,46 @@
 import React, {Fragment, useState} from 'react'
 import {useToggleState} from '../utility/hooks'
+import DataCells from './data-cells'
+import OverflowIcon from './overflow-icon';
+import OverflowMenu from './overflow-menu'
 import EditProduct from './edit-product'
-import RowDropDown from './row-drop-down'
+import EditButton from './edit-button'
 import '../css/table-row.css'
 
-const Product = ({id, product, editProduct, deleteRow}) => {
+const Product = ({id, productData, editProduct, deleteProduct}) => {
   const {toggleState, toggleMenu} = useToggleState()
 
-  const columns = Object.keys(product)
-  const priceKeys = ['price', 'quantity', 'unit']
-
-  const renderPrice = (column) => (
-    column === 'price' ? (
-      <td className='price-column' key={column + Math.random()}>
-        <p>$ {product.price}</p>
+  const renderPrice = (key) => (
+    key === 'price' ? (
+      <div className='price-column'>
+        <p>$ {productData.price}</p>
         <span className='unit-container'>
-          <p>{product.quantity}</p>
+          <p>{productData.quantity}</p>
           <p>/</p>
-          <p>{product.unit}</p>
+          <p>{productData.unit}</p>
         </span>
-      </td>
+      </div>
     ) : (
       null
     )
   )
 
-  const renderProduct = () => (
-    columns.map(column => priceKeys.includes(column)
-      ? renderPrice(column)
-      : (
-        <td key={column + Math.random()}>
-          {product[column]}
-        </td>
-      )
+  const priceKeys = ['price', 'quantity', 'unit']
+  const productKeys = Object.keys(productData)
+  const formattedProductData = productKeys.map(key => (
+      priceKeys.includes(key) ? renderPrice(key) : productData[key]
     )
-  )
-
-  const renderProductMenu = () => (
-    <td className='column pointer bg-white' onClick={toggleMenu}>
-      <img src='/img/more-vert.png' />
-    </td>
   )
 
   return (
     <Fragment>
       <tr className='light-font'>
-        {renderProduct()}
-        {renderProductMenu()}
+        <DataCells data={formattedProductData} />
+        <OverflowIcon toggleMenu={toggleMenu}/>
         {toggleState && (
-          <RowDropDown
-            id={id}
-            editRow={editProduct}
-            deleteRow={deleteRow}
+          <OverflowMenu
+            editButton={<EditButton handleClick={() => editProduct(id)} />}
+            deleteRow={() => deleteProduct(id)}
           />
         )}
       </tr>

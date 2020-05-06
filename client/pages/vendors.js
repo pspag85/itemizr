@@ -36,13 +36,6 @@ const Vendors = (props) => {
     }
   }
 
-  const openEditForm = (id) => {
-    setEditFormState({id, isOpen: true})
-  }
-  const closeEditForm = (id) => {
-    setEditFormState({id: null, isOpen: false})
-  }
-
   useEffect(() => {
     getVendors()
   }, [getVendors])
@@ -55,11 +48,11 @@ const Vendors = (props) => {
         <tbody className='table-body'>
           {vendors && vendors.map(({id, name, email, phone}) => (
             <Vendor
-              key={id + Math.random()}
               id={id}
-              vendor={{name, email, phone}}
-              editVendor={openEditForm}
-              deleteRow={deleteVendor}
+              key={id + Math.random()}
+              vendorData={{name, email, phone}}
+              updateVendors={updateVendors}
+              deleteVendor={() => deleteVendor(id)}
             />
           ))}
         </tbody>

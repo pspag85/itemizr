@@ -45,12 +45,8 @@ const Products = (props) => {
   const openAddForm = () => setAddFormState(true)
   const closeAddForm = () => setAddFormState(false)
 
-  const openEditForm = (id) => {
-    setEditFormState({id, isOpen: true})
-  }
-  const closeEditForm = (id) => {
-    setEditFormState({id: null, isOpen: false})
-  }
+  const openEditForm = (id) => setEditFormState({id, isOpen: true})
+  const closeEditForm = (id) => setEditFormState({id: null, isOpen: false})
 
   useEffect(() => {
     getProducts()
@@ -92,10 +88,10 @@ const Products = (props) => {
         <Product
           key={product.id + Math.random()}
           id={product.id}
-          product={productData}
+          productData={productData}
           editProduct={openEditForm}
           updateProducts={updateProducts}
-          deleteRow={deleteProduct}
+          deleteProduct={deleteProduct}
         />
       )
     })

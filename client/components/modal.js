@@ -2,9 +2,9 @@ import React from 'react'
 import Popup from 'reactjs-popup'
 import ModalTrigger from './modal-trigger'
 
-const Modal = ({trigger, renderModalContent}) => (
+const Modal = ({triggerModal, renderModalContent}) => (
   <Popup
-    trigger={trigger} modal>
+    trigger={triggerModal} modal>
     {close => renderModalContent(close)}
   </Popup>
 )

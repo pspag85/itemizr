@@ -3,11 +3,8 @@ import axios from 'axios'
 import VendorForm from './vendor-form';
 import FormButtons from './form-buttons'
 
-const EditVendor = ({id, currentState, updateVendors, closeForm}) => {
-  const [userMsg, setUserMsg] = useState('')
-  const [vendor, setVendor] = useState(currentState)
-
-  const displayUserMsg = (msg) => setUserMsg(msg)
+const EditVendor = ({id, vendorData, updateVendors, closeForm}) => {
+  const [vendor, setVendor] = useState(vendorData)
 
   const editVendor = async (vendor) => {
     try {
@@ -26,27 +23,22 @@ const EditVendor = ({id, currentState, updateVendors, closeForm}) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     editVendor(vendor)
-    closeForm()
   }
 
   return (
-    <tr>
-      <td colSpan='8'>
-        <VendorForm
-          vendor={vendor}
-          handleChange={handleChange}
+    <VendorForm
+      vendor={vendor}
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+      userMsg=''
+      formButtons={
+        <FormButtons
+          submitText='Save'
           handleSubmit={handleSubmit}
-          userMsg={userMsg}
-          formButtons={
-            <FormButtons
-              submitText='Save'
-              handleSubmit={handleSubmit}
-              closeForm={closeForm}
-            />
-          }
+          closeForm={closeForm}
         />
-      </td>
-    </tr>
+      }
+    />
   )
 }
 

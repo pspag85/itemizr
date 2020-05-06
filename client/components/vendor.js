@@ -1,42 +1,47 @@
-import React, {Fragment, useState} from 'react'
+import React from 'react'
 import {useToggleState} from '../utility/hooks'
+import DataCells from './data-cells'
+import OverflowIcon from './overflow-icon'
+import OverflowMenu from './overflow-menu'
 import EditVendor from './edit-vendor'
-import RowDropDown from './row-drop-down'
+import EditVendorTrigger from './edit-vendor-trigger'
+import Modal from './modal'
 import '../css/table-row.css'
 
-const Vendor = ({id, vendor, editVendor, deleteRow}) => {
+const Vendor = ({id, vendorData, editVendor, deleteVendor, updateVendors}) => {
   const {toggleState, toggleMenu} = useToggleState()
 
-  const columns = Object.keys(vendor)
-
-  const renderVendor = () => (
-    columns.map(column => (
-      <td key={column + Math.random()}>
-        {vendor[column]}
-      </td>
-    ))
+  const renderEditVendorTrigger = (open) => (
+    <EditVendorTrigger open={open}/>
   )
 
-  const renderVendorMenu = () => (
-    <td className='column pointer bg-white' onClick={toggleMenu}>
-      <img src='/img/more-vert.png' />
-    </td>
+  const renderEditVendorButton = () => (
+    <Modal
+      triggerModal={renderEditVendorTrigger}
+      renderModalContent={renderEditVendor}
+    />
+  )
+
+  const renderEditVendor = (close) => (
+    <EditVendor
+      id={id}
+      vendorData={vendorData}
+      updateVendors={updateVendors}
+      closeForm={close}
+    />
   )
 
   return (
-    <Fragment>
-      <tr className='light-font'>
-        {renderVendor()}
-        {renderVendorMenu()}
-        {toggleState && (
-          <RowDropDown
-            id={id}
-            editRow={editVendor}
-            deleteRow={deleteRow}
-          />
-        )}
-      </tr>
-    </Fragment>
+    <tr className='light-font'>
+      <DataCells data={vendorData} />
+      <OverflowIcon toggleMenu={toggleMenu}/>
+      {toggleState && (
+        <OverflowMenu
+          editButton={renderEditVendorButton()}
+          deleteRow={deleteVendor}
+        />
+      )}
+    </tr>
   )
 }
 

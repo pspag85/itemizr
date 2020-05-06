@@ -24,7 +24,7 @@ tr p {
   margin-top: 60px;
 }
 
-.row-menu > div {
+.row-menu > button {
   display: flex;
   align-items: center;
   height: 24px;
@@ -32,12 +32,12 @@ tr p {
   cursor: pointer;
 }
 
-.row-menu > div > h4 {
+.row-menu > button > h4 {
   margin: 0;
   font-size: 20px;
 }
 
-.row-menu > div > img {
+.row-menu > button > img {
   width: auto;
   height: 20px;
   margin-right: 10px;

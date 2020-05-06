@@ -1,5 +1,4 @@
 import React, {Fragment, useState} from 'react'
-import history from '../history'
 import axios from 'axios'
 import Modal from './modal';
 import ModalTrigger from './modal-trigger';
@@ -59,16 +58,14 @@ const AddVendor = ({insertVendor}) => {
   )
 
   const renderAddVendorButton = (open) => (
-    <ModalTrigger  open={open} text='Add a vendor'/>
+    <ModalTrigger open={open} text='Add a vendor'/>
   )
 
   return (
-    <Fragment>
-      <Modal
-        trigger={renderAddVendorButton}
-        renderModalContent={renderVendorForm}
-      />
-    </Fragment>
+    <Modal
+      triggerModal={renderAddVendorButton}
+      renderModalContent={renderVendorForm}
+    />
   )
 }
 
