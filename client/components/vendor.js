@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {useToggleState} from '../utility/hooks'
 import DataCells from './data-cells'
 import OverflowIcon from './overflow-icon'
@@ -34,7 +35,12 @@ const Vendor = ({id, vendorData, editVendor, deleteVendor, updateVendors}) => {
   return (
     <tr className='light-font'>
       <DataCells data={vendorData} />
-      <OverflowIcon toggleMenu={toggleMenu}/>
+      <td className='underline'>
+        <Link to={`/products/${id}`}>
+          View
+        </Link>
+      </td>
+      <OverflowIcon toggleMenu={toggleMenu} />
       {toggleState && (
         <OverflowMenu
           editButton={renderEditVendorButton()}

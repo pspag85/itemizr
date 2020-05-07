@@ -3,8 +3,8 @@ import {useToggleState} from '../utility/hooks';
 import axios from 'axios'
 import Header from '../components/header';
 import TableHeader from '../components/table-header'
-import Product from '../components/product';
-import EditProduct from '../components/edit-product';
+import Product from '../components/product'
+import EditProduct from '../components/edit-product'
 import AddProductForm from '../components/add-product'
 import AddProductButton from '../components/add-product-button'
 import {formatNumToThreeDigitStr, formatPriceToStr} from '../utility/helpers'
@@ -23,8 +23,12 @@ const Products = (props) => {
   }
 
   const getProducts = useCallback(async () => {
+    const vendorId = props.match.params.vendorId
+    console.log(vendorId)
+    const path = !vendorId ? '/api/products' : `/api/products/${vendorId}`
+    console.log('PATH:  ', path)
     try {
-      const {data} = await axios.get('/api/products')
+      const {data} = await axios.get(path)
       setProducts(data)
     } catch(err) {
       console.error(err)

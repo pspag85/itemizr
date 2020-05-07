@@ -10,6 +10,7 @@ const Routes = () => (
   <div className='page-pdg'>
     <Switch>
       <Route exact path='/products' component={Products} />
+      <Route exact path='/products/:vendorId' component={Products} />
       <Route exact path='/vendors' component={Vendors} />
       <Route exact path='/signup' component={Signup} />
       <Route exact path='/login' component={Login} />

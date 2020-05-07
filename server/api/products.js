@@ -16,6 +16,26 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:vendorId', async (req, res, next) => {
+  try {
+    const products = await Product.findAll({
+      where: {
+        vendorId: req.params.vendorId
+      },
+      order: [
+        ['id', 'ASC']
+      ],
+      include: {
+        model: Vendor,
+        attributes: ['name']
+      }
+    })
+    res.json(products)
+  } catch(err) {
+    console.error(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   const {price} = req.body
   const priceNumber = parseFloat(price)
