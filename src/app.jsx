@@ -1,4 +1,4 @@
-import React, {Component, Fragment, useEffect} from 'react'
+import React, {Component, Fragment} from 'react'
 import {withRouter} from 'react-router-dom'
 import history from './history'
 import {hot} from 'react-hot-loader'
@@ -27,8 +27,8 @@ const App = withRouter(class extends Component {
         <Navbar />
         <Routes />
       </Fragment>
-    );
+    )
   }
-});
+})
 
 export default hot(module)(App)
