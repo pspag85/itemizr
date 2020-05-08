@@ -24,9 +24,7 @@ const Products = (props) => {
 
   const getProducts = useCallback(async () => {
     const vendorId = props.match.params.vendorId
-    console.log(vendorId)
     const path = !vendorId ? '/api/products' : `/api/products/${vendorId}`
-    console.log('PATH:  ', path)
     try {
       const {data} = await axios.get(path)
       setProducts(data)
