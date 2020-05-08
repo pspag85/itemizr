@@ -1,48 +1,48 @@
-const Sequelize = require('sequelize')
-const db = require('./database')
+const Sequelize = require('sequelize');
+const db = require('./database');
 
 const Vendor = db.define('vendors', {
   name: {
     type: Sequelize.STRING,
-    defaultValue: ''
+    defaultValue: '',
   },
   email: {
     type: Sequelize.STRING,
     defaultValue: '',
-    isEmail: true
+    isEmail: true,
   },
   phone: {
     type: Sequelize.STRING,
-    defaultValue: ''
+    defaultValue: '',
   },
   firstName: {
     type: Sequelize.STRING,
-    defaultValue: ''
+    defaultValue: '',
   },
   lastName: {
     type: Sequelize.STRING,
-    defaultValue: ''
+    defaultValue: '',
   },
   address_1: {
     type: Sequelize.STRING,
-    defaultValue: ''
+    defaultValue: '',
   },
   address_2: {
     type: Sequelize.STRING,
-    defaultValue: ''
+    defaultValue: '',
   },
   city: {
     type: Sequelize.STRING,
-    defaultValue: ''
+    defaultValue: '',
   },
   state: {
     type: Sequelize.STRING,
-    defaultValue: ''
+    defaultValue: '',
   },
   zipcode: {
     type: Sequelize.STRING,
-    defaultValue: ''
-  }
-})
+    defaultValue: '',
+  },
+});
 
-module.exports = Vendor
+module.exports = Vendor;

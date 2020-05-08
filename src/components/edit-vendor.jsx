@@ -1,45 +1,45 @@
-import React, {useState} from 'react'
-import axios from 'axios'
+import React, {useState} from 'react';
+import axios from 'axios';
 import VendorForm from './vendor-form';
-import FormButtons from './form-buttons'
+import FormButtons from './form-buttons';
 
 const EditVendor = ({id, vendorData, updateVendors, closeForm}) => {
-  const [vendor, setVendor] = useState(vendorData)
+  const [vendor, setVendor] = useState(vendorData);
 
   const editVendor = async (vendor) => {
     try {
-      await axios.put('/api/vendors', {id, ...vendor})
-      updateVendors({id, ...vendor})
-    } catch(err) {
-      console.error(err)
+      await axios.put('/api/vendors', {id, ...vendor});
+      updateVendors({id, ...vendor});
+    } catch (err) {
+      console.error(err);
     }
-  }
+  };
 
   const handleChange = (event) => {
-    const {name, value} = event.target
-    setVendor({...vendor, [name]: value})
-  }
+    const {name, value} = event.target;
+    setVendor({...vendor, [name]: value});
+  };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    editVendor(vendor)
-  }
+    event.preventDefault();
+    editVendor(vendor);
+  };
 
   return (
     <VendorForm
       vendor={vendor}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
-      userMsg=''
+      userMsg=""
       formButtons={
         <FormButtons
-          submitText='Save'
+          submitText="Save"
           handleSubmit={handleSubmit}
           closeForm={closeForm}
         />
       }
     />
-  )
-}
+  );
+};
 
 export default EditVendor;

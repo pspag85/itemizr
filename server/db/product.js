@@ -1,38 +1,38 @@
-const Sequelize = require('sequelize')
-const db = require('./database')
+const Sequelize = require('sequelize');
+const db = require('./database');
 
 const Product = db.define('product', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   category: {
     type: Sequelize.STRING,
   },
   price: {
     type: Sequelize.FLOAT,
-    defaultValue: 0.00
+    defaultValue: 0.0,
   },
   quantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 0
+    defaultValue: 0,
   },
   unit: {
     type: Sequelize.STRING,
-    defaultValue: 'Unit'
+    defaultValue: 'Unit',
   },
-  onHand:{
+  onHand: {
     type: Sequelize.INTEGER,
-    defaultValue: 0
+    defaultValue: 0,
   },
-  par:{
+  par: {
     type: Sequelize.INTEGER,
-    defaultValue: 0
+    defaultValue: 0,
   },
-  orderQty:{
+  orderQty: {
     type: Sequelize.INTEGER,
-    defaultValue: 0
-  }
-})
+    defaultValue: 0,
+  },
+});
 
-module.exports = Product
+module.exports = Product;

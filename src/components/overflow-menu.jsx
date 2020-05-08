@@ -1,13 +1,11 @@
-import React from 'react'
-import DeleteButton from './delete-button'
+import React from 'react';
+import DeleteButton from './delete-button';
 
 const OverflowMenu = ({editButton, deleteRow}) => (
-  <td className='row-menu bg-white box-shadow'>
-      {editButton}
-      <DeleteButton
-        handleClick={deleteRow}
-      />
+  <td className="row-menu bg-white box-shadow">
+    {editButton}
+    <DeleteButton handleClick={deleteRow} />
   </td>
-)
+);
 
-export default OverflowMenu
+export default OverflowMenu;

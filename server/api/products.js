@@ -1,5 +1,5 @@
-const router = require('express').Router()
-const {Product, Vendor} = require('../db')
+const router = require('express').Router();
+const {Product, Vendor} = require('../db');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -7,79 +7,77 @@ router.get('/', async (req, res, next) => {
       order: [['id', 'ASC']],
       include: {
         model: Vendor,
-        attributes: ['name']
-      }
-    })
-    res.json(products)
-  } catch(err) {
-    console.error(err)
+        attributes: ['name'],
+      },
+    });
+    res.json(products);
+  } catch (err) {
+    console.error(err);
   }
-})
+});
 
 router.get('/:vendorId', async (req, res, next) => {
   try {
     const products = await Product.findAll({
       where: {
-        vendorId: req.params.vendorId
+        vendorId: req.params.vendorId,
       },
-      order: [
-        ['id', 'ASC']
-      ],
+      order: [['id', 'ASC']],
       include: {
         model: Vendor,
-        attributes: ['name']
-      }
-    })
-    res.json(products)
-  } catch(err) {
-    console.error(err)
+        attributes: ['name'],
+      },
+    });
+    res.json(products);
+  } catch (err) {
+    console.error(err);
   }
-})
+});
 
 router.post('/', async (req, res, next) => {
-  const {price} = req.body
-  const priceNumber = parseFloat(price)
+  const {price} = req.body;
+  const priceNumber = parseFloat(price);
   try {
     const vendor = await Vendor.findOne({
       where: {
-        name: req.body.vendor
-      }
-    })
+        name: req.body.vendor,
+      },
+    });
     const productData = {
       price: priceNumber,
       vendorId: vendor.id,
-      ...req.body
-    }
-    const product = await Product.create(productData)
-    res.json(product)
-  } catch(err) {
-    console.error(err)
+      ...req.body,
+    };
+    const product = await Product.create(productData);
+    res.json(product);
+  } catch (err) {
+    console.error(err);
   }
-})
+});
 
 router.delete('/:id', async (req, res, next) => {
-  const {id} = req.params
+  const {id} = req.params;
   try {
     await Product.destroy({
-      where: {id: Number(id)}
-    })
-    res.sendStatus(200)
-    res.end()
-  } catch(err) {
-    console.error(err)
+      where: {id: Number(id)},
+    });
+    res.sendStatus(200);
+    res.end();
+  } catch (err) {
+    console.error(err);
   }
-})
+});
 
 router.put('/', async (req, res, next) => {
   try {
     const product = await Product.update(req.body, {
-      where: {id: req.body.id}
-    })
-		if(!product) res.sendStatus(500)
-		res.status(200).json(product)
-  } catch(err) {
-    console.error(err)
+      where: {id: req.body.id},
+    });
+    if (!product) res.sendStatus(500);
+    res.status(200).json(product);
+  } catch (err) {
+    console.error(err);
   }
-})
+});
 
-module.exports = router
+module.exports = router;

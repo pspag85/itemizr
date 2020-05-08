@@ -1,43 +1,41 @@
-const webpack = require('webpack')
+const webpack = require('webpack');
 
 module.exports = {
   entry: [
     'babel-polyfill',
     'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true',
-    './src/index.js'
+    './src/index.js',
   ],
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        use: ['style-loader','css-loader']
-      }
-    ]
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx'],
   },
   mode: 'development',
   output: {
     path: __dirname + '/public',
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   context: __dirname,
   devtool: 'source-map',
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     contentBase: './public',
     hot: true,
-    historyApiFallback: true
-  }
-}
+    historyApiFallback: true,
+  },
+};
