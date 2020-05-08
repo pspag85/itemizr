@@ -3,9 +3,9 @@ const webpack = require('webpack')
 module.exports = {
   entry: [
     'babel-polyfill',
-    'react-hot-loader/patch', // RHL patch
+    'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true',
-    './client/index.js'
+    './src/index.js'
   ],
   module: {
     rules: [
