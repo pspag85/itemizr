@@ -1,30 +1,36 @@
 import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
+import history from '../history'
 import {connect} from 'react-redux'
 import {login} from '../store'
 import AuthForm from '../components/auth-form'
 
-const Login = ({handleSubmit}) => (
-  <div className='flex h-100-pct'>
-    <span className='auth-sidebar vh-100 bg-prpl'></span>
-    <div className='auth-wrapper bg-white'>
-      <div className='auth-container bg-white box-shadow'>
-        <div className='flex h-100-pct bg-lt-blue space-around'>
-          <img src='/img/signup.png' />
-          <div className='flex-col top-mrg-10 ctr-txt'>
-            <h2>Welcome Back!</h2>
-            <br/>
-            <AuthForm handleSubmit={handleSubmit} />
-            <div className='flex ctr-items space-around w-200 hz-pdg-10 light-font'>
-              <p>Don't have an account?</p>
-              <Link to='/signup' className='underline'>Sign Up</Link>
+const Login = ({handleSubmit}) => {
+  const {pathname} = history.location
+  pathname !== '/login' && history.push('/login')
+
+  return (
+    <div className='flex h-100-pct'>
+      <span className='auth-sidebar vh-100 bg-prpl'></span>
+      <div className='auth-wrapper bg-white'>
+        <div className='auth-container bg-white box-shadow'>
+          <div className='flex h-100-pct bg-lt-blue space-around'>
+            <img src='/img/signup.png' />
+            <div className='flex-col top-mrg-10 ctr-txt'>
+              <h2>Welcome Back!</h2>
+              <br/>
+              <AuthForm handleSubmit={handleSubmit} />
+              <div className='flex ctr-items space-around w-200 hz-pdg-10 light-font'>
+                <p>Don't have an account?</p>
+                <Link to='/signup' className='underline'>Sign Up</Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-)
+  )
+}
 
 const mapDispatchToProps = (dispatch, {history}) => ({
   async handleSubmit (evt) {
