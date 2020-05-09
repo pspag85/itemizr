@@ -1,25 +1,36 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {withRouter} from 'react-router-dom';
 import history from './history';
 import {hot} from 'react-hot-loader';
 import {connect} from 'react-redux';
 import store, {getMe} from './store';
-import PublicRoutes from './public-routes';
+import Navbar from './components/navbar';
 import Routes from './routes';
 import './css/app.css';
 
 class App extends Component {
-  async componentDidMount() {
-    try {
-      await store.dispatch(getMe());
-    } catch (err) {
-      console.error(err);
-    }
+  componentDidMount() {
+    const {
+      history,
+      location,
+      loadInitialData,
+      isLoggedIn
+    } = this.props
+    const {pathname} = location
+    let path = pathname === '/' ? '/products' : pathname
+    loadInitialData();
+    path = !isLoggedIn ? '/login' : path
+    history.push(`${path}`)
   }
 
   render() {
     const {isLoggedIn} = this.props;
-    return !isLoggedIn ? <PublicRoutes /> : <Routes />;
+    return (
+      <Fragment>
+        <Navbar isLoggedIn={isLoggedIn} />
+        <Routes />
+      </Fragment>
+    );
   }
 }
 

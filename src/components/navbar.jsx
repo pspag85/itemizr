@@ -3,7 +3,7 @@ import {withRouter, Link} from 'react-router-dom';
 import UserMenu from './user-menu';
 import '../css/navbar.css';
 
-const Navbar = withRouter(() => (
+const Navbar = withRouter(({isLoggedIn}) => isLoggedIn && (
   <div id="navbar" className="bg-lt-blue nav-wdth">
     <UserMenu />
     <Link to="/products">Products</Link>

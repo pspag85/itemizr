@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import history from '../history';
 import {connect} from 'react-redux';
@@ -6,6 +6,7 @@ import {login} from '../store';
 import AuthForm from '../components/auth-form';
 
 const Login = ({handleSubmit}) => {
+
   const {pathname} = history.location;
   pathname !== '/login' && history.push('/login');
 
