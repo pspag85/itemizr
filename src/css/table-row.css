@@ -1,5 +1,5 @@
 tr {
-  border-bottom: 1px solid #DADADA;
+  border-bottom: 1px solid #dadada;
   vertical-align: top;
 }
 
@@ -14,17 +14,16 @@ tr p {
   font-size: 14px;
 }
 
-.row-menu {
+.overflow-menu {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   position: absolute;
-  right: 260px;
+  right: 48px;
   width: 180px;
-  margin-top: 60px;
+  margin-top: 48px;
 }
 
-.row-menu > button {
+.overflow-menu > button {
   display: flex;
   align-items: center;
   height: 24px;
@@ -32,12 +31,12 @@ tr p {
   cursor: pointer;
 }
 
-.row-menu > button > h4 {
+.overflow-menu > button > h4 {
   margin: 0;
   font-size: 20px;
 }
 
-.row-menu > button > img {
+.overflow-menu > button > img {
   width: auto;
   height: 20px;
   margin-right: 10px;

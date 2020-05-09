@@ -9,13 +9,17 @@ import Routes from './routes';
 import './css/app.css';
 
 class App extends Component {
-  componentDidMount() {
-    const {history, location, loadInitialData, isLoggedIn} = this.props;
-    const {pathname} = location;
-    let path = pathname === '/' ? '/products' : pathname;
-    loadInitialData();
-    path = !isLoggedIn ? '/login' : path;
-    history.push(`${path}`);
+  async componentDidMount() {
+    const {history, location} = this.props
+    const {pathname} = location
+    let path = pathname === '/' ? '/products' : pathname
+    try {
+      const user = await store.dispatch(getMe())
+      path = !user ? '/login' : path
+      history.push(`${path}`)
+    } catch(err) {
+      console.error(err)
+    }
   }
 
   render() {
