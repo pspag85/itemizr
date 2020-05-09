@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {createInitialState} from './helpers';
 
 export const useToggleState = () => {
-  const [toggleState, setMenuState] = useState(false);
-  const toggleMenu = () => setMenuState(!toggleState);
+  const [toggleState, setMenuState] = useState({id: null, isOpen: false});
+  const toggleMenu = (id) => setMenuState({id, isOpen: !toggleState.isOpen});
 
   return {toggleState, toggleMenu};
 };

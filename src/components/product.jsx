@@ -6,8 +6,7 @@ import OverflowMenu from './overflow-menu';
 import EditButton from './edit-button';
 import '../css/table-row.css';
 
-const Product = ({id, productData, editProduct, deleteProduct}) => {
-  const {toggleState, toggleMenu} = useToggleState();
+const Product = ({id, productData, editProduct, deleteProduct, overflowState, toggleOverflow}) => {
 
   const renderPrice = (key) => {
     return key === 'price' ? (
@@ -33,8 +32,8 @@ const Product = ({id, productData, editProduct, deleteProduct}) => {
     <Fragment>
       <tr className="light-font">
         <DataCells data={productValues} />
-        <OverflowIcon toggleMenu={toggleMenu} />
-        {toggleState && (
+        <OverflowIcon toggleMenu={toggleOverflow} />
+        {overflowState && (
           <OverflowMenu
             editButton={<EditButton handleClick={() => editProduct(id)} />}
             deleteRow={() => deleteProduct(id)}
