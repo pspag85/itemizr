@@ -96,34 +96,40 @@ const Products = (props) => {
     const {id, isOpen} = editFormState;
     const editMode = isOpen && id === productId;
     return editMode;
-  }
+  };
 
   const getOverflowState = (productId) => {
     const {id, isOpen} = toggleState;
     const overflowState = isOpen && productId === id;
     return overflowState;
-  }
+  };
 
   const renderProducts = () =>
     products.map((product) => {
+      const {id} = product
       const productData = formatProduct(product);
-      const toggleOverflow = () => toggleMenu(product.id);
-      const overflowState = getOverflowState(product.id)
-      const editMode = getEditMode(product.id)
+      const toggleOverflow = () => {
+        console.log('test')
+        toggleMenu(id);
+      }
+      const overflowState = getOverflowState(id);
+      const editProduct = () => openEditForm(id);
+      const editMode = getEditMode(id);
       return editMode ? (
         <EditProduct
-          key={product.id + Math.random()}
-          id={product.id}
+          key={id + Math.random()}
+          id={id}
           currentState={productData}
           updateProducts={updateProducts}
+          closeOverflow={toggleOverflow}
           closeForm={closeEditForm}
         />
       ) : (
         <Product
-          key={product.id + Math.random()}
-          id={product.id}
+          key={id + Math.random()}
+          id={id}
           productData={productData}
-          editProduct={openEditForm}
+          editProduct={editProduct}
           updateProducts={updateProducts}
           deleteProduct={deleteProduct}
           overflowState={overflowState}

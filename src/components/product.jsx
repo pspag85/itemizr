@@ -6,8 +6,14 @@ import OverflowMenu from './overflow-menu';
 import EditButton from './edit-button';
 import '../css/table-row.css';
 
-const Product = ({id, productData, editProduct, deleteProduct, overflowState, toggleOverflow}) => {
-
+const Product = ({
+  id,
+  productData,
+  editProduct,
+  deleteProduct,
+  overflowState,
+  toggleOverflow,
+}) => {
   const renderPrice = (key) => {
     return key === 'price' ? (
       <div className="price-column">
@@ -35,7 +41,7 @@ const Product = ({id, productData, editProduct, deleteProduct, overflowState, to
         <OverflowIcon toggleMenu={toggleOverflow} />
         {overflowState && (
           <OverflowMenu
-            editButton={<EditButton handleClick={() => editProduct(id)} />}
+            editButton={<EditButton handleClick={editProduct} />}
             deleteRow={() => deleteProduct(id)}
           />
         )}
