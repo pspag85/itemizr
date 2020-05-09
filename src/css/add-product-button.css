@@ -1,5 +1,10 @@
-#add-product-btn h5 {
-  padding: .5px 0 0 6px;
+.add-product-wrapper {
+  width: 100%;
+  border-bottom: 1px solid #dadada;
+}
+
+.add-product-wrapper h5 {
+  padding: 0.5px 0 0 6px;
   font-size: 14.5px;
-  color: #01C4D8;
+  color: #01c4d8;
 }

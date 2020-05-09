@@ -10,17 +10,12 @@ import './css/app.css';
 
 class App extends Component {
   componentDidMount() {
-    const {
-      history,
-      location,
-      loadInitialData,
-      isLoggedIn
-    } = this.props
-    const {pathname} = location
-    let path = pathname === '/' ? '/products' : pathname
+    const {history, location, loadInitialData, isLoggedIn} = this.props;
+    const {pathname} = location;
+    let path = pathname === '/' ? '/products' : pathname;
     loadInitialData();
-    path = !isLoggedIn ? '/login' : path
-    history.push(`${path}`)
+    path = !isLoggedIn ? '/login' : path;
+    history.push(`${path}`);
   }
 
   render() {

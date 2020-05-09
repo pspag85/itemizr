@@ -6,7 +6,6 @@ import {login} from '../store';
 import AuthForm from '../components/auth-form';
 
 const Login = ({handleSubmit}) => {
-
   const {pathname} = history.location;
   pathname !== '/login' && history.push('/login');
 
