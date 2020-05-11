@@ -106,12 +106,9 @@ const Products = (props) => {
 
   const renderProducts = () =>
     products.map((product) => {
-      const {id} = product
+      const {id} = product;
       const productData = formatProduct(product);
-      const toggleOverflow = () => {
-        console.log('test')
-        toggleMenu(id);
-      }
+      const toggleOverflow = () => toggleMenu(id);
       const overflowState = getOverflowState(id);
       const editProduct = () => openEditForm(id);
       const editMode = getEditMode(id);

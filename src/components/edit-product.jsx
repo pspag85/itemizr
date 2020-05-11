@@ -3,7 +3,13 @@ import axios from 'axios';
 import ProductForm from './product-form';
 import FormButtons from './form-buttons';
 
-const EditProduct = ({id, currentState, updateProducts, closeOverflow, closeForm}) => {
+const EditProduct = ({
+  id,
+  currentState,
+  updateProducts,
+  closeOverflow,
+  closeForm,
+}) => {
   const [userMsg, setUserMsg] = useState('');
   const [product, setProduct] = useState(currentState);
 
@@ -40,15 +46,15 @@ const EditProduct = ({id, currentState, updateProducts, closeOverflow, closeForm
     const validated = validateVendor(product);
     if (validated) {
       editProduct(product);
-      closeOverflow()
+      closeOverflow();
       closeForm();
     }
   };
 
   const closeEditForm = () => {
-    closeOverflow()
-    closeForm()
-  }
+    closeOverflow();
+    closeForm();
+  };
 
   return (
     <tr>
