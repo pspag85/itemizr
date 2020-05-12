@@ -6,7 +6,7 @@ import VendorForm from './vendor-form';
 import FormButtons from './form-buttons';
 
 const AddVendor = ({insertVendor}) => {
-  const [vendor, setVendor] = useState({
+  const initialState = {
     name: '',
     email: '',
     phone: '',
@@ -17,7 +17,8 @@ const AddVendor = ({insertVendor}) => {
     city: '',
     state: '',
     zip: '',
-  });
+  }
+  const [vendor, setVendor] = useState(initialState);
 
   const addVendor = async (vendor) => {
     try {
@@ -38,6 +39,7 @@ const AddVendor = ({insertVendor}) => {
     const {name, value} = event.target;
     const vendorData = {...vendor, [name]: value};
     addVendor(vendorData);
+    setVendor(initialState);
     closeForm();
   };
 
@@ -60,7 +62,7 @@ const AddVendor = ({insertVendor}) => {
   const renderAddVendorButton = (open) => (
     <ModalTrigger open={open} text="Add a vendor" />
   );
-
+console.log('vendor:  ', vendor)
   return (
     <Modal
       triggerModal={renderAddVendorButton}

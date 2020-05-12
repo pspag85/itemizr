@@ -13,6 +13,18 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/names', async (req, res, next) => {
+  try {
+    const vendors = await Vendor.findAll({
+      attributes: ['name'],
+      order: [['name', 'ASC']],
+    });
+    res.json(vendors);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 router.post('/', async ({body, session}, res, next) => {
   const {userId} = session;
   const vendorData = {...body, userId};
