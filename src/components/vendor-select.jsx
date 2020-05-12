@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react';
 
 const VendorSelect = ({currentVendor, handleChange, vendors}) => {
-  const options = vendors.filter(vendor => vendor !== currentVendor)
-  const currentSelection = currentVendor || 'Select a vendor'
+  const options = vendors.filter((vendor) => vendor !== currentVendor);
+  const currentSelection = currentVendor || 'Select a vendor';
   return (
     <select
       defaultValue={currentSelection}
@@ -17,6 +17,6 @@ const VendorSelect = ({currentVendor, handleChange, vendors}) => {
       ))}
     </select>
   );
-}
+};
 
 export default VendorSelect;

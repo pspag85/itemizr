@@ -9,8 +9,15 @@ import EditVendorTrigger from './edit-vendor-trigger';
 import Modal from './modal';
 import '../css/table-row.css';
 
-const Vendor = ({id, vendorData, editVendor, deleteVendor, updateVendors, overflowState, toggleOverflow}) => {
-
+const Vendor = ({
+  id,
+  vendorData,
+  editVendor,
+  deleteVendor,
+  updateVendors,
+  overflowState,
+  toggleOverflow,
+}) => {
   const renderEditVendorTrigger = (open) => <EditVendorTrigger open={open} />;
 
   const renderEditVendorButton = () => (

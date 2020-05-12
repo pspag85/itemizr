@@ -3,7 +3,13 @@ import axios from 'axios';
 import VendorForm from './vendor-form';
 import FormButtons from './form-buttons';
 
-const EditVendor = ({id, vendorData, updateVendors, closeOverflow, closeForm}) => {
+const EditVendor = ({
+  id,
+  vendorData,
+  updateVendors,
+  closeOverflow,
+  closeForm,
+}) => {
   const [vendor, setVendor] = useState(vendorData);
 
   const editVendor = async (vendor) => {

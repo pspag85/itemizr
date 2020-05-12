@@ -17,7 +17,7 @@ const AddVendor = ({insertVendor}) => {
     city: '',
     state: '',
     zip: '',
-  }
+  };
   const [vendor, setVendor] = useState(initialState);
 
   const addVendor = async (vendor) => {
@@ -62,7 +62,7 @@ const AddVendor = ({insertVendor}) => {
   const renderAddVendorButton = (open) => (
     <ModalTrigger open={open} text="Add a vendor" />
   );
-console.log('vendor:  ', vendor)
+
   return (
     <Modal
       triggerModal={renderAddVendorButton}

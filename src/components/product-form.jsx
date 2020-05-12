@@ -13,8 +13,6 @@ const ProductForm = ({
 }) => {
   const [vendors, setVendors] = useState([]);
 
-  console.log('vendors:  ', vendors)
-
   const getVendors = useCallback(async () => {
     try {
       const {data} = await axios.get('/api/vendors/names');
@@ -93,6 +91,6 @@ const ProductForm = ({
       <div>{formButtons}</div>
     </div>
   );
-}
+};
 
 export default ProductForm;
