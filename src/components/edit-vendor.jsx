@@ -3,7 +3,13 @@ import axios from 'axios';
 import VendorForm from './vendor-form';
 import FormButtons from './form-buttons';
 
-const EditVendor = ({id, vendorData, updateVendors, closeForm}) => {
+const EditVendor = ({
+  id,
+  vendorData,
+  updateVendors,
+  closeOverflow,
+  closeForm,
+}) => {
   const [vendor, setVendor] = useState(vendorData);
 
   const editVendor = async (vendor) => {
@@ -25,6 +31,11 @@ const EditVendor = ({id, vendorData, updateVendors, closeForm}) => {
     editVendor(vendor);
   };
 
+  const closeEditForm = () => {
+    closeOverflow();
+    closeForm();
+  };
+
   return (
     <VendorForm
       vendor={vendor}
@@ -35,7 +46,7 @@ const EditVendor = ({id, vendorData, updateVendors, closeForm}) => {
         <FormButtons
           submitText="Save"
           handleSubmit={handleSubmit}
-          closeForm={closeForm}
+          closeForm={closeEditForm}
         />
       }
     />

@@ -9,9 +9,15 @@ import EditVendorTrigger from './edit-vendor-trigger';
 import Modal from './modal';
 import '../css/table-row.css';
 
-const Vendor = ({id, vendorData, editVendor, deleteVendor, updateVendors}) => {
-  const {toggleState, toggleMenu} = useToggleState();
-
+const Vendor = ({
+  id,
+  vendorData,
+  editVendor,
+  deleteVendor,
+  updateVendors,
+  overflowState,
+  toggleOverflow,
+}) => {
   const renderEditVendorTrigger = (open) => <EditVendorTrigger open={open} />;
 
   const renderEditVendorButton = () => (
@@ -26,6 +32,7 @@ const Vendor = ({id, vendorData, editVendor, deleteVendor, updateVendors}) => {
       id={id}
       vendorData={vendorData}
       updateVendors={updateVendors}
+      closeOverflow={toggleOverflow}
       closeForm={close}
     />
   );
@@ -36,8 +43,8 @@ const Vendor = ({id, vendorData, editVendor, deleteVendor, updateVendors}) => {
       <td className="underline">
         <Link to={`/products/${id}`}>View</Link>
       </td>
-      <OverflowIcon toggleMenu={toggleMenu} />
-      {toggleState && (
+      <OverflowIcon toggleMenu={toggleOverflow} />
+      {overflowState && (
         <OverflowMenu
           editButton={renderEditVendorButton()}
           deleteRow={deleteVendor}
