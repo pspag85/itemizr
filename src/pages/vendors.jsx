@@ -39,7 +39,11 @@ const Vendors = (props) => {
   };
 
   useEffect(() => {
-    getVendors();
+    let subscribed = true;
+    if (subscribed) {
+      getVendors();
+    }
+    return () => (subscribed = false);
   }, [getVendors]);
 
   const getOverflowState = (vendorId) => {

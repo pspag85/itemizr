@@ -52,7 +52,11 @@ const Products = (props) => {
   const closeEditForm = (id) => setEditFormState({id: null, isOpen: false});
 
   useEffect(() => {
-    getProducts();
+    let subscribed = true;
+    if (subscribed) {
+      getProducts();
+    }
+    return () => (subscribed = false);
   }, [getProducts]);
 
   const tableHeaders = [
