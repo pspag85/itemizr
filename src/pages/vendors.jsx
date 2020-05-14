@@ -53,7 +53,7 @@ const Vendors = (props) => {
   };
 
   return (
-    <Fragment>
+    <div className="page-pdg">
       <Header
         title="Vendors"
         action={<AddVendor insertVendor={insertVendor} />}
@@ -75,7 +75,7 @@ const Vendors = (props) => {
             ))}
         </tbody>
       </table>
-    </Fragment>
+    </div>
   );
 };
 

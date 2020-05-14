@@ -140,7 +140,7 @@ const Products = (props) => {
     });
 
   return (
-    <Fragment>
+    <div className="page-pdg">
       <Header title="Products" />
       <table>
         <TableHeader headers={tableHeaders} />
@@ -154,7 +154,7 @@ const Products = (props) => {
       ) : (
         <AddProductButton openForm={openAddForm} />
       )}
-    </Fragment>
+    </div>
   );
 };
 
