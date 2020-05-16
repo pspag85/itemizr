@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import Navbar from './components/navbar';
 import Products from './pages/products';
 import Vendors from './pages/vendors';
 import Signup from './pages/signup';

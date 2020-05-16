@@ -1,14 +1,20 @@
 const router = require('express').Router();
-const {Product, Vendor} = require('../db');
+const {Product, Vendor, Category} = require('../db');
 
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll({
       order: [['id', 'ASC']],
-      include: {
-        model: Vendor,
-        attributes: ['name'],
-      },
+      include: [
+        {
+          model: Vendor,
+          attributes: ['name'],
+        },
+        {
+          model: Category,
+          attributes: ['name'],
+        },
+      ],
     });
     res.json(products);
   } catch (err) {
