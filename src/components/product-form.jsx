@@ -2,6 +2,7 @@ import React, {Fragment, useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
 import '../css/product-form.css';
 import VendorSelect from './vendor-select';
+import CategorySelect from './category-select';
 
 const ProductForm = ({
   product,
@@ -12,6 +13,7 @@ const ProductForm = ({
   formButtons,
 }) => {
   const [vendors, setVendors] = useState([]);
+  const [categorySelectState, setCategorySelectState] = useState(false);
 
   const getVendors = useCallback(async () => {
     try {
@@ -26,11 +28,13 @@ const ProductForm = ({
     getVendors();
   }, [getVendors]);
 
+  const toggleCategorySelectState = () =>
+    setCategorySelectState(!categorySelectState);
+
   return (
     <div className="product-form-wrapper">
       <form className="product-form row vt-pdg-20" onSubmit={handleSubmit}>
         <input
-          key="name"
           placeholder={product.name || 'Name'}
           name="name"
           value={product.name}
@@ -38,17 +42,14 @@ const ProductForm = ({
         />
         <input
           id="product-number"
-          key="productNumber"
           placeholder={product.productNumber || 'No.'}
           title="Product number is read only" // TODO: show on click
           disabled
         />
-        <input
-          placeholder={product.category || 'Category'}
-          name="category"
-          value={product.category}
-          onChange={handleChange}
-        />
+        <div className="custom-select" onClick={toggleCategorySelectState}>
+          {product.category || 'Select a category'}
+          <p>+</p>
+        </div>
         <VendorSelect
           currentVendor={product.vendor}
           handleChange={handleChange}
@@ -87,6 +88,13 @@ const ProductForm = ({
           onChange={handleChange}
         />
       </form>
+      {categorySelectState && (
+        <CategorySelect
+          currentCategory={product.category}
+          handleChange={handleChange}
+          toggleState={toggleCategorySelectState}
+        />
+      )}
       <div className="user-msg">{userMsg}</div>
       <div>{formButtons}</div>
     </div>

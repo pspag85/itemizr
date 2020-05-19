@@ -67,7 +67,7 @@ const init = (async () => {
     await db.sync({force: true});
     db.authenticate().then(() => console.log('Connected to the Database'));
     app.listen(PORT, () =>
-      console.log(`Server Listening on http://localhost:${PORT}`)
+      console.log(`Server listening on http://localhost:${PORT}`)
     );
   } catch (err) {
     console.log('Error Syncing to Database');

@@ -57,11 +57,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run prettify"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "*.{js,css,json,md}": [
+    "*.{js,jsx,css,json,md}": [
       "prettier --write",
       "git add"
     ]

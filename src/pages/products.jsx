@@ -5,8 +5,8 @@ import Header from '../components/header';
 import TableHeader from '../components/table-header';
 import Product from '../components/product';
 import EditProduct from '../components/edit-product';
-import AddProductForm from '../components/add-product';
-import AddProductButton from '../components/add-product-button';
+import AddProduct from '../components/add-product';
+import AddItemButton from '../components/add-item-button';
 import {formatNumToThreeDigitStr, formatPriceToStr} from '../utility/helpers';
 
 const Products = (props) => {
@@ -140,21 +140,18 @@ const Products = (props) => {
     });
 
   return (
-    <Fragment>
+    <div className="page-pdg">
       <Header title="Products" />
       <table>
         <TableHeader headers={tableHeaders} />
         <tbody className="table-body">{products && renderProducts()}</tbody>
       </table>
       {addFormState ? (
-        <AddProductForm
-          insertProduct={insertProduct}
-          closeForm={closeAddForm}
-        />
+        <AddProduct insertProduct={insertProduct} closeForm={closeAddForm} />
       ) : (
-        <AddProductButton openForm={openAddForm} />
+        <AddItemButton text="Add a product" handleClick={openAddForm} />
       )}
-    </Fragment>
+    </div>
   );
 };
 

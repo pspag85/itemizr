@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import Navbar from './components/navbar';
 import Products from './pages/products';
 import Vendors from './pages/vendors';
 import Signup from './pages/signup';
@@ -8,7 +7,7 @@ import Login from './pages/login';
 import NotFound from './pages/not-found';
 
 const Routes = () => (
-  <div className="page-pdg">
+  <Fragment>
     <Switch>
       <Route exact path="/products" component={Products} />
       <Route exact path="/products/:vendorId" component={Products} />
@@ -17,7 +16,7 @@ const Routes = () => (
       <Route exact path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>
-  </div>
+  </Fragment>
 );
 
 export default Routes;
