@@ -42,13 +42,13 @@ const AddCategory = ({insertCategory}) => {
     </div>
   );
 
-  const renderAddVendorButton = (open) => (
+  const renderAddCategoryButton = (open) => (
     <AddItemButton open={open} text="Add a category" handleClick={null} />
   );
 
   return (
     <Modal
-      triggerModal={renderAddVendorButton}
+      triggerModal={renderAddCategoryButton}
       renderModalContent={renderCategoryForm}
     />
   );

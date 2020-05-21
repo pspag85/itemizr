@@ -82,10 +82,11 @@ const Products = (props) => {
   }) => {
     const productNumber = formatNumToThreeDigitStr(id);
     const priceStr = formatPriceToStr(price);
+    const categoryName = category ? category.name : '';
     const productData = {
       name,
       productNumber,
-      category,
+      category: categoryName,
       vendor: vendor.name,
       price: priceStr,
       quantity,

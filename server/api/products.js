@@ -49,8 +49,14 @@ router.post('/', async (req, res, next) => {
         name: req.body.vendor,
       },
     });
+    const category = await Category.findOne({
+      where: {
+        name: req.body.category,
+      },
+    });
     const productData = {
       price: priceNumber,
+      categoryId: category.id,
       vendorId: vendor.id,
       ...req.body,
     };
