@@ -46,7 +46,10 @@ const Products = (props) => {
   };
 
   const openAddForm = () => setAddFormState(true);
-  const closeAddForm = () => setAddFormState(false);
+  const closeAddForm = () => {
+    setAddFormState(false);
+    toggleState && toggleMenu();
+  };
 
   const openEditForm = (id) => setEditFormState({id, isOpen: true});
   const closeEditForm = (id) => setEditFormState({id: null, isOpen: false});
@@ -97,15 +100,15 @@ const Products = (props) => {
     return productData;
   };
 
-  const getEditMode = (productId) => {
+  const getEditState = (productId) => {
     const {id, isOpen} = editFormState;
-    const editMode = isOpen && id === productId;
-    return editMode;
+    const editState = isOpen && id === productId;
+    return editState;
   };
 
   const getOverflowState = (productId) => {
     const {id, isOpen} = toggleState;
-    const overflowState = isOpen && productId === id;
+    const overflowState = isOpen && productId === id && !addFormState;
     return overflowState;
   };
 
@@ -116,8 +119,8 @@ const Products = (props) => {
       const toggleOverflow = () => toggleMenu(id);
       const overflowState = getOverflowState(id);
       const editProduct = () => openEditForm(id);
-      const editMode = getEditMode(id);
-      return editMode ? (
+      const editState = getEditState(id);
+      return editState ? (
         <EditProduct
           key={id + Math.random()}
           id={id}
@@ -147,7 +150,7 @@ const Products = (props) => {
         <TableHeader headers={tableHeaders} />
         <tbody className="table-body">{products && renderProducts()}</tbody>
       </table>
-      {addFormState ? (
+      {addFormState && !editFormState.isOpen ? (
         <AddProduct insertProduct={insertProduct} closeForm={closeAddForm} />
       ) : (
         <AddItemButton text="Add a product" handleClick={openAddForm} />
