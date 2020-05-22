@@ -4,7 +4,7 @@ import AddItemButton from './add-item-button';
 import FormButtons from './form-buttons';
 import Modal from './modal';
 
-const AddCategory = ({insertCategory}) => {
+const AddCategory = ({insertCategory, closeCategoryOptions}) => {
   const [category, setCategory] = useState('');
 
   const addCategory = async (name) => {
@@ -26,6 +26,7 @@ const AddCategory = ({insertCategory}) => {
     event.preventDefault();
     addCategory(category);
     setCategory('');
+    closeCategoryOptions();
     closeForm();
   };
 

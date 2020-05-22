@@ -43,7 +43,10 @@ const CategorySelect = ({currentCategory, handleChange, toggleState}) => {
           </option>
         ))}
       </select>
-      <AddCategory insertCategory={insertCategory} />
+      <AddCategory
+        insertCategory={insertCategory}
+        closeCategoryOptions={toggleState}
+      />
     </div>
   );
 };
