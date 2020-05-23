@@ -24,33 +24,34 @@ const CategorySelect = ({currentCategory, handleChange, toggleState}) => {
     getCategories();
   }, [getCategories]);
 
-  const submitCategory = (event) => {
-    event.target.name = event.target.getAttribute('name');
+  const submitCategory = (event, name) => {
+    event.target.name = 'category';
+    event.target.value = name;
     handleChange(event);
     toggleState();
   };
 
   return (
-    <div className="category-select custom-select">
-      <select size={categories.length || 1}>
+    <div className="category-select">
+      <div>
         {!categories.length ? (
-          <option value="Select a category" />
+          <div>
+            <p>Select a category</p>
+          </div>
         ) : (
           categories.map(({name}) => (
-            <Fragment>
-              <option
-                key={name + Math.random()}
-                name="category"
-                value={name}
-                selected={name === currentCategory}
-                onClick={(e) => submitCategory(e)}
-              >
-                {name}
-              </option>
-            </Fragment>
+            <div
+              key={name + Math.random()}
+              name="category"
+              value={name}
+              selected={name === currentCategory}
+              onClick={(e) => submitCategory(e, name)}
+            >
+              <p>{name}</p>
+            </div>
           ))
         )}
-      </select>
+      </div>
       <AddCategory
         insertCategory={insertCategory}
         closeCategoryOptions={toggleState}
