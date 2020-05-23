@@ -37,6 +37,7 @@ const CategorySelect = ({currentCategory, handleChange, toggleState}) => {
             key={name + Math.random()}
             name="category"
             value={name}
+            selected={name === currentCategory}
             onClick={(e) => submitCategory(e)}
           >
             {name}
