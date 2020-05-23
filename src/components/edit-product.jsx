@@ -17,9 +17,10 @@ const EditProduct = ({
 
   const editProduct = async (productData) => {
     const vendor = {name: productData.vendor};
+    const category = {name: productData.category};
     try {
       await axios.put('/api/products', {id, ...productData});
-      updateProducts({id, ...productData, vendor});
+      updateProducts({id, ...productData, category, vendor});
     } catch (err) {
       console.error(err);
     }
