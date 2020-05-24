@@ -1,20 +1,40 @@
 .product-form-wrapper {
   height: 200px;
-  border: 1px solid #dadada;
+  background: #edf5fa;
 }
 
 .product-form {
   display: flex;
   height: 20px;
   align-items: center;
+  font-size: 14px;
 }
 
-.product-form input {
-  width: 40%;
+.product-form input,
+.product-form select,
+.product-form .custom-input {
+  width: 100%;
+  height: 32px;
+  min-width: 72px;
+  padding: 0 8px 0 8px;
+  background: #ffffff;
+  border: 1px solid #bdbbc2;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: left;
 }
 
-.product-form p {
-  width: 0;
-  margin: 0 4px;
-  font-size: 20px;
+.selected-category {
+  padding-left: 16px;
+}
+
+.price-input {
+  height: 100%;
+  margin-top: -12px;
+}
+
+.price-input input,
+.price-input select {
+  margin-bottom: 12px;
 }

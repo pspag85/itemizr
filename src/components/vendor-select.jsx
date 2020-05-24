@@ -5,6 +5,7 @@ const VendorSelect = ({currentVendor, handleChange, vendors}) => {
   const currentSelection = currentVendor || 'Select a vendor';
   return (
     <select
+      className="custom-input custom-select"
       defaultValue={currentSelection}
       name="vendor"
       onChange={handleChange}

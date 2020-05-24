@@ -42,3 +42,7 @@ tr p {
   margin-right: 10px;
   font-size: 20px;
 }
+
+.price-column span p {
+  display: inline;
+}

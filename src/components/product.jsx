@@ -17,7 +17,7 @@ const Product = ({
   const renderPrice = (key) => {
     return key === 'price' ? (
       <div className="price-column">
-        <p>$ {productData.price}</p>
+        <p>{`$ ${productData.price}`}</p>
         <span className="unit-container">
           <p>{productData.quantity}</p>
           <p>/</p>

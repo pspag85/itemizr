@@ -2,7 +2,7 @@ import React, {Fragment, useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
 import '../css/product-form.css';
 import VendorSelect from './vendor-select';
-import CategorySelect from './category-select';
+import CategorySelect from './category-options';
 
 const ProductForm = ({
   product,
@@ -46,9 +46,14 @@ const ProductForm = ({
           title="Product number is read only" // TODO: show on click
           disabled
         />
-        <div className="custom-select" onClick={toggleCategorySelectState}>
-          {product.category || 'Select a category'}
-          <p>+</p>
+        <div
+          className="flex ctr-items space-around custom-input custom-select arrow"
+          onClick={toggleCategorySelectState}
+        >
+          <p className="selected-category">
+            {product.category || 'Select a category'}
+          </p>
+          <p className="down-arrow">&#748;</p>
         </div>
         <VendorSelect
           currentVendor={product.vendor}
@@ -62,18 +67,20 @@ const ProductForm = ({
             value={product.price}
             onChange={handleChange}
           />
-          <input
-            placeholder={product.quantity}
-            name="quantity"
-            value={product.quantity}
-            onChange={handleChange}
-          />
-          <select name="unit" onChange={handleChange} defaultValue="Unit">
-            <option value="Unit">Unit</option>
-            <option value="Case">Case</option>
-            <option value="Tray">Tray</option>
-            <option value="Bag">Bag</option>
-          </select>
+          <div>
+            <input
+              placeholder={product.quantity}
+              name="quantity"
+              value={product.quantity}
+              onChange={handleChange}
+            />
+            <select name="unit" onChange={handleChange} defaultValue="Unit">
+              <option value="Unit">Unit</option>
+              <option value="Case">Case</option>
+              <option value="Tray">Tray</option>
+              <option value="Bag">Bag</option>
+            </select>
+          </div>
         </div>
         <input
           placeholder={product.par}

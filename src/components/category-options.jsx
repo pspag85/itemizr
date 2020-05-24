@@ -1,10 +1,10 @@
 import React, {Fragment, useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
 import AddCategory from './add-category';
-import '../css/category-select.css';
+import '../css/category-options.css';
 import DeleteButton from './delete-button';
 
-const CategorySelect = ({currentCategory, handleChange, toggleState}) => {
+const CategoryOptions = ({currentCategory, handleChange, toggleState}) => {
   const [categories, setCategories] = useState([]);
 
   const getCategories = useCallback(async () => {
@@ -32,7 +32,7 @@ const CategorySelect = ({currentCategory, handleChange, toggleState}) => {
   };
 
   return (
-    <div className="category-select">
+    <div className="category-options arrow">
       <div>
         {!categories.length ? (
           <div>
@@ -60,4 +60,4 @@ const CategorySelect = ({currentCategory, handleChange, toggleState}) => {
   );
 };
 
-export default CategorySelect;
+export default CategoryOptions;

@@ -21,6 +21,12 @@ button {
   outline: none;
 }
 
+.custom-input .down-arrow {
+  height: 48px;
+  margin: 4px 16px 4px 4px;
+  font-size: 24px;
+}
+
 .flex {
   display: flex;
 }
@@ -284,6 +290,10 @@ td {
 
 .delete-txt {
   color: #de3434;
+}
+
+.arrow {
+  cursor: default;
 }
 
 .pointer {
