@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Product, Vendor, Category} = require('../db');
+const {Product, Vendor, Category, Unit} = require('../db');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -12,6 +12,10 @@ router.get('/', async (req, res, next) => {
         },
         {
           model: Category,
+          attributes: ['name'],
+        },
+        {
+          model: Unit,
           attributes: ['name'],
         },
       ],
@@ -41,6 +45,7 @@ router.get('/:vendorId', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
+  console.log('****** REQ BODY:  ', req.body);
   const {price} = req.body;
   const priceNumber = parseFloat(price);
   try {
@@ -54,10 +59,16 @@ router.post('/', async (req, res, next) => {
         name: req.body.category,
       },
     });
+    const unit = await Unit.findOne({
+      where: {
+        name: req.body.unit,
+      },
+    });
     const productData = {
       price: priceNumber,
       categoryId: category.id,
       vendorId: vendor.id,
+      unitId: unit.id,
       ...req.body,
     };
     const product = await Product.create(productData);

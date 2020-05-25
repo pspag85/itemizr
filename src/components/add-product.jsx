@@ -66,7 +66,7 @@ const AddProduct = ({insertProduct, closeForm}) => {
           <FormButtons
             submitText="Add"
             handleSubmit={handleSubmit}
-            closeForm={closeForm}
+            cancel={closeForm}
           />
         }
       />

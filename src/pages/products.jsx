@@ -86,6 +86,7 @@ const Products = (props) => {
     const productNumber = formatNumToThreeDigitStr(id);
     const priceStr = formatPriceToStr(price);
     const categoryName = category ? category.name : '';
+    const unitName = unit ? unit.name : '';
     const productData = {
       name,
       productNumber,
@@ -93,7 +94,7 @@ const Products = (props) => {
       vendor: vendor.name,
       price: priceStr,
       quantity,
-      unit,
+      unit: unitName,
       par,
       onHand,
     };

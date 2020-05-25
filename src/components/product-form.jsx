@@ -1,35 +1,25 @@
-import React, {Fragment, useState, useEffect, useCallback} from 'react';
-import axios from 'axios';
+import React, {useState} from 'react';
 import '../css/product-form.css';
-import VendorSelect from './vendor-select';
-import CategorySelect from './category-options';
+import VendorOptions from './vendor-options';
+import CategoryOptions from './category-options';
+import UnitOptions from './unit-options';
 
 const ProductForm = ({
   product,
   handleChange,
   handleSubmit,
-  closeForm,
   userMsg,
   formButtons,
 }) => {
-  const [vendors, setVendors] = useState([]);
-  const [categorySelectState, setCategorySelectState] = useState(false);
+  const [categoryOptionsState, setCategoryOptionsState] = useState(false);
+  const [vendorOptionsState, setVendorOptionsState] = useState(false);
+  const [unitOptionsState, setUnitOptionsState] = useState(false);
 
-  const getVendors = useCallback(async () => {
-    try {
-      const {data} = await axios.get('/api/vendors/names');
-      setVendors(data);
-    } catch (err) {
-      console.error(err);
-    }
-  }, [setVendors]);
-
-  useEffect(() => {
-    getVendors();
-  }, [getVendors]);
-
-  const toggleCategorySelectState = () =>
-    setCategorySelectState(!categorySelectState);
+  const toggleCategoryOptionsState = () =>
+    setCategoryOptionsState(!categoryOptionsState);
+  const toggleVendorOptionsState = () =>
+    setVendorOptionsState(!vendorOptionsState);
+  const toggleUnitOptionsState = () => setUnitOptionsState(!unitOptionsState);
 
   return (
     <div className="product-form-wrapper">
@@ -47,19 +37,29 @@ const ProductForm = ({
           disabled
         />
         <div
-          className="flex ctr-items space-around custom-input custom-select arrow"
-          onClick={toggleCategorySelectState}
+          className="flex ctr-items space-between custom-input custom-select arrow"
+          onClick={toggleCategoryOptionsState}
         >
-          <p className="selected-category">
-            {product.category || 'Select a category'}
-          </p>
-          <p className="down-arrow">&#748;</p>
+          <div
+            className={`category-select ${
+              !product.category && 'secondary-txt'
+            }`}
+          >
+            <p>{product.category || 'Category'}</p>
+          </div>
+          <span className="flex-end down-arrow">&#8964;</span>
         </div>
-        <VendorSelect
-          currentVendor={product.vendor}
-          handleChange={handleChange}
-          vendors={vendors}
-        />
+        <div
+          className="flex ctr-items space-between custom-input custom-select arrow"
+          onClick={toggleVendorOptionsState}
+        >
+          <div
+            className={`vendor-select ${!product.vendor && 'secondary-txt'}`}
+          >
+            <p>{product.vendor || 'Vendor'}</p>
+          </div>
+          <span className="flex-end down-arrow">&#8964;</span>
+        </div>
         <div className="price-input">
           <input
             placeholder={product.price}
@@ -74,12 +74,17 @@ const ProductForm = ({
               value={product.quantity}
               onChange={handleChange}
             />
-            <select name="unit" onChange={handleChange} defaultValue="Unit">
-              <option value="Unit">Unit</option>
-              <option value="Case">Case</option>
-              <option value="Tray">Tray</option>
-              <option value="Bag">Bag</option>
-            </select>
+            <div
+              className="flex ctr-items space-between custom-input custom-select arrow"
+              onClick={toggleUnitOptionsState}
+            >
+              <div
+                className={`unit-select ${!product.unit && 'secondary-txt'}`}
+              >
+                <p>{product.unit || 'Unit'}</p>
+              </div>
+              <span className="flex-end down-arrow">&#8964;</span>
+            </div>
           </div>
         </div>
         <input
@@ -95,11 +100,25 @@ const ProductForm = ({
           onChange={handleChange}
         />
       </form>
-      {categorySelectState && (
-        <CategorySelect
+      {categoryOptionsState && (
+        <CategoryOptions
           currentCategory={product.category}
           handleChange={handleChange}
-          toggleState={toggleCategorySelectState}
+          toggleState={toggleCategoryOptionsState}
+        />
+      )}
+      {vendorOptionsState && (
+        <VendorOptions
+          currentVendor={product.vendor}
+          handleChange={handleChange}
+          toggleState={toggleVendorOptionsState}
+        />
+      )}
+      {unitOptionsState && (
+        <UnitOptions
+          currentUnit={product.unit}
+          handleChange={handleChange}
+          toggleState={toggleUnitOptionsState}
         />
       )}
       <div className="user-msg">{userMsg}</div>

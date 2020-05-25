@@ -16,15 +16,17 @@ button {
   cursor: pointer;
 }
 
+input::placeholder {
+  color: #aabcc6;
+}
+
+select::default {
+  color: #aabcc6;
+}
+
 .custom-btn {
   border: none;
   outline: none;
-}
-
-.custom-input .down-arrow {
-  height: 48px;
-  margin: 4px 16px 4px 4px;
-  font-size: 24px;
 }
 
 .flex {
@@ -170,10 +172,6 @@ td {
   opacity: 0.5;
 }
 
-.secondary-txt {
-  opacity: 0.3;
-}
-
 #logout-btn-container {
   width: 100px;
 }
@@ -286,6 +284,10 @@ td {
 
 .clear {
   font-size: 44px;
+}
+
+.secondary-txt {
+  color: #aabcc6;
 }
 
 .delete-txt {

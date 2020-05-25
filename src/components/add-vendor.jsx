@@ -29,6 +29,8 @@ const AddVendor = ({insertVendor}) => {
     }
   };
 
+  const clearForm = () => setVendor(initialState);
+
   const handleChange = (event) => {
     const {name, value} = event.target;
     setVendor({...vendor, [name]: value});
@@ -39,7 +41,12 @@ const AddVendor = ({insertVendor}) => {
     const {name, value} = event.target;
     const vendorData = {...vendor, [name]: value};
     addVendor(vendorData);
-    setVendor(initialState);
+    clearForm();
+    closeForm();
+  };
+
+  const cancel = (closeForm) => {
+    clearForm();
     closeForm();
   };
 
@@ -53,7 +60,7 @@ const AddVendor = ({insertVendor}) => {
         <FormButtons
           submitText="Add"
           handleSubmit={(e) => handleSubmit(e, closeForm)}
-          closeForm={closeForm}
+          cancel={() => cancel(closeForm)}
         />
       }
     />

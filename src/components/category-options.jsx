@@ -4,7 +4,7 @@ import AddCategory from './add-category';
 import '../css/category-options.css';
 import DeleteButton from './delete-button';
 
-const CategoryOptions = ({currentCategory, handleChange, toggleState}) => {
+const CategoryOptions = ({handleChange, toggleState}) => {
   const [categories, setCategories] = useState([]);
 
   const getCategories = useCallback(async () => {
@@ -16,44 +16,36 @@ const CategoryOptions = ({currentCategory, handleChange, toggleState}) => {
     }
   }, [setCategories]);
 
-  const insertCategory = (category) => {
-    setCategories([...categories, category]);
-  };
-
   useEffect(() => {
     getCategories();
   }, [getCategories]);
 
-  const submitCategory = (event, name) => {
+  const selectCategory = (event, category) => {
     event.target.name = 'category';
-    event.target.value = name;
+    event.target.value = category;
     handleChange(event);
     toggleState();
   };
 
+  const selectNewCategory = (category) => {
+    const event = {target: {}};
+    selectCategory(event, category);
+  };
+
   return (
-    <div className="category-options arrow">
+    <div className="category-options">
       <div>
-        {!categories.length ? (
-          <div>
-            <p>Select a category</p>
+        {categories.map((category) => (
+          <div
+            key={category.name + Math.random()}
+            onClick={(e) => selectCategory(e, category.name)}
+          >
+            <p>{category.name}</p>
           </div>
-        ) : (
-          categories.map(({name}) => (
-            <div
-              key={name + Math.random()}
-              name="category"
-              value={name}
-              selected={name === currentCategory}
-              onClick={(e) => submitCategory(e, name)}
-            >
-              <p>{name}</p>
-            </div>
-          ))
-        )}
+        ))}
       </div>
       <AddCategory
-        insertCategory={insertCategory}
+        selectCategory={(category) => selectNewCategory(category)}
         closeCategoryOptions={toggleState}
       />
     </div>

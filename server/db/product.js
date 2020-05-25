@@ -14,10 +14,6 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     defaultValue: 0,
   },
-  unit: {
-    type: Sequelize.STRING,
-    defaultValue: 'Unit',
-  },
   onHand: {
     type: Sequelize.INTEGER,
     defaultValue: 0,

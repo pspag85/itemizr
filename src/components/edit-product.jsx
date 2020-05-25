@@ -69,7 +69,7 @@ const EditProduct = ({
             <FormButtons
               submitText="Save"
               handleSubmit={handleSubmit}
-              closeForm={closeEditForm}
+              cancel={closeEditForm}
             />
           }
         />
