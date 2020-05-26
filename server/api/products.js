@@ -65,9 +65,9 @@ router.post('/', async (req, res, next) => {
     });
     const productData = {
       price: priceNumber,
-      categoryId: category.id,
+      categoryId: category && category.id,
       vendorId: vendor.id,
-      unitId: unit.id,
+      unitId: unit && unit.id,
       ...req.body,
     };
     const product = await Product.create(productData);

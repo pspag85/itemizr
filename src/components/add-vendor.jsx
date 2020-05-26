@@ -1,11 +1,11 @@
-import React, {Fragment, useState} from 'react';
+import React, {forwardRef, useState} from 'react';
 import axios from 'axios';
 import Modal from './modal';
 import ModalTrigger from './modal-trigger';
 import VendorForm from './vendor-form';
 import FormButtons from './form-buttons';
 
-const AddVendor = ({insertVendor}) => {
+const AddVendor = forwardRef(({insertVendor, openModal}) => {
   const initialState = {
     name: '',
     email: '',
@@ -67,7 +67,7 @@ const AddVendor = ({insertVendor}) => {
   );
 
   const renderAddVendorButton = (open) => (
-    <ModalTrigger open={open} text="Add a vendor" />
+    <ModalTrigger open={openModal || open} text="Add a vendor" />
   );
 
   return (
@@ -76,6 +76,6 @@ const AddVendor = ({insertVendor}) => {
       renderModalContent={renderVendorForm}
     />
   );
-};
+});
 
 export default AddVendor;
