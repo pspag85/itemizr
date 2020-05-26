@@ -10,6 +10,7 @@ router.get('/', async (req, res, next) => {
           $lt: req.session.userId,
         },
       },
+      where: {}, // needed to prevent warning
       attributes: ['id', 'name'],
       order: [['id', 'ASC']],
     });

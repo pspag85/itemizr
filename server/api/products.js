@@ -45,23 +45,22 @@ router.get('/:vendorId', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-  console.log('****** REQ BODY:  ', req.body);
-  const {price} = req.body;
+  const {price, vendor, category, unit} = req.body;
   const priceNumber = parseFloat(price);
   try {
     const vendor = await Vendor.findOne({
       where: {
-        name: req.body.vendor,
+        name: vendor,
       },
     });
     const category = await Category.findOne({
       where: {
-        name: req.body.category,
+        name: category,
       },
     });
     const unit = await Unit.findOne({
       where: {
-        name: req.body.unit,
+        name: unit,
       },
     });
     const productData = {
