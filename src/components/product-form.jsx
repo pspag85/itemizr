@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import '../css/product-form.css';
-import VendorOptions from './vendor-options';
-import CategoryOptions from './category-options';
-import UnitOptions from './unit-options';
+import Options from './options';
 
 const ProductForm = ({
   product,
@@ -21,18 +19,32 @@ const ProductForm = ({
     setVendorOptionsState(!vendorOptionsState);
   const toggleUnitOptionsState = () => setUnitOptionsState(!unitOptionsState);
 
+  const {
+    name,
+    productNumber,
+    category,
+    vendor,
+    price,
+    quantity,
+    unit,
+    par,
+    onHand,
+  } = product;
+
+  const vendorName = typeof vendor !== 'string' ? vendor.name : vendor;
+
   return (
     <div className="product-form-wrapper">
       <form className="product-form row vt-pdg-20" onSubmit={handleSubmit}>
         <input
-          placeholder={product.name || 'Name'}
+          placeholder={name || 'Name'}
           name="name"
-          value={product.name}
+          value={name}
           onChange={handleChange}
         />
         <input
           id="product-number"
-          placeholder={product.productNumber || 'No.'}
+          placeholder={productNumber || 'No.'}
           title="Product number is read only" // TODO: show on click
           disabled
         />
@@ -40,12 +52,8 @@ const ProductForm = ({
           className="flex ctr-items space-between custom-input custom-select arrow"
           onClick={toggleCategoryOptionsState}
         >
-          <div
-            className={`category-select ${
-              !product.category && 'secondary-txt'
-            }`}
-          >
-            <p>{product.category || 'Category'}</p>
+          <div className={`category-select ${!category && 'secondary-txt'}`}>
+            <p>{category || 'Category'}</p>
           </div>
           <span className="flex-end down-arrow">&#8964;</span>
         </div>
@@ -53,70 +61,72 @@ const ProductForm = ({
           className="flex ctr-items space-between custom-input custom-select arrow"
           onClick={toggleVendorOptionsState}
         >
-          <div
-            className={`vendor-select ${!product.vendor && 'secondary-txt'}`}
-          >
-            <p>{product.vendor || 'Vendor'}</p>
+          <div className={`vendor-select ${!vendorName && 'secondary-txt'}`}>
+            <p>{vendorName || 'Vendor'}</p>
           </div>
           <span className="flex-end down-arrow">&#8964;</span>
         </div>
         <div className="price-input">
           <input
-            placeholder={product.price}
+            placeholder={price}
             name="price"
-            value={product.price}
+            value={price}
             onChange={handleChange}
           />
           <div>
             <input
-              placeholder={product.quantity}
+              placeholder={quantity}
               name="quantity"
-              value={product.quantity}
+              value={quantity}
               onChange={handleChange}
             />
             <div
               className="flex ctr-items space-between custom-input custom-select arrow"
               onClick={toggleUnitOptionsState}
             >
-              <div
-                className={`unit-select ${!product.unit && 'secondary-txt'}`}
-              >
-                <p>{product.unit || 'Unit'}</p>
+              <div className={`unit-select ${!unit && 'secondary-txt'}`}>
+                <p>{unit || 'Unit'}</p>
               </div>
               <span className="flex-end down-arrow">&#8964;</span>
             </div>
           </div>
         </div>
         <input
-          placeholder={product.par}
+          placeholder={par}
           name="par"
-          value={product.par}
+          value={par}
           onChange={handleChange}
         />
         <input
-          placeholder={product.onHand}
+          placeholder={onHand}
           name="onHand"
-          value={product.onHand}
+          value={onHand}
           onChange={handleChange}
         />
       </form>
       {categoryOptionsState && (
-        <CategoryOptions
-          currentCategory={product.category}
+        <Options
+          type="category"
+          endpoint="categories"
+          currentSelection={category}
           handleChange={handleChange}
           toggleState={toggleCategoryOptionsState}
         />
       )}
       {vendorOptionsState && (
-        <VendorOptions
-          currentVendor={product.vendor}
+        <Options
+          type="vendor"
+          endpoint="vendors"
+          currentSelection={vendorName}
           handleChange={handleChange}
           toggleState={toggleVendorOptionsState}
         />
       )}
       {unitOptionsState && (
-        <UnitOptions
-          currentUnit={product.unit}
+        <Options
+          type="unit"
+          endpoint="units"
+          currentSelection={unit}
           handleChange={handleChange}
           toggleState={toggleUnitOptionsState}
         />

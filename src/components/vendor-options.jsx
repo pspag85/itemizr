@@ -17,7 +17,7 @@ const VendorOptions = ({handleChange, toggleState}) => {
     getVendors();
   }, [getVendors]);
 
-  const submitVendor = (event, name) => {
+  const selectVendor = (event, name) => {
     event.target.name = 'vendor';
     event.target.value = name;
     handleChange(event);
@@ -30,7 +30,7 @@ const VendorOptions = ({handleChange, toggleState}) => {
         {vendors.map(({name}) => (
           <div
             key={name + Math.random()}
-            onClick={(e) => submitVendor(e, name)}
+            onClick={(e) => selectVendor(e, name)}
           >
             <p>{name}</p>
           </div>

@@ -22,9 +22,10 @@ const AddProduct = ({insertProduct, closeForm}) => {
   const addProduct = async (product) => {
     const vendor = {name: product.vendor};
     const category = {name: product.category};
+    const unit = {name: product.unit};
     try {
       const {data} = await axios.post('/api/products', product);
-      insertProduct({category, vendor, ...data});
+      insertProduct({category, vendor, unit, ...data});
     } catch (err) {
       console.error(err);
     }
