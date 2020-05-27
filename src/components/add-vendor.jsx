@@ -5,7 +5,7 @@ import ModalTrigger from './modal-trigger';
 import VendorForm from './vendor-form';
 import FormButtons from './form-buttons';
 
-const AddVendor = forwardRef(({insertVendor, openModal}) => {
+const AddVendor = forwardRef(({insertVendor, openModal, ...props}, ref) => {
   const initialState = {
     name: '',
     email: '',
@@ -67,7 +67,12 @@ const AddVendor = forwardRef(({insertVendor, openModal}) => {
   );
 
   const renderAddVendorButton = (open) => (
-    <ModalTrigger open={openModal || open} text="Add a vendor" />
+    <ModalTrigger
+      open={openModal || open}
+      text="Add a vendor"
+      ref={ref}
+      {...props}
+    />
   );
 
   return (
