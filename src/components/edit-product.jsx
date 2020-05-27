@@ -15,12 +15,16 @@ const EditProduct = ({
 
   const displayUserMsg = (msg) => setUserMsg(msg);
 
-  const editProduct = async (productData) => {
-    const vendor = {name: productData.vendor};
-    const category = {name: productData.category};
+  const editProduct = async (product) => {
+    const vendorName =
+      typeof product.vendor !== 'string' ? product.vendor.name : product.vendor;
+    const requestBody = {...product, vendor: vendorName};
+    const vendor = {name: vendorName};
+    const category = {name: product.category};
+    const unit = {name: product.unit};
     try {
-      await axios.put('/api/products', {id, ...productData});
-      updateProducts({id, ...productData, category, vendor});
+      await axios.put('/api/products', {id, ...requestBody});
+      updateProducts({id, ...product, category, vendor, unit});
     } catch (err) {
       console.error(err);
     }
