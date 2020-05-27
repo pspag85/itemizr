@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import '../css/product-form.css';
 import Options from './options';
+import Select from './select';
 
 const ProductForm = ({
   product,
@@ -13,11 +14,10 @@ const ProductForm = ({
   const [vendorOptionsState, setVendorOptionsState] = useState(false);
   const [unitOptionsState, setUnitOptionsState] = useState(false);
 
-  const toggleCategoryOptionsState = () =>
+  const toggleCategoryOptions = () =>
     setCategoryOptionsState(!categoryOptionsState);
-  const toggleVendorOptionsState = () =>
-    setVendorOptionsState(!vendorOptionsState);
-  const toggleUnitOptionsState = () => setUnitOptionsState(!unitOptionsState);
+  const toggleVendorOptions = () => setVendorOptionsState(!vendorOptionsState);
+  const toggleUnitOptions = () => setUnitOptionsState(!unitOptionsState);
 
   const {
     name,
@@ -48,24 +48,16 @@ const ProductForm = ({
           title="Product number is read only" // TODO: show on click
           disabled
         />
-        <div
-          className="flex ctr-items space-between custom-input custom-select arrow"
-          onClick={toggleCategoryOptionsState}
-        >
-          <div className={`category-select ${!category && 'secondary-txt'}`}>
-            <p>{category || 'Category'}</p>
-          </div>
-          <span className="flex-end down-arrow">&#8964;</span>
-        </div>
-        <div
-          className="flex ctr-items space-between custom-input custom-select arrow"
-          onClick={toggleVendorOptionsState}
-        >
-          <div className={`vendor-select ${!vendorName && 'secondary-txt'}`}>
-            <p>{vendorName || 'Vendor'}</p>
-          </div>
-          <span className="flex-end down-arrow">&#8964;</span>
-        </div>
+        <Select
+          currentSelection={vendorName}
+          defaultSelection="Vendor"
+          toggleOptions={toggleVendorOptions}
+        />
+        <Select
+          currentSelection={category}
+          defaultSelection="Category"
+          toggleOptions={toggleCategoryOptions}
+        />
         <div className="price-input">
           <input
             placeholder={price}
@@ -80,15 +72,11 @@ const ProductForm = ({
               value={quantity}
               onChange={handleChange}
             />
-            <div
-              className="flex ctr-items space-between custom-input custom-select arrow"
-              onClick={toggleUnitOptionsState}
-            >
-              <div className={`unit-select ${!unit && 'secondary-txt'}`}>
-                <p>{unit || 'Unit'}</p>
-              </div>
-              <span className="flex-end down-arrow">&#8964;</span>
-            </div>
+            <Select
+              currentSelection={unit}
+              defaultSelection="Unit"
+              toggleOptions={toggleUnitOptions}
+            />
           </div>
         </div>
         <input
@@ -110,7 +98,7 @@ const ProductForm = ({
           endpoint="categories"
           currentSelection={category}
           handleChange={handleChange}
-          toggleState={toggleCategoryOptionsState}
+          toggleState={toggleCategoryOptions}
         />
       )}
       {vendorOptionsState && (
@@ -119,7 +107,7 @@ const ProductForm = ({
           endpoint="vendors"
           currentSelection={vendorName}
           handleChange={handleChange}
-          toggleState={toggleVendorOptionsState}
+          toggleState={toggleVendorOptions}
         />
       )}
       {unitOptionsState && (
@@ -128,7 +116,7 @@ const ProductForm = ({
           endpoint="units"
           currentSelection={unit}
           handleChange={handleChange}
-          toggleState={toggleUnitOptionsState}
+          toggleState={toggleUnitOptions}
         />
       )}
       <div className="user-msg">{userMsg}</div>
