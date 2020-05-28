@@ -53,7 +53,11 @@ const AddOption = ({type, endpoint, selectOption, closeMenu}) => {
 
   const renderAddOptionButton = (open) =>
     type === 'vendor' ? (
-      <AddVendor openModal={open} insertVendor={selectOption} />
+      <AddVendor
+        openModal={open}
+        insertVendor={selectOption}
+        inProductForm={true}
+      />
     ) : (
       <AddItemButton
         open={open}
