@@ -37,7 +37,7 @@ const Options = ({
   };
 
   return (
-    <div className="unit-options">
+    <div className="options">
       <div>
         {options.map((option) => (
           <div
