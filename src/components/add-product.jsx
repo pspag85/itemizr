@@ -20,11 +20,15 @@ const AddProduct = ({insertProduct, closeForm}) => {
   const displayUserMsg = (msg) => setUserMsg(msg);
 
   const addProduct = async (product) => {
-    const vendor = {name: product.vendor};
+    const vendorName =
+      typeof product.vendor !== 'string' ? product.vendor.name : product.vendor;
+    const requestBody = {...product, vendor: vendorName};
+    const vendor = {name: vendorName};
     const category = {name: product.category};
+    const unit = {name: product.unit};
     try {
-      const {data} = await axios.post('/api/products', product);
-      insertProduct({category, vendor, ...data});
+      const {data} = await axios.post('/api/products', requestBody);
+      insertProduct({category, vendor, unit, ...data});
     } catch (err) {
       console.error(err);
     }
@@ -66,7 +70,7 @@ const AddProduct = ({insertProduct, closeForm}) => {
           <FormButtons
             submitText="Add"
             handleSubmit={handleSubmit}
-            closeForm={closeForm}
+            cancel={closeForm}
           />
         }
       />

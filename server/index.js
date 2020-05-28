@@ -11,6 +11,7 @@ const webpack = require('webpack');
 const middleware = require('webpack-dev-middleware'); //webpack hot reloading middleware
 const webpackConfig = require('../webpack.config');
 const compiler = webpack(webpackConfig);
+const seed = require('./db/seed');
 
 app.use(
   require('webpack-hot-middleware')(compiler, {
@@ -66,6 +67,7 @@ const init = (async () => {
   try {
     await db.sync({force: true});
     db.authenticate().then(() => console.log('Connected to the Database'));
+    await seed(20);
     app.listen(PORT, () =>
       console.log(`Server listening on http://localhost:${PORT}`)
     );

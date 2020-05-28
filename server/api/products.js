@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Product, Vendor, Category} = require('../db');
+const {Product, Vendor, Category, Unit} = require('../db');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -12,6 +12,10 @@ router.get('/', async (req, res, next) => {
         },
         {
           model: Category,
+          attributes: ['name'],
+        },
+        {
+          model: Unit,
           attributes: ['name'],
         },
       ],
@@ -54,10 +58,16 @@ router.post('/', async (req, res, next) => {
         name: req.body.category,
       },
     });
+    const unit = await Unit.findOne({
+      where: {
+        name: req.body.unit,
+      },
+    });
     const productData = {
       price: priceNumber,
-      categoryId: category.id,
+      categoryId: category && category.id,
       vendorId: vendor.id,
+      unitId: unit && unit.id,
       ...req.body,
     };
     const product = await Product.create(productData);

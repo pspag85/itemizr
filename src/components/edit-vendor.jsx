@@ -46,7 +46,7 @@ const EditVendor = ({
         <FormButtons
           submitText="Save"
           handleSubmit={handleSubmit}
-          closeForm={closeEditForm}
+          cancel={closeEditForm}
         />
       }
     />

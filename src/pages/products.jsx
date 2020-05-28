@@ -1,5 +1,6 @@
-import React, {Fragment, useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {useToggleState} from '../utility/hooks';
+import history from '../history';
 import axios from 'axios';
 import Header from '../components/header';
 import TableHeader from '../components/table-header';
@@ -24,10 +25,12 @@ const Products = (props) => {
   };
 
   const getProducts = useCallback(async () => {
+    const {pathname} = history.location;
     const vendorId = props.match.params.vendorId;
-    const path = !vendorId ? '/api/products' : `/api/products/${vendorId}`;
+    const vendorPath = !vendorId ? '/products' : `/products/${vendorId}`;
+    const path = pathname === vendorPath ? vendorPath : pathname;
     try {
-      const {data} = await axios.get(path);
+      const {data} = await axios.get(`/api${path}`);
       setProducts(data);
     } catch (err) {
       console.error(err);
@@ -60,7 +63,7 @@ const Products = (props) => {
       getProducts();
     }
     return () => (subscribed = false);
-  }, [getProducts]);
+  }, [props.match.params]);
 
   const tableHeaders = [
     'Item',
@@ -86,6 +89,7 @@ const Products = (props) => {
     const productNumber = formatNumToThreeDigitStr(id);
     const priceStr = formatPriceToStr(price);
     const categoryName = category ? category.name : '';
+    const unitName = unit ? unit.name : '';
     const productData = {
       name,
       productNumber,
@@ -93,7 +97,7 @@ const Products = (props) => {
       vendor: vendor.name,
       price: priceStr,
       quantity,
-      unit,
+      unit: unitName,
       par,
       onHand,
     };

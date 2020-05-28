@@ -4,18 +4,19 @@ import AddItemButton from './add-item-button';
 import FormButtons from './form-buttons';
 import Modal from './modal';
 
-const AddCategory = ({insertCategory, closeCategoryOptions}) => {
+const AddCategory = ({selectCategory, closeCategoryOptions}) => {
   const [category, setCategory] = useState('');
 
   const addCategory = async (name) => {
     const categoryData = {name};
     try {
       const {data} = await axios.post('/api/categories', categoryData);
-      insertCategory(data);
     } catch (err) {
       console.error(err);
     }
   };
+
+  const clearForm = () => setCategory('');
 
   const handleChange = (event) => {
     const {value} = event.target;
@@ -25,8 +26,14 @@ const AddCategory = ({insertCategory, closeCategoryOptions}) => {
   const handleSubmit = (event, closeForm) => {
     event.preventDefault();
     addCategory(category);
-    setCategory('');
     closeCategoryOptions();
+    clearForm();
+    closeForm();
+    selectCategory(category);
+  };
+
+  const cancel = (closeForm) => {
+    clearForm();
     closeForm();
   };
 
@@ -37,7 +44,7 @@ const AddCategory = ({insertCategory, closeCategoryOptions}) => {
         <FormButtons
           submitText="Add"
           handleSubmit={(e) => handleSubmit(e, closeForm)}
-          closeForm={closeForm}
+          cancel={() => cancel(closeForm)}
         />
       </form>
     </div>

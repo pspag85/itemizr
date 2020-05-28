@@ -1,11 +1,11 @@
-import React, {Fragment, useState} from 'react';
+import React, {forwardRef, useState} from 'react';
 import axios from 'axios';
 import Modal from './modal';
 import ModalTrigger from './modal-trigger';
 import VendorForm from './vendor-form';
 import FormButtons from './form-buttons';
 
-const AddVendor = ({insertVendor}) => {
+const AddVendor = forwardRef(({insertVendor, openModal, ...props}, ref) => {
   const initialState = {
     name: '',
     email: '',
@@ -29,6 +29,8 @@ const AddVendor = ({insertVendor}) => {
     }
   };
 
+  const clearForm = () => setVendor(initialState);
+
   const handleChange = (event) => {
     const {name, value} = event.target;
     setVendor({...vendor, [name]: value});
@@ -39,7 +41,12 @@ const AddVendor = ({insertVendor}) => {
     const {name, value} = event.target;
     const vendorData = {...vendor, [name]: value};
     addVendor(vendorData);
-    setVendor(initialState);
+    clearForm();
+    closeForm();
+  };
+
+  const cancel = (closeForm) => {
+    clearForm();
     closeForm();
   };
 
@@ -53,14 +60,19 @@ const AddVendor = ({insertVendor}) => {
         <FormButtons
           submitText="Add"
           handleSubmit={(e) => handleSubmit(e, closeForm)}
-          closeForm={closeForm}
+          cancel={() => cancel(closeForm)}
         />
       }
     />
   );
 
   const renderAddVendorButton = (open) => (
-    <ModalTrigger open={open} text="Add a vendor" />
+    <ModalTrigger
+      open={openModal || open}
+      text="Add a vendor"
+      ref={ref}
+      {...props}
+    />
   );
 
   return (
@@ -69,6 +81,6 @@ const AddVendor = ({insertVendor}) => {
       renderModalContent={renderVendorForm}
     />
   );
-};
+});
 
 export default AddVendor;
