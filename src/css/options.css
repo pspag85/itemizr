@@ -1,4 +1,26 @@
+.options-container {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  min-width: 240px;
+  height: 200px;
+  margin: 0 0 0 10%;
+}
+
 .options {
-  min-width: 200px;
-  width: 20%;
+  padding: 0 20px;
+  flex-basis: 80%;
+  border-bottom: 1px solid black;
+  overflow: scroll;
+}
+
+.add-option-wrapper {
+  flex-basis: 20%;
+}
+
+.add-option-wrapper .add-item-wrapper {
+  border: none;
+}
+.add-option-wrapper .add-item-wrapper h5 {
+  margin: 12px;
 }
