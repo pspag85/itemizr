@@ -1,0 +1,21 @@
+.select {
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  background: none;
+}
+
+.selected-txt {
+  margin-right: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.down-arrow {
+  position: relative;
+  right: 8px;
+  height: 50px;
+  margin: 0;
+  padding-left: 4px;
+  font-size: 32px;
+}

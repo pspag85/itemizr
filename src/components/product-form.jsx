@@ -14,10 +14,22 @@ const ProductForm = ({
   const [vendorOptionsState, setVendorOptionsState] = useState(false);
   const [unitOptionsState, setUnitOptionsState] = useState(false);
 
-  const toggleCategoryOptions = () =>
+  // can this be dried up inside the select or options component?
+  const toggleVendorOptions = () => {
+    categoryOptionsState && setCategoryOptionsState(false);
+    unitOptionsState && setUnitOptionsState(false);
+    setVendorOptionsState(!vendorOptionsState);
+  };
+  const toggleCategoryOptions = () => {
+    vendorOptionsState && setVendorOptionsState(false);
+    unitOptionsState && setUnitOptionsState(false);
     setCategoryOptionsState(!categoryOptionsState);
-  const toggleVendorOptions = () => setVendorOptionsState(!vendorOptionsState);
-  const toggleUnitOptions = () => setUnitOptionsState(!unitOptionsState);
+  };
+  const toggleUnitOptions = () => {
+    vendorOptionsState && setVendorOptionsState(false);
+    categoryOptionsState && setCategoryOptionsState(false);
+    setUnitOptionsState(!unitOptionsState);
+  };
 
   const {
     name,

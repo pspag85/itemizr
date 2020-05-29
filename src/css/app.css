@@ -131,7 +131,7 @@ input:-webkit-autofill:active {
 }
 
 .page-pdg {
-  padding: 20px 0 0 240px;
+  padding: 20px 20px 0 240px;
 }
 
 .row {
@@ -375,14 +375,16 @@ td {
   margin: 10px 0;
 }
 
-@media only screen and (max-width: 1224px) {
+@media only screen and (max-width: 780px) {
   .page-pdg {
-    padding-right: 20px;
-    padding-left: 240px;
+    padding-right: 0;
   }
 }
 
 @media only screen and (max-width: 640px) {
+  .page-pdg {
+    margin-right: -20px;
+  }
   .auth-wrapper {
     padding-left: 0;
     margin-left: -40px;

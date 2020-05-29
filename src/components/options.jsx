@@ -1,6 +1,7 @@
 import React, {Fragment, useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
 import AddOption from './add-option';
+import '../css/options.css';
 
 const Options = ({
   type,
@@ -37,23 +38,29 @@ const Options = ({
   };
 
   return (
-    <div className="unit-options">
-      <div>
-        {options.map((option) => (
-          <div
-            key={option.name + Math.random()}
-            onClick={(e) => selectOption(e, option.name)}
-          >
-            <p>{option.name}</p>
-          </div>
-        ))}
+    <div className="options-container bg-white box-shadow arrow">
+      <div className="options">
+        {options.length < 1 ? (
+          <p className="secondary-txt">Add a {type}</p>
+        ) : (
+          options.map((option) => (
+            <div
+              key={option.name + Math.random()}
+              onClick={(e) => selectOption(e, option.name)}
+            >
+              <p>{option.name}</p>
+            </div>
+          ))
+        )}
       </div>
-      <AddOption
-        type={type}
-        endpoint={endpoint}
-        selectOption={(option) => selectNewOption(option)}
-        closeMenu={toggleState}
-      />
+      <div className="add-option-wrapper">
+        <AddOption
+          type={type}
+          endpoint={endpoint}
+          selectOption={(option) => selectNewOption(option)}
+          closeMenu={toggleState}
+        />
+      </div>
     </div>
   );
 };
