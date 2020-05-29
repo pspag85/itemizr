@@ -59,11 +59,7 @@ const AddOption = ({type, endpoint, selectOption, closeMenu}) => {
         inProductForm={true}
       />
     ) : (
-      <AddItemButton
-        open={open}
-        text={`Add a ${endpoint}`}
-        handleClick={null}
-      />
+      <AddItemButton open={open} text={`Add a ${type}`} handleClick={null} />
     );
 
   return (

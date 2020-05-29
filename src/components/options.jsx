@@ -1,6 +1,7 @@
 import React, {Fragment, useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
 import AddOption from './add-option';
+import '../css/options.css';
 
 const Options = ({
   type,
@@ -37,7 +38,7 @@ const Options = ({
   };
 
   return (
-    <div className="options">
+    <div className="options bg-white box-shadow">
       <div>
         {options.map((option) => (
           <div
