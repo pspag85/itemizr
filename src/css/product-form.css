@@ -10,12 +10,14 @@
   font-size: 14px;
 }
 
-.product-form input,
 .product-form select,
-.product-form .select {
+.product-form .select,
+.product-form input,
+.hidden-input {
   width: 100%;
   height: 32px;
   min-width: 72px;
+  margin: 0 4px;
   padding: 0 0 0 8px;
   background: #fff;
   border: 1px solid #bdbbc2;
@@ -24,12 +26,30 @@
   font-size: 14px;
 }
 
-.price-input {
-  height: 100%;
-  margin-top: -12px;
+.hidden-input {
+  padding: 0;
 }
 
-.price-input input,
-.price-input select {
-  margin-bottom: 12px;
+.price-input {
+  height: 100%;
+  margin: -12px 8px 0 0;
+}
+
+.qty-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+
+.qty-wrapper .select,
+.qty-wrapper input {
+  min-width: 64px;
+}
+
+.qty-wrapper .select {
+  margin-right: -4px;
+}
+
+.qty-wrapper input {
+  margin-right: 2px;
 }

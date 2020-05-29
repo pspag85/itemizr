@@ -38,7 +38,9 @@ const Options = ({
   };
 
   return (
-    <div className="options-container bg-white box-shadow arrow">
+    <div
+      className={`options-container ${type}-option bg-white box-shadow arrow`}
+    >
       <div className="options">
         {options.length < 1 ? (
           <p className="secondary-txt">Add a {type}</p>

@@ -1,10 +1,9 @@
 .options-container {
   display: flex;
   flex-direction: column;
-  width: 25%;
-  min-width: 240px;
+  width: 20%;
+  min-width: 220px;
   height: 200px;
-  margin: 0 0 0 10%;
 }
 
 .options {
@@ -12,6 +11,12 @@
   flex-basis: 80%;
   border-bottom: 1px solid black;
   overflow: scroll;
+}
+
+.unit-option {
+  width: 15%;
+  min-width: 180px;
+  margin: 48px 0 0 70px;
 }
 
 .add-option-wrapper {

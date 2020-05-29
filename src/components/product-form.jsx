@@ -61,14 +61,14 @@ const ProductForm = ({
           disabled
         />
         <Select
-          currentSelection={vendorName}
-          defaultSelection="Vendor"
-          toggleOptions={toggleVendorOptions}
-        />
-        <Select
           currentSelection={category}
           defaultSelection="Category"
           toggleOptions={toggleCategoryOptions}
+        />
+        <Select
+          currentSelection={vendorName}
+          defaultSelection="Vendor"
+          toggleOptions={toggleVendorOptions}
         />
         <div className="price-input">
           <input
@@ -77,7 +77,7 @@ const ProductForm = ({
             value={price}
             onChange={handleChange}
           />
-          <div>
+          <div className="qty-wrapper">
             <input
               placeholder={quantity}
               name="quantity"
@@ -104,33 +104,45 @@ const ProductForm = ({
           onChange={handleChange}
         />
       </form>
-      {categoryOptionsState && (
-        <Options
-          type="category"
-          endpoint="categories"
-          currentSelection={category}
-          handleChange={handleChange}
-          toggleState={toggleCategoryOptions}
-        />
-      )}
-      {vendorOptionsState && (
-        <Options
-          type="vendor"
-          endpoint="vendors"
-          currentSelection={vendorName}
-          handleChange={handleChange}
-          toggleState={toggleVendorOptions}
-        />
-      )}
-      {unitOptionsState && (
-        <Options
-          type="unit"
-          endpoint="units"
-          currentSelection={unit}
-          handleChange={handleChange}
-          toggleState={toggleUnitOptions}
-        />
-      )}
+      <div className="row">
+        <div className="hidden-input"></div>
+        <div className="hidden-input"></div>
+        <div className="hidden-input">
+          {categoryOptionsState && (
+            <Options
+              type="category"
+              endpoint="categories"
+              currentSelection={category}
+              handleChange={handleChange}
+              toggleState={toggleCategoryOptions}
+            />
+          )}
+        </div>
+        <div className="hidden-input">
+          {vendorOptionsState && (
+            <Options
+              type="vendor"
+              endpoint="vendors"
+              currentSelection={vendorName}
+              handleChange={handleChange}
+              toggleState={toggleVendorOptions}
+            />
+          )}
+        </div>
+        <div className="hidden-input">
+          {unitOptionsState && (
+            <Options
+              type="unit"
+              endpoint="units"
+              currentSelection={unit}
+              handleChange={handleChange}
+              toggleState={toggleUnitOptions}
+            />
+          )}
+        </div>
+        <div className="hidden-input"></div>
+        <div className="hidden-input"></div>
+      </div>
       <div className="user-msg">{userMsg}</div>
       <div>{formButtons}</div>
     </div>
