@@ -17,6 +17,10 @@ button {
   cursor: pointer;
 }
 
+input {
+  z-index: 1;
+}
+
 input::placeholder {
   color: #aabcc6;
 }
@@ -322,8 +326,9 @@ td {
   box-sizing: content-box;
 }
 
-.cancel-btn {
-  color: #de3434;
+.action-btn.cancel-btn {
+  background-color: #dadada;
+  color: #000;
 }
 
 .action-btn {
@@ -337,6 +342,12 @@ td {
   background-color: #01c4d8;
   color: white;
   cursor: pointer;
+  font-weight: bold;
+}
+
+.action-btn:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .modal {
@@ -388,6 +399,6 @@ td {
     margin-left: -40px;
   }
   .page-pdg {
-    padding-left: 20px;
+    padding: 0;
   }
 }

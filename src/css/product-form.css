@@ -1,7 +1,9 @@
 .product-form-wrapper {
+  position: relative;
   height: 200px;
   background: #edf5fa;
   overflow-x: hidden;
+  padding: 0 14px;
 }
 
 .product-form {
@@ -53,4 +55,52 @@
 
 .qty-wrapper input {
   margin-right: 2px;
+}
+
+.form-button-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+.form-button-wrapper button {
+  margin-left: 8px;
+}
+
+@media only screen and (max-width: 640px) {
+  .product-form-wrapper {
+    height: 520px;
+    margin: 0 -10px;
+    overflow: hidden;
+  }
+  .product-form {
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 200px);
+  }
+  .product-form input {
+    line-height: 32px;
+  }
+  .product-form select,
+  .product-form .select,
+  .product-form input,
+  .hidden-input {
+    margin-bottom: 20px;
+  }
+  .price-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: unset;
+    margin: 0 0 0 -8px;
+  }
+  .qty-wrapper {
+    margin-top: -10px;
+  }
+  .qty-wrapper .select {
+    margin-right: -4px;
+  }
+  .qty-wrapper input {
+    margin-right: 4px;
+  }
 }

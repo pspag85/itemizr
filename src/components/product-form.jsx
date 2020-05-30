@@ -144,7 +144,7 @@ const ProductForm = ({
         <div className="hidden-input"></div>
       </div>
       <div className="user-msg">{userMsg}</div>
-      <div>{formButtons}</div>
+      <div className="form-button-wrapper">{formButtons}</div>
     </div>
   );
 };

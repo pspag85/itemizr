@@ -46,3 +46,13 @@ tr p {
 .price-column span p {
   display: inline;
 }
+
+@media only screen and (max-width: 640px) {
+  tr th:first-child,
+  tr td:first-child {
+    padding-left: 12px;
+  }
+  tr th:last-child tr td:last-child {
+    padding-right: 12px;
+  }
+}
