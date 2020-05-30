@@ -1,6 +1,7 @@
 .product-form-wrapper {
   height: 200px;
   background: #edf5fa;
+  overflow-x: hidden;
 }
 
 .product-form {

@@ -5,6 +5,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Open-Sans', sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -381,18 +382,12 @@ td {
   margin: 10px 0;
 }
 
-@media only screen and (max-width: 780px) {
-  .page-pdg {
-    padding-right: 0;
-  }
-}
-
 @media only screen and (max-width: 640px) {
-  .page-pdg {
-    margin-right: -20px;
-  }
   .auth-wrapper {
     padding-left: 0;
     margin-left: -40px;
+  }
+  .page-pdg {
+    padding-left: 20px;
   }
 }
