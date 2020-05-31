@@ -3,6 +3,7 @@
   -webkit-appearance: none; /* Safari and Chrome */
   appearance: none;
   background: none;
+  display: block;
 }
 
 .selected-txt {

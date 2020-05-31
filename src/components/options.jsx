@@ -47,6 +47,7 @@ const Options = ({
         ) : (
           options.map((option) => (
             <div
+              className="option"
               key={option.name + Math.random()}
               onClick={(e) => selectOption(e, option.name)}
             >

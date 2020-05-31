@@ -1,22 +1,27 @@
 .product-form-wrapper {
   position: relative;
-  height: 200px;
-  background: #edf5fa;
+  height: 500px;
   overflow-x: hidden;
-  padding: 0 14px;
+  overflow-y: visible;
 }
 
 .product-form {
+  height: 200px;
+  padding: 0 12px;
+  background: #edf5fa;
+}
+
+.product-form-inputs {
   display: flex;
   height: 20px;
   align-items: center;
   font-size: 14px;
 }
 
-.product-form select,
-.product-form .select,
-.product-form input,
-.hidden-input {
+.product-form-inputs select,
+.product-form-inputs .select,
+.product-form-inputs input,
+.hidden-cell {
   width: 100%;
   height: 32px;
   min-width: 72px;
@@ -29,24 +34,20 @@
   font-size: 14px;
 }
 
-.hidden-input {
-  padding: 0;
-}
-
-.price-input {
-  height: 100%;
-  margin: -12px 8px 0 0;
+.price-input,
+.hidden-cell:nth-child(5) {
+  padding: 45px 8px 0 0;
 }
 
 .qty-wrapper {
-  display: flex;
-  justify-content: space-between;
   margin-top: 14px;
+  display: flex;
 }
 
 .qty-wrapper .select,
 .qty-wrapper input {
-  min-width: 64px;
+  width: calc(50% - 2px);
+  min-width: calc(50% - 2px);
 }
 
 .qty-wrapper .select {
@@ -73,19 +74,25 @@
     margin: 0 -10px;
     overflow: hidden;
   }
-  .product-form {
+  .product-form-inputs {
     flex-direction: column;
     justify-content: space-between;
     height: calc(100% - 200px);
   }
-  .product-form input {
+  .product-form.row {
     line-height: 32px;
   }
-  .product-form select,
-  .product-form .select,
-  .product-form input,
-  .hidden-input {
+  .product-form-inputs input {
+    line-height: 32px;
+  }
+  .product-form-inputs select,
+  .product-form-inputs .select,
+  .product-form-inputs input,
+  .hidden-cell {
     margin-bottom: 20px;
+  }
+  .hidden-cell .options-container {
+    z-index: 3;
   }
   .price-input {
     display: flex;

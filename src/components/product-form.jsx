@@ -47,104 +47,109 @@ const ProductForm = ({
 
   return (
     <div className="product-form-wrapper">
-      <form className="product-form row vt-pdg-20" onSubmit={handleSubmit}>
-        <input
-          placeholder={name || 'Name'}
-          name="name"
-          value={name}
-          onChange={handleChange}
-        />
-        <input
-          id="product-number"
-          placeholder={productNumber || 'No.'}
-          title="Product number is read only" // TODO: show on click
-          disabled
-        />
-        <Select
-          currentSelection={category}
-          defaultSelection="Category"
-          toggleOptions={toggleCategoryOptions}
-        />
-        <Select
-          currentSelection={vendorName}
-          defaultSelection="Vendor"
-          toggleOptions={toggleVendorOptions}
-        />
-        <div className="price-input">
+      <div className="product-form">
+        <form
+          className="product-form-inputs row vt-pdg-20"
+          onSubmit={handleSubmit}
+        >
           <input
-            placeholder={price}
-            name="price"
-            value={price}
+            placeholder={name || 'Name'}
+            name="name"
+            value={name}
             onChange={handleChange}
           />
-          <div className="qty-wrapper">
+          <input
+            id="product-number"
+            placeholder={productNumber || 'No.'}
+            title="Product number is read only" // TODO: show on click
+            disabled
+          />
+          <Select
+            currentSelection={category}
+            defaultSelection="Category"
+            toggleOptions={toggleCategoryOptions}
+          />
+          <Select
+            currentSelection={vendorName}
+            defaultSelection="Vendor"
+            toggleOptions={toggleVendorOptions}
+          />
+          <div className="price-input">
             <input
-              placeholder={quantity}
-              name="quantity"
-              value={quantity}
+              placeholder={price}
+              name="price"
+              value={price}
               onChange={handleChange}
             />
-            <Select
-              currentSelection={unit}
-              defaultSelection="Unit"
-              toggleOptions={toggleUnitOptions}
-            />
+            <div className="qty-wrapper">
+              <input
+                placeholder={quantity}
+                name="quantity"
+                value={quantity}
+                onChange={handleChange}
+              />
+              <Select
+                currentSelection={unit}
+                defaultSelection="Unit"
+                toggleOptions={toggleUnitOptions}
+              />
+            </div>
           </div>
+          <input
+            placeholder={par}
+            name="par"
+            value={par}
+            onChange={handleChange}
+          />
+          <input
+            placeholder={onHand}
+            name="onHand"
+            value={onHand}
+            onChange={handleChange}
+          />
+        </form>
+        <div className="row">
+          <div className="hidden-cell"></div>
+          <div className="hidden-cell"></div>
+          <div className="hidden-cell">
+            {categoryOptionsState && (
+              <Options
+                type="category"
+                endpoint="categories"
+                currentSelection={category}
+                handleChange={handleChange}
+                toggleState={toggleCategoryOptions}
+              />
+            )}
+          </div>
+          <div className="hidden-cell">
+            {vendorOptionsState && (
+              <Options
+                type="vendor"
+                endpoint="vendors"
+                currentSelection={vendorName}
+                handleChange={handleChange}
+                toggleState={toggleVendorOptions}
+              />
+            )}
+          </div>
+          <div className="hidden-cell">
+            {unitOptionsState && (
+              <Options
+                type="unit"
+                endpoint="units"
+                currentSelection={unit}
+                handleChange={handleChange}
+                toggleState={toggleUnitOptions}
+              />
+            )}
+          </div>
+          <div className="hidden-cell"></div>
+          <div className="hidden-cell"></div>
         </div>
-        <input
-          placeholder={par}
-          name="par"
-          value={par}
-          onChange={handleChange}
-        />
-        <input
-          placeholder={onHand}
-          name="onHand"
-          value={onHand}
-          onChange={handleChange}
-        />
-      </form>
-      <div className="row">
-        <div className="hidden-input"></div>
-        <div className="hidden-input"></div>
-        <div className="hidden-input">
-          {categoryOptionsState && (
-            <Options
-              type="category"
-              endpoint="categories"
-              currentSelection={category}
-              handleChange={handleChange}
-              toggleState={toggleCategoryOptions}
-            />
-          )}
-        </div>
-        <div className="hidden-input">
-          {vendorOptionsState && (
-            <Options
-              type="vendor"
-              endpoint="vendors"
-              currentSelection={vendorName}
-              handleChange={handleChange}
-              toggleState={toggleVendorOptions}
-            />
-          )}
-        </div>
-        <div className="hidden-input">
-          {unitOptionsState && (
-            <Options
-              type="unit"
-              endpoint="units"
-              currentSelection={unit}
-              handleChange={handleChange}
-              toggleState={toggleUnitOptions}
-            />
-          )}
-        </div>
-        <div className="hidden-input"></div>
-        <div className="hidden-input"></div>
+        <div className="user-msg">{userMsg}</div>
+        <div className="form-button-wrapper">{formButtons}</div>
       </div>
-      <div className="user-msg">{userMsg}</div>
-      <div className="form-button-wrapper">{formButtons}</div>
     </div>
   );
 };
