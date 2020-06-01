@@ -98,10 +98,7 @@ select::default {
 }
 
 .auth-container .action-btn {
-  position: absolute;
-  right: 40px;
-  bottom: 20px;
-  margin: 20px 0;
+  margin: 20px 0 20px 40%;
 }
 
 .auth-form input,
@@ -356,6 +353,7 @@ td {
   width: 128px;
   height: 32px;
   font-size: 15px;
+  border: none;
   border-radius: 25px;
   background-color: #01c4d8;
   color: white;
