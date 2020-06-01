@@ -6,8 +6,8 @@
 }
 
 .product-form {
-  height: 200px;
-  padding: 0 12px;
+  height: 160px;
+  padding: 20px 12px;
   background: #edf5fa;
 }
 
@@ -18,6 +18,10 @@
   font-size: 14px;
 }
 
+.product-form-inputs.row {
+  padding-bottom: 12px;
+}
+
 .product-form-inputs select,
 .product-form-inputs .select,
 .product-form-inputs input,
@@ -25,13 +29,19 @@
   width: 100%;
   height: 32px;
   min-width: 72px;
-  margin: 0 4px;
-  padding: 0 0 0 8px;
+  margin: 0 8px 0 0;
   background: #fff;
   border: 1px solid #bdbbc2;
   box-sizing: border-box;
   border-radius: 5px;
   font-size: 14px;
+}
+
+.product-form-inputs select,
+.product-form-inputs .select,
+.product-form-inputs input,
+.hidden-cell {
+  padding-left: 8px;
 }
 
 .price-input,
@@ -40,22 +50,16 @@
 }
 
 .qty-wrapper {
-  margin-top: 14px;
+  margin-top: 13px;
   display: flex;
 }
 
-.qty-wrapper .select,
-.qty-wrapper input {
-  width: calc(50% - 2px);
-  min-width: calc(50% - 2px);
-}
-
 .qty-wrapper .select {
-  margin-right: -4px;
+  margin-right: 0;
 }
 
 .qty-wrapper input {
-  margin-right: 2px;
+  margin-right: 4px;
 }
 
 .form-button-wrapper {
@@ -65,23 +69,28 @@
 }
 
 .form-button-wrapper button {
-  margin-left: 8px;
+  margin: 0 8px;
 }
 
 @media only screen and (max-width: 640px) {
   .product-form-wrapper {
-    height: 520px;
-    margin: 0 -10px;
+    height: 560px;
     overflow: hidden;
+  }
+  .product-form {
+    height: 500px;
+    padding-top: 0;
   }
   .product-form-inputs {
     flex-direction: column;
     justify-content: space-between;
     height: calc(100% - 200px);
   }
-  .product-form.row {
-    line-height: 32px;
+  .product-form-inputs.row.vt-pdg-20 {
+    position: relative;
+    padding-top: 0;
   }
+  .product-form-inputs.row.vt-pdg-20,
   .product-form-inputs input {
     line-height: 32px;
   }
@@ -89,25 +98,55 @@
   .product-form-inputs .select,
   .product-form-inputs input,
   .hidden-cell {
-    margin-bottom: 20px;
+    margin: 20px 0 0 0;
+  }
+  .hidden-cell {
+    position: absolute;
+    width: calc(100% - 24px);
+    height: 0;
+    margin-left: 0;
+    padding: 0;
+  }
+  .options-row {
+    position: absolute;
+    top: 12px;
+    width: 100%;
+    height: 0;
+  }
+  .hidden-cell.category-options-wrapper {
+    top: 132px;
+  }
+  .hidden-cell.vendor-options-wrapper {
+    top: 184px;
+  }
+  .hidden-cell.unit-options-wrapper {
+    top: 288px;
+    left: calc(50% - 10px);
+    width: calc(50% - 15px);
+    min-width: calc(50% - 15px);
+    padding: 0;
   }
   .hidden-cell .options-container {
-    z-index: 3;
+    width: 100%;
   }
   .price-input {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: unset;
-    margin: 0 0 0 -8px;
+    padding: 0;
   }
   .qty-wrapper {
-    margin-top: -10px;
+    margin: 0;
   }
-  .qty-wrapper .select {
-    margin-right: -4px;
-  }
+  .qty-wrapper .select,
   .qty-wrapper input {
-    margin-right: 4px;
+    width: calc(50% - 3px);
+    min-width: calc(50% - 3px);
+    margin-right: 6px;
+  }
+  .form-button-wrapper {
+    position: absolute;
+    bottom: 70px;
+    right: 8px;
   }
 }

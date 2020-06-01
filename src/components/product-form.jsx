@@ -48,10 +48,7 @@ const ProductForm = ({
   return (
     <div className="product-form-wrapper">
       <div className="product-form">
-        <form
-          className="product-form-inputs row vt-pdg-20"
-          onSubmit={handleSubmit}
-        >
+        <form className="product-form-inputs row" onSubmit={handleSubmit}>
           <input
             placeholder={name || 'Name'}
             name="name"
@@ -108,10 +105,10 @@ const ProductForm = ({
             onChange={handleChange}
           />
         </form>
-        <div className="row">
+        <div className="row options-row">
           <div className="hidden-cell"></div>
           <div className="hidden-cell"></div>
-          <div className="hidden-cell">
+          <div className="hidden-cell category-options-wrapper">
             {categoryOptionsState && (
               <Options
                 type="category"
@@ -122,7 +119,7 @@ const ProductForm = ({
               />
             )}
           </div>
-          <div className="hidden-cell">
+          <div className="hidden-cell vendor-options-wrapper">
             {vendorOptionsState && (
               <Options
                 type="vendor"
@@ -133,7 +130,7 @@ const ProductForm = ({
               />
             )}
           </div>
-          <div className="hidden-cell">
+          <div className="hidden-cell unit-options-wrapper">
             {unitOptionsState && (
               <Options
                 type="unit"
