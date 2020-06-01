@@ -19,7 +19,7 @@ const Login = ({handleSubmit}) => (
             <div className="flex ctr-items space-around w-200 hz-pdg-10 light-font">
               <p>Don't have an account?</p>
               <Link to="/signup" className="underline">
-                Sign Up
+                Sign up
               </Link>
             </div>
           </div>
