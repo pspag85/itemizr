@@ -87,7 +87,6 @@ select::default {
 }
 
 .auth-container .action-btn {
-  float: none;
   margin: 20px 0;
 }
 
