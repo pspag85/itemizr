@@ -8,7 +8,7 @@ const Options = ({
   endpoint,
   currentSelection,
   handleChange,
-  toggleState,
+  overflowState,
 }) => {
   const [options, setOptions] = useState([]);
 
@@ -29,7 +29,7 @@ const Options = ({
     event.target.name = type;
     event.target.value = option;
     handleChange(event);
-    toggleState();
+    overflowState();
   };
 
   const selectNewOption = (option) => {
@@ -61,7 +61,7 @@ const Options = ({
           type={type}
           endpoint={endpoint}
           selectOption={(option) => selectNewOption(option)}
-          closeMenu={toggleState}
+          closeMenu={overflowState}
         />
       </div>
     </div>

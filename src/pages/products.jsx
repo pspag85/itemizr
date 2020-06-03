@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {useToggleState} from '../utility/hooks';
+import {useOverflowState} from '../utility/hooks';
 import history from '../history';
 import axios from 'axios';
 import Header from '../components/header';
@@ -14,7 +14,7 @@ const Products = (props) => {
   const [products, setProducts] = useState([]);
   const [addFormState, setAddFormState] = useState(false);
   const [editFormState, setEditFormState] = useState({id: null, isOpen: false});
-  const {toggleState, toggleMenu} = useToggleState();
+  const {overflowState, closeOverflow, toggleOverflow} = useOverflowState();
 
   const insertProduct = (newProduct) => setProducts([...products, newProduct]);
   const updateProducts = (productData) => {
@@ -54,7 +54,7 @@ const Products = (props) => {
   const openAddForm = () => setAddFormState(true);
   const closeAddForm = () => {
     setAddFormState(false);
-    toggleState && toggleMenu();
+    closeOverflow();
   };
 
   const openEditForm = (id) => setEditFormState({id, isOpen: true});
@@ -113,18 +113,18 @@ const Products = (props) => {
     return editState;
   };
 
-  const getOverflowState = (productId) => {
-    const {id, isOpen} = toggleState;
-    const overflowState = isOpen && productId === id && !addFormState;
-    return overflowState;
+  const getOverflowMenuState = (productId) => {
+    const {id, isOpen} = overflowState;
+    const overflowMenuState = isOpen && productId === id && !addFormState;
+    return overflowMenuState;
   };
 
   const renderProducts = () =>
     products.map((product) => {
       const {id} = product;
       const productData = formatProduct(product);
-      const toggleOverflow = () => toggleMenu(id);
-      const overflowState = getOverflowState(id);
+      const toggleOverflowMenu = () => toggleOverflow(id);
+      const overflowMenuState = getOverflowMenuState(id);
       const editProduct = () => openEditForm(id);
       const editState = getEditState(id);
       return editState ? (
@@ -133,7 +133,7 @@ const Products = (props) => {
           id={id}
           currentState={productData}
           updateProducts={updateProducts}
-          closeOverflow={toggleOverflow}
+          closeOverflow={closeOverflow}
           closeForm={closeEditForm}
         />
       ) : (
@@ -144,11 +144,18 @@ const Products = (props) => {
           editProduct={editProduct}
           updateProducts={updateProducts}
           deleteProduct={deleteProduct}
-          overflowState={overflowState}
-          toggleOverflow={toggleOverflow}
+          overflowMenuState={overflowMenuState}
+          toggleOverflow={toggleOverflowMenu}
         />
       );
     });
+
+  const renderAddProduct = () =>
+    addFormState ? (
+      <AddProduct insertProduct={insertProduct} closeForm={closeAddForm} />
+    ) : (
+      <AddItemButton text="Add a product" handleClick={openAddForm} />
+    );
 
   return (
     <div className="page-pdg">
@@ -157,11 +164,7 @@ const Products = (props) => {
         <TableHeader headers={tableHeaders} />
         <tbody className="table-body">{products && renderProducts()}</tbody>
       </table>
-      {addFormState && !editFormState.isOpen ? (
-        <AddProduct insertProduct={insertProduct} closeForm={closeAddForm} />
-      ) : (
-        <AddItemButton text="Add a product" handleClick={openAddForm} />
-      )}
+      {!editFormState.isOpen && renderAddProduct()}
     </div>
   );
 };

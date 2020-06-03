@@ -7,7 +7,7 @@ const EditVendor = ({
   id,
   vendorData,
   updateVendors,
-  closeOverflow,
+  closeOverflowMenu,
   closeForm,
 }) => {
   const [vendor, setVendor] = useState(vendorData);
@@ -29,10 +29,11 @@ const EditVendor = ({
   const handleSubmit = (event) => {
     event.preventDefault();
     editVendor(vendor);
+    closeOverflowMenu();
   };
 
   const closeEditForm = () => {
-    closeOverflow();
+    closeOverflowMenu();
     closeForm();
   };
 

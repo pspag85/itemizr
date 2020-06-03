@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {useToggleState} from '../utility/hooks';
+import {useOverflowState} from '../utility/hooks';
 import DataCells from './data-cells';
 import OverflowIcon from './overflow-icon';
 import OverflowMenu from './overflow-menu';
@@ -11,7 +11,7 @@ const Product = ({
   productData,
   editProduct,
   deleteProduct,
-  overflowState,
+  overflowMenuState,
   toggleOverflow,
 }) => {
   const renderPrice = (key) => {
@@ -39,7 +39,7 @@ const Product = ({
       <tr className="light-font">
         <DataCells data={productValues} />
         <OverflowIcon toggleMenu={toggleOverflow} />
-        {overflowState && (
+        {overflowMenuState && (
           <OverflowMenu
             editButton={<EditButton handleClick={editProduct} />}
             deleteRow={() => deleteProduct(id)}

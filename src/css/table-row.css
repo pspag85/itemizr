@@ -7,6 +7,11 @@ tr p {
   margin: 0;
 }
 
+th,
+td:not(.edit-product-row) {
+  padding: 8px;
+}
+
 .unit-container p {
   display: inline-block;
   margin: 4px 2px 0;
@@ -50,7 +55,7 @@ tr p {
 
 @media only screen and (max-width: 640px) {
   tr th:first-child,
-  tr td:first-child {
+  tr td:first-child:not(.edit-product-row) {
     padding-left: 12px;
   }
   tr th:last-child tr td:last-child {

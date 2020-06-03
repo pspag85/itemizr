@@ -1,8 +1,19 @@
 import React, {useState} from 'react';
 
-export const useToggleState = () => {
-  const [toggleState, setMenuState] = useState({id: null, isOpen: false});
-  const toggleMenu = (id) => setMenuState({id, isOpen: !toggleState.isOpen});
+export const useOverflowState = () => {
+  const initialState = {id: null, isOpen: false};
+  const [overflowState, setOverflowState] = useState(initialState);
 
-  return {toggleState, toggleMenu};
+  const openOverflow = (id) => setOverflowState({id, isOpen: true});
+  const closeOverflow = () => setOverflowState(initialState);
+
+  const toggleOverflow = (id) => {
+    if (overflowState.isOpen) {
+      closeOverflow();
+    } else {
+      openOverflow(id);
+    }
+  };
+
+  return {overflowState, openOverflow, closeOverflow, toggleOverflow};
 };

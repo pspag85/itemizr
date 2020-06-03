@@ -115,7 +115,7 @@ const ProductForm = ({
                 endpoint="categories"
                 currentSelection={category}
                 handleChange={handleChange}
-                toggleState={toggleCategoryOptions}
+                overflowState={toggleCategoryOptions}
               />
             )}
           </div>
@@ -126,7 +126,7 @@ const ProductForm = ({
                 endpoint="vendors"
                 currentSelection={vendorName}
                 handleChange={handleChange}
-                toggleState={toggleVendorOptions}
+                overflowState={toggleVendorOptions}
               />
             )}
           </div>
@@ -137,7 +137,7 @@ const ProductForm = ({
                 endpoint="units"
                 currentSelection={unit}
                 handleChange={handleChange}
-                toggleState={toggleUnitOptions}
+                overflowState={toggleUnitOptions}
               />
             )}
           </div>

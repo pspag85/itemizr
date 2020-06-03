@@ -1,5 +1,5 @@
 import React, {Fragment, useState, useEffect, useCallback} from 'react';
-import {useToggleState} from '../utility/hooks';
+import {useOverflowState} from '../utility/hooks';
 import axios from 'axios';
 import Header from '../components/header';
 import AddVendor from '../components/add-vendor';
@@ -8,7 +8,7 @@ import Vendor from '../components/vendor';
 
 const Vendors = (props) => {
   const [vendors, setVendors] = useState([]);
-  const {toggleState, toggleMenu} = useToggleState();
+  const {overflowState, closeOverflow, toggleOverflow} = useOverflowState();
 
   const getVendors = useCallback(async () => {
     try {
@@ -46,10 +46,10 @@ const Vendors = (props) => {
     return () => (subscribed = false);
   }, [getVendors]);
 
-  const getOverflowState = (vendorId) => {
-    const {id, isOpen} = toggleState;
-    const overflowState = isOpen && vendorId === id;
-    return overflowState;
+  const getOverflowMenuState = (vendorId) => {
+    const {id, isOpen} = overflowState;
+    const overflowMenuState = isOpen && vendorId === id;
+    return overflowMenuState;
   };
 
   return (
@@ -69,8 +69,9 @@ const Vendors = (props) => {
                 vendorData={{name, email, phone}}
                 updateVendors={updateVendors}
                 deleteVendor={() => deleteVendor(id)}
-                overflowState={getOverflowState(id)}
-                toggleOverflow={() => toggleMenu(id)}
+                overflowMenuState={getOverflowMenuState(id)}
+                toggleOverflowMenu={() => toggleOverflow(id)}
+                closeOverflowMenu={closeOverflow}
               />
             ))}
         </tbody>
