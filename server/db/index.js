@@ -10,6 +10,9 @@ const Unit = require('./unit');
 Vendor.belongsTo(User);
 User.hasMany(Vendor);
 
+Product.belongsTo(User);
+User.hasMany(Product);
+
 Product.belongsTo(Vendor);
 Vendor.hasMany(Product);
 
