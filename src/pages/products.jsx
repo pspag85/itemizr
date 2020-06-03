@@ -19,16 +19,11 @@ const Products = (props) => {
   const insertProduct = (newProduct) => setProducts([...products, newProduct]);
   const updateProducts = (productData) => {
     const updatedProducts = products.map((product) => {
-      const updatedProduct =
-        product.id === productData.id ? productData : product;
-      console.log(formatPrice(updatedProduct.price));
-      updatedProduct.price =
-        updatedProduct.price.length < 4
-          ? formatPrice(updatedProduct.price)
-          : updatedProduct.price;
-      return updatedProduct;
+      const updated = product.id === productData.id ? productData : product;
+      updated.price =
+        updated.price.length < 4 ? formatPrice(updated.price) : updated.price;
+      return updated;
     });
-    console.log(updatedProducts);
     setProducts(updatedProducts);
   };
 
