@@ -20,7 +20,13 @@ export const formatNumToThreeDigitStr = (num) => {
   return (prefix += numStr);
 };
 
-export const formatPriceToStr = (price) => {
-  const priceStr = !price || price === 0 ? '0.00' : `${price.toString()}`;
+export const formatPrice = (price) => {
+  let priceStr = !price || price === 0 ? '0.00' : `${price.toString()}`;
+  const {length} = priceStr;
+  if (length < 4) {
+    for (let i = length + 1; i <= 4; i += 1) {
+      priceStr += i === 2 ? '.' : '0';
+    }
+  }
   return priceStr;
 };

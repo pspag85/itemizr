@@ -21,6 +21,7 @@ tr p {
   right: 48px;
   width: 180px;
   margin-top: 48px;
+  z-index: 5;
 }
 
 .overflow-menu > button {

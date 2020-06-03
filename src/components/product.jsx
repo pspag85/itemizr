@@ -33,7 +33,7 @@ const Product = ({
     priceKeys.includes(key) ? renderPrice(key) : productData[key]
   );
   const productValues = formattedProductData.filter((value) => value !== null);
-
+  console.log('product:  ', productValues);
   return (
     <Fragment>
       <tr className="light-font">

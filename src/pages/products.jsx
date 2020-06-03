@@ -8,7 +8,7 @@ import Product from '../components/product';
 import EditProduct from '../components/edit-product';
 import AddProduct from '../components/add-product';
 import AddItemButton from '../components/add-item-button';
-import {formatNumToThreeDigitStr, formatPriceToStr} from '../utility/helpers';
+import {formatNumToThreeDigitStr, formatPrice} from '../utility/helpers';
 
 const Products = (props) => {
   const [products, setProducts] = useState([]);
@@ -19,8 +19,16 @@ const Products = (props) => {
   const insertProduct = (newProduct) => setProducts([...products, newProduct]);
   const updateProducts = (productData) => {
     const updatedProducts = products.map((product) => {
-      return product.id === productData.id ? productData : product;
+      const updatedProduct =
+        product.id === productData.id ? productData : product;
+      console.log(formatPrice(updatedProduct.price));
+      updatedProduct.price =
+        updatedProduct.price.length < 4
+          ? formatPrice(updatedProduct.price)
+          : updatedProduct.price;
+      return updatedProduct;
     });
+    console.log(updatedProducts);
     setProducts(updatedProducts);
   };
 
@@ -87,7 +95,7 @@ const Products = (props) => {
     onHand,
   }) => {
     const productNumber = formatNumToThreeDigitStr(id);
-    const priceStr = formatPriceToStr(price);
+    const priceStr = formatPrice(price);
     const categoryName = category ? category.name : '';
     const unitName = unit ? unit.name : '';
     const productData = {
