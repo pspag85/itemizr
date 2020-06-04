@@ -59,12 +59,12 @@
   display: flex;
 }
 
-.unit-input .select {
-  margin-right: 0;
+.unit-input div:first-child {
+  margin-right: 4px;
 }
 
-.unit-input input {
-  margin-right: 4px;
+.unit-input div:last-child {
+  margin-right: 0;
 }
 
 .form-button-wrapper {
