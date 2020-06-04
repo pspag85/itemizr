@@ -12,7 +12,7 @@ const AuthForm = ({handleSubmit, isSignup}) => (
     <input type="password" name="password" placeholder="Password" />
     <button type="submit" className="action-btn white bg-drk-blue">
       {' '}
-      {isSignup ? 'SIGN UP' : 'LOG IN'}{' '}
+      {isSignup ? 'Sign up' : 'Log in'}{' '}
     </button>
   </form>
 );

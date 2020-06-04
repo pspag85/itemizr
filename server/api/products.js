@@ -4,6 +4,7 @@ const {Product, Vendor, Category, Unit} = require('../db');
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll({
+      where: {userId: req.session.userId},
       order: [['id', 'ASC']],
       include: [
         {
@@ -68,6 +69,7 @@ router.post('/', async (req, res, next) => {
       categoryId: category && category.id,
       vendorId: vendor.id,
       unitId: unit && unit.id,
+      userId: req.session.userId,
       ...req.body,
     };
     const product = await Product.create(productData);

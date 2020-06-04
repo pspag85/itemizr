@@ -1,22 +1,35 @@
 .product-form-wrapper {
-  height: 200px;
-  background: #edf5fa;
+  position: relative;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .product-form {
+  height: 160px;
+  padding: 20px 12px;
+  background: #edf5fa;
+}
+
+.product-form-inputs {
   display: flex;
   height: 20px;
   align-items: center;
   font-size: 14px;
 }
 
-.product-form input,
-.product-form select,
-.product-form .select {
+.product-form-inputs.row {
+  padding-bottom: 12px;
+}
+
+.product-form-inputs select,
+.product-form-inputs .select,
+.product-form-inputs input,
+.hidden-cell {
   width: 100%;
   height: 32px;
   min-width: 72px;
-  padding: 0 0 0 8px;
+  margin: 0 8px 0 0;
   background: #fff;
   border: 1px solid #bdbbc2;
   box-sizing: border-box;
@@ -24,12 +37,135 @@
   font-size: 14px;
 }
 
-.price-input {
-  height: 100%;
-  margin-top: -12px;
+.product-form-inputs select,
+.product-form-inputs .select,
+.product-form-inputs input,
+.hidden-cell {
+  padding-left: 8px;
 }
 
-.price-input input,
-.price-input select {
-  margin-bottom: 12px;
+.price-input,
+.hidden-cell:nth-child(5) {
+  padding: 45px 8px 0 0;
+}
+
+.hidden-label {
+  display: none;
+  opacity: 0.5;
+}
+
+.unit-input {
+  margin-top: 13px;
+  display: flex;
+}
+
+.unit-input div:first-child {
+  margin-right: 4px;
+}
+
+.unit-input div:last-child {
+  margin-right: 0;
+}
+
+.form-button-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+.form-button-wrapper button {
+  margin: 0 8px;
+}
+
+@media only screen and (max-width: 906px) {
+  .product-form-wrapper {
+    overflow: hidden;
+  }
+  .product-form {
+    height: 680px;
+    padding-top: 0;
+  }
+  .product-form-inputs {
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 200px);
+  }
+  .product-form-inputs.row.vt-pdg-20 {
+    position: relative;
+    padding-top: 0;
+  }
+  .product-form-inputs.row.vt-pdg-20,
+  .product-form-inputs input {
+    line-height: 32px;
+  }
+  .product-form-inputs select,
+  .product-form-inputs .select,
+  .product-form-inputs input,
+  .hidden-cell {
+    margin: 0;
+  }
+  .hidden-label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 32px;
+    box-sizing: border-box;
+    line-height: 32px;
+    margin-top: 10px;
+    padding: 0 0 2px 4px;
+  }
+  .hidden-cell {
+    position: absolute;
+    width: calc(100% - 24px);
+    height: 0;
+    margin-left: 0;
+    padding: 0;
+  }
+  .options-row {
+    position: absolute;
+    top: 12px;
+    width: 100%;
+    height: 0;
+  }
+  .hidden-cell.category-options-wrapper {
+    top: 220px;
+  }
+  .hidden-cell.vendor-options-wrapper {
+    top: 294px;
+  }
+  .hidden-cell.unit-options-wrapper {
+    top: 442px;
+    left: calc(50% - 10px);
+    width: calc(50% - 15px);
+    min-width: calc(50% - 15px);
+    padding: 0;
+  }
+  .hidden-cell .options-container {
+    width: 100%;
+  }
+  .price-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+  }
+  .unit-input {
+    margin: 0;
+    display: flex;
+    width: 100%;
+  }
+  .unit-input .flex-item {
+    width: calc(50% - 4px);
+    min-width: calc(50% - 4px);
+    margin-right: 8px;
+  }
+  .unit-input .hidden-label {
+    width: 50%;
+    margin-right: 0;
+  }
+  .form-button-wrapper {
+    position: absolute;
+    bottom: 28px;
+    right: 8px;
+  }
 }

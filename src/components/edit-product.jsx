@@ -63,7 +63,7 @@ const EditProduct = ({
 
   return (
     <tr>
-      <td colSpan="8">
+      <td className="edit-product-row" colSpan="8">
         <ProductForm
           product={product}
           handleChange={handleChange}

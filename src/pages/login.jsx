@@ -16,10 +16,10 @@ const Login = ({handleSubmit}) => (
             <h2>Welcome Back!</h2>
             <br />
             <AuthForm handleSubmit={handleSubmit} />
-            <div className="flex ctr-items space-around w-200 hz-pdg-10 light-font">
+            <div className="flex ctr-items space-around w-200 light-font">
               <p>Don't have an account?</p>
               <Link to="/signup" className="underline">
-                Sign Up
+                Sign up
               </Link>
             </div>
           </div>

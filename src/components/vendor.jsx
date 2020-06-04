@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {useToggleState} from '../utility/hooks';
 import DataCells from './data-cells';
 import OverflowIcon from './overflow-icon';
 import OverflowMenu from './overflow-menu';
@@ -12,11 +11,11 @@ import '../css/table-row.css';
 const Vendor = ({
   id,
   vendorData,
-  editVendor,
   deleteVendor,
   updateVendors,
-  overflowState,
-  toggleOverflow,
+  overflowMenuState,
+  toggleOverflowMenu,
+  closeOverflowMenu,
 }) => {
   const renderEditVendorTrigger = (open) => <EditVendorTrigger open={open} />;
 
@@ -32,7 +31,7 @@ const Vendor = ({
       id={id}
       vendorData={vendorData}
       updateVendors={updateVendors}
-      closeOverflow={toggleOverflow}
+      closeOverflowMenu={closeOverflowMenu}
       closeForm={close}
     />
   );
@@ -43,8 +42,8 @@ const Vendor = ({
       <td className="underline">
         <Link to={`/products/${id}`}>View</Link>
       </td>
-      <OverflowIcon toggleMenu={toggleOverflow} />
-      {overflowState && (
+      <OverflowIcon toggleMenu={toggleOverflowMenu} />
+      {overflowMenuState && (
         <OverflowMenu
           editButton={renderEditVendorButton()}
           deleteRow={deleteVendor}

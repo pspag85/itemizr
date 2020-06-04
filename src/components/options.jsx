@@ -8,7 +8,7 @@ const Options = ({
   endpoint,
   currentSelection,
   handleChange,
-  toggleState,
+  overflowState,
 }) => {
   const [options, setOptions] = useState([]);
 
@@ -29,7 +29,7 @@ const Options = ({
     event.target.name = type;
     event.target.value = option;
     handleChange(event);
-    toggleState();
+    overflowState();
   };
 
   const selectNewOption = (option) => {
@@ -38,13 +38,16 @@ const Options = ({
   };
 
   return (
-    <div className="options-container bg-white box-shadow arrow">
+    <div
+      className={`options-container ${type}-option bg-white box-shadow arrow`}
+    >
       <div className="options">
         {options.length < 1 ? (
           <p className="secondary-txt">Add a {type}</p>
         ) : (
           options.map((option) => (
             <div
+              className="option"
               key={option.name + Math.random()}
               onClick={(e) => selectOption(e, option.name)}
             >
@@ -58,7 +61,7 @@ const Options = ({
           type={type}
           endpoint={endpoint}
           selectOption={(option) => selectNewOption(option)}
-          closeMenu={toggleState}
+          closeMenu={overflowState}
         />
       </div>
     </div>

@@ -5,10 +5,17 @@
   flex-direction: column;
   margin-right: 20px;
   font-weight: 300;
+  visibility: visible;
 }
 
 #navbar a {
   text-decoration: none;
   margin: 20px 0 0 20px;
   font-size: 18px;
+}
+
+@media only screen and (max-width: 640px) {
+  #navbar {
+    display: none;
+  }
 }
