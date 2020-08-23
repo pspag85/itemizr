@@ -152,6 +152,7 @@ input:-webkit-autofill:active {
 
 .page-pdg {
   padding: 20px 20px 0 240px;
+  height: 100vh;
 }
 
 .row {
@@ -174,6 +175,12 @@ input:-webkit-autofill:active {
 .hidden-cell input {
   background: none;
   border: none;
+}
+
+.vendor-form-wrapper input,
+.option-form input {
+  background: white;
+  border: 1px solid #bdbbc2;
 }
 
 table {

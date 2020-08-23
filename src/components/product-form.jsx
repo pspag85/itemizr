@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../css/product-form.css';
 import Options from './options';
 import Select from './select';
@@ -31,6 +31,25 @@ const ProductForm = ({
     setUnitOptionsState(!unitOptionsState);
   };
 
+  const bodyClickHandler = () => {
+    const body = document.querySelector('body');
+    body.addEventListener('click', (evt) => {
+      if (evt.target !== 'options-container') {
+        if (vendorOptionsState) setVendorOptionsState(false);
+        else if (unitOptionsState) setUnitOptionsState(false);
+        else if (categoryOptionsState) setCategoryOptionsState(false);
+      }
+    });
+  };
+
+  useEffect(() => {
+    let subscribed = true;
+    if (subscribed) {
+      bodyClickHandler();
+    }
+    return () => (subscribed = false);
+  }, [bodyClickHandler]);
+
   const {
     name,
     productNumber,
@@ -49,7 +68,7 @@ const ProductForm = ({
     <div className="product-form-wrapper">
       <div className="product-form">
         <form className="product-form-inputs row" onSubmit={handleSubmit}>
-          <label className="hidden-label" for="name">
+          <label className="hidden-label" htmlFor="name">
             Name
           </label>
           <input
@@ -58,7 +77,7 @@ const ProductForm = ({
             value={name}
             onChange={handleChange}
           />
-          <label className="hidden-label" for="productNumber">
+          <label className="hidden-label" htmlFor="productNumber">
             Product No.
           </label>
           <input
@@ -67,7 +86,7 @@ const ProductForm = ({
             title="Product number is read only" // TODO: show on click
             disabled
           />
-          <label className="hidden-label" for="category">
+          <label className="hidden-label" htmlFor="category">
             Category
           </label>
           <Select
@@ -75,7 +94,7 @@ const ProductForm = ({
             defaultSelection="Category"
             toggleOptions={toggleCategoryOptions}
           />
-          <label className="hidden-label" for="vendor">
+          <label className="hidden-label" htmlFor="vendor">
             Vendor
           </label>
           <Select
@@ -84,7 +103,7 @@ const ProductForm = ({
             toggleOptions={toggleVendorOptions}
           />
           <div className="price-input">
-            <label className="hidden-label" for="price">
+            <label className="hidden-label" htmlFor="price">
               Price
             </label>
             <input
@@ -95,7 +114,7 @@ const ProductForm = ({
             />
             <div className="unit-input">
               <div className="flex-item">
-                <label className="hidden-label" for="quantity">
+                <label className="hidden-label" htmlFor="quantity">
                   Quantity
                 </label>
                 <input
@@ -106,7 +125,7 @@ const ProductForm = ({
                 />
               </div>
               <div className="flex-item">
-                <label className="hidden-label" for="unit">
+                <label className="hidden-label" htmlFor="unit">
                   Unit
                 </label>
                 <Select
@@ -117,7 +136,7 @@ const ProductForm = ({
               </div>
             </div>
           </div>
-          <label className="hidden-label" for="par">
+          <label className="hidden-label" htmlFor="par">
             Par
           </label>
           <input
@@ -126,7 +145,7 @@ const ProductForm = ({
             value={par}
             onChange={handleChange}
           />
-          <label className="hidden-label" for="onHand">
+          <label className="hidden-label" htmlFor="onHand">
             On-hand
           </label>
           <input

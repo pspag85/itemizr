@@ -34,10 +34,20 @@ router.get('/:vendorId', async (req, res, next) => {
         vendorId: req.params.vendorId,
       },
       order: [['id', 'ASC']],
-      include: {
-        model: Vendor,
-        attributes: ['name'],
-      },
+      include: [
+        {
+          model: Vendor,
+          attributes: ['name'],
+        },
+        {
+          model: Category,
+          attributes: ['name'],
+        },
+        {
+          model: Unit,
+          attributes: ['name'],
+        },
+      ],
     });
     res.json(products);
   } catch (err) {
