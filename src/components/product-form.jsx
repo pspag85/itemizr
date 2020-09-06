@@ -14,7 +14,6 @@ const ProductForm = ({
   const [vendorOptionsState, setVendorOptionsState] = useState(false);
   const [unitOptionsState, setUnitOptionsState] = useState(false);
 
-  // can this be dried up inside the select or options component?
   const toggleVendorOptions = () => {
     categoryOptionsState && setCategoryOptionsState(false);
     unitOptionsState && setUnitOptionsState(false);
@@ -30,25 +29,11 @@ const ProductForm = ({
     categoryOptionsState && setCategoryOptionsState(false);
     setUnitOptionsState(!unitOptionsState);
   };
-
-  const bodyClickHandler = () => {
-    const body = document.querySelector('body');
-    body.addEventListener('click', (evt) => {
-      if (evt.target !== 'options-container') {
-        if (vendorOptionsState) setVendorOptionsState(false);
-        else if (unitOptionsState) setUnitOptionsState(false);
-        else if (categoryOptionsState) setCategoryOptionsState(false);
-      }
-    });
+  const closeAllOptions = () => {
+    vendorOptionsState && setVendorOptionsState(false);
+    categoryOptionsState && setCategoryOptionsState(false);
+    unitOptionsState && setUnitOptionsState(false);
   };
-
-  useEffect(() => {
-    let subscribed = true;
-    if (subscribed) {
-      bodyClickHandler();
-    }
-    return () => (subscribed = false);
-  }, [bodyClickHandler]);
 
   const {
     name,
@@ -76,6 +61,7 @@ const ProductForm = ({
             name="name"
             value={name}
             onChange={handleChange}
+            onClick={closeAllOptions}
           />
           <label className="hidden-label" htmlFor="productNumber">
             Product No.
@@ -144,6 +130,7 @@ const ProductForm = ({
             name="par"
             value={par}
             onChange={handleChange}
+            onClick={closeAllOptions}
           />
           <label className="hidden-label" htmlFor="onHand">
             On-hand
@@ -153,6 +140,7 @@ const ProductForm = ({
             name="onHand"
             value={onHand}
             onChange={handleChange}
+            onClick={closeAllOptions}
           />
         </form>
         <div className="row options-row">
