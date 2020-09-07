@@ -10,29 +10,30 @@ const ProductForm = ({
   userMsg,
   formButtons,
 }) => {
-  const [categoryOptionsState, setCategoryOptionsState] = useState(false);
-  const [vendorOptionsState, setVendorOptionsState] = useState(false);
-  const [unitOptionsState, setUnitOptionsState] = useState(false);
+  const [optionsState, setOptionsState] = useState({type: '', open: false});
+
+  const toggleOptions = (type) => {
+    if (!type) {
+      setOptionsState({type: '', open: false});
+    } else if (type !== optionsState.type) {
+      setOptionsState({type: '', open: false});
+      setOptionsState({type, open: true});
+    } else {
+      setOptionsState({type, open: !optionsState.open});
+    }
+  };
 
   const toggleVendorOptions = () => {
-    categoryOptionsState && setCategoryOptionsState(false);
-    unitOptionsState && setUnitOptionsState(false);
-    setVendorOptionsState(!vendorOptionsState);
+    toggleOptions('vendor');
   };
   const toggleCategoryOptions = () => {
-    vendorOptionsState && setVendorOptionsState(false);
-    unitOptionsState && setUnitOptionsState(false);
-    setCategoryOptionsState(!categoryOptionsState);
+    toggleOptions('category');
   };
   const toggleUnitOptions = () => {
-    vendorOptionsState && setVendorOptionsState(false);
-    categoryOptionsState && setCategoryOptionsState(false);
-    setUnitOptionsState(!unitOptionsState);
+    toggleOptions('unit');
   };
   const closeAllOptions = () => {
-    vendorOptionsState && setVendorOptionsState(false);
-    categoryOptionsState && setCategoryOptionsState(false);
-    unitOptionsState && setUnitOptionsState(false);
+    toggleOptions('');
   };
 
   const {
@@ -147,7 +148,7 @@ const ProductForm = ({
           <div className="hidden-cell"></div>
           <div className="hidden-cell"></div>
           <div className="hidden-cell category-options-wrapper">
-            {categoryOptionsState && (
+            {optionsState.type === 'category' && optionsState.open && (
               <Options
                 type="category"
                 endpoint="categories"
@@ -158,7 +159,7 @@ const ProductForm = ({
             )}
           </div>
           <div className="hidden-cell vendor-options-wrapper">
-            {vendorOptionsState && (
+            {optionsState.type === 'vendor' && optionsState.open && (
               <Options
                 type="vendor"
                 endpoint="vendors"
@@ -169,7 +170,7 @@ const ProductForm = ({
             )}
           </div>
           <div className="hidden-cell unit-options-wrapper">
-            {unitOptionsState && (
+            {optionsState.type === 'unit' && optionsState.open && (
               <Options
                 type="unit"
                 endpoint="units"
