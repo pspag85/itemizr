@@ -12,10 +12,18 @@
   padding: 0 20px;
   flex-basis: 80%;
   border-bottom: 1px solid #bdbbc2;
-  overflow-y: scroll;
+  /* M$ */
+  -ms-overflow-style: none;
+  overflow-y: auto;
+  /* Webkit */
+  scrollbar-width: none;
 }
 
-// try to abstract this to product form
+.options::-webkit-scrollbar {
+  display: none;
+}
+
+/* try to abstract this to product form */
 .unit-option {
   width: 15%;
   min-width: 180px;
